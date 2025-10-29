@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Design System Mooney</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Gotham', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slides-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 10;
+        }
+
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+
+        /* Slide 1 - Cover */
+        .slide-cover {
+            background: linear-gradient(135deg, #00587C 0%, #00AEC7 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .slide-cover h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .slide-cover .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .slide-cover .icons {
+            font-size: 2.5rem;
+            margin: 40px 0;
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-cover .date {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 40px;
+        }
+
+        /* General slide styling */
+        .slide-content {
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            max-width: 1400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: 85vh;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            color: #00587C;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Badge styles */
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .badge-blue {
+            background: #00587C;
+            color: white;
+        }
+
+        .badge-grey {
+            background: #787878;
+            color: white;
+        }
+
+        .badge-green {
+            background: #10b981;
+            color: white;
+        }
+
+        .badge-yellow {
+            background: #FFC627;
+            color: #1E1E1E;
+        }
+
+        .badge-red {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* Two column layout */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .column {
+            padding: 30px;
+            border-radius: 16px;
+            border: 3px solid;
+        }
+
+        .column-design {
+            background: #e6f2ff;
+            border-color: #00587C;
+        }
+
+        .column-dev {
+            background: #f3f4f6;
+            border-color: #787878;
+        }
+
+        .column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .column p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #4F4F4F;
+        }
+
+        .column ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .column li {
+            padding: 8px 0;
+            color: #4F4F4F;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-blue {
+            border-color: #00587C;
+            background: linear-gradient(135deg, #e6f2ff 0%, #ffffff 100%);
+        }
+
+        .card-grey {
+            border-color: #787878;
+            background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+        }
+
+        .card-yellow {
+            border-color: #FFC627;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+        }
+
+        .card-red {
+            border-color: #ef4444;
+            background: linear-gradient(135deg, #fee2e2 0%, #ffffff 100%);
+        }
+
+        .card-green {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #d1fae5 0%, #ffffff 100%);
+        }
+
+        .card .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E1E1E;
+            margin: 10px 0;
+        }
+
+        .card .label {
+            font-size: 0.95rem;
+            color: #4F4F4F;
+            font-weight: 500;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #00587C;
+            color: white;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #DDDDDD;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: #f6f6f6;
+        }
+
+        /* Color swatches */
+        .color-section {
+            margin: 30px 0;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            flex: 1;
+            min-width: 120px;
+            height: 80px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .color-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00587C;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* UI Examples */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .example-card {
+            background: #f6f6f6;
+            border-radius: 16px;
+            padding: 25px;
+            border: 2px solid #DDDDDD;
+        }
+
+        .example-card h4 {
+            color: #00587C;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .example-preview {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .btn-primary {
+            background: #00587C;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #00587C;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Gotham', sans-serif;
+        }
+
+        .input-field:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #00587C;
+        }
+
+        .token-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.85rem;
+            color: #4F4F4F;
+        }
+
+        .token-list li {
+            padding: 4px 0;
+        }
+
+        /* Legend */
+        .legend {
+            background: #f6f6f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .legend h4 {
+            color: #00587C;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Problem/Solution boxes */
+        .problem-box, .solution-box {
+            padding: 25px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border-left: 5px solid;
+        }
+
+        .problem-box {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        .problem-box h4 {
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+
+        .solution-box {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+
+        .solution-box h4 {
+            color: #059669;
+            margin-bottom: 10px;
+        }
+
+        /* Recommendations */
+        .recommendations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .recommendation-item {
+            background: #f6f6f6;
+            border-radius: 16px;
+            padding: 25px;
+            border-left: 5px solid #00587C;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .recommendation-item .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00587C;
+            min-width: 40px;
+        }
+
+        .recommendation-item .icon {
+            font-size: 2rem;
+        }
+
+        .recommendation-item .content h4 {
+            color: #00587C;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .recommendation-item .content p {
+            color: #4F4F4F;
+            line-height: 1.6;
+        }
+
+        /* Summary box */
+        .summary-box {
+            background: linear-gradient(135deg, #e6f2ff 0%, #f6f6f6 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 3px solid #00587C;
+            margin: 20px 0;
+        }
+
+        .summary-section {
+            margin: 25px 0;
+        }
+
+        .summary-section h3 {
+            color: #00587C;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .summary-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-section li {
+            padding: 8px 0;
+            font-size: 1.05rem;
+            color: #1E1E1E;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 88, 124, 0.9);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .nav-arrow:hover {
+            background: #00AEC7;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow-left {
+            left: 20px;
+        }
+
+        .nav-arrow-right {
+            right: 20px;
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Slide indicators */
+        .slide-indicators {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 88, 124, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #00587C;
+            width: 32px;
+            border-radius: 6px;
+        }
+
+        .indicator:hover {
+            background: #00AEC7;
+        }
+
+        /* Chart image */
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Scrollbar */
+        .slide-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .slide-content::-webkit-scrollbar-thumb {
+            background: #00587C;
+            border-radius: 10px;
+        }
+
+        .slide-content::-webkit-scrollbar-thumb:hover {
+            background: #00AEC7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px 20px;
+            }
+
+            .slide-content {
+                padding: 30px;
+            }
+
+            .slide-title {
+                font-size: 2rem;
+            }
+
+            .slide-cover h1 {
+                font-size: 3rem;
+            }
+
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-cover h1 {
+                font-size: 2rem;
+            }
+
+            .slide-cover .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <div class="slides-container">
+            <!-- Slide 1: Cover -->
+            <div class="slide slide-cover active">
+                <h1>Analisi Design System Mooney</h1>
+                <div class="subtitle">Design (Figma) vs Sviluppo (Code)</div>
+                <div class="icons">
+                    <span>🎨 DESIGN</span>
+                    <span>|</span>
+                    <span>💻 SVILUPPO</span>
+                </div>
+                <div class="date">Data analisi: Ottobre 2025</div>
+            </div>
+
+            <!-- Slide 2: How to read -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">Come Leggere Questa Analisi</h2>
+                    
+                    <div class="two-columns">
+                        <div class="column column-design">
+                            <h3>🎨 DESIGN (Figma)</h3>
+                            <span class="badge badge-blue">Master Reference</span>
+                            <p><strong>Source of Truth</strong></p>
+                            <p>La fonte di verità del design system. Token definiti dai designer che rappresentano lo standard del brand Mooney.</p>
+                            <p><strong>File analizzati:</strong></p>
+                            <ul>
+                                <li>• design-figma-variables.json (639 token)</li>
+                                <li>• colorstyle-figma-design.css</li>
+                                <li>• textstyle-figma-design.css</li>
+                            </ul>
+                        </div>
+
+                        <div class="column column-dev">
+                            <h3>💻 SVILUPPO (Code)</h3>
+                            <span class="badge badge-grey">Implementazione</span>
+                            <p><strong>Implementazione Attuale</strong></p>
+                            <p>L'implementazione attuale nel codice. L'obiettivo è raggiungere 100% di allineamento con il Design.</p>
+                            <p><strong>File analizzati:</strong></p>
+                            <ul>
+                                <li>• theme-mooneygo.json (162 token)</li>
+                                <li>• theme-base.json (2172 token)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="legend">
+                        <h4>Legenda Badge:</h4>
+                        <div class="legend-grid">
+                            <div class="legend-item">
+                                <span class="badge badge-green">✅</span>
+                                <span>Perfettamente allineato</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="badge badge-yellow">⚠️</span>
+                                <span>Differenze minori</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="badge badge-red">🔴</span>
+                                <span>Diverso (da correggere)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="badge badge-blue">🆕</span>
+                                <span>Token extra nel code</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="badge badge-grey">📐</span>
+                                <span>Token solo nel Design</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Overview Numbers -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">Overview Numeri</h2>
+                    
+                    <div class="cards-grid">
+                        <div class="card card-blue">
+                            <div class="emoji">🎨</div>
+                            <div class="label">DESIGN (Figma)</div>
+                            <div class="number">639</div>
+                            <div class="label">token</div>
+                            <div class="label" style="margin-top: 10px; font-weight: 700;">Source of Truth</div>
+                        </div>
+
+                        <div class="card card-grey">
+                            <div class="emoji">💻</div>
+                            <div class="label">CODE (MooneyGo)</div>
+                            <div class="number">162</div>
+                            <div class="label">token</div>
+                            <div class="label" style="margin-top: 10px; font-weight: 700;">Implementazione</div>
+                        </div>
+
+                        <div class="card card-yellow">
+                            <div class="emoji">📊</div>
+                            <div class="label">Allineamento</div>
+                            <div class="number">67.9%</div>
+                            <div class="label">Target: 85-90%</div>
+                        </div>
+
+                        <div class="card card-red">
+                            <div class="emoji">⚠️</div>
+                            <div class="label">Token Extra</div>
+                            <div class="number">52</div>
+                            <div class="label">token</div>
+                            <div class="label" style="margin-top: 10px; font-weight: 700;">Solo in Code</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Distribution -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">Distribuzione Token per Collection</h2>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Collection</th>
+                                <th>Ruolo</th>
+                                <th>Token</th>
+                                <th>% Alias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Global (Figma)</strong></td>
+                                <td>🎨 Design - Primitivi</td>
+                                <td>241</td>
+                                <td>0%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Semantic/MooneyGo (Figma)</strong></td>
+                                <td>🎨 Design - Semantici</td>
+                                <td>370</td>
+                                <td><strong>89%</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Components (Figma)</strong></td>
+                                <td>🎨 Design - Componenti</td>
+                                <td>22</td>
+                                <td><strong>90%</strong></td>
+                            </tr>
+                            <tr style="background: #fff9e6;">
+                                <td><strong>MooneyGo Code</strong></td>
+                                <td>💻 Sviluppo</td>
+                                <td>162</td>
+                                <td style="color: #ef4444; font-weight: 700;">32%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: 30px; padding: 25px; background: #fee2e2; border-radius: 16px; border-left: 5px solid #ef4444;">
+                        <h4 style="color: #dc2626; margin-bottom: 10px;">⚠️ Problema Identificato</h4>
+                        <p style="color: #4F4F4F; line-height: 1.6;">Il codice MooneyGo usa solo <strong>32% di alias</strong> rispetto all'<strong>89% del Design Figma</strong>. Questo significa che molti valori sono hardcoded invece di riferirsi a token semantici, rendendo difficile la manutenzione e l'adozione di temi multipli.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Color System -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">Sistema Colori: Design Token</h2>
+                    
+                    <div class="color-section">
+                        <div class="color-title">PRIMARY (Blu Mooney)</div>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #00587C;">#00587C<br>Primary 3</div>
+                            <div class="color-swatch" style="background: #4D8AA3;">#4D8AA3<br>Primary 2 (70%)</div>
+                            <div class="color-swatch" style="background: #E6EEF2; color: #1E1E1E;">#E6EEF2<br>Primary 1 (10%)</div>
+                        </div>
+
+                        <div class="color-title">SECONDARY (Turchese)</div>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #00AEC7;">#00AEC7<br>Secondary 3</div>
+                            <div class="color-swatch" style="background: #99DFE9;">#99DFE9<br>Secondary 2 (40%)</div>
+                            <div class="color-swatch" style="background: #ECFBFD; color: #1E1E1E;">#ECFBFD<br>Secondary 1 (10%)</div>
+                        </div>
+
+                        <div class="color-title">ACCENT (Giallo)</div>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #FFC627; color: #1E1E1E;">#FFC627<br>Accent Light</div>
+                            <div class="color-swatch" style="background: #EDA900;">#EDA900<br>Accent Dark</div>
+                        </div>
+
+                        <div class="color-title">GREYSCALE</div>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #FFFFFF; color: #1E1E1E; border: 2px solid #DDDDDD;">#FFFFFF<br>00 - Super Light</div>
+                            <div class="color-swatch" style="background: #F6F6F6; color: #1E1E1E;">#F6F6F6<br>1 - Extra Light</div>
+                            <div class="color-swatch" style="background: #DDDDDD; color: #1E1E1E;">#DDDDDD<br>2 - Disable</div>
+                            <div class="color-swatch" style="background: #BBBBBB;">#BBBBBB<br>3 - Light</div>
+                            <div class="color-swatch" style="background: #787878;">#787878<br>4 - Medium</div>
+                            <div class="color-swatch" style="background: #4F4F4F;">#4F4F4F<br>5 - Dark</div>
+                            <div class="color-swatch" style="background: #1E1E1E;">#1E1E1E<br>Black</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Token Application Examples -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">Come i Token Vengono Applicati</h2>
+                    
+                    <div class="examples-grid">
+                        <div class="example-card">
+                            <h4>Bottone Primario</h4>
+                            <div class="example-preview">
+                                <button class="btn-primary">Conferma</button>
+                            </div>
+                            <ul class="token-list">
+                                <li>• Background: --primary-3 (#00587C)</li>
+                                <li>• Text: --white (#FFFFFF)</li>
+                                <li>• Border-radius: 8px</li>
+                                <li>• Font-weight: 700</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-card">
+                            <h4>Input Field</h4>
+                            <div class="example-preview">
+                                <input type="text" class="input-field" placeholder="Inserisci testo...">
+                            </div>
+                            <ul class="token-list">
+                                <li>• Border: --primary-3 (#00587C)</li>
+                                <li>• Background: --white (#FFFFFF)</li>
+                                <li>• Font-family: Gotham</li>
+                                <li>• Box-shadow focus: 0 0 0 2px #00587C</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-card">
+                            <h4>Bottone Warning</h4>
+                            <div class="example-preview">
+                                <button class="btn-warning">Attenzione</button>
+                            </div>
+                            <ul class="token-list">
+                                <li>• Background: --warning-orange (#f59e0b)</li>
+                                <li>• Text: --white (#FFFFFF)</li>
+                                <li>• Border-radius: 8px</li>
+                                <li>• Font-weight: 700</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: White-Label Readiness -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">Quanto siamo distanti da un sistema White-Label?</h2>
+                    
+                    <div class="chart-container">
+                        <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/a27af0e429d78a14c99da22bf3d0feb5/9185d984-dc06-4d53-9ec1-00ed07be350e/dfec37a5.png" alt="White-Label Readiness Comparison">
+                    </div>
+
+                    <div class="problem-box">
+                        <h4>⚠️ PROBLEMA ATTUALE</h4>
+                        <p>"Se un token si chiama 'MOONEYGO_PRIMARY' o le collection si chiamano 'Semantic/MooneyGo', è impossibile riutilizzare il sistema per altri brand senza refactoring completo. <strong>Mooney è il nome di un brand specifico</strong>, non dovrebbe essere nel naming dei token!"</p>
+                    </div>
+
+                    <div class="solution-box">
+                        <h4>💡 SOLUZIONE</h4>
+                        <p>"I token dovrebbero chiamarsi in modo generico: 'primary', 'secondary', 'accent', ecc. Il brand specifico diventa un <strong>TEMA</strong> che applica i valori. Questo è esattamente ciò che fa <strong>theme-base.json</strong>!"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Three System Comparison -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">White-Label Readiness: Confronto Tre Sistemi</h2>
+                    
+                    <div class="cards-grid">
+                        <div class="card card-red">
+                            <div class="emoji">❌</div>
+                            <div class="label" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">DESIGN (Figma)</div>
+                            <div class="number" style="font-size: 2.5rem;">75%</div>
+                            <div class="label">Brand-Specific</div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #DDDDDD;">
+                                <div class="label" style="color: #ef4444; font-weight: 700;">❌ Basso</div>
+                                <p style="font-size: 0.85rem; margin-top: 8px; color: #4F4F4F;">6 collections su 8 con nomi Mooney/ATM</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-red">
+                            <div class="emoji">❌</div>
+                            <div class="label" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">SVILUPPO (MooneyGo)</div>
+                            <div class="number" style="font-size: 2.5rem;">100%</div>
+                            <div class="label">Brand-Specific</div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #DDDDDD;">
+                                <div class="label" style="color: #dc2626; font-weight: 700;">❌ Pessimo</div>
+                                <p style="font-size: 0.85rem; margin-top: 8px; color: #4F4F4F;">Tutti i 162 token iniziano con "MOONEYGO_"</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-green">
+                            <div class="emoji">✅</div>
+                            <div class="label" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">BASE (theme-base)</div>
+                            <div class="number" style="font-size: 2.5rem;">98.5%</div>
+                            <div class="label">Generico</div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #DDDDDD;">
+                                <div class="label" style="color: #059669; font-weight: 700;">✅ Ottimo</div>
+                                <p style="font-size: 0.85rem; margin-top: 8px; color: #4F4F4F;">Solo 32 token su 2172 brand-specific</p>
+                                <span class="badge badge-green" style="margin-top: 10px;">BEST PRACTICE ✓</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px; padding: 30px; background: #d1fae5; border-radius: 16px; border: 3px solid #10b981;">
+                        <h3 style="color: #059669; margin-bottom: 15px; font-size: 1.5rem;">🎯 Conclusione</h3>
+                        <p style="font-size: 1.1rem; color: #1E1E1E; line-height: 1.7;"><strong>theme-base.json con 2172 token generici dimostra che un sistema white-label è possibile e scalabile.</strong> Questo dovrebbe essere il modello da seguire per il refactoring di MooneyGo e per l'allineamento con Figma.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Recommendations -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">Prossimi Passi per Migliorare</h2>
+                    
+                    <div class="recommendations-list">
+                        <div class="recommendation-item">
+                            <div class="number">1</div>
+                            <div class="icon">🎯</div>
+                            <div class="content">
+                                <h4>Aumentare allineamento Design-Code</h4>
+                                <p>Obiettivo: passare da 67.9% a 85-90%. Sistemare i 52 token extra nel code.</p>
+                            </div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="number">2</div>
+                            <div class="icon">🏷️</div>
+                            <div class="content">
+                                <h4>Refactoring naming per White-Label</h4>
+                                <p>Rimuovere "MOONEYGO_" dai token. Rinominare collections Figma. Seguire esempio theme-base.json.</p>
+                            </div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="number">3</div>
+                            <div class="icon">📊</div>
+                            <div class="content">
+                                <h4>Migliorare uso degli Alias</h4>
+                                <p>MooneyGo code ha solo 32% alias vs 89% di Figma. Aumentare semantic tokens.</p>
+                            </div>
+                        </div>
+
+                        <div class="recommendation-item">
+                            <div class="number">4</div>
+                            <div class="icon">🔄</div>
+                            <div class="content">
+                                <h4>Sincronizzazione continua</h4>
+                                <p>Processo automatico Figma → Code. CI/CD checks per alignment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Conclusions -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="slide-title">Situazione Attuale e Obiettivi</h2>
+                    
+                    <div class="summary-box">
+                        <div class="summary-section">
+                            <h3>📊 STATO ATTUALE</h3>
+                            <ul>
+                                <li>✓ Design Figma ben strutturato (639 token)</li>
+                                <li>⚠️ Implementazione parziale (162 token, 67.9% aligned)</li>
+                                <li>❌ Naming non white-label ready (75% brand-specific in Figma, 100% in MooneyGo)</li>
+                                <li>✅ theme-base.json dimostra che è fattibile (2172 token, 98.5% generico)</li>
+                            </ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <h3>🎯 OBIETTIVI</h3>
+                            <ul>
+                                <li>1. Allineamento 85-90% Design-Code</li>
+                                <li>2. Naming generico per white-label (seguire modello BASE)</li>
+                                <li>3. Processo di sync automatizzato</li>
+                                <li>4. Sistema theming multi-brand</li>
+                            </ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <h3>📈 IMPATTO</h3>
+                            <ul>
+                                <li>• Velocità di sviluppo aumentata</li>
+                                <li>• Coerenza visiva garantita</li>
+                                <li>• Riutilizzabilità per nuovi brand</li>
+                                <li>• Manutenzione semplificata</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #00587C 0%, #00AEC7 100%); border-radius: 16px; color: white;">
+                        <p style="font-size: 1.3rem; font-weight: 700;">Il percorso è chiaro: seguire l'esempio di theme-base.json! 🎯</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation arrows -->
+        <button class="nav-arrow nav-arrow-left" id="prevBtn">←</button>
+        <button class="nav-arrow nav-arrow-right" id="nextBtn">→</button>
+
+        <!-- Slide indicators -->
+        <div class="slide-indicators" id="indicators"></div>
+    </div>
+
+    <script>
+        // Slide management
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        // Create indicators
+        function createIndicators() {
+            for (let i = 0; i < totalSlides; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                if (i === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(i));
+                indicatorsContainer.appendChild(indicator);
+            }
+        }
+
+        // Update slide display
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+
+            // Update indicators
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+
+            // Update button states
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        // Navigate to specific slide
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                currentSlide = index;
+                updateSlides();
+            }
+        }
+
+        // Next slide
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        }
+
+        // Previous slide
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        }
+
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'Escape') {
+                // Could add fullscreen exit or other functionality
+            }
+        });
+
+        // Initialize
+        createIndicators();
+        updateSlides();
+    </script>
+</body>
+</html>

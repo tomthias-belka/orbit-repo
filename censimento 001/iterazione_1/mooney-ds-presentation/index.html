@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mooney Design System - Current State Analysis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="presentation-container">
+    <!-- Slide 1: Title Slide -->
+    <section class="slide active" data-slide="1">
+      <div class="slide-content title-slide">
+        <div class="title-content">
+          <h1 class="main-title">Mooney Design System</h1>
+          <h2 class="subtitle">Current State Analysis</h2>
+          <p class="tagline">Strategic Review &amp; Unification Roadmap</p>
+          <p class="date">October 2025</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Executive Summary -->
+    <section class="slide" data-slide="2">
+      <div class="slide-content">
+        <h2 class="slide-title">Executive Summary</h2>
+        <div class="executive-box">
+          <p class="key-finding">🔴 <strong>Critical Finding:</strong> Design and development teams working in silos</p>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">282 vs 273</div>
+            <div class="metric-label">Design Tokens vs Dev Tokens</div>
+          </div>
+          <div class="metric-card highlight">
+            <div class="metric-value">22 vs 6</div>
+            <div class="metric-label">Mobility Services Coverage</div>
+            <div class="metric-badge">73% Gap</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">Multiple</div>
+            <div class="metric-label">Color Conflicts Identified</div>
+          </div>
+        </div>
+        <div class="urgency-indicator">
+          <span class="urgency-label">Urgency Level:</span>
+          <span class="urgency-badge critical">CRITICAL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Current State - Design Team -->
+    <section class="slide" data-slide="3">
+      <div class="slide-content">
+        <h2 class="slide-title">Current State: Design Team</h2>
+        <div class="team-overview">
+          <div class="team-header">
+            <h3>Design Team Output</h3>
+            <span class="file-badge">design/variables.json</span>
+          </div>
+          <div class="characteristics-grid">
+            <div class="characteristic-item">
+              <span class="icon">📊</span>
+              <div>
+                <strong>282 tokens</strong>
+                <p>Organized in 6 semantic groups</p>
+              </div>
+            </div>
+            <div class="characteristic-item">
+              <span class="icon">🚗</span>
+              <div>
+                <strong>22 mobility services</strong>
+                <p>Fully defined coverage</p>
+              </div>
+            </div>
+            <div class="characteristic-item">
+              <span class="icon">✅</span>
+              <div>
+                <strong>Excellent W3C DTCG structure</strong>
+                <p>Strong use of aliases</p>
+              </div>
+            </div>
+            <div class="characteristic-item issue">
+              <span class="icon">❌</span>
+              <div>
+                <strong>CRITICAL ISSUE</strong>
+                <p>Emoji prefixes break Luckino plugin</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Current State - Development Team -->
+    <section class="slide" data-slide="4">
+      <div class="slide-content">
+        <h2 class="slide-title">Current State: Development Team</h2>
+        <div class="team-overview">
+          <div class="team-header">
+            <h3>Development Team Output</h3>
+            <span class="file-badge">censimento/jsonW3C-StatoAttuale.json</span>
+          </div>
+          <div class="characteristics-grid">
+            <div class="characteristic-item">
+              <span class="icon">📊</span>
+              <div>
+                <strong>273 tokens</strong>
+                <p>Flat structure with 31 root groups</p>
+              </div>
+            </div>
+            <div class="characteristic-item issue">
+              <span class="icon">⚠️</span>
+              <div>
+                <strong>Only 6 mobility services</strong>
+                <p>Missing 73% of design coverage</p>
+              </div>
+            </div>
+            <div class="characteristic-item">
+              <span class="icon">✅</span>
+              <div>
+                <strong>W3C DTCG compliant</strong>
+                <p>Clean naming (no emojis)</p>
+              </div>
+            </div>
+            <div class="characteristic-item issue">
+              <span class="icon">🔴</span>
+              <div>
+                <strong>CRITICAL GAP</strong>
+                <p>16 services missing from implementation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Mobility Services Gap -->
+    <section class="slide" data-slide="5">
+      <div class="slide-content">
+        <h2 class="slide-title">Mobility Services Coverage Analysis</h2>
+        <div class="coverage-stat">
+          <div class="stat-value">27.3%</div>
+          <div class="stat-label">Coverage - 16 Services Missing</div>
+        </div>
+        <div class="services-comparison">
+          <div class="services-column">
+            <h4 class="services-header complete">✓ Complete (6)</h4>
+            <ul class="services-list">
+              <li class="service-item complete">✓ bus</li>
+              <li class="service-item complete">✓ metro</li>
+              <li class="service-item complete">✓ train</li>
+              <li class="service-item complete">✓ garage</li>
+              <li class="service-item complete">✓ garage-telepass</li>
+              <li class="service-item complete">✓ sharing</li>
+            </ul>
+          </div>
+          <div class="services-column missing-col">
+            <h4 class="services-header missing">✗ Missing (16)</h4>
+            <ul class="services-list">
+              <li class="service-item missing">✗ taxi</li>
+              <li class="service-item missing">✗ parking</li>
+              <li class="service-item missing">✗ car-rental</li>
+              <li class="service-item missing">✗ charging-station</li>
+              <li class="service-item missing">✗ airports</li>
+              <li class="service-item missing">✗ pullman</li>
+              <li class="service-item missing">✗ tram</li>
+              <li class="service-item missing">✗ harbor</li>
+              <li class="service-item missing">✗ ncc</li>
+              <li class="service-item missing">✗ skipass</li>
+              <li class="service-item missing">✗ favorites</li>
+              <li class="service-item missing">✗ walk</li>
+              <li class="service-item missing">✗ ztl</li>
+              <li class="service-item missing">✗ places</li>
+              <li class="service-item missing">✗ apparked</li>
+              <li class="service-item missing">✗ experience</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Color Conflicts -->
+    <section class="slide" data-slide="6">
+      <div class="slide-content">
+        <h2 class="slide-title">Critical Color Discrepancies</h2>
+        <div class="conflicts-container">
+          <div class="conflict-box">
+            <h3 class="conflict-title">Bus Service Color Palette</h3>
+            <div class="palette-comparison">
+              <div class="palette-side">
+                <h4>Design Team</h4>
+                <div class="color-swatches">
+                  <div class="swatch" style="background-color: #FFE5CC;">
+                    <span class="swatch-label">Orange-100</span>
+                  </div>
+                  <div class="swatch" style="background-color: #E67E22;">
+                    <span class="swatch-label">Orange-750</span>
+                  </div>
+                  <div class="swatch" style="background-color: #5D4037;">
+                    <span class="swatch-label">Brown-800</span>
+                  </div>
+                </div>
+              </div>
+              <div class="vs-divider">VS</div>
+              <div class="palette-side">
+                <h4>Dev Team</h4>
+                <div class="color-swatches">
+                  <div class="swatch" style="background-color: #B3E5FC;">
+                    <span class="swatch-label">Light Blue-200</span>
+                  </div>
+                  <div class="swatch" style="background-color: #0288D1;">
+                    <span class="swatch-label">Light Blue-650</span>
+                  </div>
+                  <div class="swatch" style="background-color: #01579B;">
+                    <span class="swatch-label">Light Blue-750</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="conflict-box">
+            <h3 class="conflict-title">Whitelabel (-extra) Tokens</h3>
+            <div class="palette-comparison">
+              <div class="palette-side">
+                <h4>Design Team</h4>
+                <div class="color-swatches">
+                  <div class="swatch" style="background-color: #E1BEE7;">
+                    <span class="swatch-label">Purple-300</span>
+                  </div>
+                  <div class="swatch" style="background-color: #8E24AA;">
+                    <span class="swatch-label">Purple-600</span>
+                  </div>
+                  <div class="swatch" style="background-color: #4A148C;">
+                    <span class="swatch-label">Purple-800</span>
+                  </div>
+                </div>
+              </div>
+              <div class="vs-divider">VS</div>
+              <div class="palette-side">
+                <h4>Dev Team</h4>
+                <div class="color-swatches">
+                  <div class="swatch" style="background-color: #D7CCC8;">
+                    <span class="swatch-label">Brown-200</span>
+                  </div>
+                  <div class="swatch" style="background-color: #5D4037;">
+                    <span class="swatch-label">Brown-800</span>
+                  </div>
+                  <div class="swatch" style="background-color: #3E2723;">
+                    <span class="swatch-label">Brown-900</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Architectural Comparison -->
+    <section class="slide" data-slide="7">
+      <div class="slide-content">
+        <h2 class="slide-title">System Architecture Analysis</h2>
+        <div class="comparison-table">
+          <div class="comparison-column">
+            <h3 class="column-header">Design Team</h3>
+            <ul class="comparison-list">
+              <li>3-tier hierarchical structure</li>
+              <li>6 semantic groups with emoji prefixes</li>
+              <li>Purpose-driven mental model</li>
+              <li class="negative">❌ Emoji breaks Luckino plugin</li>
+            </ul>
+          </div>
+          <div class="comparison-column">
+            <h3 class="column-header">Dev Team</h3>
+            <ul class="comparison-list">
+              <li>Flat structure with 31 groups</li>
+              <li>Clean naming (no emoji)</li>
+              <li>Type + purpose mix</li>
+              <li class="warning">⚠️ Missing 73% mobility coverage</li>
+            </ul>
+          </div>
+          <div class="comparison-column recommended">
+            <h3 class="column-header">✓ Recommended</h3>
+            <ul class="comparison-list">
+              <li>3-tier semantic structure</li>
+              <li>Global → Semantic → Component</li>
+              <li>No emoji, clean naming</li>
+              <li class="positive">✓ Full 4-brand support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Recommended Architecture -->
+    <section class="slide" data-slide="8">
+      <div class="slide-content">
+        <h2 class="slide-title">Three-Tier Token System</h2>
+        <div class="architecture-pyramid">
+          <div class="pyramid-layer layer3">
+            <div class="layer-content">
+              <h3>Layer 3: Component Tokens</h3>
+              <p class="layer-desc">Specific use cases (15-20%)</p>
+              <p class="layer-examples">button.primary.background, card.border.radius</p>
+            </div>
+          </div>
+          <div class="pyramid-layer layer2">
+            <div class="layer-content">
+              <h3>Layer 2: Semantic Tokens</h3>
+              <p class="layer-desc">Brand-switchable, purpose-based</p>
+              <p class="layer-examples">color.text.primary, color.button.background</p>
+            </div>
+          </div>
+          <div class="pyramid-layer layer1">
+            <div class="layer-content">
+              <h3>Layer 1: Global Primitives</h3>
+              <p class="layer-desc">Immutable base values</p>
+              <p class="layer-examples">colors.blue.500, spacing.md, font.size.16</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: Whitelabel Solution -->
+    <section class="slide" data-slide="9">
+      <div class="slide-content">
+        <h2 class="slide-title">4-Brand Multi-Mode System</h2>
+        <div class="whitelabel-explanation">
+          <div class="multi-mode-box">
+            <h3>Multi-Mode Structure</h3>
+            <ul class="mode-list">
+              <li><strong>Base mode</strong> + 4 brand modes</li>
+              <li>MooneyGo, Brand 2, Brand 3, Brand 4</li>
+              <li>Shared primitives, brand-specific semantic values</li>
+              <li>One component, multiple brand appearances</li>
+            </ul>
+          </div>
+          <div class="brand-modes-visual">
+            <h4>Same Component, Different Brands:</h4>
+            <div class="brand-cards">
+              <div class="brand-card" style="border-color: #32B8C6;">
+                <div class="card-header" style="background-color: #32B8C6;">MooneyGo</div>
+                <div class="card-body">Button</div>
+              </div>
+              <div class="brand-card" style="border-color: #E67E22;">
+                <div class="card-header" style="background-color: #E67E22;">Brand 2</div>
+                <div class="card-body">Button</div>
+              </div>
+              <div class="brand-card" style="border-color: #8E24AA;">
+                <div class="card-header" style="background-color: #8E24AA;">Brand 3</div>
+                <div class="card-body">Button</div>
+              </div>
+              <div class="brand-card" style="border-color: #43A047;">
+                <div class="card-header" style="background-color: #43A047;">Brand 4</div>
+                <div class="card-body">Button</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: Risk Assessment -->
+    <section class="slide" data-slide="10">
+      <div class="slide-content">
+        <h2 class="slide-title">Current Risks &amp; Impact</h2>
+        <div class="risks-container">
+          <div class="risk-item critical">
+            <span class="risk-indicator">🔴</span>
+            <div class="risk-content">
+              <h3>Divergent Implementations</h3>
+              <span class="risk-level">CRITICAL</span>
+            </div>
+          </div>
+          <div class="risk-item critical">
+            <span class="risk-indicator">🔴</span>
+            <div class="risk-content">
+              <h3>Wasted Development Effort</h3>
+              <span class="risk-level">CRITICAL</span>
+            </div>
+          </div>
+          <div class="risk-item critical">
+            <span class="risk-indicator">🔴</span>
+            <div class="risk-content">
+              <h3>Design-Dev Misalignment</h3>
+              <span class="risk-level">CRITICAL</span>
+            </div>
+          </div>
+          <div class="risk-item critical">
+            <span class="risk-indicator">🔴</span>
+            <div class="risk-content">
+              <h3>Plugin Compatibility Failure</h3>
+              <span class="risk-level">CRITICAL</span>
+            </div>
+          </div>
+          <div class="risk-item critical">
+            <span class="risk-indicator">🔴</span>
+            <div class="risk-content">
+              <h3>Whitelabel Architecture Unclear</h3>
+              <span class="risk-level">CRITICAL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 11: Governance Model -->
+    <section class="slide" data-slide="11">
+      <div class="slide-content">
+        <h2 class="slide-title">Recommended: Federated Governance</h2>
+        <div class="governance-structure">
+          <div class="governance-team">
+            <h3 class="team-title">Core DS Team (2-3 people)</h3>
+            <ul class="responsibilities">
+              <li>✓ Owns primitives &amp; semantic layers</li>
+              <li>✓ Reviews all contributions</li>
+              <li>✓ Maintains documentation</li>
+              <li>✓ Handles Luckino plugin sync</li>
+            </ul>
+          </div>
+          <div class="governance-arrow">⬇</div>
+          <div class="governance-team">
+            <h3 class="team-title">Product Teams (Distributed)</h3>
+            <ul class="responsibilities">
+              <li>✓ Propose component tokens</li>
+              <li>✓ Submit via pull requests</li>
+              <li>✓ Follow contribution guidelines</li>
+              <li>✓ Design system ambassadors</li>
+            </ul>
+          </div>
+          <div class="governance-note">
+            <strong>Key Principle:</strong> Centralized standards, distributed execution
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 12: Unification Roadmap -->
+    <section class="slide" data-slide="12">
+      <div class="slide-content">
+        <h2 class="slide-title">7-Phase Implementation Plan</h2>
+        <div class="roadmap-timeline">
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-number">1</span>
+              <h3>Team Alignment</h3>
+            </div>
+            <div class="phase-timeline">Week 1-2</div>
+          </div>
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-number">2</span>
+              <h3>Architecture Decisions</h3>
+            </div>
+            <div class="phase-timeline">Week 3-4</div>
+          </div>
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-number">3</span>
+              <h3>Conflict Resolution</h3>
+            </div>
+            <div class="phase-timeline">Week 5-6</div>
+          </div>
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-number">4</span>
+              <h3>Unified File Creation</h3>
+            </div>
+            <div class="phase-timeline">Week 7-8</div>
+          </div>
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-number">5</span>
+              <h3>Governance Setup</h3>
+            </div>
+            <div class="phase-timeline">Ongoing</div>
+          </div>
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-number">6</span>
+              <h3>Migration Execution</h3>
+            </div>
+            <div class="phase-timeline">Week 9-12</div>
+          </div>
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-number">7</span>
+              <h3>Quality Assurance</h3>
+            </div>
+            <div class="phase-timeline">Week 13-14</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 13: Success Criteria -->
+    <section class="slide" data-slide="13">
+      <div class="slide-content">
+        <h2 class="slide-title">How We Measure Success</h2>
+        <div class="success-grid">
+          <div class="success-item">
+            <span class="success-check">✓</span>
+            <span>Single source of truth file</span>
+          </div>
+          <div class="success-item">
+            <span class="success-check">✓</span>
+            <span>All 22 mobility services defined</span>
+          </div>
+          <div class="success-item">
+            <span class="success-check">✓</span>
+            <span>Luckino plugin import: 100% success</span>
+          </div>
+          <div class="success-item">
+            <span class="success-check">✓</span>
+            <span>4-brand mode switching functional</span>
+          </div>
+          <div class="success-item">
+            <span class="success-check">✓</span>
+            <span>W3C DTCG compliant</span>
+          </div>
+          <div class="success-item">
+            <span class="success-check">✓</span>
+            <span>Team satisfaction &gt; 80%</span>
+          </div>
+          <div class="success-item">
+            <span class="success-check">✓</span>
+            <span>Design-dev inconsistencies reduced &gt; 70%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 14: Next Steps -->
+    <section class="slide" data-slide="14">
+      <div class="slide-content">
+        <h2 class="slide-title">Immediate Actions Required</h2>
+        <div class="actions-container">
+          <div class="action-item">
+            <div class="action-number">1</div>
+            <div class="action-content">
+              <h3>Schedule team alignment meeting</h3>
+              <span class="action-timeframe">This week</span>
+            </div>
+          </div>
+          <div class="action-item">
+            <div class="action-number">2</div>
+            <div class="action-content">
+              <h3>Validate mobility services with product roadmap</h3>
+              <span class="action-timeframe">This week</span>
+            </div>
+          </div>
+          <div class="action-item">
+            <div class="action-number">3</div>
+            <div class="action-content">
+              <h3>Resolve color conflicts with brand team</h3>
+              <span class="action-timeframe">Next week</span>
+            </div>
+          </div>
+        </div>
+        <div class="cta-button">
+          <button class="btn-cta">Let's Begin</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 15: Q&A -->
+    <section class="slide" data-slide="15">
+      <div class="slide-content qna-slide">
+        <h2 class="slide-title-large">Questions &amp; Discussion</h2>
+        <div class="contact-info">
+          <p class="contact-line">Senior Design System Designer</p>
+          <p class="contact-line">Mooney Design System Project</p>
+        </div>
+        <div class="closing-message">
+          <p>Thank you for your attention</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Navigation Controls -->
+  <div class="nav-controls">
+    <button class="nav-btn prev-btn" id="prevBtn" aria-label="Previous slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div class="slide-counter" id="slideCounter">
+      <span class="current-slide">1</span> / <span class="total-slides">15</span>
+    </div>
+    <button class="nav-btn next-btn" id="nextBtn" aria-label="Next slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

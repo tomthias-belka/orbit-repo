@@ -1,0 +1,8 @@
+Aspect,Design Team,Development Team,Recommended
+Token Layers,3 (Primitives→Brand→Mobility),Flat structure,3 (Global→Semantic→Component)
+Hierarchy Depth,3-4 levels,2-3 levels,3-4 levels
+Figma Compatibility,❌ (emoji breaks Luckino),⚠️ (partial),"✓ (no emoji, proper structure)"
+W3C DTCG Compliance,✓ (uses aliases),✓ (compliant naming),✓ (full compliance)
+Mental Model,Purpose-driven,Type + purpose mix,Semantic purpose-based
+Emoji Prefixes,✓ (6 groups: 🔠🎨⬛️),✗ (clean naming),✗ (use clear names)
+Multi-Brand Support,Partial,Limited,Full (4-brand modes)

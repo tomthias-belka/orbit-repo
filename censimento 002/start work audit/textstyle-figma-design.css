@@ -1,0 +1,294 @@
+/*text style*/ 
+.button {
+    font-size: 14px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 16px;
+  }
+  .texts-body1-bold {
+    font-size: 14px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 18px;
+  }
+  .texts-body1-medium {
+    font-size: 14px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 18px;
+  }
+  .texts-body1-regular {
+    font-size: 14px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 18px;
+  }
+  .texts-body1-regular-strikethrough {
+    font-size: 14px;
+    text-decoration: line-through;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 18px;
+  }
+  .texts-body2-bold {
+    font-size: 14px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .texts-body2-medium {
+    font-size: 14px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .texts-body2-regular {
+    font-size: 14px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .texts-body2-regular-strikethrough {
+    font-size: 14px;
+    text-decoration: line-through;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .texts-subtitle1-bold {
+    font-size: 12px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 16px;
+  }
+  .texts-subtitle1-medium {
+    font-size: 12px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 16px;
+  }
+  .texts-subtitle1-regular {
+    font-size: 12px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 16px;
+  }
+  .texts-subtitle1-regular-strikethrough {
+    font-size: 12px;
+    text-decoration: line-through;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 16px;
+  }
+  .texts-subtitle2-bold {
+    font-size: 12px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 20px;
+  }
+  .texts-subtitle2-medium {
+    font-size: 12px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 20px;
+  }
+  .texts-subtitle2-regular {
+    font-size: 12px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 20px;
+  }
+  .texts-caption-bold {
+    font-size: 10px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 12px;
+  }
+  .texts-caption-medium {
+    font-size: 10px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 12px;
+  }
+  .texts-caption-regular {
+    font-size: 10px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 12px;
+  }
+  .headlines-h7-bold {
+    font-size: 16px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h7-medium {
+    font-size: 16px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h7-regular {
+    font-size: 16px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h6-bold {
+    font-size: 16px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 20px;
+  }
+  .headlines-h6-medium {
+    font-size: 16px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 20px;
+  }
+  .headlines-h6-regular {
+    font-size: 16px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 20px;
+  }
+  .headlines-h5-bold {
+    font-size: 18px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 22px;
+  }
+  .headlines-h5-medium {
+    font-size: 18px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 22px;
+  }
+  .headlines-h5-regular {
+    font-size: 18px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 22px;
+  }
+  .headlines-h4-bold {
+    font-size: 20px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h4-bold-strikethrough {
+    font-size: 20px;
+    text-decoration: line-through;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h4-medium {
+    font-size: 20px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h4-regular {
+    font-size: 20px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h3-bold {
+    font-size: 24px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h3-medium {
+    font-size: 24px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h3-regular {
+    font-size: 24px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 24px;
+  }
+  .headlines-h2-bold {
+    font-size: 32px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 38px;
+  }
+  .headlines-h2-bold-strikethrough {
+    font-size: 32px;
+    text-decoration: line-through;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 38px;
+  }
+  .headlines-h2-medium {
+    font-size: 32px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 38px;
+  }
+  .headlines-h2-regular {
+    font-size: 32px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 38px;
+  }
+  .headlines-h1-medium {
+    font-size: 40px;
+    font-family: Gotham;
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 48px;
+  }
+  .links-link1-bold {
+    font-size: 14px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 18px;
+  }
+  .links-link1-regular {
+    font-size: 14px;
+    font-family: Gotham;
+    letter-spacing: 0px;
+    line-height: 18px;
+  }
+  .links-link2-bold {
+    font-size: 12px;
+    font-family: Gotham;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 16px;
+  }
+  
+  

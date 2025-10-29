@@ -1,0 +1,7 @@
+Token,Design Team,Development Team,Conflict
+bus.light,Orange.orange-100,Light Blue.light-blue-200,❌ Color Mismatch
+bus.medium,Orange.orange-750,Light Blue.light-blue-650,❌ Color Mismatch
+bus.dark,Brown.brown-800,Light Blue.light-blue-750,❌ Color Mismatch
+-extra.dark-3,Purple.purple-800,Brown.brown-900,❌ Color Mismatch
+-extra.medium-2,Purple.purple-600,Brown.brown-800,❌ Color Mismatch
+-extra.light-1,Purple.purple-300,Brown.brown-200,❌ Color Mismatch

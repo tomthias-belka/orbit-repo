@@ -1,0 +1,9 @@
+Risk,Impact,Likelihood,Priority
+Divergent implementations,High,High,Critical
+Wasted development effort,High,High,Critical
+Design-Dev misalignment,High,High,Critical
+Missing mobility services,Medium,High,High
+Plugin compatibility failure,High,Medium,Critical
+Breaking changes on unification,High,Medium,High
+Governance vacuum,Medium,High,High
+Whitelabel architecture unclear,High,High,Critical

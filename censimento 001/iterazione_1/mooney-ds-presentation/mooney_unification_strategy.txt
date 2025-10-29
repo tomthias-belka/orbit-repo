@@ -1,0 +1,255 @@
+
+# MOONEY DESIGN SYSTEM UNIFICATION STRATEGY
+
+## PHASE 1: IMMEDIATE ACTIONS (Week 1-2)
+
+### 1.1 Team Alignment Meeting
+- Present findings to both teams
+- Establish shared understanding of conflicts
+- Agree on source of truth approach
+- Create decision-making framework
+
+### 1.2 Token Audit & Validation
+- Map all 282 design tokens to 273 dev tokens
+- Document each conflict with business context
+- Interview stakeholders for mobility service priorities
+- Validate color palette choices with brand team
+
+## PHASE 2: ARCHITECTURAL DECISIONS (Week 3-4)
+
+### 2.1 Three-Tier Token Architecture (RECOMMENDED)
+
+**Layer 1: Global Primitives (Foundation)**
+- All base colors, spacing, typography
+- Immutable across brands
+- Example: colors.blue.500, spacing.md, font.size.16
+
+**Layer 2: Semantic Tokens (Brand-Switchable)**
+- Purpose-based tokens with multi-mode values
+- Enable 4-brand theming without duplication
+- Example:
+  {
+    "color.text.primary": {
+      "$type": "color",
+      "$value": {
+        "base": "{colors.gray.900}",
+        "mooneygo": "{colors.brand.mg.primary}",
+        "brand2": "{colors.brand.b2.primary}",
+        "brand3": "{colors.brand.b3.primary}",
+        "brand4": "{colors.brand.b4.primary}"
+      }
+    }
+  }
+
+**Layer 3: Component Tokens (Specific Use)**
+- 15-20% of total tokens (for exceptions)
+- Component-specific overrides
+- Example: button.primary.background, card.border.radius
+
+### 2.2 Luckino Plugin Requirements
+✓ Remove ALL emoji prefixes (breaks import)
+✓ Use W3C DTCG format ($type, $value, $description)
+✓ Organize into 3 collections: primitives, semantic, component
+✓ Support variable scopes mapping:
+  - borderRadius → CORNER_RADIUS
+  - spacing → GAP
+  - size → HEIGHT_WIDTH
+✓ Use proper alias format: {colors.blue.500} (no collection prefix)
+✓ Multi-mode syntax: { "base": value1, "brand": value2 }
+
+## PHASE 3: CONFLICT RESOLUTION (Week 5-6)
+
+### 3.1 Mobility Services Decision Matrix
+
+CRITICAL DECISION: All 22 or subset of 6?
+
+**Recommendation: Include all 22 services**
+Rationale:
+- Design team has done comprehensive service mapping
+- Future-proofing for whitelabel clients
+- Missing 73% of coverage creates technical debt
+- Cost of adding later > cost of including now
+
+Action: Validate with product roadmap and client requirements
+
+### 3.2 Color Conflict Resolution
+
+**Bus Service Colors:**
+- DESIGN: Orange-based palette
+- DEV: Light Blue-based palette
+- RESOLUTION PROCESS:
+  1. Review brand guidelines document
+  2. Consult with UX research on user testing
+  3. Check existing client implementations
+  4. Make evidence-based decision
+  5. Document reasoning for future reference
+
+**-extra (Whitelabel) Colors:**
+- DESIGN: Purple-based
+- DEV: Brown-based
+- RESOLUTION: Purple recommended (higher contrast, better accessibility)
+- Action: Verify WCAG AA compliance for all color combinations
+
+## PHASE 4: UNIFIED FILE CREATION (Week 7-8)
+
+### 4.1 File Structure
+
+mooney-design-system/
+├── tokens/
+│   ├── primitives/
+│   │   ├── colors.json
+│   │   ├── spacing.json
+│   │   ├── typography.json
+│   │   └── effects.json (shadows, blur)
+│   ├── semantic/
+│   │   ├── colors-semantic.json
+│   │   ├── spacing-semantic.json
+│   │   └── mobility-services.json
+│   └── component/
+│       ├── button.json
+│       ├── card.json
+│       └── form.json
+├── brands/
+│   ├── mooneygo.json (mode values)
+│   ├── brand2.json
+│   ├── brand3.json
+│   └── brand4.json
+└── docs/
+    ├── governance.md
+    ├── contribution-guide.md
+    └── migration-guide.md
+
+### 4.2 Token Naming Convention
+
+RECOMMENDED: Hierarchical kebab-case
+- Primitives: {category}.{subcategory}.{scale}
+  Example: colors.blue.500, spacing.scale.md
+
+- Semantic: {purpose}.{element}.{property}.{state}
+  Example: color.text.primary, color.button.background.hover
+
+- Component: {component}.{variant}.{property}.{state}
+  Example: button.primary.background.hover
+
+## PHASE 5: GOVERNANCE MODEL (Ongoing)
+
+### 5.1 RECOMMENDED: Federated Governance
+
+**Core Design System Team (2-3 people):**
+- Owns primitives and semantic layers
+- Reviews all contributions
+- Maintains documentation
+- Handles Luckino plugin sync
+
+**Product Teams (Distributed):**
+- Can propose component tokens
+- Submit via pull request process
+- Must follow contribution guidelines
+- Design system ambassadors per team
+
+### 5.2 Contribution Workflow
+
+1. Team identifies need for new token/change
+2. Check existing tokens first (exhaustive search)
+3. Contact DS team via Slack channel
+4. DS team evaluates: one-off vs system addition
+5. If system addition:
+   - Create branch in Git repo
+   - Add token following naming convention
+   - Document use case and reasoning
+   - Submit PR with screenshots/examples
+6. DS team reviews within 48 hours
+7. If approved:
+   - Merge to main
+   - Sync to Figma via Luckino
+   - Update documentation
+   - Announce in team channels
+8. Version bump according to semver
+
+### 5.3 Change Management Process
+
+**Breaking Changes:**
+- Require major version bump
+- Minimum 2-week deprecation notice
+- Migration guide provided
+- Automated codemod if possible
+
+**Non-Breaking Changes:**
+- Minor version bump
+- New tokens, value updates
+- Can be deployed immediately
+
+**Documentation Updates:**
+- Changelog updated with every release
+- Migration guides for major versions
+- Examples provided for complex changes
+
+## PHASE 6: MIGRATION EXECUTION (Week 9-12)
+
+### 6.1 Preparation
+- Create unified token file (validated)
+- Set up Luckino plugin in Figma
+- Create test import with 10% of tokens
+- Validate mapping and scopes
+
+### 6.2 Pilot Migration
+- Select one small product/feature
+- Import unified tokens via Luckino
+- Test all 4 brand modes
+- Document issues and solutions
+- Refine process based on learnings
+
+### 6.3 Full Migration
+- Import all tokens to Figma Variables
+- Map to existing components
+- Update design files progressively
+- Coordinate with dev team for code sync
+- Maintain parallel old system during transition
+
+### 6.4 Code Migration
+- Install token library in codebase
+- Use codemod to replace hardcoded values
+- Update component library
+- Test across all brand modes
+- Deploy progressively per product
+
+## PHASE 7: QUALITY ASSURANCE (Week 13-14)
+
+### 7.1 Validation Checklist
+□ All 22 mobility services defined
+□ All color conflicts resolved
+□ Luckino import successful (no errors)
+□ 4-brand mode switching works in Figma
+□ W3C DTCG compliance validated
+□ Accessibility (WCAG AA) verified
+□ Documentation complete
+□ Team training completed
+
+### 7.2 Success Metrics
+- Token count consistency: Design = Dev
+- Plugin import: 100% success rate
+- Brand switching: < 2 seconds
+- Team satisfaction: > 80% approval
+- Reduction in design-dev inconsistencies: > 70%
+
+## RISK MITIGATION
+
+**Risk 1: Breaking Existing Implementations**
+Mitigation: 
+- Maintain old tokens with deprecation warnings
+- Provide 3-month transition period
+- Create automated migration scripts
+
+**Risk 2: Team Resistance**
+Mitigation:
+- Involve teams early in decisions
+- Show clear benefits with pilot
+- Provide comprehensive training
+- Establish clear support channels
+
+**Risk 3: Incomplete Requirements**
+Mitigation:
+- Validate with product roadmap
+- Interview key stakeholders
+- Build flexibility for future additions
+- Use semantic layer for adaptability

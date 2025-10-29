@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Mappatura Token: Figma vs Codice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .perfect { color: #10b981; }
+        .warning { color: #f59e0b; }
+        .error { color: #ef4444; }
+
+        .section {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        .color-comparison {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .color-row {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr 1fr 100px;
+            gap: 20px;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .color-row:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .color-name {
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .color-swatch {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .color-value {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .match-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .match-perfect {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .match-close {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .match-different {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .match-missing {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .problem-section {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .problem-section h3 {
+            color: #991b1b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .warning-section {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-section h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .success-section {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .success-section h3 {
+            color: #065f46;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        ul li {
+            padding: 8px 0;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "→";
+            position: absolute;
+            left: -20px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .typography-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .typography-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .typography-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .typography-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .typography-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .recommendations h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .rec-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .rec-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .rec-card p {
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e5e7eb;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            display: flex;
+            transition: width 1s ease;
+        }
+
+        .progress-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: white;
+        }
+
+        .legend {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .category-section {
+            margin: 40px 0;
+        }
+
+        .toggle-details {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-details:hover {
+            background: #5568d3;
+        }
+
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .details.open {
+            max-height: 2000px;
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .color-row {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .stat-number {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Analisi Mappatura Design Token</h1>
+            <p>Confronto tra Figma (Design) e theme-base.json (Codice)</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number perfect">67%</div>
+                <div class="stat-label">Match Perfetti</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number warning">23%</div>
+                <div class="stat-label">Quasi Identici</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number error">10%</div>
+                <div class="stat-label">Molto Diversi</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" style="color: #6366f1;">150+</div>
+                <div class="stat-label">Token Analizzati</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🔴</span>
+                Problemi Critici
+            </h2>
+
+            <div class="problem-section">
+                <h3>⚠️ Scala Grigi Completamente Diversa</h3>
+                <p style="margin-bottom: 15px;">La palette dei grigi è totalmente differente tra Figma e codice:</p>
+                <div class="color-comparison">
+                    <div class="color-row">
+                        <div class="color-name">Grayscale 5 - Dark</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #4f4f4f;"></div>
+                            <div class="color-value">Figma: #4f4f4f</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #333;"></div>
+                            <div class="color-value">Codice: #333</div>
+                        </div>
+                        <div class="match-badge match-different">Diverso</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-name">Grayscale 4 - Medium</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #787878;"></div>
+                            <div class="color-value">Figma: #787878</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #555;"></div>
+                            <div class="color-value">Codice: #555</div>
+                        </div>
+                        <div class="match-badge match-different">Diverso</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-name">Grayscale 3 - Light</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #bbbbbb;"></div>
+                            <div class="color-value">Figma: #bbbbbb</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #888;"></div>
+                            <div class="color-value">Codice: #888</div>
+                        </div>
+                        <div class="match-badge match-different">Diverso</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-name">Grayscale 2 - Disable</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #dddddd;"></div>
+                            <div class="color-value">Figma: #dddddd</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #bbb;"></div>
+                            <div class="color-value">Codice: #bbb</div>
+                        </div>
+                        <div class="match-badge match-different">Diverso</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-name">Grayscale 1 - Extra Light</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #f6f6f6;"></div>
+                            <div class="color-value">Figma: #f6f6f6</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #eee;"></div>
+                            <div class="color-value">Codice: #eee</div>
+                        </div>
+                        <div class="match-badge match-different">Diverso</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="problem-section">
+                <h3>⚠️ Nero Diverso</h3>
+                <div class="color-comparison">
+                    <div class="color-row">
+                        <div class="color-name">Black</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #1e1e1e;"></div>
+                            <div class="color-value">Figma: #1e1e1e</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #000000;"></div>
+                            <div class="color-value">Codice: #000000</div>
+                        </div>
+                        <div class="match-badge match-different">Diverso</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px;">Figma usa un grigio molto scuro (#1e1e1e), mentre il codice usa nero puro (#000000).</p>
+            </div>
+
+            <div class="problem-section">
+                <h3>⚠️ Token PRIMARY/SECONDARY Mancanti</h3>
+                <p>In Figma esistono chiari token Primary e Secondary, ma nel codice sono referenziati con nomi semantici (MOBILITY_PARKING, ecc.).</p>
+                <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
+                    <strong>Figma:</strong> Primary-3, Primary-2, Primary-1, Secondary-3, Secondary-2, Secondary-1<br>
+                    <strong>Codice:</strong> MOBILITY_PARKING_DARK, MOBILITY_FAVORITE_MEDIUM (nessun PRIMARY/SECONDARY)
+                </div>
+            </div>
+        </div>
+
+        <div class="section" style="background: #f9fafb;">
+            <h2 class="section-title">
+                <span class="icon">✅</span>
+                Colori Feedback - Allineamento Ottimo
+            </h2>
+
+            <div class="color-comparison">
+                <div class="color-row">
+                    <div class="color-name">Error Dark</div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #dd0000;"></div>
+                        <div class="color-value">#dd0000</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #dd0000;"></div>
+                        <div class="color-value">#dd0000</div>
+                    </div>
+                    <div class="match-badge match-perfect">Perfetto ✓</div>
+                </div>
+                <div class="color-row">
+                    <div class="color-name">Error Light</div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #fbdbdb;"></div>
+                        <div class="color-value">#fbdbdb</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #fbdbdb;"></div>
+                        <div class="color-value">#fbdbdb</div>
+                    </div>
+                    <div class="match-badge match-perfect">Perfetto ✓</div>
+                </div>
+                <div class="color-row">
+                    <div class="color-name">Warning Dark</div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #f9a000;"></div>
+                        <div class="color-value">#f9a000</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #f9a000;"></div>
+                        <div class="color-value">#f9a000</div>
+                    </div>
+                    <div class="match-badge match-perfect">Perfetto ✓</div>
+                </div>
+                <div class="color-row">
+                    <div class="color-name">Warning Light</div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #fcf3e4;"></div>
+                        <div class="color-value">#fcf3e4</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #fcf3e4;"></div>
+                        <div class="color-value">#fcf3e4</div>
+                    </div>
+                    <div class="match-badge match-perfect">Perfetto ✓</div>
+                </div>
+                <div class="color-row">
+                    <div class="color-name">Info Dark</div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #00aec7;"></div>
+                        <div class="color-value">#00aec7</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #00aec7;"></div>
+                        <div class="color-value">#00aec7</div>
+                    </div>
+                    <div class="match-badge match-perfect">Perfetto ✓</div>
+                </div>
+                <div class="color-row">
+                    <div class="color-name">Info Light</div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #ecfbfd;"></div>
+                        <div class="color-value">#ecfbfd</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch" style="background: #ecfbfd;"></div>
+                        <div class="color-value">#ecfbfd</div>
+                    </div>
+                    <div class="match-badge match-perfect">Perfetto ✓</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🚗</span>
+                Colori Mobility - Sample
+            </h2>
+
+            <div class="category-section">
+                <h3 style="margin-bottom: 20px;">Bus & Tram</h3>
+                <div class="color-comparison">
+                    <div class="color-row">
+                        <div class="color-name">Bus Dark</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #bd590d;"></div>
+                            <div class="color-value">#bd590d</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #bd590d;"></div>
+                            <div class="color-value">#bd590d</div>
+                        </div>
+                        <div class="match-badge match-perfect">Perfetto ✓</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-name">Bus Medium</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #f26a1f;"></div>
+                            <div class="color-value">Figma: #f26a1f</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #f46a00;"></div>
+                            <div class="color-value">Codice: #f46a00</div>
+                        </div>
+                        <div class="match-badge match-close">Simile</div>
+                    </div>
+                    <div class="color-row">
+                        <div class="color-name">Bus Light</div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #fef0e5;"></div>
+                            <div class="color-value">#fef0e5</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="swatch" style="background: #fef0e5;"></div>
+                            <div class="color-value">#fef0e5</div>
+                        </div>
+                        <div class="match-badge match-perfect">Perfetto ✓</div>
+                    </div>
+                </div>
+
+                <button class="toggle-details" onclick="toggleDetails('mobility-details')">Vedi tutti i colori Mobility →</button>
+                <div id="mobility-details" class="details">
+                    <div style="margin-top: 20px;">
+                        <p><strong>Metro:</strong> 3/3 perfetti ✓</p>
+                        <p><strong>Train:</strong> 2/3 quasi identici, 1/3 perfetto</p>
+                        <p><strong>Harbor:</strong> 2/3 perfetti, 1/3 quasi identico</p>
+                        <p><strong>Taxi:</strong> 3/3 perfetti ✓</p>
+                        <p><strong>NCC:</strong> 3/3 perfetti ✓</p>
+                        <p><strong>Parking:</strong> 1/3 perfetto, 1/3 quasi identico, 1/3 molto diverso ⚠️</p>
+                        <p><strong>ZTL:</strong> 1/3 molto diverso ⚠️, 1/3 quasi identico</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" style="background: #f9fafb;">
+            <h2 class="section-title">
+                <span class="icon">📝</span>
+                Tipografia - Ottimo Allineamento
+            </h2>
+
+            <div class="success-section">
+                <h3>✅ Font Size e Line Height Perfettamente Allineati</h3>
+                <p>Tutti i text roles hanno dimensioni e line-height identici tra Figma e codice!</p>
+            </div>
+
+            <table class="typography-table">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Font Size</th>
+                        <th>Line Height</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>H1</strong></td>
+                        <td>40px</td>
+                        <td>48px</td>
+                        <td><span class="match-badge match-perfect">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>H2</strong></td>
+                        <td>32px</td>
+                        <td>38px</td>
+                        <td><span class="match-badge match-perfect">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>H3</strong></td>
+                        <td>24px</td>
+                        <td>24px</td>
+                        <td><span class="match-badge match-perfect">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>H4</strong></td>
+                        <td>20px</td>
+                        <td>24px</td>
+                        <td><span class="match-badge match-perfect">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Body1</strong></td>
+                        <td>14px</td>
+                        <td>18px</td>
+                        <td><span class="match-badge match-perfect">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Body2</strong></td>
+                        <td>14px</td>
+                        <td>24px</td>
+                        <td><span class="match-badge match-perfect">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Caption</strong></td>
+                        <td>10px</td>
+                        <td>12px</td>
+                        <td><span class="match-badge match-perfect">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-section">
+                <h3>⚠️ Font Family da Configurare</h3>
+                <p><strong>Figma:</strong> Gotham (specificato ovunque)</p>
+                <p><strong>Codice:</strong> "Default" con file placeholder "non-existing-font-file"</p>
+                <p style="margin-top: 10px;">📌 Azione richiesta: Configurare correttamente il font Gotham nel progetto</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📊</span>
+                Statistiche Dettagliate
+            </h2>
+
+            <div class="chart-container">
+                <h3 style="margin-bottom: 20px;">Distribuzione Match per Categoria</h3>
+
+                <div style="margin: 20px 0;">
+                    <strong>Colori Feedback (6 token)</strong>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">
+                            <div class="progress-segment" style="width: 83%; background: #10b981;">83% Perfetti</div>
+                            <div class="progress-segment" style="width: 17%; background: #f59e0b;">17% Simili</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>Colori Mobility (60+ token)</strong>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">
+                            <div class="progress-segment" style="width: 65%; background: #10b981;">65% Perfetti</div>
+                            <div class="progress-segment" style="width: 25%; background: #f59e0b;">25% Simili</div>
+                            <div class="progress-segment" style="width: 10%; background: #ef4444;">10% Diversi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>Status Tag (12 token)</strong>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">
+                            <div class="progress-segment" style="width: 92%; background: #10b981;">92% Perfetti</div>
+                            <div class="progress-segment" style="width: 8%; background: #f59e0b;">8% Simili</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>Scala Grigi (5 token)</strong>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">
+                            <div class="progress-segment" style="width: 100%; background: #ef4444;">100% Diversi ⚠️</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>Tipografia (12 text roles)</strong>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">
+                            <div class="progress-segment" style="width: 100%; background: #10b981;">100% Perfetti ✓</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #10b981;"></div>
+                        <span>Match Perfetto</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #f59e0b;"></div>
+                        <span>Quasi Identico (1-2 char diff)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ef4444;"></div>
+                        <span>Molto Diverso</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h2>🎯 Raccomandazioni Prioritarie</h2>
+
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h3>1️⃣ Allineamento Immediato</h3>
+                    <p>Decidere sulla scala grigi (usare Figma come source of truth) e aggiornare il nero a #1e1e1e in tutto il codice.</p>
+                </div>
+
+                <div class="rec-card">
+                    <h3>2️⃣ Struttura Token</h3>
+                    <p>Introdurre layer semantici PRIMARY_*, SECONDARY_*, ACCENT_* invece di riferimenti diretti a colori mobility.</p>
+                </div>
+
+                <div class="rec-card">
+                    <h3>3️⃣ Font Configuration</h3>
+                    <p>Configurare correttamente Gotham nel progetto sostituendo i placeholder "non-existing-font-file".</p>
+                </div>
+
+                <div class="rec-card">
+                    <h3>4️⃣ Correzioni Minori</h3>
+                    <p>Sweep per allineare colori con differenze di 1 carattere esadecimale (es. #358451 vs #358551).</p>
+                </div>
+
+                <div class="rec-card">
+                    <h3>5️⃣ Button System</h3>
+                    <p>Implementare sistema di token per button come in Figma, supportando varianti brand (MooneyGo vs ATM).</p>
+                </div>
+
+                <div class="rec-card">
+                    <h3>6️⃣ Governance & Automation</h3>
+                    <p>Stabilire Figma come single source of truth e automatizzare export usando Style Dictionary o Figma Tokens.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Analisi generata automaticamente</strong></p>
+            <p>Data: 2025-10-29</p>
+            <p style="margin-top: 15px; opacity: 0.8;">File analizzati: colorstyle-figma-design.css, design-figma-variables.json, textstyle-figma-design.css, theme-base.json</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('open');
+        }
+
+        // Animate progress bars on load
+        window.addEventListener('load', () => {
+            const fills = document.querySelectorAll('.progress-fill');
+            fills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

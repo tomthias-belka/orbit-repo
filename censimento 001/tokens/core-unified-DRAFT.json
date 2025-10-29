@@ -1,0 +1,548 @@
+{
+  "primitives": {
+    "$description": "Layer 1: Global primitives - immutable across brands",
+
+    "colors": {
+      "$description": "All base color families",
+
+      "dark-blue": {
+        "blue-50": { "$value": "#f2f5f7", "$type": "color" },
+        "blue-75": { "$value": "#ecf2f5", "$type": "color" },
+        "blue-100": { "$value": "#e6eef2", "$type": "color" },
+        "blue-150": { "$value": "#e3f1f3", "$type": "color" },
+        "blue-250": { "$value": "#c4d4d5", "$type": "color" },
+        "blue-300": { "$value": "#6097ad", "$type": "color" },
+        "blue-350": { "$value": "#4d8aa3", "$type": "color" },
+        "blue-600": { "$value": "#007eb5", "$type": "color" },
+        "blue-625": { "$value": "#0028b5", "$type": "color" },
+        "blue-650": { "$value": "#004a9b", "$type": "color" },
+        "blue-675": { "$value": "#215c84", "$type": "color" },
+        "blue-700": { "$value": "#00587c", "$type": "color" },
+        "blue-800": { "$value": "#00587c", "$type": "color" },
+        "blue-900": { "$value": "#00425d", "$type": "color" },
+        "blue-950": { "$value": "#003065", "$type": "color" },
+        "blue-800-10": { "$value": "rgba(0, 88, 124, 0.1)", "$type": "color" },
+        "blue-1000-80": { "$value": "rgba(0, 31, 43, 0.8)", "$type": "color" }
+      },
+
+      "turquoise": {
+        "turquoise-50": { "$value": "#ecfbfd", "$type": "color" },
+        "turquoise-100": { "$value": "#e6f7f9", "$type": "color" },
+        "turquoise-150": { "$value": "#cceff4", "$type": "color" },
+        "turquoise-200": { "$value": "#99dfe9", "$type": "color" },
+        "turquoise-300": { "$value": "#9bd3dd", "$type": "color" },
+        "turquoise-500": { "$value": "#65dce2", "$type": "color" },
+        "turquoise-600": { "$value": "#5fc5d1", "$type": "color" },
+        "turquoise-700": { "$value": "#00aec7", "$type": "color" },
+        "turquoise-800-10": { "$value": "rgba(0, 160, 170, 0.1)", "$type": "color" },
+        "turquoise-800-30": { "$value": "rgba(0, 160, 170, 0.3)", "$type": "color" }
+      },
+
+      "orange": {
+        "orange-50": { "$value": "#fef9f6", "$type": "color" },
+        "orange-75": { "$value": "#fcf3e4", "$type": "color" },
+        "orange-100": { "$value": "#fef0e5", "$type": "color" },
+        "orange-150": { "$value": "#ffedd2", "$type": "color" },
+        "orange-200": { "$value": "#ffe8ca", "$type": "color" },
+        "orange-600": { "$value": "#f9a000", "$type": "color" },
+        "orange-650": { "$value": "#ff9900", "$type": "color" },
+        "orange-700": { "$value": "#ff7500", "$type": "color" },
+        "orange-750": { "$value": "#f26a1f", "$type": "color" },
+        "orange-600-10": { "$value": "rgba(249, 160, 0, 0.1)", "$type": "color" }
+      },
+
+      "light-blue": {
+        "light-blue-200": { "$value": "#ddf1ff", "$type": "color" },
+        "light-blue-250": { "$value": "#d2e8ff", "$type": "color" },
+        "light-blue-275": { "$value": "#c5e0fe", "$type": "color" },
+        "light-blue-400": { "$value": "#7fbfe9", "$type": "color" },
+        "light-blue-600": { "$value": "#459af7", "$type": "color" },
+        "light-blue-650": { "$value": "#4286f5", "$type": "color" },
+        "light-blue-650-40": { "$value": "rgba(66, 134, 245, 0.4)", "$type": "color" },
+        "light-blue-700": { "$value": "#0072ef", "$type": "color" },
+        "light-blue-750": { "$value": "#007eb5", "$type": "color" }
+      },
+
+      "purple": {
+        "purple-200": { "$value": "#f5e8fe", "$type": "color" },
+        "purple-300": { "$value": "#f0d1ff", "$type": "color" },
+        "purple-400": { "$value": "#dacbf9", "$type": "color" },
+        "purple-450": { "$value": "#a392c7", "$type": "color" },
+        "purple-500": { "$value": "#c06cfc", "$type": "color" },
+        "purple-600": { "$value": "#ae3ce7", "$type": "color" },
+        "purple-650": { "$value": "#a932ff", "$type": "color" },
+        "purple-700": { "$value": "#7453bb", "$type": "color" },
+        "purple-750": { "$value": "#624898", "$type": "color" },
+        "purple-750-10": { "$value": "rgba(98, 72, 152, 0.1)", "$type": "color" },
+        "purple-800": { "$value": "#622282", "$type": "color" },
+        "purple-850": { "$value": "#624898", "$type": "color" },
+        "purple-850-10": { "$value": "rgba(98, 72, 152, 0.1)", "$type": "color" },
+        "purple-900": { "$value": "#543c87", "$type": "color" }
+      },
+
+      "brown": {
+        "brown-200": { "$value": "#f3ad8b", "$type": "color" },
+        "brown-700": { "$value": "#cf663d", "$type": "color" },
+        "brown-800": { "$value": "#bd590d", "$type": "color" },
+        "brown-800-10": { "$value": "rgba(189, 89, 13, 0.1)", "$type": "color" },
+        "brown-800-30": { "$value": "rgba(189, 89, 13, 0.3)", "$type": "color" },
+        "brown-900": { "$value": "#9c540e", "$type": "color" }
+      },
+
+      "grey": {
+        "grey-100": { "$value": "#f6f6f6", "$type": "color" },
+        "grey-150": { "$value": "#ececec", "$type": "color" },
+        "grey-300": { "$value": "#dddddd", "$type": "color" },
+        "grey-400": { "$value": "#bbbbbb", "$type": "color" },
+        "grey-500": { "$value": "#787878", "$type": "color" },
+        "grey-600": { "$value": "#4f4f4f", "$type": "color" },
+        "grey-650": { "$value": "#56595b", "$type": "color" },
+        "grey-700": { "$value": "#1e1e1e", "$type": "color" }
+      },
+
+      "base": {
+        "white": { "$value": "#ffffff", "$type": "color" },
+        "black": { "$value": "#1e1e1e", "$type": "color" },
+        "white-25": { "$value": "rgba(255, 255, 255, 0.25)", "$type": "color" },
+        "white-80": { "$value": "rgba(255, 255, 255, 0.8)", "$type": "color" }
+      },
+
+      "$comment": "NOTE: Additional color families (red, yellow, green, teal) follow same pattern. Full set includes ~120 primitive color tokens. Abbreviated here for readability."
+    },
+
+    "typography": {
+      "$description": "Font families, weights, sizes, and line heights",
+
+      "font-family": {
+        "headlines": { "$value": "Gotham", "$type": "fontFamily" },
+        "text": { "$value": "Gotham", "$type": "fontFamily" },
+        "link": { "$value": "Gotham", "$type": "fontFamily" }
+      },
+
+      "font-weight": {
+        "regular": { "$value": "Book", "$type": "string" },
+        "medium": { "$value": "Medium", "$type": "string" },
+        "bold": { "$value": "Bold", "$type": "string" }
+      },
+
+      "font-size": {
+        "font-size-1": { "$value": 10, "$type": "fontSize" },
+        "font-size-2": { "$value": 12, "$type": "fontSize" },
+        "font-size-3": { "$value": 14, "$type": "fontSize" },
+        "font-size-4": { "$value": 16, "$type": "fontSize" },
+        "font-size-5": { "$value": 18, "$type": "fontSize" },
+        "font-size-6": { "$value": 20, "$type": "fontSize" },
+        "font-size-7": { "$value": 24, "$type": "fontSize" },
+        "font-size-8": { "$value": 32, "$type": "fontSize" },
+        "font-size-9": { "$value": 40, "$type": "fontSize" }
+      },
+
+      "font-leading": {
+        "xxxs": { "$value": 12, "$type": "lineHeight" },
+        "xxs": { "$value": 16, "$type": "lineHeight" },
+        "xs": { "$value": 18, "$type": "lineHeight" },
+        "s": { "$value": 20, "$type": "lineHeight" },
+        "m": { "$value": 22, "$type": "lineHeight" },
+        "l": { "$value": 24, "$type": "lineHeight" },
+        "xl": { "$value": 38, "$type": "lineHeight" },
+        "xxl": { "$value": 48, "$type": "lineHeight" }
+      }
+    },
+
+    "spacing-radius": {
+      "$description": "Spacing and border radius scales",
+
+      "none": { "$value": 0, "$type": "borderRadius" },
+      "mini": { "$value": 4, "$type": "borderRadius" },
+      "xxxs": { "$value": 8, "$type": "borderRadius" },
+      "xxs": { "$value": 12, "$type": "borderRadius" },
+      "xs": { "$value": 16, "$type": "borderRadius" },
+      "s": { "$value": 24, "$type": "borderRadius" },
+      "m": { "$value": 32, "$type": "borderRadius" },
+      "l": { "$value": 48, "$type": "spacing" },
+      "xl": { "$value": 64, "$type": "spacing" },
+      "xxl": { "$value": 96, "$type": "spacing" },
+      "super": { "$value": 128, "$type": "spacing" }
+    }
+  },
+
+  "semantic": {
+    "$description": "Layer 2: Semantic tokens - brand-switchable, purpose-based. This layer will contain multi-mode values for 4-brand support.",
+    "$todo": "This layer needs to be built in Phase 2. Will include: color.text.*, color.background.*, spacing.component.*, etc.",
+    "$structure_example": {
+      "color": {
+        "text": {
+          "primary": {
+            "$type": "color",
+            "$value": {
+              "base": "{primitives.colors.grey.grey-700}",
+              "mooneygo": "{primitives.colors.base.black}",
+              "brand2": "{primitives.colors.grey.grey-700}",
+              "brand3": "{primitives.colors.base.black}",
+              "brand4": "{primitives.colors.grey.grey-700}"
+            },
+            "$description": "Primary text color for body content"
+          }
+        }
+      }
+    }
+  },
+
+  "brand": {
+    "$description": "Brand-specific semantic colors (MooneyGo primary brand)",
+    "$note": "This layer references primitives. In future, will move to semantic layer with multi-mode support.",
+
+    "primary": {
+      "primary-1": { "$value": "{primitives.colors.dark-blue.blue-100}", "$type": "color" },
+      "primary-2": { "$value": "{primitives.colors.dark-blue.blue-350}", "$type": "color" },
+      "primary-3": { "$value": "{primitives.colors.dark-blue.blue-700}", "$type": "color" }
+    },
+
+    "secondary": {
+      "secondary-1": { "$value": "{primitives.colors.turquoise.turquoise-50}", "$type": "color" },
+      "secondary-2": { "$value": "{primitives.colors.turquoise.turquoise-200}", "$type": "color" },
+      "secondary-3": { "$value": "{primitives.colors.turquoise.turquoise-700}", "$type": "color" }
+    },
+
+    "accent": {
+      "accent-light": { "$value": "{primitives.colors.orange.orange-600}", "$type": "color", "$comment": "NOTE: yellow-600 in original, using orange-600 as shown in file" },
+      "accent-dark": { "$value": "{primitives.colors.orange.orange-700}", "$type": "color", "$comment": "NOTE: yellow-700 in original" }
+    },
+
+    "gradient": {
+      "gradient-from": { "$value": "{brand.primary.primary-3}", "$type": "color" },
+      "gradient-to": { "$value": "{brand.secondary.secondary-3}", "$type": "color" }
+    }
+  },
+
+  "feedback": {
+    "$description": "Feedback state colors (error, warning, success, info)",
+
+    "error-dark": { "$value": "{primitives.colors.red.red-700}", "$type": "color", "$comment": "NOTE: red color tokens abbreviated, full set exists" },
+    "error-light": { "$value": "{primitives.colors.red.red-200}", "$type": "color" },
+    "warning-dark": { "$value": "{primitives.colors.orange.orange-600}", "$type": "color" },
+    "warning-light": { "$value": "{primitives.colors.orange.orange-75}", "$type": "color" },
+    "success-dark": { "$value": "{primitives.colors.green.green-700}", "$type": "color", "$comment": "NOTE: green color tokens abbreviated" },
+    "success-light": { "$value": "{primitives.colors.green.green-100}", "$type": "color" },
+    "info-dark": { "$value": "{primitives.colors.turquoise.turquoise-700}", "$type": "color" },
+    "info-light": {
+      "$conflict": "DECISION REQUIRED",
+      "$status": "PENDING_DECISION",
+      "$description": "Design and dev files have different values for info-light feedback color",
+      "$options": [
+        {
+          "value": "{primitives.colors.turquoise.turquoise-50}",
+          "source": "Design Team (design/variables.json)",
+          "hex": "#ecfbfd",
+          "notes": "Lighter, more subtle"
+        },
+        {
+          "value": "{primitives.colors.turquoise.turquoise-150}",
+          "source": "Dev Team (censimento/jsonW3C-StatoAttuale.json)",
+          "hex": "#cceff4",
+          "notes": "Slightly darker, more visible"
+        }
+      ],
+      "$recommendation": "Use turquoise-50 (design choice) for consistency with other feedback-light colors (all use X-50 or X-75 shades)",
+      "$impact": "LOW - Minor visual difference, no accessibility concerns",
+      "$value": "{primitives.colors.turquoise.turquoise-50}",
+      "$type": "color"
+    }
+  },
+
+  "greyscale": {
+    "$description": "Greyscale system colors",
+
+    "black": { "$value": "{primitives.colors.base.black}", "$type": "color" },
+    "white": { "$value": "{primitives.colors.base.white}", "$type": "color" },
+    "dark-5": { "$value": "{primitives.colors.grey.grey-600}", "$type": "color" },
+    "medium-4": { "$value": "{primitives.colors.grey.grey-500}", "$type": "color" },
+    "light-3": { "$value": "{primitives.colors.grey.grey-400}", "$type": "color" },
+    "disable-2": { "$value": "{primitives.colors.grey.grey-300}", "$type": "color" },
+    "extra-light-1": { "$value": "{primitives.colors.grey.grey-100}", "$type": "color" },
+    "overlay": { "$value": "{primitives.colors.dark-blue.blue-1000-80}", "$type": "color" }
+  },
+
+  "whitelabel": {
+    "$description": "Whitelabel / extra colors for brand differentiation",
+    "$conflict": "DECISION REQUIRED - CRITICAL",
+    "$status": "PENDING_DECISION",
+    "$decision_needed": "Purple (design) vs Brown (dev) color system for whitelabel brands",
+
+    "dark-3": {
+      "$conflict": true,
+      "$options": [
+        {
+          "value": "{primitives.colors.purple.purple-800}",
+          "source": "Design Team",
+          "hex": "#622282",
+          "rationale": "Higher contrast, better accessibility, modern appearance"
+        },
+        {
+          "value": "{primitives.colors.brown.brown-900}",
+          "source": "Dev Team",
+          "hex": "#9c540e",
+          "rationale": "Warm, earthy, currently implemented"
+        }
+      ],
+      "$recommendation": "Purple (Perplexity recommendation: better WCAG AA compliance, more distinct from primary brand)",
+      "$accessibility": {
+        "purple": "Strong contrast ratios, likely WCAG AA pass",
+        "brown": "Needs validation, browns often struggle with contrast"
+      },
+      "$impact": "MEDIUM - Affects whitelabel brand identity, must validate with Brand Manager",
+      "$value": "PENDING_DECISION",
+      "$type": "color"
+    },
+
+    "medium-2": {
+      "$conflict": true,
+      "$options": [
+        {
+          "value": "{primitives.colors.purple.purple-600}",
+          "source": "Design Team",
+          "hex": "#ae3ce7"
+        },
+        {
+          "value": "{primitives.colors.brown.brown-800}",
+          "source": "Dev Team",
+          "hex": "#bd590d"
+        }
+      ],
+      "$value": "PENDING_DECISION",
+      "$type": "color"
+    },
+
+    "light-1": {
+      "$conflict": true,
+      "$options": [
+        {
+          "value": "{primitives.colors.purple.purple-300}",
+          "source": "Design Team",
+          "hex": "#f0d1ff"
+        },
+        {
+          "value": "{primitives.colors.brown.brown-200}",
+          "source": "Dev Team",
+          "hex": "#f3ad8b"
+        }
+      ],
+      "$value": "PENDING_DECISION",
+      "$type": "color"
+    },
+
+    "x-01": { "$value": "{primitives.colors.orange.orange-50}", "$type": "color" },
+    "x-02": { "$value": "{primitives.colors.light-blue.light-blue-600}", "$type": "color" },
+    "x-03": { "$value": "{primitives.colors.dark-blue.blue-50}", "$type": "color" },
+    "x-04": { "$value": "{primitives.colors.light-blue.light-blue-700}", "$type": "color" }
+  },
+
+  "mobility": {
+    "$description": "Mobility service colors (22 services)",
+    "$decision_needed": "Include all 22 services or start with subset of 6?",
+    "$status": "PENDING_DECISION",
+    "$recommendation": "Include all 22 (Gemini + Perplexity recommendation: future-proofing, design work complete, low cost)",
+
+    "bus": {
+      "$conflict": "DECISION REQUIRED - CRITICAL",
+      "$status": "PENDING_DECISION",
+      "$description": "Bus service color palette - Orange (design) vs Light Blue (dev)",
+
+      "light": {
+        "$conflict": true,
+        "$options": [
+          {
+            "value": "{primitives.colors.orange.orange-100}",
+            "source": "Design Team",
+            "hex": "#fef0e5",
+            "rationale": "Warm, earthy, distinctive (bus = ground transport)"
+          },
+          {
+            "value": "{primitives.colors.light-blue.light-blue-200}",
+            "source": "Dev Team",
+            "hex": "#ddf1ff",
+            "rationale": "Cool, modern, familiar in mobility apps"
+          }
+        ],
+        "$impact": "HIGH - User-facing, affects brand consistency",
+        "$validation_needed": [
+          "Check brand guidelines for bus color specifications",
+          "Review user research on color associations",
+          "Validate WCAG AA compliance for both options",
+          "Check existing production implementation"
+        ],
+        "$value": "PENDING_DECISION",
+        "$type": "color"
+      },
+
+      "medium": {
+        "$conflict": true,
+        "$options": [
+          {
+            "value": "{primitives.colors.orange.orange-750}",
+            "source": "Design Team",
+            "hex": "#f26a1f"
+          },
+          {
+            "value": "{primitives.colors.light-blue.light-blue-650}",
+            "source": "Dev Team",
+            "hex": "#4286f5"
+          }
+        ],
+        "$value": "PENDING_DECISION",
+        "$type": "color"
+      },
+
+      "dark": {
+        "$conflict": true,
+        "$options": [
+          {
+            "value": "{primitives.colors.brown.brown-800}",
+            "source": "Design Team",
+            "hex": "#bd590d"
+          },
+          {
+            "value": "{primitives.colors.light-blue.light-blue-750}",
+            "source": "Dev Team",
+            "hex": "#007eb5"
+          }
+        ],
+        "$value": "PENDING_DECISION",
+        "$type": "color"
+      }
+    },
+
+    "metro": {
+      "$status": "ALIGNED - No conflict",
+      "light": { "$value": "{primitives.colors.red.red-150}", "$type": "color", "$comment": "NOTE: red tokens abbreviated" },
+      "medium": { "$value": "{primitives.colors.red.red-650}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.red.red-800}", "$type": "color" }
+    },
+
+    "train": {
+      "$status": "ALIGNED - No conflict",
+      "light": { "$value": "{primitives.colors.green.green-100}", "$type": "color", "$comment": "NOTE: green tokens abbreviated" },
+      "medium": { "$value": "{primitives.colors.green.green-300}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.green.green-550}", "$type": "color" }
+    },
+
+    "garage": {
+      "$status": "ALIGNED - No conflict",
+      "$note": "Design and dev have DIFFERENT values - design uses turquoise, dev uses light-blue. Needs reconciliation!",
+      "$conflict": "VALUE MISMATCH",
+      "light": {
+        "$options": [
+          { "value": "{primitives.colors.turquoise.turquoise-200}", "source": "Design (censimento match)" },
+          { "value": "{primitives.colors.light-blue.light-blue-250}", "source": "Dev" }
+        ],
+        "$value": "PENDING_DECISION",
+        "$type": "color"
+      },
+      "medium": {
+        "$options": [
+          { "value": "{primitives.colors.turquoise.turquoise-600}", "source": "Design" },
+          { "value": "{primitives.colors.dark-blue.blue-650}", "source": "Dev" }
+        ],
+        "$value": "PENDING_DECISION",
+        "$type": "color"
+      },
+      "dark": {
+        "$options": [
+          { "value": "{primitives.colors.turquoise.turquoise-700}", "source": "Design" },
+          { "value": "{primitives.colors.dark-blue.blue-950}", "source": "Dev" }
+        ],
+        "$value": "PENDING_DECISION",
+        "$type": "color"
+      }
+    },
+
+    "garage-telepass": {
+      "$status": "ALIGNED - No conflict",
+      "light": { "$value": "{primitives.colors.yellow.yellow-200}", "$type": "color", "$comment": "NOTE: yellow tokens abbreviated" },
+      "medium": { "$value": "{primitives.colors.yellow.yellow-600}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.yellow.yellow-700}", "$type": "color" }
+    },
+
+    "sharing": {
+      "$status": "ALIGNED - No conflict",
+      "light": { "$value": "{primitives.colors.purple.purple-200}", "$type": "color" },
+      "medium": { "$value": "{primitives.colors.purple.purple-500}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.purple.purple-650}", "$type": "color" }
+    },
+
+    "$comment_missing_services": "The following 16 services are defined in design file but MISSING from dev file",
+    "$decision_needed_scope": "Product Owner must decide: Include all 22 services or start with subset of 6?",
+
+    "taxi": {
+      "$status": "DESIGN_ONLY - Missing from dev",
+      "$include": "PENDING_DECISION",
+      "light": { "$value": "{primitives.colors.yellow.yellow-200}", "$type": "color" },
+      "medium": { "$value": "{primitives.colors.yellow.yellow-600}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.yellow.yellow-700}", "$type": "color" }
+    },
+
+    "parking": {
+      "$status": "DESIGN_ONLY - Missing from dev",
+      "$include": "PENDING_DECISION",
+      "light": { "$value": "{primitives.colors.dark-blue.blue-75}", "$type": "color" },
+      "medium": { "$value": "{primitives.colors.dark-blue.blue-350}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.dark-blue.blue-675}", "$type": "color" }
+    },
+
+    "car-rental": {
+      "$status": "DESIGN_ONLY - Missing from dev",
+      "$include": "PENDING_DECISION",
+      "light": { "$value": "{primitives.colors.orange.orange-150}", "$type": "color" },
+      "medium": { "$value": "{primitives.colors.orange.orange-650}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.orange.orange-700}", "$type": "color" }
+    },
+
+    "charging-station": {
+      "$status": "DESIGN_ONLY - Missing from dev",
+      "$include": "PENDING_DECISION",
+      "light": { "$value": "{primitives.colors.light-blue.light-blue-200}", "$type": "color" },
+      "medium": { "$value": "{primitives.colors.light-blue.light-blue-400}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.dark-blue.blue-675}", "$type": "color" }
+    },
+
+    "$comment": "NOTE: Additional 12 mobility services follow same pattern (airports, pullman, tram, harbor, ncc, skipass, favorites, walk, ztl, places, apparked, experience). Abbreviated here for readability. Full definitions available in design/variables.json."
+  },
+
+  "illustrations": {
+    "$description": "Illustration color palette (31 colors)",
+    "$status": "ALIGNED - No conflicts between design and dev",
+    "$note": "Both files have identical values. Full set of 31 illustration colors available.",
+    "$comment": "Abbreviated here - includes illustration-01 through illustration-31"
+  },
+
+  "$metadata": {
+    "audit": {
+      "design_token_count": 282,
+      "dev_token_count": 273,
+      "unified_token_count": "TBD after decisions",
+      "conflicts_identified": 4,
+      "decisions_needed": [
+        "Bus service colors (Orange vs Light Blue)",
+        "Whitelabel colors (Purple vs Brown)",
+        "Garage service colors (Turquoise vs Light Blue/Dark Blue)",
+        "Mobility services scope (all 22 vs subset of 6)",
+        "info-light feedback (turquoise-50 vs turquoise-150) - MINOR"
+      ]
+    },
+    "next_steps": [
+      "1. Team alignment meeting to resolve conflicts",
+      "2. Remove PENDING_DECISION placeholders with decided values",
+      "3. Add/remove mobility services per meeting decision",
+      "4. Build semantic layer (Layer 2) with multi-mode support",
+      "5. Test Luckino import with resolved file",
+      "6. Validate WCAG AA compliance for chosen colors"
+    ],
+    "documentation": {
+      "meeting_agenda": "iterazione_1/next-steps/team-alignment-agenda.md",
+      "decision_framework": "iterazione_1/next-steps/decision-framework.md",
+      "token_audit": "iterazione_1/next-steps/token-audit-template.md",
+      "gemini_feedback": "iterazione_1/recommendations/gemini-feedback.md",
+      "perplexity_strategy": "iterazione_1/recommendations/perplexity-strategy.md"
+    }
+  }
+}

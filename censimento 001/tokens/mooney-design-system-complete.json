@@ -1,0 +1,1036 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/schemas/design-tokens.schema.json",
+  "$version": "1.0.0",
+  "$description": "Mooney Design System - Complete Token System. Unified from Design JSON, Dev JSON, and Figma SCSS export. Luckino-compatible, W3C DTCG compliant.",
+  "$created": "2025-10-28",
+  "$sources": [
+    "design/variables.json (282 tokens)",
+    "censimento/jsonW3C-StatoAttuale.json (273 tokens)",
+    "design/styles.scss (Figma export - SOURCE OF TRUTH for conflicts)"
+  ],
+  "$conflicts_resolved": {
+    "bus-colors": "Orange/Brown (confirmed by SCSS)",
+    "whitelabel-colors": "Purple (confirmed by SCSS)",
+    "garage-colors": "Dark-Blue + Light-Blue mix (confirmed by SCSS)"
+  },
+  "$total_tokens": 357,
+
+  "primitives": {
+    "$description": "Layer 1: Global primitives - immutable across brands. Base color families, typography scales, spacing.",
+
+    "colors": {
+      "dark-blue": {
+        "blue-50": { "$value": "#f2f5f7", "$type": "color" },
+        "blue-75": { "$value": "#ecf2f5", "$type": "color" },
+        "blue-100": { "$value": "#e6eef2", "$type": "color" },
+        "blue-150": { "$value": "#e3f1f3", "$type": "color" },
+        "blue-250": { "$value": "#c4d4d5", "$type": "color" },
+        "blue-300": { "$value": "#6097ad", "$type": "color" },
+        "blue-350": { "$value": "#4d8aa3", "$type": "color" },
+        "blue-600": { "$value": "#007eb5", "$type": "color" },
+        "blue-625": { "$value": "#0028b5", "$type": "color" },
+        "blue-650": { "$value": "#004a9b", "$type": "color" },
+        "blue-675": { "$value": "#215c84", "$type": "color" },
+        "blue-700": { "$value": "#00587c", "$type": "color" },
+        "blue-800": { "$value": "#00587c", "$type": "color" },
+        "blue-900": { "$value": "#00425d", "$type": "color" },
+        "blue-950": { "$value": "#003065", "$type": "color" },
+        "blue-800-10": { "$value": "rgba(0, 88, 124, 0.1)", "$type": "color" },
+        "blue-1000-80": { "$value": "rgba(0, 31, 43, 0.8)", "$type": "color" }
+      },
+
+      "turquoise": {
+        "turquoise-50": { "$value": "#ecfbfd", "$type": "color" },
+        "turquoise-100": { "$value": "#e6f7f9", "$type": "color" },
+        "turquoise-150": { "$value": "#cceff4", "$type": "color" },
+        "turquoise-200": { "$value": "#99dfe9", "$type": "color" },
+        "turquoise-300": { "$value": "#9bd3dd", "$type": "color" },
+        "turquoise-500": { "$value": "#65dce2", "$type": "color" },
+        "turquoise-600": { "$value": "#5fc5d1", "$type": "color" },
+        "turquoise-700": { "$value": "#00aec7", "$type": "color" },
+        "turquoise-800-10": { "$value": "rgba(0, 160, 170, 0.1)", "$type": "color" },
+        "turquoise-800-30": { "$value": "rgba(0, 160, 170, 0.3)", "$type": "color" }
+      },
+
+      "yellow": {
+        "yellow-200": { "$value": "#fff6dc", "$type": "color" },
+        "yellow-350": { "$value": "#ffe4ad", "$type": "color" },
+        "yellow-400": { "$value": "#fed385", "$type": "color" },
+        "yellow-450": { "$value": "#efbd63", "$type": "color" },
+        "yellow-600": { "$value": "#ffc627", "$type": "color" },
+        "yellow-650": { "$value": "#fdbe01", "$type": "color" },
+        "yellow-700": { "$value": "#eda900", "$type": "color" }
+      },
+
+      "orange": {
+        "orange-50": { "$value": "#fef9f6", "$type": "color" },
+        "orange-75": { "$value": "#fcf3e4", "$type": "color" },
+        "orange-100": { "$value": "#fef0e5", "$type": "color" },
+        "orange-150": { "$value": "#ffedd2", "$type": "color" },
+        "orange-200": { "$value": "#ffe8ca", "$type": "color" },
+        "orange-600": { "$value": "#f9a000", "$type": "color" },
+        "orange-650": { "$value": "#ff9900", "$type": "color" },
+        "orange-700": { "$value": "#ff7500", "$type": "color" },
+        "orange-750": { "$value": "#f26a1f", "$type": "color" },
+        "orange-600-10": { "$value": "rgba(249, 160, 0, 0.1)", "$type": "color" }
+      },
+
+      "light-blue": {
+        "light-blue-200": { "$value": "#ddf1ff", "$type": "color" },
+        "light-blue-250": { "$value": "#d2e8ff", "$type": "color" },
+        "light-blue-275": { "$value": "#c5e0fe", "$type": "color" },
+        "light-blue-400": { "$value": "#7fbfe9", "$type": "color" },
+        "light-blue-600": { "$value": "#459af7", "$type": "color" },
+        "light-blue-650": { "$value": "#4286f5", "$type": "color" },
+        "light-blue-650-40": { "$value": "rgba(66, 134, 245, 0.4)", "$type": "color" },
+        "light-blue-700": { "$value": "#0072ef", "$type": "color" },
+        "light-blue-750": { "$value": "#007eb5", "$type": "color" }
+      },
+
+      "red": {
+        "red-150": { "$value": "#fbe5e5", "$type": "color" },
+        "red-200": { "$value": "#fbdbdb", "$type": "color" },
+        "red-250": { "$value": "#f8cccc", "$type": "color" },
+        "red-650": { "$value": "#dd052b", "$type": "color" },
+        "red-700": { "$value": "#dd0000", "$type": "color" },
+        "red-750": { "$value": "#d20000", "$type": "color" },
+        "red-800": { "$value": "#9f1930", "$type": "color" },
+        "red-850": { "$value": "#9a0000", "$type": "color" },
+        "red-900": { "$value": "#7c0303", "$type": "color" },
+        "red-1000": { "$value": "#510101", "$type": "color" },
+        "red-700-10": { "$value": "rgba(221, 0, 0, 0.1)", "$type": "color" },
+        "red-750-10": { "$value": "rgba(210, 0, 0, 0.1)", "$type": "color" },
+        "red-750-30": { "$value": "rgba(210, 0, 0, 0.3)", "$type": "color" }
+      },
+
+      "green": {
+        "green-50": { "$value": "#f5f9f6", "$type": "color" },
+        "green-100": { "$value": "#eef6e5", "$type": "color" },
+        "green-200": { "$value": "#d8f2db", "$type": "color" },
+        "green-300": { "$value": "#59a600", "$type": "color" },
+        "green-500": { "$value": "#5d9732", "$type": "color" },
+        "green-550": { "$value": "#478500", "$type": "color" },
+        "green-600": { "$value": "#508414", "$type": "color" },
+        "green-700": { "$value": "#358551", "$type": "color" },
+        "green-800": { "$value": "#01594c", "$type": "color" },
+        "green-300-10": { "$value": "rgba(89, 166, 0, 0.1)", "$type": "color" },
+        "green-300-30": { "$value": "rgba(89, 166, 0, 0.3)", "$type": "color" }
+      },
+
+      "purple": {
+        "purple-200": { "$value": "#f5e8fe", "$type": "color" },
+        "purple-300": { "$value": "#f0d1ff", "$type": "color" },
+        "purple-400": { "$value": "#dacbf9", "$type": "color" },
+        "purple-450": { "$value": "#a392c7", "$type": "color" },
+        "purple-500": { "$value": "#c06cfc", "$type": "color" },
+        "purple-600": { "$value": "#ae3ce7", "$type": "color" },
+        "purple-650": { "$value": "#a932ff", "$type": "color" },
+        "purple-700": { "$value": "#7453bb", "$type": "color" },
+        "purple-750": { "$value": "#624898", "$type": "color" },
+        "purple-750-10": { "$value": "rgba(98, 72, 152, 0.1)", "$type": "color" },
+        "purple-800": { "$value": "#622282", "$type": "color" },
+        "purple-850": { "$value": "#624898", "$type": "color" },
+        "purple-850-10": { "$value": "rgba(98, 72, 152, 0.1)", "$type": "color" },
+        "purple-900": { "$value": "#543c87", "$type": "color" }
+      },
+
+      "brown": {
+        "brown-200": { "$value": "#f3ad8b", "$type": "color" },
+        "brown-700": { "$value": "#cf663d", "$type": "color" },
+        "brown-800": { "$value": "#bd590d", "$type": "color" },
+        "brown-800-10": { "$value": "rgba(189, 89, 13, 0.1)", "$type": "color" },
+        "brown-800-30": { "$value": "rgba(189, 89, 13, 0.3)", "$type": "color" },
+        "brown-900": { "$value": "#9c540e", "$type": "color" }
+      },
+
+      "teal": {
+        "teal-100": { "$value": "#e5f5f7", "$type": "color" },
+        "teal-200": { "$value": "#b6ebdd", "$type": "color" },
+        "teal-500": { "$value": "#549f8c", "$type": "color" },
+        "teal-600": { "$value": "#00a0aa", "$type": "color" },
+        "teal-650": { "$value": "#007279", "$type": "color" },
+        "teal-700": { "$value": "#547c81", "$type": "color" },
+        "teal-750": { "$value": "#105155", "$type": "color" },
+        "teal-600-10": { "$value": "rgba(0, 160, 170, 0.1)", "$type": "color" }
+      },
+
+      "grey": {
+        "grey-100": { "$value": "#f6f6f6", "$type": "color" },
+        "grey-150": { "$value": "#ececec", "$type": "color" },
+        "grey-300": { "$value": "#dddddd", "$type": "color" },
+        "grey-400": { "$value": "#bbbbbb", "$type": "color" },
+        "grey-500": { "$value": "#787878", "$type": "color" },
+        "grey-600": { "$value": "#4f4f4f", "$type": "color" },
+        "grey-650": { "$value": "#56595b", "$type": "color" },
+        "grey-700": { "$value": "#1e1e1e", "$type": "color" }
+      },
+
+      "base": {
+        "white": { "$value": "#ffffff", "$type": "color" },
+        "black": { "$value": "#1e1e1e", "$type": "color" },
+        "white-25": { "$value": "rgba(255, 255, 255, 0.25)", "$type": "color" },
+        "white-80": { "$value": "rgba(255, 255, 255, 0.8)", "$type": "color" },
+        "overlay": { "$value": "#001f2b", "$type": "color", "$description": "Tutorial overlay color" }
+      }
+    },
+
+    "typography": {
+      "font-family": {
+        "headlines": { "$value": "Gotham", "$type": "fontFamily" },
+        "text": { "$value": "Gotham", "$type": "fontFamily" },
+        "link": { "$value": "Gotham", "$type": "fontFamily" }
+      },
+
+      "font-weight": {
+        "regular": { "$value": "400", "$type": "fontWeight", "$description": "Book weight in Gotham" },
+        "medium": { "$value": "500", "$type": "fontWeight", "$description": "Medium weight in Gotham" },
+        "bold": { "$value": "700", "$type": "fontWeight", "$description": "Bold weight in Gotham" }
+      },
+
+      "font-size": {
+        "10": { "$value": "10px", "$type": "fontSize" },
+        "12": { "$value": "12px", "$type": "fontSize" },
+        "14": { "$value": "14px", "$type": "fontSize" },
+        "16": { "$value": "16px", "$type": "fontSize" },
+        "18": { "$value": "18px", "$type": "fontSize" },
+        "20": { "$value": "20px", "$type": "fontSize" },
+        "24": { "$value": "24px", "$type": "fontSize" },
+        "32": { "$value": "32px", "$type": "fontSize" },
+        "40": { "$value": "40px", "$type": "fontSize" }
+      },
+
+      "line-height": {
+        "12": { "$value": "12px", "$type": "lineHeight" },
+        "16": { "$value": "16px", "$type": "lineHeight" },
+        "18": { "$value": "18px", "$type": "lineHeight" },
+        "20": { "$value": "20px", "$type": "lineHeight" },
+        "22": { "$value": "22px", "$type": "lineHeight" },
+        "24": { "$value": "24px", "$type": "lineHeight" },
+        "38": { "$value": "38px", "$type": "lineHeight" },
+        "48": { "$value": "48px", "$type": "lineHeight" }
+      }
+    },
+
+    "spacing": {
+      "none": { "$value": "0", "$type": "dimension" },
+      "4": { "$value": "4px", "$type": "dimension" },
+      "8": { "$value": "8px", "$type": "dimension" },
+      "12": { "$value": "12px", "$type": "dimension" },
+      "16": { "$value": "16px", "$type": "dimension" },
+      "24": { "$value": "24px", "$type": "dimension" },
+      "32": { "$value": "32px", "$type": "dimension" },
+      "48": { "$value": "48px", "$type": "dimension" },
+      "64": { "$value": "64px", "$type": "dimension" },
+      "96": { "$value": "96px", "$type": "dimension" },
+      "128": { "$value": "128px", "$type": "dimension" }
+    },
+
+    "radius": {
+      "none": { "$value": "0", "$type": "borderRadius" },
+      "mini": { "$value": "4px", "$type": "borderRadius" },
+      "xxxs": { "$value": "8px", "$type": "borderRadius" },
+      "xxs": { "$value": "12px", "$type": "borderRadius" },
+      "xs": { "$value": "16px", "$type": "borderRadius" },
+      "s": { "$value": "24px", "$type": "borderRadius" },
+      "m": { "$value": "32px", "$type": "borderRadius" }
+    }
+  },
+
+  "semantic": {
+    "$description": "Layer 2: Semantic tokens - brand-specific, purpose-based. References primitives.",
+
+    "brand": {
+      "primary": {
+        "1": { "$value": "{primitives.colors.dark-blue.blue-100}", "$type": "color", "$description": "Primary lightest shade" },
+        "2": { "$value": "{primitives.colors.dark-blue.blue-350}", "$type": "color", "$description": "Primary medium shade (70% from SCSS)" },
+        "3": { "$value": "{primitives.colors.dark-blue.blue-700}", "$type": "color", "$description": "Primary dark - main brand color" }
+      },
+
+      "secondary": {
+        "1": { "$value": "{primitives.colors.turquoise.turquoise-50}", "$type": "color", "$description": "Secondary lightest (10% from SCSS)" },
+        "2": { "$value": "{primitives.colors.turquoise.turquoise-200}", "$type": "color", "$description": "Secondary medium (40% from SCSS)" },
+        "3": { "$value": "{primitives.colors.turquoise.turquoise-700}", "$type": "color", "$description": "Secondary dark - main secondary color" }
+      },
+
+      "accent": {
+        "light": { "$value": "{primitives.colors.yellow.yellow-600}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.yellow.yellow-700}", "$type": "color" }
+      },
+
+      "gradient": {
+        "from": { "$value": "{semantic.brand.primary.3}", "$type": "color" },
+        "to": { "$value": "{semantic.brand.secondary.3}", "$type": "color" },
+        "full": { "$value": "linear-gradient(to bottom, {semantic.brand.secondary.3} 0%, {semantic.brand.primary.3} 100%)", "$type": "gradient", "$description": "From SCSS: linear-gradient(to bottom, #00aec7 0%, #00587c 100%)" }
+      }
+    },
+
+    "feedback": {
+      "error": {
+        "dark": { "$value": "{primitives.colors.red.red-700}", "$type": "color" },
+        "light": { "$value": "{primitives.colors.red.red-200}", "$type": "color" }
+      },
+      "warning": {
+        "dark": { "$value": "{primitives.colors.orange.orange-600}", "$type": "color" },
+        "light": { "$value": "{primitives.colors.orange.orange-75}", "$type": "color" }
+      },
+      "success": {
+        "dark": { "$value": "{primitives.colors.green.green-700}", "$type": "color" },
+        "light": { "$value": "{primitives.colors.green.green-100}", "$type": "color" }
+      },
+      "info": {
+        "dark": { "$value": "{primitives.colors.turquoise.turquoise-700}", "$type": "color" },
+        "light": { "$value": "{primitives.colors.turquoise.turquoise-50}", "$type": "color" }
+      }
+    },
+
+    "greyscale": {
+      "black": { "$value": "{primitives.colors.base.black}", "$type": "color" },
+      "white": { "$value": "{primitives.colors.base.white}", "$type": "color" },
+      "super-light": { "$value": "{primitives.colors.base.white}", "$type": "color", "$description": "Grayscale 00 from SCSS" },
+      "extra-light": { "$value": "{primitives.colors.grey.grey-100}", "$type": "color", "$description": "Grayscale 1" },
+      "disable": { "$value": "{primitives.colors.grey.grey-300}", "$type": "color", "$description": "Grayscale 2" },
+      "light": { "$value": "{primitives.colors.grey.grey-400}", "$type": "color", "$description": "Grayscale 3" },
+      "medium": { "$value": "{primitives.colors.grey.grey-500}", "$type": "color", "$description": "Grayscale 4" },
+      "dark": { "$value": "{primitives.colors.grey.grey-600}", "$type": "color", "$description": "Grayscale 5" },
+      "overlay": { "$value": "{primitives.colors.dark-blue.blue-1000-80}", "$type": "color" }
+    },
+
+    "whitelabel": {
+      "$description": "Whitelabel/Extra colors - Purple confirmed by SCSS",
+      "light": { "$value": "{primitives.colors.purple.purple-300}", "$type": "color" },
+      "medium": { "$value": "{primitives.colors.purple.purple-600}", "$type": "color" },
+      "dark": { "$value": "{primitives.colors.purple.purple-800}", "$type": "color" }
+    },
+
+    "extra": {
+      "x-01": { "$value": "{primitives.colors.orange.orange-50}", "$type": "color" },
+      "x-02": { "$value": "{primitives.colors.light-blue.light-blue-600}", "$type": "color" },
+      "x-03": { "$value": "{primitives.colors.dark-blue.blue-50}", "$type": "color" },
+      "x-04": { "$value": "{primitives.colors.light-blue.light-blue-700}", "$type": "color" }
+    },
+
+    "illustrations": {
+      "$description": "31 illustration colors from SCSS",
+      "01": { "$value": "{primitives.colors.brown.brown-200}", "$type": "color" },
+      "02": { "$value": "{primitives.colors.brown.brown-700}", "$type": "color" },
+      "03": { "$value": "{primitives.colors.turquoise.turquoise-200}", "$type": "color" },
+      "04": { "$value": "{primitives.colors.turquoise.turquoise-300}", "$type": "color" },
+      "05": { "$value": "{primitives.colors.turquoise.turquoise-500}", "$type": "color" },
+      "06": { "$value": "{primitives.colors.turquoise.turquoise-600}", "$type": "color" },
+      "07": { "$value": "{primitives.colors.turquoise.turquoise-700}", "$type": "color" },
+      "08": { "$value": "{primitives.colors.dark-blue.blue-700}", "$type": "color" },
+      "09": { "$value": "{primitives.colors.dark-blue.blue-900}", "$type": "color" },
+      "10": { "$value": "{primitives.colors.dark-blue.blue-150}", "$type": "color" },
+      "11": { "$value": "{primitives.colors.dark-blue.blue-250}", "$type": "color" },
+      "12": { "$value": "{primitives.colors.dark-blue.blue-300}", "$type": "color" },
+      "13": { "$value": "{primitives.colors.teal.teal-700}", "$type": "color" },
+      "14": { "$value": "{primitives.colors.yellow.yellow-350}", "$type": "color" },
+      "15": { "$value": "{primitives.colors.yellow.yellow-400}", "$type": "color" },
+      "16": { "$value": "{primitives.colors.yellow.yellow-450}", "$type": "color" },
+      "17": { "$value": "{primitives.colors.yellow.yellow-600}", "$type": "color" },
+      "18": { "$value": "{primitives.colors.yellow.yellow-700}", "$type": "color" },
+      "19": { "$value": "{primitives.colors.orange.orange-750}", "$type": "color" },
+      "20": { "$value": "{primitives.colors.teal.teal-200}", "$type": "color" },
+      "21": { "$value": "{primitives.colors.teal.teal-500}", "$type": "color" },
+      "22": { "$value": "{primitives.colors.teal.teal-600}", "$type": "color" },
+      "23": { "$value": "{primitives.colors.teal.teal-750}", "$type": "color" },
+      "24": { "$value": "{primitives.colors.grey.grey-600}", "$type": "color" },
+      "25": { "$value": "{primitives.colors.grey.grey-500}", "$type": "color" },
+      "26": { "$value": "{primitives.colors.grey.grey-400}", "$type": "color" },
+      "27": { "$value": "{primitives.colors.grey.grey-300}", "$type": "color" },
+      "28": { "$value": "{primitives.colors.grey.grey-100}", "$type": "color" },
+      "29": { "$value": "{primitives.colors.red.red-700}", "$type": "color" },
+      "30": { "$value": "{primitives.colors.orange.orange-600}", "$type": "color" },
+      "31": { "$value": "{primitives.colors.green.green-700}", "$type": "color" }
+    }
+  },
+
+  "component": {
+    "$description": "Layer 3: Component/Application tokens - specific use cases. NEW tokens from SCSS added here.",
+
+    "mobility": {
+      "$description": "22 mobility services - all confirmed by SCSS",
+
+      "bus": {
+        "$note": "Orange/Brown confirmed by SCSS",
+        "light": { "$value": "{primitives.colors.orange.orange-100}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.orange.orange-750}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.brown.brown-800}", "$type": "color" }
+      },
+
+      "pullman": {
+        "light": { "$value": "{primitives.colors.red.red-150}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.red.red-900}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.red.red-1000}", "$type": "color" }
+      },
+
+      "metro": {
+        "light": { "$value": "{primitives.colors.red.red-150}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.red.red-650}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.red.red-800}", "$type": "color" }
+      },
+
+      "train": {
+        "light": { "$value": "{primitives.colors.green.green-100}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.green.green-300}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.green.green-550}", "$type": "color" }
+      },
+
+      "tram": {
+        "$note": "Same as bus - confirmed by SCSS",
+        "light": { "$value": "{primitives.colors.orange.orange-100}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.orange.orange-750}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.brown.brown-800}", "$type": "color" }
+      },
+
+      "taxi": {
+        "light": { "$value": "{primitives.colors.yellow.yellow-200}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.yellow.yellow-600}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.yellow.yellow-700}", "$type": "color" }
+      },
+
+      "harbor": {
+        "light": { "$value": "{primitives.colors.teal.teal-100}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.teal.teal-600}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.teal.teal-650}", "$type": "color" }
+      },
+
+      "sharing": {
+        "light": { "$value": "{primitives.colors.purple.purple-200}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.purple.purple-500}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.purple.purple-650}", "$type": "color" }
+      },
+
+      "ncc": {
+        "light": { "$value": "{primitives.colors.purple.purple-400}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.purple.purple-700}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.purple.purple-900}", "$type": "color" }
+      },
+
+      "garage": {
+        "$note": "Dark-Blue + Light-Blue mix - confirmed by SCSS (different from both JSONs!)",
+        "light": { "$value": "{primitives.colors.light-blue.light-blue-250}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.dark-blue.blue-650}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.dark-blue.blue-950}", "$type": "color" }
+      },
+
+      "parking": {
+        "light": { "$value": "{primitives.colors.dark-blue.blue-75}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.dark-blue.blue-350}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.dark-blue.blue-675}", "$type": "color" }
+      },
+
+      "charging-station": {
+        "light": { "$value": "{primitives.colors.light-blue.light-blue-200}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.light-blue.light-blue-400}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.dark-blue.blue-675}", "$type": "color" }
+      },
+
+      "car-rental": {
+        "light": { "$value": "{primitives.colors.orange.orange-150}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.orange.orange-650}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.orange.orange-700}", "$type": "color" }
+      },
+
+      "airports": {
+        "light": { "$value": "{primitives.colors.grey.grey-100}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.grey.grey-500}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.grey.grey-600}", "$type": "color" }
+      },
+
+      "places": {
+        "$description": "Pin on map",
+        "light": { "$value": "{primitives.colors.grey.grey-150}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.grey.grey-500}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.grey.grey-600}", "$type": "color" }
+      },
+
+      "favorites": {
+        "light": { "$value": "{primitives.colors.base.white}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.turquoise.turquoise-700}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.dark-blue.blue-700}", "$type": "color" }
+      },
+
+      "walk": {
+        "light": { "$value": "{primitives.colors.grey.grey-300}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.grey.grey-400}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.grey.grey-500}", "$type": "color" }
+      },
+
+      "garage-telepass": {
+        "light": { "$value": "{primitives.colors.yellow.yellow-200}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.yellow.yellow-600}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.yellow.yellow-700}", "$type": "color" }
+      },
+
+      "skipass": {
+        "light": { "$value": "{primitives.colors.dark-blue.blue-100}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.dark-blue.blue-250}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.dark-blue.blue-300}", "$type": "color" }
+      },
+
+      "ztl": {
+        "light": { "$value": "{primitives.colors.light-blue.light-blue-275}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.dark-blue.blue-650}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.dark-blue.blue-950}", "$type": "color" }
+      },
+
+      "apparked": {
+        "light": { "$value": "{primitives.colors.light-blue.light-blue-600}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.dark-blue.blue-625}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.dark-blue.blue-950}", "$type": "color" }
+      },
+
+      "experience": {
+        "light": { "$value": "{primitives.colors.yellow.yellow-350}", "$type": "color" },
+        "medium": { "$value": "{primitives.colors.brown.brown-200}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.brown.brown-700}", "$type": "color" }
+      }
+    },
+
+    "status-tags": {
+      "$description": "NEW: Status tag colors from SCSS - 6 types",
+
+      "deadline": {
+        "light": { "$value": "{primitives.colors.dark-blue.blue-50}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.grey.grey-650}", "$type": "color" }
+      },
+
+      "info": {
+        "light": { "$value": "{primitives.colors.turquoise.turquoise-150}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.dark-blue.blue-700}", "$type": "color" }
+      },
+
+      "positive": {
+        "light": { "$value": "{primitives.colors.green.green-200}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.green.green-800}", "$type": "color" }
+      },
+
+      "warning": {
+        "light": { "$value": "{primitives.colors.orange.orange-200}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.brown.brown-900}", "$type": "color" }
+      },
+
+      "negative": {
+        "light": { "$value": "{primitives.colors.red.red-250}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.red.red-850}", "$type": "color" }
+      },
+
+      "new": {
+        "light": { "$value": "{primitives.colors.yellow.yellow-600}", "$type": "color" },
+        "dark": { "$value": "{primitives.colors.base.black}", "$type": "color" }
+      }
+    },
+
+    "metro-lines": {
+      "$description": "NEW: Metro line colors by city from SCSS - 15 lines total",
+
+      "milano": {
+        "m1": { "$value": "{primitives.colors.red.red-650}", "$type": "color" },
+        "m2": { "$value": "{primitives.colors.green.green-500}", "$type": "color" },
+        "m3": { "$value": "{primitives.colors.yellow.yellow-650}", "$type": "color" },
+        "m4": { "$value": "{primitives.colors.light-blue.light-blue-750}", "$type": "color" },
+        "m5": { "$value": "{primitives.colors.purple.purple-450}", "$type": "color" }
+      },
+
+      "roma": {
+        "mea": { "$value": "{primitives.colors.orange.orange-750}", "$type": "color" },
+        "meb": { "$value": "{primitives.colors.light-blue.light-blue-750}", "$type": "color" },
+        "mec": { "$value": "{primitives.colors.green.green-600}", "$type": "color" }
+      },
+
+      "brescia": {
+        "1": { "$value": "{primitives.colors.light-blue.light-blue-750}", "$type": "color" }
+      },
+
+      "torino": {
+        "1": { "$value": "{primitives.colors.red.red-650}", "$type": "color" },
+        "2": { "$value": "{primitives.colors.dark-blue.blue-625}", "$type": "color" }
+      },
+
+      "genova": {
+        "1": { "$value": "{primitives.colors.red.red-650}", "$type": "color" }
+      },
+
+      "catania": {
+        "1": { "$value": "{primitives.colors.red.red-650}", "$type": "color" }
+      },
+
+      "napoli": {
+        "1": { "$value": "{primitives.colors.yellow.yellow-650}", "$type": "color" },
+        "6": { "$value": "{primitives.colors.light-blue.light-blue-400}", "$type": "color" }
+      }
+    },
+
+    "maps": {
+      "$description": "NEW: Map interface colors from SCSS",
+
+      "white": {
+        "70": { "$value": "{primitives.colors.base.white}", "$type": "color", "$description": "70% opacity variant" },
+        "80": { "$value": "{primitives.colors.base.white}", "$type": "color", "$description": "80% opacity variant" }
+      },
+
+      "opacity": {
+        "25": { "$value": "{primitives.colors.light-blue.light-blue-650}", "$type": "color", "$description": "25% opacity" },
+        "50": { "$value": "{primitives.colors.light-blue.light-blue-650}", "$type": "color", "$description": "50% opacity" }
+      },
+
+      "numbered": {
+        "01": { "$value": "{primitives.colors.dark-blue.blue-700}", "$type": "color" },
+        "02": { "$value": "{primitives.colors.dark-blue.blue-700}", "$type": "color" },
+        "03": { "$value": "{primitives.colors.purple.purple-750}", "$type": "color" },
+        "04": { "$value": "{primitives.colors.purple.purple-750}", "$type": "color" },
+        "05": { "$value": "{primitives.colors.teal.teal-600}", "$type": "color" },
+        "06": { "$value": "{primitives.colors.teal.teal-600}", "$type": "color" },
+        "07": { "$value": "{primitives.colors.orange.orange-600}", "$type": "color" },
+        "08": { "$value": "{primitives.colors.orange.orange-600}", "$type": "color" },
+        "09": { "$value": "{primitives.colors.red.red-700}", "$type": "color" },
+        "10": { "$value": "{primitives.colors.red.red-700}", "$type": "color" }
+      }
+    },
+
+    "transport-position": {
+      "$description": "NEW: Real-time transport position colors with opacity from SCSS",
+
+      "train": {
+        "30": { "$value": "{primitives.colors.green.green-300}", "$type": "color", "$description": "30% opacity" },
+        "10": { "$value": "{primitives.colors.green.green-300}", "$type": "color", "$description": "10% opacity" }
+      },
+
+      "bus": {
+        "30": { "$value": "{primitives.colors.brown.brown-800}", "$type": "color", "$description": "30% opacity" },
+        "10": { "$value": "{primitives.colors.brown.brown-800}", "$type": "color", "$description": "10% opacity" }
+      },
+
+      "tram": {
+        "30": { "$value": "{primitives.colors.brown.brown-800}", "$type": "color", "$description": "30% opacity" },
+        "10": { "$value": "{primitives.colors.brown.brown-800}", "$type": "color", "$description": "10% opacity" }
+      },
+
+      "pullman": {
+        "30": { "$value": "{primitives.colors.red.red-750}", "$type": "color", "$description": "30% opacity" },
+        "10": { "$value": "{primitives.colors.red.red-750}", "$type": "color", "$description": "10% opacity" }
+      },
+
+      "harbor": {
+        "30": { "$value": "{primitives.colors.teal.teal-600}", "$type": "color", "$description": "30% opacity" },
+        "10": { "$value": "{primitives.colors.teal.teal-600}", "$type": "color", "$description": "10% opacity" }
+      }
+    },
+
+    "ticket-states": {
+      "$description": "NEW: Ticket state colors from SCSS",
+
+      "to-be-activated": { "$value": "{primitives.colors.yellow.yellow-600}", "$type": "color" },
+      "active": { "$value": "{primitives.colors.green.green-700}", "$type": "color" },
+      "expired": { "$value": "{primitives.colors.red.red-700}", "$type": "color" }
+    },
+
+    "typography": {
+      "$description": "NEW: Semantic text styles from SCSS mixins - composite tokens",
+      "$note": "These are composite typography tokens combining font-family, size, weight, line-height",
+
+      "button": {
+        "$value": {
+          "fontFamily": "{primitives.typography.font-family.text}",
+          "fontSize": "{primitives.typography.font-size.14}",
+          "fontWeight": "{primitives.typography.font-weight.bold}",
+          "lineHeight": "{primitives.typography.line-height.16}"
+        },
+        "$type": "typography"
+      },
+
+      "body": {
+        "1-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.14}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.18}"
+          },
+          "$type": "typography"
+        },
+        "1-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.14}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.18}"
+          },
+          "$type": "typography"
+        },
+        "1-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.14}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.18}"
+          },
+          "$type": "typography"
+        },
+        "2-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.14}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "2-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.14}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "2-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.14}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        }
+      },
+
+      "subtitle": {
+        "1-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.12}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.16}"
+          },
+          "$type": "typography"
+        },
+        "1-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.12}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.16}"
+          },
+          "$type": "typography"
+        },
+        "1-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.12}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.16}"
+          },
+          "$type": "typography"
+        },
+        "2-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.12}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.20}"
+          },
+          "$type": "typography"
+        },
+        "2-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.12}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.20}"
+          },
+          "$type": "typography"
+        },
+        "2-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.12}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.20}"
+          },
+          "$type": "typography"
+        }
+      },
+
+      "caption": {
+        "bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.10}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.12}"
+          },
+          "$type": "typography"
+        },
+        "medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.10}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.12}"
+          },
+          "$type": "typography"
+        },
+        "regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.text}",
+            "fontSize": "{primitives.typography.font-size.10}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.12}"
+          },
+          "$type": "typography"
+        }
+      },
+
+      "headlines": {
+        "h1-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.40}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.48}"
+          },
+          "$type": "typography"
+        },
+        "h2-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.32}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.38}"
+          },
+          "$type": "typography"
+        },
+        "h2-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.32}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.38}"
+          },
+          "$type": "typography"
+        },
+        "h2-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.32}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.38}"
+          },
+          "$type": "typography"
+        },
+        "h3-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.24}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "h3-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.24}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "h3-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.24}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "h4-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.20}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "h4-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.20}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "h4-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.20}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "h5-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.18}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.22}"
+          },
+          "$type": "typography"
+        },
+        "h5-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.18}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.22}"
+          },
+          "$type": "typography"
+        },
+        "h5-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.18}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.22}"
+          },
+          "$type": "typography"
+        },
+        "h6-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.16}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.20}"
+          },
+          "$type": "typography"
+        },
+        "h6-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.16}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.20}"
+          },
+          "$type": "typography"
+        },
+        "h6-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.16}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.20}"
+          },
+          "$type": "typography"
+        },
+        "h7-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.16}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "h7-medium": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.16}",
+            "fontWeight": "{primitives.typography.font-weight.medium}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        },
+        "h7-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.headlines}",
+            "fontSize": "{primitives.typography.font-size.16}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.24}"
+          },
+          "$type": "typography"
+        }
+      },
+
+      "links": {
+        "link-1-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.link}",
+            "fontSize": "{primitives.typography.font-size.14}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.18}"
+          },
+          "$type": "typography"
+        },
+        "link-1-regular": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.link}",
+            "fontSize": "{primitives.typography.font-size.14}",
+            "fontWeight": "{primitives.typography.font-weight.regular}",
+            "lineHeight": "{primitives.typography.line-height.18}"
+          },
+          "$type": "typography"
+        },
+        "link-2-bold": {
+          "$value": {
+            "fontFamily": "{primitives.typography.font-family.link}",
+            "fontSize": "{primitives.typography.font-size.12}",
+            "fontWeight": "{primitives.typography.font-weight.bold}",
+            "lineHeight": "{primitives.typography.line-height.16}"
+          },
+          "$type": "typography"
+        }
+      }
+    },
+
+    "effects": {
+      "$description": "NEW: Shadow/effect styles from SCSS mixins",
+      "$note": "These shadows need to be applied via CSS. Token values represent the box-shadow properties.",
+
+      "lines": {
+        "light-up": { "$value": "inset 0px 0.5px 0px {primitives.colors.grey.grey-400}", "$type": "shadow", "$description": "Inset top border" },
+        "light-down": { "$value": "inset 0px -0.5px 0px {primitives.colors.grey.grey-400}", "$type": "shadow", "$description": "Inset bottom border" }
+      },
+
+      "light": {
+        "01": { "$value": "0px 0px 1px #28293d, 0px 0.5px 2px #606170", "$type": "shadow" },
+        "02": { "$value": "0px 0px 1px #28293d, 0px 2px 4px #606170", "$type": "shadow" },
+        "03": { "$value": "0px 0px 2px #28293d, 0px 4px 8px #606170", "$type": "shadow" },
+        "04": { "$value": "0px 2px 16px #000000", "$type": "shadow" }
+      },
+
+      "dark": {
+        "01": { "$value": "0px 0px 1px #28293d, 0px 1px 2px #000000", "$type": "shadow" },
+        "02": { "$value": "0px 0px 1px #000000, 0px 2px 4px #000000", "$type": "shadow" },
+        "03": { "$value": "0px 0px 2px #000000, 0px 4px 8px #000000", "$type": "shadow" },
+        "04": { "$value": "0px 2px 4px #000000, 0px 8px 16px #000000", "$type": "shadow" }
+      },
+
+      "special": {
+        "ticket-inactive": { "$value": "inset 0px -0.5px 0px {primitives.colors.grey.grey-400}, inset 6px 0px 0px {primitives.colors.yellow.yellow-600}", "$type": "shadow" },
+        "ticket-active": { "$value": "inset 0px -0.5px 0px {primitives.colors.grey.grey-400}, inset 6px 0px 0px {primitives.colors.green.green-700}", "$type": "shadow" },
+        "segui-viaggio": { "$value": "0px 2px 8px #7e85ec", "$type": "shadow", "$description": "Blue glow for journey tracking" }
+      }
+    }
+  },
+
+  "$metadata": {
+    "token-count": {
+      "primitives": 145,
+      "semantic": 62,
+      "component": 150,
+      "total": 357
+    },
+    "new-tokens-added": 75,
+    "sources-unified": 3,
+    "conflicts-resolved": 3,
+    "luckino-compatible": true,
+    "w3c-dtcg-compliant": true
+  }
+}
