@@ -1,0 +1,3765 @@
+{
+  "global": {
+    "colors": {
+      "neutral": {
+        "white": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "black": {
+          "$value": "#1e1e1e",
+          "$type": "color"
+        },
+        "transparent": {
+          "$value": "rgba(255, 255, 255, 0)",
+          "$type": "color"
+        }
+      },
+      "teal": {
+        "5": {
+          "$value": "#e6f7f9",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#d4f1f2",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#caf2f4",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#a3e9ec",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#99dfe9",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#47d3d9",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#2fc5cc",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#17b8be",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#00aec7",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#13a4ab",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#11939a",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#108188",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#0e7077",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#0b5f65",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#0a545a",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#0f474a",
+          "$type": "color"
+        }
+      },
+      "gray": {
+        "5": {
+          "$value": "#fafafa",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#f1f1f1",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#e5e5e4",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#d6d6d5",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#c0c0c0",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#a6a5a5",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#898989",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#777777",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#717171",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#6a6a6a",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#5f5f5f",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#545454",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#494949",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#3e3e3e",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#535051",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#393c3c",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#2a2a2a",
+          "$type": "color"
+        }
+      },
+      "darkgray": {
+        "5": {
+          "$value": "#e9ecef",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#dfe3e6",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#cdd3d8",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#adb6bd",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#8a97a1",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#677e90",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#566c7e",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#465a6c",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#3c4f5f",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#324352",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#264660",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#213d54",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#1c3448",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#172b3c",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#122230",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#0d1924",
+          "$type": "color"
+        }
+      },
+      "turquoise": {
+        "5": {
+          "$value": "#e9f6fa",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#daf0f7",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#cbe9f4",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#a6daec",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#79c7e3",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#4db5d9",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#35a6cc",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#1e96be",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#1c8eb4",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#1a85ab",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#17779a",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#146988",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#125c77",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#0f4e65",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#0d4559",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#103b49",
+          "$type": "color"
+        }
+      },
+      "ottanio": {
+        "5": {
+          "$value": "#e6eef2",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#d9e5eb",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#c4d7e2",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#a0bfcf",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#79a6ba",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#4d8aa3",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#3a7892",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#276681",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#1f5c77",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#18526d",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#00587c",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#004d6b",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#00425a",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#003749",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#002d38",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#002327",
+          "$type": "color"
+        }
+      },
+      "ocean": {
+        "5": {
+          "$value": "#e8eff7",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#dceaf7",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#cde1f4",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#a3c0de",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#7db1e3",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#5297da",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#3b85cc",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#2473bd",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#226db5",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#1f67ad",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#1961ac",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#195188",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#164677",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#133b65",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#103459",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#16314d",
+          "$type": "color"
+        }
+      },
+      "blue": {
+        "5": {
+          "$value": "#ebeffa",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#dde3f7",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#cfd8f4",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#abbced",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#829ae3",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#5879da",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#1068f6",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#0072ef",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#0066d6",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#005dbe",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#0054a6",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#004a91",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#00407d",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#003669",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#002d55",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#002340",
+          "$type": "color"
+        }
+      },
+      "coral": {
+        "5": {
+          "$value": "#fde6e6",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#fbd4d4",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#f9c4c4",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#f59999",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#f06d6d",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#ea4444",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#e31a1a",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#da0000",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#d20000",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#c90000",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#bb0000",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#ac0000",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#9f0000",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#910000",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#880000",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#6d0a0a",
+          "$type": "color"
+        }
+      },
+      "orange": {
+        "5": {
+          "$value": "#fef9f6",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#fdefe9",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#ffdcbf",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#ffc694",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#ffad66",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#ff9333",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#f58220",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#f87900",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#f57400",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#ed6c00",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#e86600",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#df5d00",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#d15200",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#cf3700",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#b43c00",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#87330a",
+          "$type": "color"
+        }
+      },
+      "yellow": {
+        "5": {
+          "$value": "#fff6e1",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#fff3d0",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#fff0bf",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#ffe687",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#ffc627",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#ffd633",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#f9cd1a",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#f8c400",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#f5bd00",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#f1b500",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#eda900",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#df9600",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#d18300",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#c37500",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#b46500",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#87500a",
+          "$type": "color"
+        }
+      },
+      "lemon": {
+        "5": {
+          "$value": "#fff9e1",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#fff9d0",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#fff8bf",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#f3e780",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#fff566",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#fff333",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#f9ed1a",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#f8e700",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#f5dc00",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#f1d500",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#e8c300",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#dfb100",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#d19b00",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#c38400",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#b47600",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#875c0a",
+          "$type": "color"
+        }
+      },
+      "green": {
+        "5": {
+          "$value": "#eff8ef",
+          "$type": "color"
+        },
+        "10": {
+          "$value": "#e4f3e4",
+          "$type": "color"
+        },
+        "20": {
+          "$value": "#daefda",
+          "$type": "color"
+        },
+        "30": {
+          "$value": "#bee4bf",
+          "$type": "color"
+        },
+        "40": {
+          "$value": "#9ed79f",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#7dc97f",
+          "$type": "color"
+        },
+        "60": {
+          "$value": "#6abb6b",
+          "$type": "color"
+        },
+        "70": {
+          "$value": "#57ad57",
+          "$type": "color"
+        },
+        "80": {
+          "$value": "#52a353",
+          "$type": "color"
+        },
+        "90": {
+          "$value": "#4c9a4e",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#458a46",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#3d7a3e",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#356a36",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#2c5a2e",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#274f28",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#254325",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "none": {
+        "$value": 0,
+        "$type": "spacing"
+      },
+      "5xs": {
+        "$value": 2,
+        "$type": "spacing"
+      },
+      "4xs": {
+        "$value": 3,
+        "$type": "spacing"
+      },
+      "3xs": {
+        "$value": 4,
+        "$type": "spacing"
+      },
+      "2xs": {
+        "$value": 8,
+        "$type": "spacing"
+      },
+      "xs": {
+        "$value": 12,
+        "$type": "spacing"
+      },
+      "sm": {
+        "$value": 16,
+        "$type": "spacing"
+      },
+      "md": {
+        "$value": 20,
+        "$type": "spacing"
+      },
+      "lg": {
+        "$value": 24,
+        "$type": "spacing"
+      },
+      "xl": {
+        "$value": 28,
+        "$type": "spacing"
+      },
+      "2xl": {
+        "$value": 32,
+        "$type": "spacing"
+      },
+      "3xl": {
+        "$value": 42,
+        "$type": "spacing"
+      },
+      "4xl": {
+        "$value": 50,
+        "$type": "spacing"
+      }
+    },
+    "radius": {
+      "none": {
+        "$value": 0,
+        "$type": "borderRadius"
+      },
+      "2xs": {
+        "$value": 2,
+        "$type": "borderRadius"
+      },
+      "xs": {
+        "$value": 4,
+        "$type": "borderRadius"
+      },
+      "sm": {
+        "$value": 8,
+        "$type": "borderRadius"
+      },
+      "md": {
+        "$value": 10,
+        "$type": "borderRadius"
+      },
+      "lg": {
+        "$value": 15,
+        "$type": "borderRadius"
+      },
+      "xl": {
+        "$value": 16,
+        "$type": "borderRadius"
+      },
+      "2xl": {
+        "$value": 18,
+        "$type": "borderRadius"
+      },
+      "3xl": {
+        "$value": 20,
+        "$type": "borderRadius"
+      },
+      "4xl": {
+        "$value": 24,
+        "$type": "borderRadius"
+      },
+      "5xl": {
+        "$value": 30,
+        "$type": "borderRadius"
+      },
+      "6xl": {
+        "$value": 100,
+        "$type": "borderRadius"
+      },
+      "full": {
+        "$value": 9999,
+        "$type": "borderRadius"
+      }
+    },
+    "typography": {
+      "fontfamily": {
+        "sans": {
+          "$value": "Manrope",
+          "$type": "fontFamily"
+        },
+        "mono": {
+          "$value": "JetBrains Mono",
+          "$type": "fontFamily"
+        },
+        "gotham": {
+          "$value": "Gotham",
+          "$type": "fontFamily"
+        }
+      },
+      "fontsize": {
+        "2xs": {
+          "$value": 10,
+          "$type": "fontSize"
+        },
+        "xs": {
+          "$value": 12,
+          "$type": "fontSize"
+        },
+        "sm": {
+          "$value": 14,
+          "$type": "fontSize"
+        },
+        "base": {
+          "$value": 16,
+          "$type": "fontSize"
+        },
+        "lg": {
+          "$value": 18,
+          "$type": "fontSize"
+        },
+        "xl": {
+          "$value": 20,
+          "$type": "fontSize"
+        },
+        "2xl": {
+          "$value": 24,
+          "$type": "fontSize"
+        },
+        "3xl": {
+          "$value": 32,
+          "$type": "fontSize"
+        },
+        "4xl": {
+          "$value": 40,
+          "$type": "fontSize"
+        },
+        "5xl": {
+          "$value": 56,
+          "$type": "fontSize"
+        }
+      },
+      "fontweight": {
+        "normal": {
+          "$value": 400,
+          "$type": "fontWeight"
+        },
+        "medium": {
+          "$value": 500,
+          "$type": "fontWeight"
+        },
+        "semibold": {
+          "$value": 600,
+          "$type": "fontWeight"
+        },
+        "bold": {
+          "$value": 700,
+          "$type": "fontWeight"
+        }
+      },
+      "lineheight": {
+        "tight": {
+          "$value": 1.2000000476837158,
+          "$type": "lineHeight"
+        },
+        "snug": {
+          "$value": 1.350000023841858,
+          "$type": "lineHeight"
+        },
+        "normal": {
+          "$value": 1.5,
+          "$type": "lineHeight"
+        },
+        "relaxed": {
+          "$value": 1.75,
+          "$type": "lineHeight"
+        }
+      },
+      "letterspacing": {
+        "tight": {
+          "$value": -0.5,
+          "$type": "spacing"
+        },
+        "normal": {
+          "$value": 0,
+          "$type": "spacing"
+        },
+        "wide": {
+          "$value": 0.5,
+          "$type": "spacing"
+        },
+        "wider": {
+          "$value": 1,
+          "$type": "spacing"
+        }
+      }
+    }
+  },
+  "semantic": {
+    "brand": {
+      "core": {
+        "main": {
+          "$value": {
+            "clara": "{colors.ocean.70}",
+            "mooney": "{colors.ottanio.100}",
+            "atm": "{colors.orange.400}",
+            "comersud": "{colors.ocean.100}"
+          },
+          "$type": "color"
+        },
+        "light": {
+          "$value": {
+            "clara": "{colors.ocean.30}",
+            "mooney": "{colors.ottanio.50}",
+            "atm": "{colors.orange.10}",
+            "comersud": "{colors.ocean.30}"
+          },
+          "$type": "color"
+        },
+        "soft": {
+          "$value": {
+            "clara": "{colors.ocean.5}",
+            "mooney": "{colors.ottanio.5}",
+            "atm": "{colors.orange.5}",
+            "comersud": "{colors.ocean.5}"
+          },
+          "$type": "color"
+        },
+        "dark": {
+          "$value": {
+            "clara": "{colors.ocean.400}",
+            "mooney": "{colors.ottanio.200}",
+            "atm": "{colors.coral.90}",
+            "comersud": "{colors.ocean.10}"
+          },
+          "$type": "color"
+        },
+        "faded": {
+          "$value": {
+            "clara": "{colors.ocean.40}",
+            "mooney": "{colors.ottanio.60}",
+            "atm": "{colors.orange.60}",
+            "comersud": "{colors.ocean.80}"
+          },
+          "$type": "color"
+        }
+      },
+      "alt": {
+        "main": {
+          "$value": {
+            "clara": "{colors.gray.700}",
+            "mooney": "{colors.teal.80}",
+            "atm": "{colors.gray.700}",
+            "comersud": "{colors.darkgray.100}"
+          },
+          "$type": "color"
+        },
+        "soft": {
+          "$value": {
+            "clara": "{colors.gray.10}",
+            "mooney": "{colors.teal.5}",
+            "atm": "{colors.gray.10}",
+            "comersud": "{colors.darkgray.50}"
+          },
+          "$type": "color"
+        },
+        "light": {
+          "$value": {
+            "clara": "{colors.gray.40}",
+            "mooney": "{colors.teal.40}",
+            "atm": "{colors.gray.40}",
+            "comersud": "{colors.darkgray.5}"
+          },
+          "$type": "color"
+        },
+        "dark": {
+          "$value": {
+            "clara": "{colors.gray.700}",
+            "mooney": "{colors.teal.500}",
+            "atm": "{colors.gray.600}",
+            "comersud": "{colors.darkgray.200}"
+          },
+          "$type": "color"
+        }
+      },
+      "accent": {
+        "main": {
+          "$value": {
+            "clara": "{colors.coral.50}",
+            "mooney": "{colors.yellow.100}",
+            "atm": "{colors.blue.100}",
+            "comersud": "{colors.lemon.80}"
+          },
+          "$type": "color"
+        },
+        "soft": {
+          "$value": {
+            "clara": "{colors.coral.10}",
+            "mooney": "{colors.yellow.5}",
+            "atm": "{colors.blue.5}",
+            "comersud": "{colors.lemon.5}"
+          },
+          "$type": "color"
+        },
+        "light": {
+          "$value": {
+            "clara": "{colors.coral.20}",
+            "mooney": "{colors.yellow.40}",
+            "atm": "{colors.blue.60}",
+            "comersud": "{colors.lemon.30}"
+          },
+          "$type": "color"
+        },
+        "dark": {
+          "$value": {
+            "clara": "{colors.coral.500}",
+            "mooney": "{colors.yellow.600}",
+            "atm": "{colors.blue.400}",
+            "comersud": "{colors.lemon.300}"
+          },
+          "$type": "color"
+        }
+      },
+      "fontfamily": {
+        "brand": {
+          "$value": {
+            "clara": "{typography.fontFamily.gotham}",
+            "mooney": "{typography.fontFamily.sans}",
+            "atm": "{typography.fontFamily.sans}",
+            "comersud": "{typography.fontFamily.sans}"
+          },
+          "$type": "fontFamily"
+        }
+      },
+      "theme": {
+        "$value": {
+          "clara": "clara",
+          "mooney": "mooney",
+          "atm": "atm",
+          "comersud": "comersud"
+        },
+        "$type": "string"
+      }
+    },
+    "colors": {
+      "background": {
+        "muted": {
+          "$value": {
+            "clara": "{colors.gray.5}",
+            "mooney": "{colors.gray.5}",
+            "atm": "{colors.gray.5}",
+            "comersud": "{colors.gray.5}"
+          },
+          "$type": "color"
+        },
+        "page": {
+          "$value": {
+            "clara": "{colors.neutral.white}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        },
+        "brand": {
+          "$value": {
+            "clara": "{brand.core.main}",
+            "mooney": "{brand.core.main}",
+            "atm": "{brand.core.faded}",
+            "comersud": "{brand.core.main}"
+          },
+          "$type": "color"
+        },
+        "disabled": {
+          "$value": {
+            "clara": "{colors.gray.20}",
+            "mooney": "{colors.gray.20}",
+            "atm": "{colors.gray.5}",
+            "comersud": "{colors.gray.5}"
+          },
+          "$type": "color"
+        }
+      },
+      "text": {
+        "inverse": {
+          "$value": {
+            "clara": "{colors.neutral.white}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        },
+        "main": {
+          "$value": {
+            "clara": "{colors.neutral.black}",
+            "mooney": "{colors.gray.700}",
+            "atm": "{colors.gray.700}",
+            "comersud": "{colors.gray.700}"
+          },
+          "$type": "color"
+        },
+        "muted": {
+          "$value": {
+            "clara": "{colors.gray.70}",
+            "mooney": "{colors.gray.60}",
+            "atm": "{colors.gray.60}",
+            "comersud": "{colors.gray.60}"
+          },
+          "$type": "color"
+        },
+        "disabled": {
+          "$value": {
+            "clara": "{colors.gray.50}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        },
+        "brand": {
+          "$value": {
+            "clara": "{brand.core.main}",
+            "mooney": "{brand.core.main}",
+            "atm": "{brand.core.main}",
+            "comersud": "{brand.core.main}"
+          },
+          "$type": "color"
+        }
+      },
+      "border": {
+        "main": {
+          "$value": {
+            "clara": "{colors.gray.30}",
+            "mooney": "{colors.gray.20}",
+            "atm": "{colors.gray.20}",
+            "comersud": "{colors.gray.20}"
+          },
+          "$type": "color"
+        },
+        "muted": {
+          "$value": {
+            "clara": "{colors.gray.5}",
+            "mooney": "{colors.gray.10}",
+            "atm": "{colors.gray.10}",
+            "comersud": "{colors.gray.10}"
+          },
+          "$type": "color"
+        },
+        "focus": {
+          "$value": {
+            "clara": "{brand.core.faded}",
+            "mooney": "{brand.core.main}",
+            "atm": "{brand.core.main}",
+            "comersud": "{brand.core.main}"
+          },
+          "$type": "color"
+        }
+      },
+      "feedback": {
+        "success": {
+          "$value": {
+            "clara": "{colors.green.70}",
+            "mooney": "{colors.green.70}",
+            "atm": "{colors.green.70}",
+            "comersud": "{colors.green.70}"
+          },
+          "$type": "color"
+        },
+        "warning": {
+          "$value": {
+            "clara": "{colors.orange.70}",
+            "mooney": "{colors.orange.70}",
+            "atm": "{colors.orange.70}",
+            "comersud": "{colors.orange.70}"
+          },
+          "$type": "color"
+        },
+        "error": {
+          "$value": {
+            "clara": "{colors.coral.70}",
+            "mooney": "{colors.coral.80}",
+            "atm": "{colors.coral.70}",
+            "comersud": "{colors.coral.70}"
+          },
+          "$type": "color"
+        },
+        "info": {
+          "$value": {
+            "clara": "{brand.alt.main}",
+            "mooney": "{brand.alt.main}",
+            "atm": "{brand.alt.main}",
+            "comersud": "{brand.alt.main}"
+          },
+          "$type": "color"
+        },
+        "successlight": {
+          "$value": {
+            "clara": "{colors.green.10}",
+            "mooney": "{colors.green.10}",
+            "atm": "{colors.green.10}",
+            "comersud": "{colors.green.10}"
+          },
+          "$type": "color"
+        },
+        "warninglight": {
+          "$value": {
+            "clara": "{colors.orange.10}",
+            "mooney": "{colors.orange.10}",
+            "atm": "{colors.orange.10}",
+            "comersud": "{colors.orange.10}"
+          },
+          "$type": "color"
+        },
+        "errorlight": {
+          "$value": {
+            "clara": "{colors.coral.10}",
+            "mooney": "{colors.coral.10}",
+            "atm": "{colors.coral.10}",
+            "comersud": "{colors.coral.10}"
+          },
+          "$type": "color"
+        },
+        "infolight": {
+          "$value": {
+            "clara": "{colors.ocean.10}",
+            "mooney": "{colors.ocean.10}",
+            "atm": "{colors.ocean.10}",
+            "comersud": "{colors.ocean.10}"
+          },
+          "$type": "color"
+        }
+      },
+      "icon": {
+        "main": {
+          "$value": {
+            "clara": "{colors.neutral.black}",
+            "mooney": "{colors.gray.700}",
+            "atm": "{colors.gray.700}",
+            "comersud": "{colors.gray.700}"
+          },
+          "$type": "color"
+        },
+        "muted": {
+          "$value": {
+            "clara": "{colors.gray.60}",
+            "mooney": "{colors.gray.60}",
+            "atm": "{colors.gray.60}",
+            "comersud": "{colors.gray.60}"
+          },
+          "$type": "color"
+        },
+        "inverse": {
+          "$value": {
+            "clara": "{colors.neutral.white}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        },
+        "disabled": {
+          "$value": {
+            "clara": "{colors.gray.50}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        }
+      },
+      "specific": {
+        "button": {
+          "hoverprimary": {
+            "$value": {
+              "clara": "{brand.core.dark}",
+              "mooney": "{colors.teal.70}",
+              "atm": "{colors.coral.80}",
+              "comersud": "{colors.coral.80}"
+            },
+            "$type": "color"
+          },
+          "backgrounddisabled": {
+            "$value": {
+              "clara": "{colors.gray.20}",
+              "mooney": "{colors.gray.20}",
+              "atm": "{colors.gray.20}",
+              "comersud": "{colors.gray.20}"
+            },
+            "$type": "color"
+          },
+          "textdisabled": {
+            "$value": {
+              "clara": "{colors.gray.50}",
+              "mooney": "{colors.gray.50}",
+              "atm": "{colors.gray.50}",
+              "comersud": "{colors.gray.50}"
+            },
+            "$type": "color"
+          },
+          "hoversecondary": {
+            "$value": {
+              "clara": "{brand.core.dark}",
+              "mooney": "{colors.teal.70}",
+              "atm": "{colors.coral.80}",
+              "comersud": "{colors.coral.80}"
+            },
+            "$type": "color"
+          }
+        },
+        "gradient": {
+          "start": {
+            "$value": {
+              "clara": "{brand.core.main}",
+              "mooney": "{brand.core.main}",
+              "atm": "{brand.core.main}",
+              "comersud": "{brand.core.main}"
+            },
+            "$type": "color"
+          },
+          "end": {
+            "$value": {
+              "clara": "{brand.alt.main}",
+              "mooney": "{brand.alt.main}",
+              "atm": "{brand.alt.main}",
+              "comersud": "{brand.alt.main}"
+            },
+            "$type": "color"
+          }
+        },
+        "mobility": {
+          "bus": {
+            "dark": {
+              "$value": {
+                "clara": "#bd590d",
+                "mooney": "#bd590d",
+                "atm": "#f06123",
+                "comersud": "#bd590d"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#f46a00",
+                "mooney": "#f46a00",
+                "atm": "{colors.orange.60}",
+                "comersud": "#f26a1f"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#fef0e5",
+                "mooney": "#fef0e5",
+                "atm": "#fce2d7",
+                "comersud": "#fef0e5"
+              },
+              "$type": "color"
+            }
+          },
+          "tram": {
+            "dark": {
+              "$value": {
+                "clara": "#bd590d",
+                "mooney": "#bd590d",
+                "atm": "#f06123",
+                "comersud": "#bd590d"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#f46a00",
+                "mooney": "#f46a00",
+                "atm": "{colors.orange.60}",
+                "comersud": "#f26a1f"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#fef0e5",
+                "mooney": "#fef0e5",
+                "atm": "#fce2d7",
+                "comersud": "#fef0e5"
+              },
+              "$type": "color"
+            }
+          },
+          "metro": {
+            "dark": {
+              "$value": {
+                "clara": "#9f1930",
+                "mooney": "#9f1930",
+                "atm": "#bf1b25",
+                "comersud": "#9f1930"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#dd052b",
+                "mooney": "#dd052b",
+                "atm": "#eb212e",
+                "comersud": "#dd052b"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#fbe5e5",
+                "mooney": "#fbe5e5",
+                "atm": "#fbe5e5",
+                "comersud": "#fbe5e5"
+              },
+              "$type": "color"
+            }
+          },
+          "train": {
+            "dark": {
+              "$value": {
+                "clara": "#478500",
+                "mooney": "#478500",
+                "atm": "#478500",
+                "comersud": "#478500"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#59a600",
+                "mooney": "#59a600",
+                "atm": "#59a600",
+                "comersud": "#59a600"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#eef6e5",
+                "mooney": "#eef6e5",
+                "atm": "#eef6e5",
+                "comersud": "#eef6e5"
+              },
+              "$type": "color"
+            }
+          },
+          "harbor": {
+            "dark": {
+              "$value": {
+                "clara": "#007279",
+                "mooney": "#007279",
+                "atm": "#007279",
+                "comersud": "#007279"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#00a0aa",
+                "mooney": "#00a0aa",
+                "atm": "#00a0aa",
+                "comersud": "#00a0aa"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#e5f5f7",
+                "mooney": "#e5f5f7",
+                "atm": "#e5f5f7",
+                "comersud": "#e5f5f7"
+              },
+              "$type": "color"
+            }
+          },
+          "pullman": {
+            "dark": {
+              "$value": {
+                "clara": "#510101",
+                "mooney": "#510101",
+                "atm": "#f06123",
+                "comersud": "#510101"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#7c0303",
+                "mooney": "#7c0303",
+                "atm": "{colors.orange.60}",
+                "comersud": "#7c0303"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#fbe5e5",
+                "mooney": "#fbe5e5",
+                "atm": "#fce2d7",
+                "comersud": "#fbe5e5"
+              },
+              "$type": "color"
+            }
+          },
+          "taxi": {
+            "dark": {
+              "$value": {
+                "clara": "{colors.yellow.100}",
+                "mooney": "{colors.yellow.100}",
+                "atm": "{colors.neutral.black}",
+                "comersud": "{colors.yellow.100}"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "{colors.yellow.40}",
+                "mooney": "{colors.yellow.40}",
+                "atm": "{colors.neutral.black}",
+                "comersud": "{colors.yellow.40}"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#fff6dc",
+                "mooney": "#fff6dc",
+                "atm": "#f2f2f2",
+                "comersud": "#fff6dc"
+              },
+              "$type": "color"
+            }
+          },
+          "ncc": {
+            "dark": {
+              "$value": {
+                "clara": "#543c87",
+                "mooney": "#543c87",
+                "atm": "#4e2a9b",
+                "comersud": "#543c87"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#7453bb",
+                "mooney": "#7453bb",
+                "atm": "#673ac7",
+                "comersud": "#7453bb"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#dacbf9",
+                "mooney": "#dacbf9",
+                "atm": "#d4c6f2",
+                "comersud": "#dacbf9"
+              },
+              "$type": "color"
+            }
+          },
+          "sharing": {
+            "dark": {
+              "$value": {
+                "clara": "#a932ff",
+                "mooney": "#a932ff",
+                "atm": "{colors.yellow.100}",
+                "comersud": "#a932ff"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#c06cfc",
+                "mooney": "#c06cfc",
+                "atm": "#ffcc00",
+                "comersud": "#c06cfc"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#f5e8fe",
+                "mooney": "#f5e8fe",
+                "atm": "#fff5cc",
+                "comersud": "#f5e8fe"
+              },
+              "$type": "color"
+            }
+          },
+          "parking": {
+            "dark": {
+              "$value": {
+                "clara": "{colors.ottanio.100}",
+                "mooney": "{colors.ottanio.100}",
+                "atm": "{colors.ottanio.100}",
+                "comersud": "#215c84"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "{colors.ottanio.50}",
+                "mooney": "{colors.ottanio.50}",
+                "atm": "{colors.ottanio.50}",
+                "comersud": "{colors.ottanio.50}"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#edf3f6",
+                "mooney": "#edf3f6",
+                "atm": "#edf3f6",
+                "comersud": "#ecf2f5"
+              },
+              "$type": "color"
+            }
+          },
+          "garage": {
+            "dark": {
+              "$value": {
+                "clara": "#003065",
+                "mooney": "#003065",
+                "atm": "#003065",
+                "comersud": "#003065"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#004a9b",
+                "mooney": "#004a9b",
+                "atm": "#004a9b",
+                "comersud": "#004a9b"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#c5e0fe",
+                "mooney": "#c5e0fe",
+                "atm": "#c5e0fe",
+                "comersud": "#d2e8ff"
+              },
+              "$type": "color"
+            }
+          },
+          "carRental": {
+            "dark": {
+              "$value": {
+                "clara": "#ff7500",
+                "mooney": "#ff7500",
+                "atm": "{colors.ottanio.100}",
+                "comersud": "#ff7500"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#ff9900",
+                "mooney": "#ff9900",
+                "atm": "{colors.teal.80}",
+                "comersud": "#ff9900"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#ffedd2",
+                "mooney": "#ffedd2",
+                "atm": "#c8eff4",
+                "comersud": "#ffedd2"
+              },
+              "$type": "color"
+            }
+          },
+          "chargingStation": {
+            "dark": {
+              "$value": {
+                "clara": "#215c84",
+                "mooney": "#215c84",
+                "atm": "#215c84",
+                "comersud": "#215c84"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#95c6e8",
+                "mooney": "#95c6e8",
+                "atm": "#95c6e8",
+                "comersud": "#7fbfe9"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#f2f5f7",
+                "mooney": "#f2f5f7",
+                "atm": "#ddf1ff",
+                "comersud": "#ddf1ff"
+              },
+              "$type": "color"
+            }
+          },
+          "favorites": {
+            "dark": {
+              "$value": {
+                "clara": "{colors.ottanio.100}",
+                "mooney": "{colors.ottanio.100}",
+                "atm": "#cd0e5e",
+                "comersud": "{colors.ottanio.100}"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "{colors.teal.80}",
+                "mooney": "{colors.teal.80}",
+                "atm": "#ff4a96",
+                "comersud": "{colors.teal.80}"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "{colors.neutral.white}",
+                "mooney": "{colors.neutral.white}",
+                "atm": "#ffd0e4",
+                "comersud": "{colors.neutral.white}"
+              },
+              "$type": "color"
+            }
+          },
+          "walk": {
+            "dark": {
+              "$value": {
+                "clara": "#787878",
+                "mooney": "#787878",
+                "atm": "#787878",
+                "comersud": "#787878"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#bbbbbb",
+                "mooney": "#bbbbbb",
+                "atm": "#bbbbbb",
+                "comersud": "#bbbbbb"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#dddddd",
+                "mooney": "#dddddd",
+                "atm": "#dddddd",
+                "comersud": "#dddddd"
+              },
+              "$type": "color"
+            }
+          },
+          "ztl": {
+            "dark": {
+              "$value": {
+                "clara": "#194579",
+                "mooney": "#194579",
+                "atm": "#194579",
+                "comersud": "#003065"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#004a9b",
+                "mooney": "#004a9b",
+                "atm": "#004a9b",
+                "comersud": "#004a9b"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#c5e0fe",
+                "mooney": "#c5e0fe",
+                "atm": "#c5e0fe",
+                "comersud": "#c5e0fe"
+              },
+              "$type": "color"
+            }
+          },
+          "garageTelepass": {
+            "dark": {
+              "$value": {
+                "clara": "{colors.yellow.100}",
+                "mooney": "{colors.yellow.100}",
+                "atm": "{colors.yellow.100}",
+                "comersud": "{colors.yellow.100}"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "{colors.yellow.40}",
+                "mooney": "{colors.yellow.40}",
+                "atm": "{colors.yellow.40}",
+                "comersud": "{colors.yellow.40}"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#fff6dc",
+                "mooney": "#fff6dc",
+                "atm": "#fff6dc",
+                "comersud": "#fff6dc"
+              },
+              "$type": "color"
+            }
+          },
+          "airports": {
+            "dark": {
+              "$value": {
+                "clara": "#4f4f4f",
+                "mooney": "#4f4f4f",
+                "atm": "#4f4f4f",
+                "comersud": "#4f4f4f"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#787878",
+                "mooney": "#787878",
+                "atm": "#787878",
+                "comersud": "#787878"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#f6f6f6",
+                "mooney": "#f6f6f6",
+                "atm": "#f6f6f6",
+                "comersud": "#f6f6f6"
+              },
+              "$type": "color"
+            }
+          },
+          "skipass": {
+            "dark": {
+              "$value": {
+                "clara": "#6097ad",
+                "mooney": "#6097ad",
+                "atm": "#6097ad",
+                "comersud": "#6097ad"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#c4d4d5",
+                "mooney": "#c4d4d5",
+                "atm": "#c4d4d5",
+                "comersud": "#c4d4d5"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "{colors.ottanio.5}",
+                "mooney": "{colors.ottanio.5}",
+                "atm": "{colors.ottanio.5}",
+                "comersud": "{colors.ottanio.5}"
+              },
+              "$type": "color"
+            }
+          },
+          "pin": {
+            "dark": {
+              "$value": {
+                "clara": "#4f4f4f",
+                "mooney": "#4f4f4f",
+                "atm": "#344054",
+                "comersud": "#4f4f4f"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#787878",
+                "mooney": "#787878",
+                "atm": "#98a2b3",
+                "comersud": "#787878"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#ececec",
+                "mooney": "#ececec",
+                "atm": "#eaecf0",
+                "comersud": "#ececec"
+              },
+              "$type": "color"
+            }
+          },
+          "infoPoint": {
+            "dark": {
+              "$value": {
+                "clara": "#622282",
+                "mooney": "#622282",
+                "atm": "#622282",
+                "comersud": "#622282"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#ae3ce7",
+                "mooney": "#ae3ce7",
+                "atm": "#ae3ce7",
+                "comersud": "#ae3ce7"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#f0d1ff",
+                "mooney": "#f0d1ff",
+                "atm": "#f0d1ff",
+                "comersud": "#f0d1ff"
+              },
+              "$type": "color"
+            }
+          },
+          "experience": {
+            "dark": {
+              "$value": {
+                "clara": "#cf663d",
+                "mooney": "#cf663d",
+                "atm": "#cf663d",
+                "comersud": "#cf663d"
+              },
+              "$type": "color"
+            },
+            "medium": {
+              "$value": {
+                "clara": "#f3ad8b",
+                "mooney": "#f3ad8b",
+                "atm": "#f3ad8b",
+                "comersud": "#f3ad8b"
+              },
+              "$type": "color"
+            },
+            "light": {
+              "$value": {
+                "clara": "#ffe4ad",
+                "mooney": "#ffe4ad",
+                "atm": "#ffe4ad",
+                "comersud": "#ffe4ad"
+              },
+              "$type": "color"
+            }
+          }
+        },
+        "illustrations": {
+          "10": {
+            "$value": {
+              "clara": "#e3f1f3",
+              "mooney": "#e3f1f3",
+              "atm": "#e3f1f3",
+              "comersud": "#e3f1f3"
+            },
+            "$type": "color"
+          },
+          "11": {
+            "$value": {
+              "clara": "#c4d4d5",
+              "mooney": "#c4d4d5",
+              "atm": "#c4d4d5",
+              "comersud": "#c4d4d5"
+            },
+            "$type": "color"
+          },
+          "12": {
+            "$value": {
+              "clara": "#6097ad",
+              "mooney": "#6097ad",
+              "atm": "#6097ad",
+              "comersud": "#6097ad"
+            },
+            "$type": "color"
+          },
+          "13": {
+            "$value": {
+              "clara": "#547c81",
+              "mooney": "#547c81",
+              "atm": "#547c81",
+              "comersud": "#547c81"
+            },
+            "$type": "color"
+          },
+          "14": {
+            "$value": {
+              "clara": "#ffe4ad",
+              "mooney": "#ffe4ad",
+              "atm": "#ffe4ad",
+              "comersud": "#ffe4ad"
+            },
+            "$type": "color"
+          },
+          "15": {
+            "$value": {
+              "clara": "#fed385",
+              "mooney": "#fed385",
+              "atm": "#fed385",
+              "comersud": "#fed385"
+            },
+            "$type": "color"
+          },
+          "16": {
+            "$value": {
+              "clara": "#efbd63",
+              "mooney": "#efbd63",
+              "atm": "#efbd63",
+              "comersud": "#efbd63"
+            },
+            "$type": "color"
+          },
+          "17": {
+            "$value": {
+              "clara": "{colors.yellow.40}",
+              "mooney": "{colors.yellow.40}",
+              "atm": "{colors.yellow.40}",
+              "comersud": "{colors.yellow.40}"
+            },
+            "$type": "color"
+          },
+          "18": {
+            "$value": {
+              "clara": "{colors.yellow.100}",
+              "mooney": "{colors.yellow.100}",
+              "atm": "{colors.yellow.100}",
+              "comersud": "{colors.yellow.100}"
+            },
+            "$type": "color"
+          },
+          "19": {
+            "$value": {
+              "clara": "#f26a1f",
+              "mooney": "#f26a1f",
+              "atm": "#f26a1f",
+              "comersud": "#f26a1f"
+            },
+            "$type": "color"
+          },
+          "20": {
+            "$value": {
+              "clara": "#b6ebdd",
+              "mooney": "#b6ebdd",
+              "atm": "#b6ebdd",
+              "comersud": "#b6ebdd"
+            },
+            "$type": "color"
+          },
+          "21": {
+            "$value": {
+              "clara": "#549f8c",
+              "mooney": "#549f8c",
+              "atm": "#549f8c",
+              "comersud": "#549f8c"
+            },
+            "$type": "color"
+          },
+          "22": {
+            "$value": {
+              "clara": "#00a0aa",
+              "mooney": "#00a0aa",
+              "atm": "#00a0aa",
+              "comersud": "#00a0aa"
+            },
+            "$type": "color"
+          },
+          "23": {
+            "$value": {
+              "clara": "#105155",
+              "mooney": "#105155",
+              "atm": "#105155",
+              "comersud": "#105155"
+            },
+            "$type": "color"
+          },
+          "24": {
+            "$value": {
+              "clara": "#4f4f4f",
+              "mooney": "#4f4f4f",
+              "atm": "#4f4f4f",
+              "comersud": "#4f4f4f"
+            },
+            "$type": "color"
+          },
+          "25": {
+            "$value": {
+              "clara": "#787878",
+              "mooney": "#787878",
+              "atm": "#787878",
+              "comersud": "#787878"
+            },
+            "$type": "color"
+          },
+          "26": {
+            "$value": {
+              "clara": "#bbbbbb",
+              "mooney": "#bbbbbb",
+              "atm": "#bbbbbb",
+              "comersud": "#bbbbbb"
+            },
+            "$type": "color"
+          },
+          "27": {
+            "$value": {
+              "clara": "#dddddd",
+              "mooney": "#dddddd",
+              "atm": "#dddddd",
+              "comersud": "#dddddd"
+            },
+            "$type": "color"
+          },
+          "28": {
+            "$value": {
+              "clara": "#f6f6f6",
+              "mooney": "#f6f6f6",
+              "atm": "#f6f6f6",
+              "comersud": "#f6f6f6"
+            },
+            "$type": "color"
+          },
+          "29": {
+            "$value": {
+              "clara": "#dd0000",
+              "mooney": "#dd0000",
+              "atm": "#dd0000",
+              "comersud": "#dd0000"
+            },
+            "$type": "color"
+          },
+          "30": {
+            "$value": {
+              "clara": "#f9a000",
+              "mooney": "#f9a000",
+              "atm": "#f9a000",
+              "comersud": "#f9a000"
+            },
+            "$type": "color"
+          },
+          "31": {
+            "$value": {
+              "clara": "#358551",
+              "mooney": "#358551",
+              "atm": "#358551",
+              "comersud": "#358551"
+            },
+            "$type": "color"
+          },
+          "01": {
+            "$value": {
+              "clara": "#f3ad8b",
+              "mooney": "#f3ad8b",
+              "atm": "#f3ad8b",
+              "comersud": "#f3ad8b"
+            },
+            "$type": "color"
+          },
+          "02": {
+            "$value": {
+              "clara": "#cf663d",
+              "mooney": "#cf663d",
+              "atm": "#cf663d",
+              "comersud": "#cf663d"
+            },
+            "$type": "color"
+          },
+          "03": {
+            "$value": {
+              "clara": "{colors.teal.40}",
+              "mooney": "{colors.teal.40}",
+              "atm": "{colors.teal.40}",
+              "comersud": "{colors.teal.40}"
+            },
+            "$type": "color"
+          },
+          "04": {
+            "$value": {
+              "clara": "#9bd3dd",
+              "mooney": "#9bd3dd",
+              "atm": "#9bd3dd",
+              "comersud": "#9bd3dd"
+            },
+            "$type": "color"
+          },
+          "05": {
+            "$value": {
+              "clara": "#65dce2",
+              "mooney": "#65dce2",
+              "atm": "#65dce2",
+              "comersud": "#65dce2"
+            },
+            "$type": "color"
+          },
+          "06": {
+            "$value": {
+              "clara": "#5fc5d1",
+              "mooney": "#5fc5d1",
+              "atm": "#5fc5d1",
+              "comersud": "#5fc5d1"
+            },
+            "$type": "color"
+          },
+          "07": {
+            "$value": {
+              "clara": "{colors.teal.80}",
+              "mooney": "{colors.teal.80}",
+              "atm": "{colors.teal.80}",
+              "comersud": "{colors.teal.80}"
+            },
+            "$type": "color"
+          },
+          "08": {
+            "$value": {
+              "clara": "{colors.ottanio.100}",
+              "mooney": "{colors.ottanio.100}",
+              "atm": "{colors.ottanio.100}",
+              "comersud": "{colors.ottanio.100}"
+            },
+            "$type": "color"
+          },
+          "09": {
+            "$value": {
+              "clara": "#00425d",
+              "mooney": "#00425d",
+              "atm": "#00425d",
+              "comersud": "#00425d"
+            },
+            "$type": "color"
+          }
+        },
+        "maps": {
+          "10": {
+            "$value": {
+              "clara": "#dd0000",
+              "mooney": "#dd0000",
+              "atm": "#dd0000",
+              "comersud": "#dd0000"
+            },
+            "$type": "color"
+          },
+          "11": {
+            "$value": {
+              "clara": "{colors.blue.60}",
+              "mooney": "{colors.blue.60}",
+              "atm": "{colors.blue.60}",
+              "comersud": "{colors.blue.60}"
+            },
+            "$type": "color"
+          },
+          "12": {
+            "$value": {
+              "clara": "{colors.blue.60}",
+              "mooney": "{colors.blue.60}",
+              "atm": "{colors.blue.60}",
+              "comersud": "{colors.blue.60}"
+            },
+            "$type": "color"
+          },
+          "13": {
+            "$value": {
+              "clara": "#00ac53",
+              "mooney": "#00ac53",
+              "atm": "#00ac53",
+              "comersud": "#00ac53"
+            },
+            "$type": "color"
+          },
+          "14": {
+            "$value": {
+              "clara": "#00ac53",
+              "mooney": "#00ac53",
+              "atm": "#00ac53",
+              "comersud": "#00ac53"
+            },
+            "$type": "color"
+          },
+          "25": {
+            "$value": {
+              "clara": "#4286f5",
+              "mooney": "#4286f5",
+              "atm": "#4286f5",
+              "comersud": "#4286f5"
+            },
+            "$type": "color"
+          },
+          "50": {
+            "$value": {
+              "clara": "#4286f5",
+              "mooney": "#4286f5",
+              "atm": "#4286f5",
+              "comersud": "#4286f5"
+            },
+            "$type": "color"
+          },
+          "70": {
+            "$value": {
+              "clara": "rgba(255, 255, 255, 0.7)",
+              "mooney": "rgba(255, 255, 255, 0.7)",
+              "atm": "rgba(255, 255, 255, 0.7)",
+              "comersud": "rgba(255, 255, 255, 0.7)"
+            },
+            "$type": "color"
+          },
+          "80": {
+            "$value": {
+              "clara": "rgba(255, 255, 255, 0.8)",
+              "mooney": "rgba(255, 255, 255, 0.8)",
+              "atm": "rgba(255, 255, 255, 0.8)",
+              "comersud": "rgba(255, 255, 255, 0.8)"
+            },
+            "$type": "color"
+          },
+          "01": {
+            "$value": {
+              "clara": "{colors.ottanio.100}",
+              "mooney": "{colors.ottanio.100}",
+              "atm": "{colors.ottanio.100}",
+              "comersud": "{colors.ottanio.100}"
+            },
+            "$type": "color"
+          },
+          "02": {
+            "$value": {
+              "clara": "{colors.ottanio.100}",
+              "mooney": "{colors.ottanio.100}",
+              "atm": "{colors.ottanio.100}",
+              "comersud": "{colors.ottanio.100}"
+            },
+            "$type": "color"
+          },
+          "03": {
+            "$value": {
+              "clara": "#624898",
+              "mooney": "#624898",
+              "atm": "#624898",
+              "comersud": "#624898"
+            },
+            "$type": "color"
+          },
+          "04": {
+            "$value": {
+              "clara": "#624898",
+              "mooney": "#624898",
+              "atm": "#624898",
+              "comersud": "#624898"
+            },
+            "$type": "color"
+          },
+          "05": {
+            "$value": {
+              "clara": "#00a0aa",
+              "mooney": "#00a0aa",
+              "atm": "#00a0aa",
+              "comersud": "#00a0aa"
+            },
+            "$type": "color"
+          },
+          "06": {
+            "$value": {
+              "clara": "#00a0aa",
+              "mooney": "#00a0aa",
+              "atm": "#00a0aa",
+              "comersud": "#00a0aa"
+            },
+            "$type": "color"
+          },
+          "07": {
+            "$value": {
+              "clara": "#f9a000",
+              "mooney": "#f9a000",
+              "atm": "#f9a000",
+              "comersud": "#f9a000"
+            },
+            "$type": "color"
+          },
+          "08": {
+            "$value": {
+              "clara": "#f9a000",
+              "mooney": "#f9a000",
+              "atm": "#f9a000",
+              "comersud": "#f9a000"
+            },
+            "$type": "color"
+          },
+          "09": {
+            "$value": {
+              "clara": "#dd0000",
+              "mooney": "#dd0000",
+              "atm": "#dd0000",
+              "comersud": "#dd0000"
+            },
+            "$type": "color"
+          }
+        },
+        "metro": {
+          "brescia1": {
+            "$value": {
+              "clara": "#007eb5",
+              "mooney": "#007eb5",
+              "atm": "#007eb5",
+              "comersud": "#007eb5"
+            },
+            "$type": "color"
+          },
+          "catania1": {
+            "$value": {
+              "clara": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#dd052b",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "genova1": {
+            "$value": {
+              "clara": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#dd052b",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "milanoM1": {
+            "$value": {
+              "clara": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#ed1c2e",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "milanoM2": {
+            "$value": {
+              "clara": "#5d9732",
+              "mooney": "#5d9732",
+              "atm": "#559534",
+              "comersud": "#5d9732"
+            },
+            "$type": "color"
+          },
+          "milanoM3": {
+            "$value": {
+              "clara": "#fdbe01",
+              "mooney": "#fdbe01",
+              "atm": "#febe10",
+              "comersud": "#fdbe01"
+            },
+            "$type": "color"
+          },
+          "milanoM4": {
+            "$value": {
+              "clara": "#007eb5",
+              "mooney": "#007eb5",
+              "atm": "#29417c",
+              "comersud": "#007eb5"
+            },
+            "$type": "color"
+          },
+          "milanoM5": {
+            "$value": {
+              "clara": "#a392c7",
+              "mooney": "#a392c7",
+              "atm": "#9a8dc3",
+              "comersud": "#a392c7"
+            },
+            "$type": "color"
+          },
+          "napoli1": {
+            "$value": {
+              "clara": "#fdbe01",
+              "mooney": "#fdbe01",
+              "atm": "#fdbe01",
+              "comersud": "#fdbe01"
+            },
+            "$type": "color"
+          },
+          "napoli6": {
+            "$value": {
+              "clara": "#7fbfe9",
+              "mooney": "#7fbfe9",
+              "atm": "#7fbfe9",
+              "comersud": "#7fbfe9"
+            },
+            "$type": "color"
+          },
+          "romaMea": {
+            "$value": {
+              "clara": "#f26a1f",
+              "mooney": "#f26a1f",
+              "atm": "#f36e21",
+              "comersud": "#f26a1f"
+            },
+            "$type": "color"
+          },
+          "romaMeb": {
+            "$value": {
+              "clara": "#007eb5",
+              "mooney": "#007eb5",
+              "atm": "#007eb5",
+              "comersud": "#007eb5"
+            },
+            "$type": "color"
+          },
+          "romaMec": {
+            "$value": {
+              "clara": "#508414",
+              "mooney": "#508414",
+              "atm": "#508414",
+              "comersud": "#508414"
+            },
+            "$type": "color"
+          },
+          "torino1": {
+            "$value": {
+              "clara": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#dd052b",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "torino2": {
+            "$value": {
+              "clara": "#0028b5",
+              "mooney": "#0028b5",
+              "atm": "#0028b5",
+              "comersud": "#0028b5"
+            },
+            "$type": "color"
+          }
+        },
+        "meansOfTransportPosition": {
+          "bus10": {
+            "$value": {
+              "clara": "#bd590d",
+              "mooney": "#bd590d",
+              "atm": "#f38230",
+              "comersud": "#bd590d"
+            },
+            "$type": "color"
+          },
+          "bus30": {
+            "$value": {
+              "clara": "#bd590d",
+              "mooney": "#bd590d",
+              "atm": "#f38230",
+              "comersud": "#bd590d"
+            },
+            "$type": "color"
+          },
+          "harbor10": {
+            "$value": {
+              "clara": "#00a0aa",
+              "mooney": "#00a0aa",
+              "atm": "#00a0aa",
+              "comersud": "#00a0aa"
+            },
+            "$type": "color"
+          },
+          "harbor30": {
+            "$value": {
+              "clara": "#00a0aa",
+              "mooney": "#00a0aa",
+              "atm": "#00a0aa",
+              "comersud": "#00a0aa"
+            },
+            "$type": "color"
+          },
+          "pullman10": {
+            "$value": {
+              "clara": "{colors.coral.80}",
+              "mooney": "{colors.coral.80}",
+              "atm": "#f38230",
+              "comersud": "{colors.coral.80}"
+            },
+            "$type": "color"
+          },
+          "pullman30": {
+            "$value": {
+              "clara": "{colors.coral.80}",
+              "mooney": "{colors.coral.80}",
+              "atm": "#f38230",
+              "comersud": "{colors.coral.80}"
+            },
+            "$type": "color"
+          },
+          "train10": {
+            "$value": {
+              "clara": "#59a600",
+              "mooney": "#59a600",
+              "atm": "#59a600",
+              "comersud": "#59a600"
+            },
+            "$type": "color"
+          },
+          "train30": {
+            "$value": {
+              "clara": "#59a600",
+              "mooney": "#59a600",
+              "atm": "#59a600",
+              "comersud": "#59a600"
+            },
+            "$type": "color"
+          },
+          "tram10": {
+            "$value": {
+              "clara": "#bd590d",
+              "mooney": "#bd590d",
+              "atm": "#f38230",
+              "comersud": "#bd590d"
+            },
+            "$type": "color"
+          },
+          "tram30": {
+            "$value": {
+              "clara": "#bd590d",
+              "mooney": "#bd590d",
+              "atm": "#f38230",
+              "comersud": "#bd590d"
+            },
+            "$type": "color"
+          }
+        }
+      }
+    },
+    "radius": {
+      "brand": {
+        "$value": {
+          "clara": "{radius.full}",
+          "mooney": "{radius.md}",
+          "atm": "{radius.md}",
+          "comersud": "{radius.md}"
+        },
+        "$type": "borderRadius"
+      },
+      "card": {
+        "$value": {
+          "clara": "{radius.lg}",
+          "mooney": "{radius.lg}",
+          "atm": "{radius.lg}",
+          "comersud": "{radius.lg}"
+        },
+        "$type": "borderRadius"
+      },
+      "badge": {
+        "$value": {
+          "clara": "{radius.full}",
+          "mooney": "{radius.full}",
+          "atm": "{radius.md}",
+          "comersud": "{radius.md}"
+        },
+        "$type": "borderRadius"
+      }
+    },
+    "booleans": {
+      "view": {
+        "$value": {
+          "clara": false,
+          "mooney": true,
+          "atm": false,
+          "comersud": false
+        },
+        "$type": "boolean"
+      }
+    },
+    "spacing": {
+      "component": {
+        "xs": {
+          "$value": {
+            "clara": "{spacing.2xs}",
+            "mooney": "{spacing.3xs}",
+            "atm": "{spacing.4xs}",
+            "comersud": "{spacing.4xs}"
+          },
+          "$type": "spacing"
+        },
+        "sm": {
+          "$value": {
+            "clara": "{spacing.xs}",
+            "mooney": "{spacing.md}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        },
+        "md": {
+          "$value": {
+            "clara": "{spacing.xs}",
+            "mooney": "{spacing.md}",
+            "atm": "{spacing.sm}",
+            "comersud": "{spacing.sm}"
+          },
+          "$type": "spacing"
+        },
+        "lg": {
+          "$value": {
+            "clara": "{spacing.lg}",
+            "mooney": "{spacing.md}",
+            "atm": "{spacing.lg}",
+            "comersud": "{spacing.lg}"
+          },
+          "$type": "spacing"
+        },
+        "xl": {
+          "$value": {
+            "clara": "{spacing.lg}",
+            "mooney": "{spacing.2xs}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        }
+      },
+      "layout": {
+        "xs": {
+          "$value": {
+            "clara": "{spacing.sm}",
+            "mooney": "{spacing.2xs}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        },
+        "sm": {
+          "$value": {
+            "clara": "{spacing.md}",
+            "mooney": "{spacing.2xs}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        },
+        "md": {
+          "$value": {
+            "clara": "{spacing.lg}",
+            "mooney": "{spacing.2xs}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        },
+        "lg": {
+          "$value": {
+            "clara": "{spacing.2xl}",
+            "mooney": "{spacing.2xl}",
+            "atm": "{spacing.2xl}",
+            "comersud": "{spacing.2xl}"
+          },
+          "$type": "spacing"
+        },
+        "xl": {
+          "$value": {
+            "clara": "{spacing.3xl}",
+            "mooney": "{spacing.2xl}",
+            "atm": "{spacing.2xl}",
+            "comersud": "{spacing.2xl}"
+          },
+          "$type": "spacing"
+        }
+      }
+    },
+    "shadow": {
+      "card": {
+        "$value": {
+          "clara": "0 4px 16px rgba(0, 0, 0, 0.4)",
+          "mooney": "0 4px 12px rgba(0, 88, 124, 0.1)",
+          "atm": "0 4px 12px rgba(221, 0, 0, 0.1)",
+          "comersud": "0 4px 12px rgba(221, 0, 0, 0.1)"
+        },
+        "$type": "string"
+      }
+    },
+    "typography": {
+      "display": {
+        "lg": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.4xl}",
+              "mooney": "{typography.fontSize.4xl}",
+              "atm": "{typography.fontSize.4xl}",
+              "comersud": "{typography.fontSize.4xl}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.bold}",
+              "mooney": "{typography.fontWeight.bold}",
+              "atm": "{typography.fontWeight.bold}",
+              "comersud": "{typography.fontWeight.bold}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.tight}",
+              "mooney": "{typography.lineHeight.tight}",
+              "atm": "{typography.lineHeight.tight}",
+              "comersud": "{typography.lineHeight.tight}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "md": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.3xl}",
+              "mooney": "{typography.fontSize.3xl}",
+              "atm": "{typography.fontSize.3xl}",
+              "comersud": "{typography.fontSize.3xl}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.semibold}",
+              "mooney": "{typography.fontWeight.bold}",
+              "atm": "{typography.fontWeight.semibold}",
+              "comersud": "{typography.fontWeight.semibold}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.tight}",
+              "mooney": "{typography.lineHeight.tight}",
+              "atm": "{typography.lineHeight.tight}",
+              "comersud": "{typography.lineHeight.tight}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "sm": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.2xl}",
+              "mooney": "{typography.fontSize.2xl}",
+              "atm": "{typography.fontSize.2xl}",
+              "comersud": "{typography.fontSize.2xl}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.semibold}",
+              "mooney": "{typography.fontWeight.semibold}",
+              "atm": "{typography.fontWeight.semibold}",
+              "comersud": "{typography.fontWeight.semibold}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        }
+      },
+      "title": {
+        "lg": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.xl}",
+              "mooney": "{typography.fontSize.xl}",
+              "atm": "{typography.fontSize.xl}",
+              "comersud": "{typography.fontSize.xl}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.semibold}",
+              "mooney": "{typography.fontWeight.semibold}",
+              "atm": "{typography.fontWeight.semibold}",
+              "comersud": "{typography.fontWeight.semibold}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "md": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.lg}",
+              "mooney": "{typography.fontSize.lg}",
+              "atm": "{typography.fontSize.lg}",
+              "comersud": "{typography.fontSize.lg}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.semibold}",
+              "mooney": "{typography.fontWeight.semibold}",
+              "atm": "{typography.fontWeight.semibold}",
+              "comersud": "{typography.fontWeight.semibold}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "sm": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.base}",
+              "mooney": "{typography.fontSize.base}",
+              "atm": "{typography.fontSize.base}",
+              "comersud": "{typography.fontSize.base}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.medium}",
+              "mooney": "{typography.fontWeight.medium}",
+              "atm": "{typography.fontWeight.medium}",
+              "comersud": "{typography.fontWeight.medium}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        }
+      },
+      "body": {
+        "lg": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.base}",
+              "mooney": "{typography.fontSize.base}",
+              "atm": "{typography.fontSize.base}",
+              "comersud": "{typography.fontSize.base}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.normal}",
+              "mooney": "{typography.fontWeight.normal}",
+              "atm": "{typography.fontWeight.normal}",
+              "comersud": "{typography.fontWeight.normal}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "md": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.sm}",
+              "mooney": "{typography.fontSize.sm}",
+              "atm": "{typography.fontSize.sm}",
+              "comersud": "{typography.fontSize.sm}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.normal}",
+              "mooney": "{typography.fontWeight.normal}",
+              "atm": "{typography.fontWeight.normal}",
+              "comersud": "{typography.fontWeight.normal}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "sm": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.xs}",
+              "mooney": "{typography.fontSize.xs}",
+              "atm": "{typography.fontSize.xs}",
+              "comersud": "{typography.fontSize.xs}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.normal}",
+              "mooney": "{typography.fontWeight.normal}",
+              "atm": "{typography.fontWeight.normal}",
+              "comersud": "{typography.fontWeight.normal}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        }
+      },
+      "label": {
+        "lg": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.sm}",
+              "mooney": "{typography.fontSize.sm}",
+              "atm": "{typography.fontSize.sm}",
+              "comersud": "{typography.fontSize.sm}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.medium}",
+              "mooney": "{typography.fontWeight.medium}",
+              "atm": "{typography.fontWeight.medium}",
+              "comersud": "{typography.fontWeight.medium}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "md": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.xs}",
+              "mooney": "{typography.fontSize.xs}",
+              "atm": "{typography.fontSize.xs}",
+              "comersud": "{typography.fontSize.xs}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.medium}",
+              "mooney": "{typography.fontWeight.medium}",
+              "atm": "{typography.fontWeight.medium}",
+              "comersud": "{typography.fontWeight.medium}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "sm": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.2xs}",
+              "mooney": "{typography.fontSize.2xs}",
+              "atm": "{typography.fontSize.2xs}",
+              "comersud": "{typography.fontSize.2xs}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.medium}",
+              "mooney": "{typography.fontWeight.medium}",
+              "atm": "{typography.fontWeight.medium}",
+              "comersud": "{typography.fontWeight.medium}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.tight}",
+              "mooney": "{typography.lineHeight.tight}",
+              "atm": "{typography.lineHeight.tight}",
+              "comersud": "{typography.lineHeight.tight}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          },
+          "letterspacing": {
+            "$value": {
+              "clara": "{typography.letterSpacing.wide}",
+              "mooney": "{typography.letterSpacing.wide}",
+              "atm": "{typography.letterSpacing.wide}",
+              "comersud": "{typography.letterSpacing.wide}"
+            },
+            "$type": "spacing"
+          }
+        }
+      },
+      "ui": {
+        "button": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.sm}",
+              "mooney": "{typography.fontSize.sm}",
+              "atm": "{typography.fontSize.sm}",
+              "comersud": "{typography.fontSize.sm}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.bold}",
+              "mooney": "{typography.fontWeight.bold}",
+              "atm": "{typography.fontWeight.bold}",
+              "comersud": "{typography.fontWeight.bold}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "link": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.sm}",
+              "mooney": "{typography.fontSize.sm}",
+              "atm": "{typography.fontSize.sm}",
+              "comersud": "{typography.fontSize.sm}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.medium}",
+              "mooney": "{typography.fontWeight.medium}",
+              "atm": "{typography.fontWeight.medium}",
+              "comersud": "{typography.fontWeight.medium}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        },
+        "input": {
+          "fontsize": {
+            "$value": {
+              "clara": "{typography.fontSize.base}",
+              "mooney": "{typography.fontSize.base}",
+              "atm": "{typography.fontSize.base}",
+              "comersud": "{typography.fontSize.base}"
+            },
+            "$type": "fontSize"
+          },
+          "fontweight": {
+            "$value": {
+              "clara": "{typography.fontWeight.normal}",
+              "mooney": "{typography.fontWeight.normal}",
+              "atm": "{typography.fontWeight.normal}",
+              "comersud": "{typography.fontWeight.normal}"
+            },
+            "$type": "fontWeight"
+          },
+          "lineheight": {
+            "$value": {
+              "clara": "{typography.lineHeight.normal}",
+              "mooney": "{typography.lineHeight.normal}",
+              "atm": "{typography.lineHeight.normal}",
+              "comersud": "{typography.lineHeight.normal}"
+            },
+            "$type": "lineHeight"
+          },
+          "fontfamily": {
+            "$value": {
+              "clara": "{brand.fontFamily.brand}",
+              "mooney": "{brand.fontFamily.brand}",
+              "atm": "{brand.fontFamily.brand}",
+              "comersud": "{brand.fontFamily.brand}"
+            },
+            "$type": "fontFamily"
+          }
+        }
+      }
+    },
+    "size": {
+      "height": {
+        "sm": {
+          "$value": {
+            "clara": 32,
+            "mooney": 32,
+            "atm": 32,
+            "comersud": 32
+          },
+          "$type": "size"
+        },
+        "md": {
+          "$value": {
+            "clara": 40,
+            "mooney": 44,
+            "atm": 44,
+            "comersud": 44
+          },
+          "$type": "size"
+        },
+        "lg": {
+          "$value": {
+            "clara": 48,
+            "mooney": 48,
+            "atm": 56,
+            "comersud": 56
+          },
+          "$type": "size"
+        },
+        "xs": {
+          "$value": {
+            "clara": 12,
+            "mooney": 16,
+            "atm": 16,
+            "comersud": 24
+          },
+          "$type": "size"
+        }
+      }
+    }
+  },
+  "components": {
+    "button": {
+      "primary": {
+        "background": {
+          "$value": "{brand.core.main}",
+          "$type": "color"
+        },
+        "backgroundhover": {
+          "$value": "{colors.specific.button.hoverPrimary}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.text.inverse}",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "{brand.core.main}",
+          "$type": "color"
+        },
+        "icon": {
+          "$value": "{colors.text.inverse}",
+          "$type": "color"
+        }
+      },
+      "secondary": {
+        "background": {
+          "$value": "{colors.neutral.transparent}",
+          "$type": "color"
+        },
+        "backgroundhover": {
+          "$value": "{colors.background.muted}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.text.main}",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "{colors.border.main}",
+          "$type": "color"
+        },
+        "icon": {
+          "$value": "{colors.text.main}",
+          "$type": "color"
+        }
+      },
+      "disabled": {
+        "background": {
+          "$value": "{colors.specific.button.backgroundDisabled}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.specific.button.textDisabled}",
+          "$type": "color"
+        },
+        "icon": {
+          "$value": "{colors.specific.button.textDisabled}",
+          "$type": "color"
+        }
+      },
+      "shared": {
+        "paddingx": {
+          "$value": "{spacing.component.lg}",
+          "$type": "number"
+        },
+        "paddingy": {
+          "$value": "{spacing.component.md}",
+          "$type": "number"
+        },
+        "borderradius": {
+          "$value": "{radius.brand}",
+          "$type": "borderRadius"
+        },
+        "fontsize": {
+          "$value": "{typography.fontSize.base}",
+          "$type": "fontSize"
+        },
+        "fontweight": {
+          "$value": "{typography.fontWeight.bold}",
+          "$type": "fontWeight"
+        },
+        "fontfamily": {
+          "$value": "{typography.fontFamily.sans}",
+          "$type": "fontFamily"
+        }
+      }
+    },
+    "input": {
+      "background": {
+        "$value": "{colors.neutral.white}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{colors.border.main}",
+        "$type": "color"
+      },
+      "borderfocus": {
+        "$value": "{colors.border.focus}",
+        "$type": "color"
+      },
+      "text": {
+        "$value": "{colors.text.main}",
+        "$type": "color"
+      },
+      "placeholder": {
+        "$value": "{colors.text.muted}",
+        "$type": "color"
+      },
+      "paddingx": {
+        "$value": "{spacing.component.md}",
+        "$type": "number"
+      },
+      "paddingy": {
+        "$value": "{spacing.component.sm}",
+        "$type": "number"
+      },
+      "borderradius": {
+        "$value": "{radius.brand}",
+        "$type": "borderRadius"
+      },
+      "fontsize": {
+        "$value": "{typography.fontSize.base}",
+        "$type": "fontSize"
+      }
+    },
+    "card": {
+      "background": {
+        "$value": "{colors.neutral.white}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{colors.border.muted}",
+        "$type": "color"
+      },
+      "padding": {
+        "$value": "{spacing.layout.md}",
+        "$type": "number"
+      },
+      "borderradius": {
+        "$value": "{radius.card}",
+        "$type": "borderRadius"
+      },
+      "shadow": {
+        "$value": "{shadow.card}",
+        "$type": "string"
+      }
+    },
+    "badge": {
+      "success": {
+        "background": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.feedback.success}",
+          "$type": "color"
+        }
+      },
+      "error": {
+        "background": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.feedback.error}",
+          "$type": "color"
+        }
+      },
+      "warning": {
+        "background": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.feedback.warning}",
+          "$type": "color"
+        }
+      },
+      "shared": {
+        "paddingx": {
+          "$value": "{spacing.component.sm}",
+          "$type": "number"
+        },
+        "paddingy": {
+          "$value": "{spacing.component.xs}",
+          "$type": "number"
+        },
+        "borderradius": {
+          "$value": "{radius.badge}",
+          "$type": "borderRadius"
+        },
+        "fontsize": {
+          "$value": "{typography.fontSize.sm}",
+          "$type": "fontSize"
+        },
+        "fontweight": {
+          "$value": "{typography.fontWeight.medium}",
+          "$type": "fontWeight"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,613 @@
+$color-white: rgba(255,255,255,1);
+$color-black: rgba(30,30,30,1);
+$color-primary-3-primary: rgba(25,97,172,1);
+$color-primary-2-primary-70: rgba(163,192,222,1);
+$color-primary-1-primary-10: rgba(232,239,247,1);
+$color-secondary-3-secondary: rgba(38,70,96,1);
+$color-secondary-2-secondary-40: rgba(103,126,144,1);
+$color-secondary-1-secondary-10: rgba(233,236,239,1);
+$color-accent-2-accent-dark: rgba(245,220,0,1);
+$color-accent-1-accent-light: rgba(243,231,128,1);
+$color-feedback-error: rgba(221,0,0,1);
+$color-feedback-error-light: rgba(251,219,219,1);
+$color-feedback-warning: rgba(249,160,0,1);
+$color-feedback-warning-light: rgba(252,243,228,1);
+$color-feedback-succes: rgba(53,133,81,1);
+$color-feedback-success-light: rgba(238,246,229,1);
+$color-feedback-info-light: rgba(236,251,253,1);
+$color-feedback-info-dark: rgba(0,174,199,1);
+$color-grayscale-5-dark: rgba(79,79,79,1);
+$color-grayscale-4-medium: rgba(120,120,120,1);
+$color-grayscale-3-light: rgba(187,187,187,1);
+$color-grayscale-2-disable: rgba(221,221,221,1);
+$color-grayscale-1-extra-light: rgba(246,246,246,1);
+$color-grayscale-00-super-light: rgba(255,255,255,1);
+$color-extra-color-x-04-blue: rgba(0,114,239,1);
+$color-extra-color-x-03: rgba(242,245,247,1);
+$color-extra-color-x-02: rgba(69,154,247,1);
+$color-extra-color-x-01: rgba(254,249,246,1);
+$color-extra-color-tutorial-overlay: rgba(0,31,43,0.800);
+$color-gradient-gradient: linear-gradient(to bottom, rgba(38,70,96,0.149) 0%,rgba(25,97,172,0.098) 100%);
+$color-illustrations-01: rgba(243,173,139,1);
+$color-illustrations-02: rgba(207,102,61,1);
+$color-illustrations-03: rgba(153,223,233,1);
+$color-illustrations-04: rgba(155,211,221,1);
+$color-illustrations-05: rgba(101,220,226,1);
+$color-illustrations-06: rgba(95,197,209,1);
+$color-illustrations-07: rgba(0,174,199,1);
+$color-illustrations-08: rgba(0,88,124,1);
+$color-illustrations-09: rgba(0,66,93,1);
+$color-illustrations-10: rgba(227,241,243,1);
+$color-illustrations-11: rgba(196,212,213,1);
+$color-illustrations-12: rgba(96,151,173,1);
+$color-illustrations-13: rgba(84,124,129,1);
+$color-illustrations-14: rgba(255,228,173,1);
+$color-illustrations-15: rgba(254,211,133,1);
+$color-illustrations-16: rgba(239,189,99,1);
+$color-illustrations-17: rgba(255,198,39,1);
+$color-illustrations-18: rgba(237,169,0,1);
+$color-illustrations-19: rgba(242,106,31,1);
+$color-illustrations-20: rgba(182,235,221,1);
+$color-illustrations-21: rgba(84,159,140,1);
+$color-illustrations-22: rgba(0,160,170,1);
+$color-illustrations-23: rgba(16,81,85,1);
+$color-illustrations-24: rgba(79,79,79,1);
+$color-illustrations-25: rgba(120,120,120,1);
+$color-illustrations-26: rgba(187,187,187,1);
+$color-illustrations-27: rgba(221,221,221,1);
+$color-illustrations-28: rgba(246,246,246,1);
+$color-illustrations-29: rgba(221,0,0,1);
+$color-illustrations-30: rgba(249,160,0,1);
+$color-illustrations-31: rgba(53,133,81,1);
+$color-status-tag-deadline-light: rgba(242,245,247,1);
+$color-status-tag-deadline-dark: rgba(86,89,91,1);
+$color-status-tag-info-light: rgba(204,239,244,1);
+$color-status-tag-info-dark: rgba(0,88,124,1);
+$color-status-tag-positive-light: rgba(216,242,219,1);
+$color-status-tag-positive-dark: rgba(1,89,76,1);
+$color-status-tag-warning-light: rgba(255,232,202,1);
+$color-status-tag-warning-dark: rgba(156,84,14,1);
+$color-status-tag-negative-light: rgba(248,204,204,1);
+$color-status-tag-negative-dark: rgba(154,0,0,1);
+$color-status-tag-new-light: rgba(255,198,39,1);
+$color-status-tag-new-dark: rgba(30,30,30,1);
+$color-mobility-ztl-dark: rgba(0,48,101,1);
+$color-mobility-ztl-medium: rgba(0,74,155,1);
+$color-mobility-ztl-light: rgba(197,224,254,1);
+$color-mobility-pullman-dark: rgba(81,1,1,1);
+$color-mobility-pullman-medium: rgba(124,3,3,1);
+$color-mobility-pullman-light: rgba(251,229,229,1);
+$color-mobility-bus-dark: rgba(189,89,13,1);
+$color-mobility-bus-medium: rgba(242,106,31,1);
+$color-mobility-bus-light: rgba(254,240,229,1);
+$color-mobility-tram-dark: rgba(189,89,13,1);
+$color-mobility-tram-medium: rgba(242,106,31,1);
+$color-mobility-tram-light: rgba(254,240,229,1);
+$color-mobility-taxi-dark: rgba(237,169,0,1);
+$color-mobility-taxi-medium: rgba(255,198,39,1);
+$color-mobility-taxi-light: rgba(255,246,220,1);
+$color-mobility-harbor-dark: rgba(0,114,121,1);
+$color-mobility-harbor-medium: rgba(0,160,170,1);
+$color-mobility-harbor-light: rgba(229,245,247,1);
+$color-mobility-train-dark: rgba(71,133,0,1);
+$color-mobility-train-medium: rgba(89,166,0,1);
+$color-mobility-train-light: rgba(238,246,229,1);
+$color-mobility-metro-dark: rgba(159,25,48,1);
+$color-mobility-metro-medium: rgba(221,5,43,1);
+$color-mobility-metro-light: rgba(251,229,229,1);
+$color-mobility-sharing-dark: rgba(169,50,255,1);
+$color-mobility-sharing-medium: rgba(192,108,252,1);
+$color-mobility-sharing-light: rgba(245,232,254,1);
+$color-mobility-ncc-dark: rgba(84,60,135,1);
+$color-mobility-ncc-medium: rgba(116,83,187,1);
+$color-mobility-ncc-light: rgba(218,203,249,1);
+$color-mobility-garage-dark: rgba(0,48,101,1);
+$color-mobility-garage-medium: rgba(0,74,155,1);
+$color-mobility-garage-light: rgba(210,232,255,1);
+$color-mobility-parking-dark: rgba(33,92,132,1);
+$color-mobility-parking-medium: rgba(77,138,163,1);
+$color-mobility-parking-light: rgba(236,242,245,1);
+$color-mobility-charging-station-dark: rgba(33,92,132,1);
+$color-mobility-charging-station-medium: rgba(127,191,233,1);
+$color-mobility-charging-station-light: rgba(221,241,255,1);
+$color-mobility-car-rental-dark: rgba(255,117,0,1);
+$color-mobility-car-rental-medium: rgba(255,153,0,1);
+$color-mobility-car-rental-light: rgba(255,237,210,1);
+$color-mobility-airports-dark: rgba(79,79,79,1);
+$color-mobility-airports-medium: rgba(120,120,120,1);
+$color-mobility-airports-light: rgba(246,246,246,1);
+$color-mobility-pin-dark: rgba(79,79,79,1);
+$color-mobility-pin-medium: rgba(120,120,120,1);
+$color-mobility-pin-light: rgba(236,236,236,1);
+$color-mobility-favorites-dark: rgba(0,88,124,1);
+$color-mobility-favorites-medium: rgba(0,174,199,1);
+$color-mobility-favorites-light: rgba(255,255,255,1);
+$color-mobility-walk-dark: rgba(120,120,120,1);
+$color-mobility-walk-medium: rgba(187,187,187,1);
+$color-mobility-walk-light: rgba(221,221,221,1);
+$color-mobility-garage-telepass-dark: rgba(237,169,0,1);
+$color-mobility-garage-telepass-medium: rgba(255,198,39,1);
+$color-mobility-garage-telepass-light: rgba(255,246,220,1);
+$color-mobility-skipass-dark: rgba(96,151,173,1);
+$color-mobility-skipass-medium: rgba(196,212,213,1);
+$color-mobility-skipass-light: rgba(230,238,242,1);
+$color-mobility-experience-dark: rgba(207,102,61,1);
+$color-mobility-experience-medium: rgba(243,173,139,1);
+$color-mobility-experience-light: rgba(255,228,173,1);
+$color-metro-milano-m-1: rgba(221,5,43,1);
+$color-metro-milano-m-2: rgba(93,151,50,1);
+$color-metro-milano-m-3: rgba(253,190,1,1);
+$color-metro-milano-m-4: rgba(0,126,181,1);
+$color-metro-milano-m-5: rgba(163,146,199,1);
+$color-metro-roma-mea: rgba(242,106,31,1);
+$color-metro-roma-meb: rgba(0,126,181,1);
+$color-metro-roma-mec: rgba(80,132,20,1);
+$color-metro-brescia-1: rgba(0,126,181,1);
+$color-metro-torino-1: rgba(221,5,43,1);
+$color-metro-torino-2: rgba(0,40,181,1);
+$color-metro-genova-1: rgba(221,5,43,1);
+$color-metro-catania-1: rgba(221,5,43,1);
+$color-metro-napoli-1: rgba(253,190,1,1);
+$color-metro-napoli-6: rgba(127,191,233,1);
+$color-maps-white-70: rgba(255,255,255,0.250);
+$color-maps-white-80: rgba(255,255,255,0.800);
+$color-maps-25: rgba(66,134,245,0.400);
+$color-maps-50: rgba(66,134,245,1);
+$color-maps-01: rgba(0,88,124,0.100);
+$color-maps-02: rgba(0,88,124,1);
+$color-maps-03: rgba(98,72,152,0.100);
+$color-maps-04: rgba(98,72,152,1);
+$color-maps-05: rgba(0,160,170,0.100);
+$color-maps-06: rgba(0,160,170,1);
+$color-maps-07: rgba(249,160,0,0.100);
+$color-maps-08: rgba(249,160,0,1);
+$color-maps-09: rgba(221,0,0,0.100);
+$color-maps-10: rgba(221,0,0,1);
+$color-means-of-transport-position-train-30: rgba(89,166,0,0.300);
+$color-means-of-transport-position-train-10: rgba(89,166,0,0.100);
+$color-means-of-transport-position-bus-30: rgba(189,89,13,0.300);
+$color-means-of-transport-position-bus-10: rgba(189,89,13,0.100);
+$color-means-of-transport-position-tram-30: rgba(189,89,13,0.300);
+$color-means-of-transport-position-tram-10: rgba(189,89,13,0.100);
+$color-means-of-transport-position-pullman-30: rgba(210,0,0,0.300);
+$color-means-of-transport-position-pullman-10: rgba(210,0,0,0.100);
+$color-means-of-transport-position-harbor-30: rgba(0,160,170,0.300);
+$color-means-of-transport-position-harbor-10: rgba(0,160,170,0.100);
+$color-ticket-to-be-actived: rgba(255,198,39,1);
+$color-ticket-active: rgba(53,133,81,1);
+$color-ticket-expired: rgba(221,0,0,1);
+$color-white-label-dark: rgba(98,34,130,1);
+$color-white-label-medium: rgba(174,60,231,1);
+$color-white-label-light: rgba(240,209,255,1);
+@mixin text-style-button() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-1-bold() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 18px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-1-medium() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 18px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-1-regular() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 18px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-1-regular-strikethrough() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 18px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-texts-body-2-bold() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-2-medium() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-2-regular() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-2-regular-strikethrough() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-1-bold() {
+	font-size: 12px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-1-medium() {
+	font-size: 12px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-1-regular() {
+	font-size: 12px;
+	font-family: Raleway;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-1-regular-strikethrough() {
+	font-size: 12px;
+	font-family: Raleway;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-2-bold() {
+	font-size: 12px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-2-medium() {
+	font-size: 12px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-2-regular() {
+	font-size: 12px;
+	font-family: Raleway;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-caption-bold() {
+	font-size: 10px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 12px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-caption-medium() {
+	font-size: 10px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 12px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-caption-regular() {
+	font-size: 10px;
+	font-family: Raleway;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 12px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-7-bold() {
+	font-size: 16px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-7-medium() {
+	font-size: 16px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-7-regular() {
+	font-size: 16px;
+	font-family: Raleway;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-6-bold() {
+	font-size: 16px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-6-medium() {
+	font-size: 16px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-6-regular() {
+	font-size: 18px;
+	font-family: Raleway;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-5-bold() {
+	font-size: 18px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 22px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-5-medium() {
+	font-size: 18px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 22px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-5-regular() {
+	font-size: 18px;
+	font-family: Raleway;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 22px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-4-bold() {
+	font-size: 20px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-4-bold-strikethrough() {
+	font-size: 20px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-4-medium() {
+	font-size: 20px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-4-regular() {
+	font-size: 20px;
+	font-family: Raleway;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-3-bold() {
+	font-size: 24px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-3-medium() {
+	font-size: 24px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-3-regular() {
+	font-size: 24px;
+	font-family: Raleway;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-2-bold() {
+	font-size: 32px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 38px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-2-bold-strikethrough() {
+	font-size: 32px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 38px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-2-medium() {
+	font-size: 32px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 38px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-2-regular() {
+	font-size: 32px;
+	font-family: Raleway;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 38px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-1-medium() {
+	font-size: 40px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 48px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-links-link-1-bold() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 18px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-links-link-1-regular() {
+	font-size: 14px;
+	font-family: Raleway;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 18px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-links-link-2-bold() {
+	font-size: 12px;
+	font-family: Raleway;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin effect-style-light-line-up() {
+	box-shadow: inset 0px 0.5px 0px rgba(187,187,187,1);
+}
+@mixin effect-style-light-line-dw() {
+	box-shadow: inset 0px -0.5px 0px rgba(187,187,187,1);
+}
+@mixin effect-style-light-01() {
+	box-shadow: inset 0px 0.5px 4px rgba(0,0,0,0.080);
+}
+@mixin effect-style-light-01() {
+	box-shadow: 0px 0px 1px rgba(40,41,61,0.080), 0px 0.5px 2px rgba(96,97,112,0.160);
+}
+@mixin effect-style-light-02() {
+	box-shadow: 0px 0px 1px rgba(40,41,61,0.040), 0px 2px 4px rgba(96,97,112,0.160);
+}
+@mixin effect-style-light-03() {
+	box-shadow: 0px 0px 2px rgba(40,41,61,0.040), 0px 4px 8px rgba(96,97,112,0.160);
+}
+@mixin effect-style-light-04() {
+	box-shadow: 0px 2px 16px rgba(0,0,0,0.100);
+}
+@mixin effect-style-dark-01() {
+	box-shadow: inset 0px 0.5px 4px rgba(0,0,0,0.320);
+}
+@mixin effect-style-dark-01() {
+	box-shadow: 0px 0px 1px rgba(40,41,61,0.080), 0px 1px 2px rgba(0,0,0,0.320);
+}
+@mixin effect-style-dark-02() {
+	box-shadow: 0px 0px 1px rgba(0,0,0,0.040), 0px 2px 4px rgba(0,0,0,0.320);
+}
+@mixin effect-style-dark-03() {
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.040), 0px 4px 8px rgba(0,0,0,0.320);
+}
+@mixin effect-style-dark-04() {
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.040), 0px 8px 16px rgba(0,0,0,0.320);
+}
+@mixin effect-style-ticket-inactive() {
+	box-shadow: inset 0px -0.5px 0px rgba(187,187,187,1), inset 6px 0px 0px rgba(255,198,39,1);
+}
+@mixin effect-style-ticket-active() {
+	box-shadow: inset 0px -0.5px 0px rgba(187,187,187,1), inset 6px 0px 0px rgba(53,133,81,1);
+}
+@mixin effect-style-segui-il-viaggio-step() {
+	box-shadow: 0px 2px 8px rgba(126,133,236,0.240);
+}

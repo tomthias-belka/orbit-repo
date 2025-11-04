@@ -1,0 +1,617 @@
+$color-white: #ffffff;
+$color-black: #1d2939;
+$color-primary-3-primary: #cf3700;
+$color-primary-2-primary-70: #f58220;
+$color-primary-1-primary-10: #fdefe9;
+$color-primary-0-primary-5: #fef9f6;
+$color-secondary-3-secondary: #1d2939;
+$color-secondary-2-secondary-40: #98a2b3;
+$color-secondary-1-secondary-10: #f2f4f7;
+$color-accent-2-accent-dark: #0054a6;
+$color-accent-1-accent-light: #1068f6;
+$color-brand-color-new-m-leggera: #0072ef;
+$color-feedback-error: #c20202;
+$color-feedback-error-light: #ffcdd6;
+$color-feedback-warning: #ffcf24;
+$color-feedback-warning-light: #fff8e0;
+$color-feedback-succes: #1e783d;
+$color-feedback-success-light: #c8f1d2;
+$color-feedback-info-light: #dbe8fe;
+$color-feedback-info: #0c4eb8;
+$color-grayscale-5-dark: #344054;
+$color-grayscale-4-medium: #667085;
+$color-grayscale-3-light: #8a95a7;
+$color-grayscale-2-disable: #d0d5dd;
+$color-grayscale-1-extra-light: #eaecf0;
+$color-extra-color-x-01-light-orange: #f9fafb;
+$color-extra-color-tutorial-overlay: #101828;
+$color-extra-color-x-03-blue-grey: #f2f5f7;
+$color-gradient-gradient: linear-gradient(to bottom, #fdefe9 0%,#f38230 100%);
+$color-illustrations-01: #f3ad8b;
+$color-illustrations-02: #cf663d;
+$color-illustrations-03: #99dfe9;
+$color-illustrations-04: #9bd3dd;
+$color-illustrations-05: #65dce2;
+$color-illustrations-06: #5fc5d1;
+$color-illustrations-07: #00aec7;
+$color-illustrations-08: #00587c;
+$color-illustrations-09: #00425d;
+$color-illustrations-10: #e3f1f3;
+$color-illustrations-11: #c4d4d5;
+$color-illustrations-12: #6097ad;
+$color-illustrations-13: #547c81;
+$color-illustrations-14: #ffe4ad;
+$color-illustrations-15: #fed385;
+$color-illustrations-16: #efbd63;
+$color-illustrations-17: #ffc627;
+$color-illustrations-18: #eda900;
+$color-illustrations-19: #f26a1f;
+$color-illustrations-20: #b6ebdd;
+$color-illustrations-21: #549f8c;
+$color-illustrations-22: #00a0aa;
+$color-illustrations-23: #105155;
+$color-illustrations-24: #4f4f4f;
+$color-illustrations-25: #787878;
+$color-illustrations-26: #bbbbbb;
+$color-illustrations-27: #dddddd;
+$color-illustrations-28: #f6f6f6;
+$color-illustrations-29: #dd0000;
+$color-illustrations-30: #f9a000;
+$color-illustrations-31: #358551;
+$color-status-tag-deadline-light: #f2f4f7;
+$color-status-tag-deadline-dark: #344054;
+$color-status-tag-info-light: #fdefe9;
+$color-status-tag-info-dark: #cf3700;
+$color-status-tag-positive-light: #d8f2db;
+$color-status-tag-positive-dark: #01594c;
+$color-status-tag-warning-light: #ffe8ca;
+$color-status-tag-warning-dark: #9c540e;
+$color-status-tag-negative-light: #f8cccc;
+$color-status-tag-negative-dark: #9a0000;
+$color-status-tag-new-light: #ffc627;
+$color-status-tag-new-dark: #1d2939;
+$color-mobility-info-point-dark: #622282;
+$color-mobility-info-point-medium: #ae3ce7;
+$color-mobility-info-point-light: #f0d1ff;
+$color-mobility-experience-dark: #cf663d;
+$color-mobility-experience-medium: #f3ad8b;
+$color-mobility-experience-light: #ffe4ad;
+$color-mobility-skipass-dark: #6097ad;
+$color-mobility-skipass-medium: #c4d4d5;
+$color-mobility-skipass-light: #e6eef2;
+$color-mobility-ztl-dark: #194579;
+$color-mobility-ztl-medium: #004a9b;
+$color-mobility-ztl-light: #c5e0fe;
+$color-mobility-pullman-dark: #f06123;
+$color-mobility-pullman-medium: #f58220;
+$color-mobility-pullman-light: #fce2d7;
+$color-mobility-bus-dark: #f06123;
+$color-mobility-bus-medium: #f58220;
+$color-mobility-bus-light: #fce2d7;
+$color-mobility-tram-dark: #f06123;
+$color-mobility-tram-medium: #f58220;
+$color-mobility-tram-light: #fce2d7;
+$color-mobility-taxi-dark: #000000;
+$color-mobility-taxi-medium: #000000;
+$color-mobility-taxi-light: #f2f2f2;
+$color-mobility-harbor-dark: #007279;
+$color-mobility-harbor-medium: #00a0aa;
+$color-mobility-harbor-light: #e5f5f7;
+$color-mobility-train-dark: #478500;
+$color-mobility-train-medium: #59a600;
+$color-mobility-train-light: #eef6e5;
+$color-mobility-metro-dark: #bf1b25;
+$color-mobility-metro-medium: #eb212e;
+$color-mobility-metro-light: #fbe5e5;
+$color-mobility-sharing-dark: #eda900;
+$color-mobility-sharing-medium: #ffcc00;
+$color-mobility-sharing-light: #fff5cc;
+$color-mobility-ncc-dark: #4e2a9b;
+$color-mobility-ncc-medium: #673ac7;
+$color-mobility-ncc-light: #d4c6f2;
+$color-mobility-garage-dark: #003065;
+$color-mobility-garage-medium: #004a9b;
+$color-mobility-garage-light: #c5e0fe;
+$color-mobility-parking-dark: #00587c;
+$color-mobility-parking-medium: #4d8aa3;
+$color-mobility-parking-light: #edf3f6;
+$color-mobility-charging-station-dark: #215c84;
+$color-mobility-charging-station-medium: #95c6e8;
+$color-mobility-charging-station-light: #ddf1ff;
+$color-mobility-car-rental-dark: #00587c;
+$color-mobility-car-rental-medium: #00aec7;
+$color-mobility-car-rental-light: #c8eff4;
+$color-mobility-airports-dark: #4f4f4f;
+$color-mobility-airports-medium: #787878;
+$color-mobility-airports-light: #f6f6f6;
+$color-mobility-pin-dark: #344054;
+$color-mobility-pin-medium: #98a2b3;
+$color-mobility-pin-light: #eaecf0;
+$color-mobility-favorites-dark: #cd0e5e;
+$color-mobility-favorites-medium: #ff4a96;
+$color-mobility-favorites-light: #ffd0e4;
+$color-mobility-walk-dark: #787878;
+$color-mobility-walk-medium: #bbbbbb;
+$color-mobility-walk-light: #dddddd;
+$color-mobility-garage-telepass-d: #eda900;
+$color-mobility-garage-telepass-medium: #ffc627;
+$color-mobility-garage-telepass-light: #fff6dc;
+$color-metro-milano-m-1: #ed1c2e;
+$color-metro-milano-m-2: #559534;
+$color-metro-milano-m-3: #febe10;
+$color-metro-milano-m-4: #29417c;
+$color-metro-milano-m-5: #9a8dc3;
+$color-metro-roma-mea: #f36e21;
+$color-metro-roma-meb: #007eb5;
+$color-metro-roma-mec: #508414;
+$color-metro-brescia-1: #007eb5;
+$color-metro-torino-1: #dd052b;
+$color-metro-torino-2: #0028b5;
+$color-metro-genova-1: #dd052b;
+$color-metro-catania-1: #dd052b;
+$color-metro-napoli-1: #fdbe01;
+$color-metro-napoli-6: #7fbfe9;
+$color-maps-white-70: #ffffff;
+$color-maps-white-80: #ffffff;
+$color-maps-25: #4286f5;
+$color-maps-50: #4286f5;
+$color-maps-01: #00587c;
+$color-maps-02: #00587c;
+$color-maps-03: #624898;
+$color-maps-04: #624898;
+$color-maps-05: #00a0aa;
+$color-maps-06: #00a0aa;
+$color-maps-07: #f9a000;
+$color-maps-08: #f9a000;
+$color-maps-09: #dd0000;
+$color-maps-10: #dd0000;
+$color-maps-11: #1068f6;
+$color-maps-12: #1068f6;
+$color-maps-13: #00ac53;
+$color-maps-14: #00ac53;
+$color-means-of-transport-position-train-30: #59a600;
+$color-means-of-transport-position-train-10: #59a600;
+$color-means-of-transport-position-bus-30: #f38230;
+$color-means-of-transport-position-bus-10: #f38230;
+$color-means-of-transport-position-tram-30: #f38230;
+$color-means-of-transport-position-tram-10: #f38230;
+$color-means-of-transport-position-pullman-30: #f38230;
+$color-means-of-transport-position-pullman-10: #f38230;
+$color-means-of-transport-position-harbor-30: #00a0aa;
+$color-means-of-transport-position-harbor-10: #00a0aa;
+$color-ticket-to-be-actived: #ffc627;
+$color-ticket-active: #358551;
+$color-ticket-expired: #dd0000;
+@mixin text-style-button() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-1-semibold() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-1-medium() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-1-regular() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-1-regular-strikethrough() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-texts-body-2-semibold() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-2-medium() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-2-regular() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-body-2-regular-strikethrough() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-1-semibold() {
+	font-size: 12px;
+	font-family: General Sans;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-1-medium() {
+	font-size: 12px;
+	font-family: General Sans;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-1-regular() {
+	font-size: 12px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-1-regular-strikethrough() {
+	font-size: 12px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-2-semibold() {
+	font-size: 12px;
+	font-family: General Sans;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-2-medium() {
+	font-size: 12px;
+	font-family: General Sans;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-subtitle-2-regular() {
+	font-size: 12px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-caption-semibold() {
+	font-size: 10px;
+	font-family: General Sans;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 12px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-caption-medium() {
+	font-size: 10px;
+	font-family: General Sans;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 12px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-texts-caption-regular() {
+	font-size: 10px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 12px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-7-bold() {
+	font-size: 16px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-7-medium() {
+	font-size: 16px;
+	font-family: DIN Pro;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-7-regular() {
+	font-size: 16px;
+	font-family: DIN Pro;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-6-bold() {
+	font-size: 16px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-6-medium() {
+	font-size: 16px;
+	font-family: DIN Pro;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-6-regular() {
+	font-size: 16px;
+	font-family: DIN Pro;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-5-bold() {
+	font-size: 18px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-5-medium() {
+	font-size: 18px;
+	font-family: DIN Pro;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-5-regular() {
+	font-size: 18px;
+	font-family: DIN Pro;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-4-bold() {
+	font-size: 20px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 28px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-4-bold-strikethrough() {
+	font-size: 20px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 28px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-4-medium() {
+	font-size: 20px;
+	font-family: DIN Pro;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 28px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-4-regular() {
+	font-size: 20px;
+	font-family: DIN Pro;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 28px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-3-bold() {
+	font-size: 24px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-3-medium() {
+	font-size: 24px;
+	font-family: DIN Pro;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-3-regular() {
+	font-size: 24px;
+	font-family: DIN Pro;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-2-bold() {
+	font-size: 32px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 38px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-2-bold-strikethrough() {
+	font-size: 32px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 38px;
+	text-decoration: line-through;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-2-medium() {
+	font-size: 32px;
+	font-family: DIN Pro;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 38px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-2-regular() {
+	font-size: 32px;
+	font-family: DIN Pro;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 38px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-headlines-h-1-medium() {
+	font-size: 40px;
+	font-family: DIN Pro;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 48px;
+	letter-spacing: -2px;
+	text-decoration: none;
+	text-transform: none;
+}
+@mixin text-style-links-link-1-semibold() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: underline;
+	text-transform: none;
+}
+@mixin text-style-links-link-1-regular() {
+	font-size: 14px;
+	font-family: General Sans;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 20px;
+	text-decoration: underline;
+	text-transform: none;
+}
+@mixin text-style-links-link-2-semibold() {
+	font-size: 12px;
+	font-family: General Sans;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 16px;
+	text-decoration: underline;
+	text-transform: none;
+}
+@mixin effect-style-light-line-up() {
+	box-shadow: inset 0px 0.5px 0px #bbbbbb;
+}
+@mixin effect-style-light-line-dw() {
+	box-shadow: inset 0px -0.5px 0px #bbbbbb;
+}
+@mixin effect-style-light-01() {
+	box-shadow: inset 0px 0.5px 4px #000000;
+}
+@mixin effect-style-light-01() {
+	box-shadow: 0px 0px 1px #28293d, 0px 0.5px 2px #606170;
+}
+@mixin effect-style-light-02() {
+	box-shadow: 0px 0px 1px #28293d, 0px 2px 4px #606170;
+}
+@mixin effect-style-light-03() {
+	box-shadow: 0px 0px 2px #28293d, 0px 4px 8px #606170;
+}
+@mixin effect-style-light-04() {
+	box-shadow: 0px 2px 16px #000000;
+}
+@mixin effect-style-dark-01() {
+	box-shadow: inset 0px 0.5px 4px #000000;
+}
+@mixin effect-style-dark-01() {
+	box-shadow: 0px 0px 1px #28293d, 0px 1px 2px #000000;
+}
+@mixin effect-style-dark-02() {
+	box-shadow: 0px 0px 1px #000000, 0px 2px 4px #000000;
+}
+@mixin effect-style-dark-03() {
+	box-shadow: 0px 0px 2px #000000, 0px 4px 8px #000000;
+}
+@mixin effect-style-dark-04() {
+	box-shadow: 0px 2px 4px #000000, 0px 8px 16px #000000;
+}
+@mixin effect-style-ticket-inactive() {
+	box-shadow: inset 0px -0.5px 0px #bbbbbb, inset 6px 0px 0px #ffc627;
+}
+@mixin effect-style-ticket-active() {
+	box-shadow: inset 0px -0.5px 0px #bbbbbb, inset 6px 0px 0px #358551;
+}
+@mixin effect-style-segui-il-viaggio-step() {
+	box-shadow: 0px 2px 8px #7e85ec;
+}

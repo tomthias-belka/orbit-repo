@@ -1,5 +1,7 @@
 # Clara WhiteLabel - Project Knowledge Base
 
+**File Output Ufficiale** -> clara-tokens.json  - questo file deve essere sempre pronto e ready per l'import in figma via plugin!
+
 ## 📋 Project Overview
 
 **Nome**: Clara WhiteLabel
@@ -11,6 +13,10 @@
 Fornire al cliente Mooney/MyCicero un **JSON multi-brand** che funzioni sia per Figma che per sviluppo, gestendo tutte le personalizzazioni necessarie per una white label. Il nome "Clara" è stato scelto per semplicità e originalità come brand agnostico di default.
 
 ---
+
+## Aiuto sviluppo Codice ClaraTokens Plugina
+
+in questa cartella /Users/mattia/Documents/Mattia/Figma/Luckino/plugin trovi sempre il plugin originale, ClaraTokens è un duplicato di Luckino. per prendere riferimenti su come far funzionare le cose, cerca senza problemi il codice lì!
 
 ## 👥 Target Audience
 
@@ -53,9 +59,9 @@ Fornire al cliente Mooney/MyCicero un **JSON multi-brand** che funzioni sia per 
 ### Confermato
 
 - **Frontend**: React Native (mobile)
-- **Design**: Figma + Clara WhiteLabel plugin
+- **Design**: Figma + Clara plugin
 - **Formato**: W3C Design Tokens (JSON)
-- **Plugin**: Fork di Luckino → Clara WhiteLabel
+- **Plugin**: Fork di Luckino → Clara Plugin
 
 ### Probabile
 
@@ -238,11 +244,11 @@ Riferimento: `/Users/mattia/Documents/Mattia/Progetti/Mooney/ClaraWhiteLabel/175
 
 ### Plugin: Clara WhiteLabel
 
-**Location**: `/Users/mattia/Documents/Mattia/Progetti/Mooney/ClaraWhiteLabel/`
+**Location**: `/Users/mattia/Documents/Mattia/Progetti/Mooney/ClaraPlugin/`
 
 **Storia**:
 - Fork di Luckino plugin
-- Rinominato "Clara WhiteLabel"
+- Rinominato "Clara Plugin"
 - Mantenute tutte le guide MD, API, scope/type management
 
 **Funzionalità**:
@@ -381,6 +387,7 @@ Mooney/
 6. **Sempre** supportare i 3 temi (clara, mooney, atm)
 7. **Sempre** validare JSON syntax prima del commit
 8. **Sempre** buildare plugin dopo modifiche al codice
+9. **Sempre** usare **camelCase** per tutte le chiavi in `clara-tokens.json` (es: `fontFamily`, `lineHeight`, `backgroundColor`)
 
 ### DON'Ts ❌
 
@@ -392,6 +399,7 @@ Mooney/
 6. **Mai** riferire direttamente primitives da components (usare semantic)
 7. **Mai** esagerare con le "x" nel naming (XXXXS ❌, 5xs ✅)
 8. **Mai** fare commit senza richiesta esplicita dell'utente
+9. **Mai** usare kebab-case o snake_case per le chiavi JSON (❌ `font-family`, `line_height`, `background-color`)
 
 ---
 
@@ -409,11 +417,50 @@ Mooney/
 - **Comunicazione**: Diretta e concisa
 - **Commit**: Solo quando esplicitamente richiesto
 - **Ottimizzazione**: Sempre preferita
-- **Validazione**: Usa Gemini CLI come sub-agente quando possibile
+- **Validazione**: Usa Gemini CLI come sub-agente solamente quando la sessione è stata di grande impatto e ci sono state molte modifiche
 - **Lingua**: Italiano preferito per comunicazione
 
 ---
 
-*Ultimo aggiornamento: 2025-10-30*
-*Versione: 1.0*
-*Status: Production-ready (primitives & semantic colors)*
+## 📝 Naming Conventions
+
+### camelCase for JSON Keys (MANDATORY)
+
+Quando si lavora su [clara-tokens.json](clara-tokens.json), **tutte le chiavi devono essere scritte in camelCase**:
+
+✅ **Corretto**:
+```json
+{
+  "fontFamily": "Manrope",
+  "fontSize": 16,
+  "lineHeight": 1.5,
+  "letterSpacing": 0,
+  "backgroundColor": "#ffffff",
+  "borderRadius": 8,
+  "textColor": "#1e1e1e"
+}
+```
+
+❌ **Errato**:
+```json
+{
+  "font-family": "Manrope",      // kebab-case
+  "font_size": 16,               // snake_case
+  "line-height": 1.5,            // kebab-case
+  "background_color": "#ffffff"  // snake_case
+}
+```
+
+**Motivo**: Questa convenzione garantisce:
+- Consistenza con React Native e JavaScript/TypeScript
+- Compatibilità diretta con il codice senza trasformazioni
+- Leggibilità e manutenibilità del JSON
+- Standard di naming uniforme in tutto il sistema
+
+**Regola**: Mai usare trattini (`-`), underscore (`_`) o altri caratteri speciali nelle chiavi JSON.
+
+---
+
+*Ultimo aggiornamento: 2025-11-04*
+*Versione: 1.1*
+*Status: Production-ready (primitives & semantic colors) + Naming conventions documented*

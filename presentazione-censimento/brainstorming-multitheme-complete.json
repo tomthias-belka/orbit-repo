@@ -1,0 +1,1596 @@
+{
+  "auditFigmaColors": {
+      "accent-1-accent-light": {
+        "$value": {
+          "comersud": "#f3e780",
+          "atm": "#1068f6",
+          "mooneygo": "#ffc627"
+        },
+        "$type": "color"
+      },
+      "accent-2-accent-dark": {
+        "$value": {
+          "comersud": "#f5dc00",
+          "atm": "#0054a6",
+          "mooneygo": "#eda900"
+        },
+        "$type": "color"
+      },
+      "black": {
+        "$value": {
+          "comersud": "#1e1e1e",
+          "atm": "#1d2939",
+          "mooneygo": "#1e1e1e"
+        },
+        "$type": "color"
+      },
+      "brand-new-m-leggera": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#0072ef",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "extra-01-light": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#B2FF00",
+          "mooneygo": "#f0d1ff"
+        },
+        "$type": "color"
+      },
+      "extra-02-medium": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#B2FF00",
+          "mooneygo": "#ae3ce7"
+        },
+        "$type": "color"
+      },
+      "extra-03-dark": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#B2FF00",
+          "mooneygo": "#622282"
+        },
+        "$type": "color"
+      },
+      "extra-tutorial-overlay": {
+        "$value": {
+          "comersud": "#001f2b",
+          "atm": "#101828",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "extra-x-01": {
+        "$value": {
+          "comersud": "#fef9f6",
+          "atm": "#B2FF00",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "extra-x-01-light-orange": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#f9fafb",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "extra-x-01-light-orangeo": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#B2FF00",
+          "mooneygo": "#fef9f6"
+        },
+        "$type": "color"
+      },
+      "extra-x-02": {
+        "$value": {
+          "comersud": "#459af7",
+          "atm": "#B2FF00",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "extra-x-03": {
+        "$value": {
+          "comersud": "#f2f5f7",
+          "atm": "#B2FF00",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "extra-x-03-blue-grey": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#f2f5f7",
+          "mooneygo": "#f2f5f7"
+        },
+        "$type": "color"
+      },
+      "extra-x-04-blue": {
+        "$value": {
+          "comersud": "#0072ef",
+          "atm": "#B2FF00",
+          "mooneygo": "#0072ef"
+        },
+        "$type": "color"
+      },
+      "extra-z-02-light-blue": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#B2FF00",
+          "mooneygo": "#459af7"
+        },
+        "$type": "color"
+      },
+      "feedback-error": {
+        "$value": {
+          "comersud": "#dd0000",
+          "atm": "#c20202",
+          "mooneygo": "#dd0000"
+        },
+        "$type": "color"
+      },
+      "feedback-error-light": {
+        "$value": {
+          "comersud": "#fbdbdb",
+          "atm": "#ffcdd6",
+          "mooneygo": "#fbdbdb"
+        },
+        "$type": "color"
+      },
+      "feedback-info": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#0c4eb8",
+          "mooneygo": "#00aec7"
+        },
+        "$type": "color"
+      },
+      "feedback-info-dark": {
+        "$value": {
+          "comersud": "#00aec7",
+          "atm": "#B2FF00",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "feedback-info-light": {
+        "$value": {
+          "comersud": "#ecfbfd",
+          "atm": "#dbe8fe",
+          "mooneygo": "#ecfbfd"
+        },
+        "$type": "color"
+      },
+      "feedback-succes": {
+        "$value": {
+          "comersud": "#358551",
+          "atm": "#1e783d",
+          "mooneygo": "#358551"
+        },
+        "$type": "color"
+      },
+      "feedback-success-light": {
+        "$value": {
+          "comersud": "#eef6e5",
+          "atm": "#c8f1d2",
+          "mooneygo": "#f5f9f6"
+        },
+        "$type": "color"
+      },
+      "feedback-warning": {
+        "$value": {
+          "comersud": "#f9a000",
+          "atm": "#ffcf24",
+          "mooneygo": "#f9a000"
+        },
+        "$type": "color"
+      },
+      "feedback-warning-light": {
+        "$value": {
+          "comersud": "#fcf3e4",
+          "atm": "#fff8e0",
+          "mooneygo": "#fcf3e4"
+        },
+        "$type": "color"
+      },
+      "gradient-gradient": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "linear-gradient(to bottom, #fdefe9 0%,#f38230 100%)",
+          "mooneygo": "linear-gradient(to bottom, #00aec7 0%,#00587c 100%)"
+        },
+        "$type": "color"
+      },
+      "grayscale-00-super-light": {
+        "$value": {
+          "comersud": "#ffffff",
+          "atm": "#B2FF00",
+          "mooneygo": "#ffffff"
+        },
+        "$type": "color"
+      },
+      "grayscale-1-extra-light": {
+        "$value": {
+          "comersud": "#f6f6f6",
+          "atm": "#eaecf0",
+          "mooneygo": "#f6f6f6"
+        },
+        "$type": "color"
+      },
+      "grayscale-2-disable": {
+        "$value": {
+          "comersud": "#dddddd",
+          "atm": "#d0d5dd",
+          "mooneygo": "#dddddd"
+        },
+        "$type": "color"
+      },
+      "grayscale-3-light": {
+        "$value": {
+          "comersud": "#bbbbbb",
+          "atm": "#8a95a7",
+          "mooneygo": "#bbbbbb"
+        },
+        "$type": "color"
+      },
+      "grayscale-4-medium": {
+        "$value": {
+          "comersud": "#787878",
+          "atm": "#667085",
+          "mooneygo": "#787878"
+        },
+        "$type": "color"
+      },
+      "grayscale-5-dark": {
+        "$value": {
+          "comersud": "#4f4f4f",
+          "atm": "#344054",
+          "mooneygo": "#4f4f4f"
+        },
+        "$type": "color"
+      },
+      "illustrations-01": {
+        "$value": {
+          "comersud": "#f3ad8b",
+          "atm": "#f3ad8b",
+          "mooneygo": "#f3ad8b"
+        },
+        "$type": "color"
+      },
+      "illustrations-02": {
+        "$value": {
+          "comersud": "#cf663d",
+          "atm": "#cf663d",
+          "mooneygo": "#cf663d"
+        },
+        "$type": "color"
+      },
+      "illustrations-03": {
+        "$value": {
+          "comersud": "#99dfe9",
+          "atm": "#99dfe9",
+          "mooneygo": "#99dfe9"
+        },
+        "$type": "color"
+      },
+      "illustrations-04": {
+        "$value": {
+          "comersud": "#9bd3dd",
+          "atm": "#9bd3dd",
+          "mooneygo": "#9bd3dd"
+        },
+        "$type": "color"
+      },
+      "illustrations-05": {
+        "$value": {
+          "comersud": "#65dce2",
+          "atm": "#65dce2",
+          "mooneygo": "#65dce2"
+        },
+        "$type": "color"
+      },
+      "illustrations-06": {
+        "$value": {
+          "comersud": "#5fc5d1",
+          "atm": "#5fc5d1",
+          "mooneygo": "#5fc5d1"
+        },
+        "$type": "color"
+      },
+      "illustrations-07": {
+        "$value": {
+          "comersud": "#00aec7",
+          "atm": "#00aec7",
+          "mooneygo": "#00aec7"
+        },
+        "$type": "color"
+      },
+      "illustrations-08": {
+        "$value": {
+          "comersud": "#00587c",
+          "atm": "#00587c",
+          "mooneygo": "#00587c"
+        },
+        "$type": "color"
+      },
+      "illustrations-09": {
+        "$value": {
+          "comersud": "#00425d",
+          "atm": "#00425d",
+          "mooneygo": "#00425d"
+        },
+        "$type": "color"
+      },
+      "illustrations-10": {
+        "$value": {
+          "comersud": "#e3f1f3",
+          "atm": "#e3f1f3",
+          "mooneygo": "#e3f1f3"
+        },
+        "$type": "color"
+      },
+      "illustrations-11": {
+        "$value": {
+          "comersud": "#c4d4d5",
+          "atm": "#c4d4d5",
+          "mooneygo": "#c4d4d5"
+        },
+        "$type": "color"
+      },
+      "illustrations-12": {
+        "$value": {
+          "comersud": "#6097ad",
+          "atm": "#6097ad",
+          "mooneygo": "#6097ad"
+        },
+        "$type": "color"
+      },
+      "illustrations-13": {
+        "$value": {
+          "comersud": "#547c81",
+          "atm": "#547c81",
+          "mooneygo": "#547c81"
+        },
+        "$type": "color"
+      },
+      "illustrations-14": {
+        "$value": {
+          "comersud": "#ffe4ad",
+          "atm": "#ffe4ad",
+          "mooneygo": "#ffe4ad"
+        },
+        "$type": "color"
+      },
+      "illustrations-15": {
+        "$value": {
+          "comersud": "#fed385",
+          "atm": "#fed385",
+          "mooneygo": "#fed385"
+        },
+        "$type": "color"
+      },
+      "illustrations-16": {
+        "$value": {
+          "comersud": "#efbd63",
+          "atm": "#efbd63",
+          "mooneygo": "#efbd63"
+        },
+        "$type": "color"
+      },
+      "illustrations-17": {
+        "$value": {
+          "comersud": "#ffc627",
+          "atm": "#ffc627",
+          "mooneygo": "#ffc627"
+        },
+        "$type": "color"
+      },
+      "illustrations-18": {
+        "$value": {
+          "comersud": "#eda900",
+          "atm": "#eda900",
+          "mooneygo": "#eda900"
+        },
+        "$type": "color"
+      },
+      "illustrations-19": {
+        "$value": {
+          "comersud": "#f26a1f",
+          "atm": "#f26a1f",
+          "mooneygo": "#f26a1f"
+        },
+        "$type": "color"
+      },
+      "illustrations-20": {
+        "$value": {
+          "comersud": "#b6ebdd",
+          "atm": "#b6ebdd",
+          "mooneygo": "#b6ebdd"
+        },
+        "$type": "color"
+      },
+      "illustrations-21": {
+        "$value": {
+          "comersud": "#549f8c",
+          "atm": "#549f8c",
+          "mooneygo": "#549f8c"
+        },
+        "$type": "color"
+      },
+      "illustrations-22": {
+        "$value": {
+          "comersud": "#00a0aa",
+          "atm": "#00a0aa",
+          "mooneygo": "#00a0aa"
+        },
+        "$type": "color"
+      },
+      "illustrations-23": {
+        "$value": {
+          "comersud": "#105155",
+          "atm": "#105155",
+          "mooneygo": "#105155"
+        },
+        "$type": "color"
+      },
+      "illustrations-24": {
+        "$value": {
+          "comersud": "#4f4f4f",
+          "atm": "#4f4f4f",
+          "mooneygo": "#4f4f4f"
+        },
+        "$type": "color"
+      },
+      "illustrations-25": {
+        "$value": {
+          "comersud": "#787878",
+          "atm": "#787878",
+          "mooneygo": "#787878"
+        },
+        "$type": "color"
+      },
+      "illustrations-26": {
+        "$value": {
+          "comersud": "#bbbbbb",
+          "atm": "#bbbbbb",
+          "mooneygo": "#bbbbbb"
+        },
+        "$type": "color"
+      },
+      "illustrations-27": {
+        "$value": {
+          "comersud": "#dddddd",
+          "atm": "#dddddd",
+          "mooneygo": "#dddddd"
+        },
+        "$type": "color"
+      },
+      "illustrations-28": {
+        "$value": {
+          "comersud": "#f6f6f6",
+          "atm": "#f6f6f6",
+          "mooneygo": "#f6f6f6"
+        },
+        "$type": "color"
+      },
+      "illustrations-29": {
+        "$value": {
+          "comersud": "#dd0000",
+          "atm": "#dd0000",
+          "mooneygo": "#dd0000"
+        },
+        "$type": "color"
+      },
+      "illustrations-30": {
+        "$value": {
+          "comersud": "#f9a000",
+          "atm": "#f9a000",
+          "mooneygo": "#f9a000"
+        },
+        "$type": "color"
+      },
+      "illustrations-31": {
+        "$value": {
+          "comersud": "#358551",
+          "atm": "#358551",
+          "mooneygo": "#358551"
+        },
+        "$type": "color"
+      },
+      "maps-01": {
+        "$value": {
+          "comersud": "#00587c",
+          "atm": "#00587c",
+          "mooneygo": "#00587c"
+        },
+        "$type": "color"
+      },
+      "maps-02": {
+        "$value": {
+          "comersud": "#00587c",
+          "atm": "#00587c",
+          "mooneygo": "#00587c"
+        },
+        "$type": "color"
+      },
+      "maps-03": {
+        "$value": {
+          "comersud": "#624898",
+          "atm": "#624898",
+          "mooneygo": "#624898"
+        },
+        "$type": "color"
+      },
+      "maps-04": {
+        "$value": {
+          "comersud": "#624898",
+          "atm": "#624898",
+          "mooneygo": "#624898"
+        },
+        "$type": "color"
+      },
+      "maps-05": {
+        "$value": {
+          "comersud": "#00a0aa",
+          "atm": "#00a0aa",
+          "mooneygo": "#00a0aa"
+        },
+        "$type": "color"
+      },
+      "maps-06": {
+        "$value": {
+          "comersud": "#00a0aa",
+          "atm": "#00a0aa",
+          "mooneygo": "#00a0aa"
+        },
+        "$type": "color"
+      },
+      "maps-07": {
+        "$value": {
+          "comersud": "#f9a000",
+          "atm": "#f9a000",
+          "mooneygo": "#f9a000"
+        },
+        "$type": "color"
+      },
+      "maps-08": {
+        "$value": {
+          "comersud": "#f9a000",
+          "atm": "#f9a000",
+          "mooneygo": "#f9a000"
+        },
+        "$type": "color"
+      },
+      "maps-09": {
+        "$value": {
+          "comersud": "#dd0000",
+          "atm": "#dd0000",
+          "mooneygo": "#dd0000"
+        },
+        "$type": "color"
+      },
+      "maps-10": {
+        "$value": {
+          "comersud": "#dd0000",
+          "atm": "#dd0000",
+          "mooneygo": "#dd0000"
+        },
+        "$type": "color"
+      },
+      "maps-11": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#1068f6",
+          "mooneygo": "#1068f6"
+        },
+        "$type": "color"
+      },
+      "maps-12": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#1068f6",
+          "mooneygo": "#1068f6"
+        },
+        "$type": "color"
+      },
+      "maps-13": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#00ac53",
+          "mooneygo": "#00ac53"
+        },
+        "$type": "color"
+      },
+      "maps-14": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#00ac53",
+          "mooneygo": "#00ac53"
+        },
+        "$type": "color"
+      },
+      "maps-25": {
+        "$value": {
+          "comersud": "#4286f5",
+          "atm": "#4286f5",
+          "mooneygo": "#4286f5"
+        },
+        "$type": "color"
+      },
+      "maps-50": {
+        "$value": {
+          "comersud": "#4286f5",
+          "atm": "#4286f5",
+          "mooneygo": "#4286f5"
+        },
+        "$type": "color"
+      },
+      "maps-white-70": {
+        "$value": {
+          "comersud": "#ffffff",
+          "atm": "#ffffff",
+          "mooneygo": "#ffffff"
+        },
+        "$type": "color"
+      },
+      "maps-white-80": {
+        "$value": {
+          "comersud": "#ffffff",
+          "atm": "#ffffff",
+          "mooneygo": "#ffffff"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-bus-10": {
+        "$value": {
+          "comersud": "#bd590d",
+          "atm": "#f38230",
+          "mooneygo": "#bd590d"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-bus-30": {
+        "$value": {
+          "comersud": "#bd590d",
+          "atm": "#f38230",
+          "mooneygo": "#bd590d"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-harbor-10": {
+        "$value": {
+          "comersud": "#00a0aa",
+          "atm": "#00a0aa",
+          "mooneygo": "#00a0aa"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-harbor-30": {
+        "$value": {
+          "comersud": "#00a0aa",
+          "atm": "#00a0aa",
+          "mooneygo": "#00a0aa"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-pullman-10": {
+        "$value": {
+          "comersud": "#d20000",
+          "atm": "#f38230",
+          "mooneygo": "#d20000"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-pullman-30": {
+        "$value": {
+          "comersud": "#d20000",
+          "atm": "#f38230",
+          "mooneygo": "#d20000"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-train-10": {
+        "$value": {
+          "comersud": "#59a600",
+          "atm": "#59a600",
+          "mooneygo": "#59a600"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-train-30": {
+        "$value": {
+          "comersud": "#59a600",
+          "atm": "#59a600",
+          "mooneygo": "#59a600"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-tram-10": {
+        "$value": {
+          "comersud": "#bd590d",
+          "atm": "#f38230",
+          "mooneygo": "#bd590d"
+        },
+        "$type": "color"
+      },
+      "means-of-transport-position-tram-30": {
+        "$value": {
+          "comersud": "#bd590d",
+          "atm": "#f38230",
+          "mooneygo": "#bd590d"
+        },
+        "$type": "color"
+      },
+      "metro-brescia-1": {
+        "$value": {
+          "comersud": "#007eb5",
+          "atm": "#007eb5",
+          "mooneygo": "#007eb5"
+        },
+        "$type": "color"
+      },
+      "metro-catania-1": {
+        "$value": {
+          "comersud": "#dd052b",
+          "atm": "#dd052b",
+          "mooneygo": "#dd052b"
+        },
+        "$type": "color"
+      },
+      "metro-genova-1": {
+        "$value": {
+          "comersud": "#dd052b",
+          "atm": "#dd052b",
+          "mooneygo": "#dd052b"
+        },
+        "$type": "color"
+      },
+      "metro-milano-m-1": {
+        "$value": {
+          "comersud": "#dd052b",
+          "atm": "#ed1c2e",
+          "mooneygo": "#dd052b"
+        },
+        "$type": "color"
+      },
+      "metro-milano-m-2": {
+        "$value": {
+          "comersud": "#5d9732",
+          "atm": "#559534",
+          "mooneygo": "#5d9732"
+        },
+        "$type": "color"
+      },
+      "metro-milano-m-3": {
+        "$value": {
+          "comersud": "#fdbe01",
+          "atm": "#febe10",
+          "mooneygo": "#fdbe01"
+        },
+        "$type": "color"
+      },
+      "metro-milano-m-4": {
+        "$value": {
+          "comersud": "#007eb5",
+          "atm": "#29417c",
+          "mooneygo": "#007eb5"
+        },
+        "$type": "color"
+      },
+      "metro-milano-m-5": {
+        "$value": {
+          "comersud": "#a392c7",
+          "atm": "#9a8dc3",
+          "mooneygo": "#a392c7"
+        },
+        "$type": "color"
+      },
+      "metro-napoli-1": {
+        "$value": {
+          "comersud": "#fdbe01",
+          "atm": "#fdbe01",
+          "mooneygo": "#fdbe01"
+        },
+        "$type": "color"
+      },
+      "metro-napoli-6": {
+        "$value": {
+          "comersud": "#7fbfe9",
+          "atm": "#7fbfe9",
+          "mooneygo": "#7fbfe9"
+        },
+        "$type": "color"
+      },
+      "metro-roma-mea": {
+        "$value": {
+          "comersud": "#f26a1f",
+          "atm": "#f36e21",
+          "mooneygo": "#f26a1f"
+        },
+        "$type": "color"
+      },
+      "metro-roma-meb": {
+        "$value": {
+          "comersud": "#007eb5",
+          "atm": "#007eb5",
+          "mooneygo": "#007eb5"
+        },
+        "$type": "color"
+      },
+      "metro-roma-mec": {
+        "$value": {
+          "comersud": "#508414",
+          "atm": "#508414",
+          "mooneygo": "#508414"
+        },
+        "$type": "color"
+      },
+      "metro-torino-1": {
+        "$value": {
+          "comersud": "#dd052b",
+          "atm": "#dd052b",
+          "mooneygo": "#dd052b"
+        },
+        "$type": "color"
+      },
+      "metro-torino-2": {
+        "$value": {
+          "comersud": "#0028b5",
+          "atm": "#0028b5",
+          "mooneygo": "#0028b5"
+        },
+        "$type": "color"
+      },
+      "mobility-airports-dark": {
+        "$value": {
+          "comersud": "#4f4f4f",
+          "atm": "#4f4f4f",
+          "mooneygo": "#4f4f4f"
+        },
+        "$type": "color"
+      },
+      "mobility-airports-light": {
+        "$value": {
+          "comersud": "#f6f6f6",
+          "atm": "#f6f6f6",
+          "mooneygo": "#f6f6f6"
+        },
+        "$type": "color"
+      },
+      "mobility-airports-medium": {
+        "$value": {
+          "comersud": "#787878",
+          "atm": "#787878",
+          "mooneygo": "#787878"
+        },
+        "$type": "color"
+      },
+      "mobility-bus-dark": {
+        "$value": {
+          "comersud": "#bd590d",
+          "atm": "#f06123",
+          "mooneygo": "#bd590d"
+        },
+        "$type": "color"
+      },
+      "mobility-bus-light": {
+        "$value": {
+          "comersud": "#fef0e5",
+          "atm": "#fce2d7",
+          "mooneygo": "#fef0e5"
+        },
+        "$type": "color"
+      },
+      "mobility-bus-medium": {
+        "$value": {
+          "comersud": "#f26a1f",
+          "atm": "#f58220",
+          "mooneygo": "#f46a00"
+        },
+        "$type": "color"
+      },
+      "mobility-car-rental-dark": {
+        "$value": {
+          "comersud": "#ff7500",
+          "atm": "#00587c",
+          "mooneygo": "#ff7500"
+        },
+        "$type": "color"
+      },
+      "mobility-car-rental-light": {
+        "$value": {
+          "comersud": "#ffedd2",
+          "atm": "#c8eff4",
+          "mooneygo": "#ffedd2"
+        },
+        "$type": "color"
+      },
+      "mobility-car-rental-medium": {
+        "$value": {
+          "comersud": "#ff9900",
+          "atm": "#00aec7",
+          "mooneygo": "#ff9900"
+        },
+        "$type": "color"
+      },
+      "mobility-charging-station-dark": {
+        "$value": {
+          "comersud": "#215c84",
+          "atm": "#215c84",
+          "mooneygo": "#215c84"
+        },
+        "$type": "color"
+      },
+      "mobility-charging-station-light": {
+        "$value": {
+          "comersud": "#ddf1ff",
+          "atm": "#ddf1ff",
+          "mooneygo": "#f2f5f7"
+        },
+        "$type": "color"
+      },
+      "mobility-charging-station-medium": {
+        "$value": {
+          "comersud": "#7fbfe9",
+          "atm": "#95c6e8",
+          "mooneygo": "#95c6e8"
+        },
+        "$type": "color"
+      },
+      "mobility-experience-dark": {
+        "$value": {
+          "comersud": "#cf663d",
+          "atm": "#cf663d",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "mobility-experience-light": {
+        "$value": {
+          "comersud": "#ffe4ad",
+          "atm": "#ffe4ad",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "mobility-experience-medium": {
+        "$value": {
+          "comersud": "#f3ad8b",
+          "atm": "#f3ad8b",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "mobility-favorites-dark": {
+        "$value": {
+          "comersud": "#00587c",
+          "atm": "#cd0e5e",
+          "mooneygo": "#00587c"
+        },
+        "$type": "color"
+      },
+      "mobility-favorites-light": {
+        "$value": {
+          "comersud": "#ffffff",
+          "atm": "#ffd0e4",
+          "mooneygo": "#ffffff"
+        },
+        "$type": "color"
+      },
+      "mobility-favorites-medium": {
+        "$value": {
+          "comersud": "#00aec7",
+          "atm": "#ff4a96",
+          "mooneygo": "#00aec7"
+        },
+        "$type": "color"
+      },
+      "mobility-garage-dark": {
+        "$value": {
+          "comersud": "#003065",
+          "atm": "#003065",
+          "mooneygo": "#003065"
+        },
+        "$type": "color"
+      },
+      "mobility-garage-light": {
+        "$value": {
+          "comersud": "#d2e8ff",
+          "atm": "#c5e0fe",
+          "mooneygo": "#d2e8ff"
+        },
+        "$type": "color"
+      },
+      "mobility-garage-medium": {
+        "$value": {
+          "comersud": "#004a9b",
+          "atm": "#004a9b",
+          "mooneygo": "#004a9b"
+        },
+        "$type": "color"
+      },
+      "mobility-garage-telepass-d": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#eda900",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "mobility-garage-telepass-dark": {
+        "$value": {
+          "comersud": "#eda900",
+          "atm": "#B2FF00",
+          "mooneygo": "#eda900"
+        },
+        "$type": "color"
+      },
+      "mobility-garage-telepass-light": {
+        "$value": {
+          "comersud": "#fff6dc",
+          "atm": "#fff6dc",
+          "mooneygo": "#fff6dc"
+        },
+        "$type": "color"
+      },
+      "mobility-garage-telepass-medium": {
+        "$value": {
+          "comersud": "#ffc627",
+          "atm": "#ffc627",
+          "mooneygo": "#ffc627"
+        },
+        "$type": "color"
+      },
+      "mobility-harbor-dark": {
+        "$value": {
+          "comersud": "#007279",
+          "atm": "#007279",
+          "mooneygo": "#007279"
+        },
+        "$type": "color"
+      },
+      "mobility-harbor-light": {
+        "$value": {
+          "comersud": "#e5f5f7",
+          "atm": "#e5f5f7",
+          "mooneygo": "#e5f5f7"
+        },
+        "$type": "color"
+      },
+      "mobility-harbor-medium": {
+        "$value": {
+          "comersud": "#00a0aa",
+          "atm": "#00a0aa",
+          "mooneygo": "#00a0aa"
+        },
+        "$type": "color"
+      },
+      "mobility-info-point-dark": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#622282",
+          "mooneygo": "#622282"
+        },
+        "$type": "color"
+      },
+      "mobility-info-point-light": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#f0d1ff",
+          "mooneygo": "#f0d1ff"
+        },
+        "$type": "color"
+      },
+      "mobility-info-point-medium": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#ae3ce7",
+          "mooneygo": "#ae3ce7"
+        },
+        "$type": "color"
+      },
+      "mobility-metro-dark": {
+        "$value": {
+          "comersud": "#9f1930",
+          "atm": "#bf1b25",
+          "mooneygo": "#9f1930"
+        },
+        "$type": "color"
+      },
+      "mobility-metro-light": {
+        "$value": {
+          "comersud": "#fbe5e5",
+          "atm": "#fbe5e5",
+          "mooneygo": "#fbe5e5"
+        },
+        "$type": "color"
+      },
+      "mobility-metro-medium": {
+        "$value": {
+          "comersud": "#dd052b",
+          "atm": "#eb212e",
+          "mooneygo": "#dd052b"
+        },
+        "$type": "color"
+      },
+      "mobility-ncc-dark": {
+        "$value": {
+          "comersud": "#543c87",
+          "atm": "#4e2a9b",
+          "mooneygo": "#543c87"
+        },
+        "$type": "color"
+      },
+      "mobility-ncc-light": {
+        "$value": {
+          "comersud": "#dacbf9",
+          "atm": "#d4c6f2",
+          "mooneygo": "#dacbf9"
+        },
+        "$type": "color"
+      },
+      "mobility-ncc-medium": {
+        "$value": {
+          "comersud": "#7453bb",
+          "atm": "#673ac7",
+          "mooneygo": "#7453bb"
+        },
+        "$type": "color"
+      },
+      "mobility-parking-dark": {
+        "$value": {
+          "comersud": "#215c84",
+          "atm": "#00587c",
+          "mooneygo": "#00587c"
+        },
+        "$type": "color"
+      },
+      "mobility-parking-light": {
+        "$value": {
+          "comersud": "#ecf2f5",
+          "atm": "#edf3f6",
+          "mooneygo": "#edf3f6"
+        },
+        "$type": "color"
+      },
+      "mobility-parking-medium": {
+        "$value": {
+          "comersud": "#4d8aa3",
+          "atm": "#4d8aa3",
+          "mooneygo": "#4d8aa3"
+        },
+        "$type": "color"
+      },
+      "mobility-pin-dark": {
+        "$value": {
+          "comersud": "#4f4f4f",
+          "atm": "#344054",
+          "mooneygo": "#4f4f4f"
+        },
+        "$type": "color"
+      },
+      "mobility-pin-light": {
+        "$value": {
+          "comersud": "#ececec",
+          "atm": "#eaecf0",
+          "mooneygo": "#ececec"
+        },
+        "$type": "color"
+      },
+      "mobility-pin-medium": {
+        "$value": {
+          "comersud": "#787878",
+          "atm": "#98a2b3",
+          "mooneygo": "#787878"
+        },
+        "$type": "color"
+      },
+      "mobility-pullman-dark": {
+        "$value": {
+          "comersud": "#510101",
+          "atm": "#f06123",
+          "mooneygo": "#510101"
+        },
+        "$type": "color"
+      },
+      "mobility-pullman-light": {
+        "$value": {
+          "comersud": "#fbe5e5",
+          "atm": "#fce2d7",
+          "mooneygo": "#fbe5e5"
+        },
+        "$type": "color"
+      },
+      "mobility-pullman-medium": {
+        "$value": {
+          "comersud": "#7c0303",
+          "atm": "#f58220",
+          "mooneygo": "#7c0303"
+        },
+        "$type": "color"
+      },
+      "mobility-sharing-dark": {
+        "$value": {
+          "comersud": "#a932ff",
+          "atm": "#eda900",
+          "mooneygo": "#a932ff"
+        },
+        "$type": "color"
+      },
+      "mobility-sharing-light": {
+        "$value": {
+          "comersud": "#f5e8fe",
+          "atm": "#fff5cc",
+          "mooneygo": "#f5e8fe"
+        },
+        "$type": "color"
+      },
+      "mobility-sharing-medium": {
+        "$value": {
+          "comersud": "#c06cfc",
+          "atm": "#ffcc00",
+          "mooneygo": "#c06cfc"
+        },
+        "$type": "color"
+      },
+      "mobility-skipass-dark": {
+        "$value": {
+          "comersud": "#6097ad",
+          "atm": "#6097ad",
+          "mooneygo": "#6097ad"
+        },
+        "$type": "color"
+      },
+      "mobility-skipass-light": {
+        "$value": {
+          "comersud": "#e6eef2",
+          "atm": "#e6eef2",
+          "mooneygo": "#e6eef2"
+        },
+        "$type": "color"
+      },
+      "mobility-skipass-medium": {
+        "$value": {
+          "comersud": "#c4d4d5",
+          "atm": "#c4d4d5",
+          "mooneygo": "#c4d4d5"
+        },
+        "$type": "color"
+      },
+      "mobility-taxi-dark": {
+        "$value": {
+          "comersud": "#eda900",
+          "atm": "#000000",
+          "mooneygo": "#eda900"
+        },
+        "$type": "color"
+      },
+      "mobility-taxi-light": {
+        "$value": {
+          "comersud": "#fff6dc",
+          "atm": "#f2f2f2",
+          "mooneygo": "#fff6dc"
+        },
+        "$type": "color"
+      },
+      "mobility-taxi-medium": {
+        "$value": {
+          "comersud": "#ffc627",
+          "atm": "#000000",
+          "mooneygo": "#ffc627"
+        },
+        "$type": "color"
+      },
+      "mobility-train-dark": {
+        "$value": {
+          "comersud": "#478500",
+          "atm": "#478500",
+          "mooneygo": "#478500"
+        },
+        "$type": "color"
+      },
+      "mobility-train-light": {
+        "$value": {
+          "comersud": "#eef6e5",
+          "atm": "#eef6e5",
+          "mooneygo": "#eef6e5"
+        },
+        "$type": "color"
+      },
+      "mobility-train-medium": {
+        "$value": {
+          "comersud": "#59a600",
+          "atm": "#59a600",
+          "mooneygo": "#59a600"
+        },
+        "$type": "color"
+      },
+      "mobility-tram-dark": {
+        "$value": {
+          "comersud": "#bd590d",
+          "atm": "#f06123",
+          "mooneygo": "#bd590d"
+        },
+        "$type": "color"
+      },
+      "mobility-tram-light": {
+        "$value": {
+          "comersud": "#fef0e5",
+          "atm": "#fce2d7",
+          "mooneygo": "#fef0e5"
+        },
+        "$type": "color"
+      },
+      "mobility-tram-medium": {
+        "$value": {
+          "comersud": "#f26a1f",
+          "atm": "#f58220",
+          "mooneygo": "#f46a00"
+        },
+        "$type": "color"
+      },
+      "mobility-walk-dark": {
+        "$value": {
+          "comersud": "#787878",
+          "atm": "#787878",
+          "mooneygo": "#787878"
+        },
+        "$type": "color"
+      },
+      "mobility-walk-light": {
+        "$value": {
+          "comersud": "#dddddd",
+          "atm": "#dddddd",
+          "mooneygo": "#dddddd"
+        },
+        "$type": "color"
+      },
+      "mobility-walk-medium": {
+        "$value": {
+          "comersud": "#bbbbbb",
+          "atm": "#bbbbbb",
+          "mooneygo": "#bbbbbb"
+        },
+        "$type": "color"
+      },
+      "mobility-ztl-dark": {
+        "$value": {
+          "comersud": "#003065",
+          "atm": "#194579",
+          "mooneygo": "#194579"
+        },
+        "$type": "color"
+      },
+      "mobility-ztl-light": {
+        "$value": {
+          "comersud": "#c5e0fe",
+          "atm": "#c5e0fe",
+          "mooneygo": "#c5e0fe"
+        },
+        "$type": "color"
+      },
+      "mobility-ztl-medium": {
+        "$value": {
+          "comersud": "#004a9b",
+          "atm": "#004a9b",
+          "mooneygo": "#004a9b"
+        },
+        "$type": "color"
+      },
+      "primary-0-primary-5": {
+        "$value": {
+          "comersud": "#B2FF00",
+          "atm": "#fef9f6",
+          "mooneygo": "#f2f6f8"
+        },
+        "$type": "color"
+      },
+      "primary-1-primary-10": {
+        "$value": {
+          "comersud": "#e8eff7",
+          "atm": "#fdefe9",
+          "mooneygo": "#e6eef2"
+        },
+        "$type": "color"
+      },
+      "primary-2-primary-70": {
+        "$value": {
+          "comersud": "#a3c0de",
+          "atm": "#f58220",
+          "mooneygo": "#4d8aa3"
+        },
+        "$type": "color"
+      },
+      "primary-3-primary": {
+        "$value": {
+          "comersud": "#1961ac",
+          "atm": "#cf3700",
+          "mooneygo": "#00587c"
+        },
+        "$type": "color"
+      },
+      "secondary-1-secondary-10": {
+        "$value": {
+          "comersud": "#e9ecef",
+          "atm": "#f2f4f7",
+          "mooneygo": "#ecfbfd"
+        },
+        "$type": "color"
+      },
+      "secondary-2-secondary-40": {
+        "$value": {
+          "comersud": "#677e90",
+          "atm": "#98a2b3",
+          "mooneygo": "#99dfe9"
+        },
+        "$type": "color"
+      },
+      "secondary-3-secondary": {
+        "$value": {
+          "comersud": "#264660",
+          "atm": "#1d2939",
+          "mooneygo": "#00aec7"
+        },
+        "$type": "color"
+      },
+      "status-tag-deadline-dark": {
+        "$value": {
+          "comersud": "#56595b",
+          "atm": "#344054",
+          "mooneygo": "#56595b"
+        },
+        "$type": "color"
+      },
+      "status-tag-deadline-light": {
+        "$value": {
+          "comersud": "#f2f5f7",
+          "atm": "#f2f4f7",
+          "mooneygo": "#f2f5f7"
+        },
+        "$type": "color"
+      },
+      "status-tag-info-dark": {
+        "$value": {
+          "comersud": "#00587c",
+          "atm": "#cf3700",
+          "mooneygo": "#00587c"
+        },
+        "$type": "color"
+      },
+      "status-tag-info-light": {
+        "$value": {
+          "comersud": "#cceff4",
+          "atm": "#fdefe9",
+          "mooneygo": "#cceff4"
+        },
+        "$type": "color"
+      },
+      "status-tag-negative-dark": {
+        "$value": {
+          "comersud": "#9a0000",
+          "atm": "#9a0000",
+          "mooneygo": "#9a0000"
+        },
+        "$type": "color"
+      },
+      "status-tag-negative-light": {
+        "$value": {
+          "comersud": "#f8cccc",
+          "atm": "#f8cccc",
+          "mooneygo": "#f8cccc"
+        },
+        "$type": "color"
+      },
+      "status-tag-new-dark": {
+        "$value": {
+          "comersud": "#1e1e1e",
+          "atm": "#1d2939",
+          "mooneygo": "#1e1e1e"
+        },
+        "$type": "color"
+      },
+      "status-tag-new-light": {
+        "$value": {
+          "comersud": "#ffc627",
+          "atm": "#ffc627",
+          "mooneygo": "#ffc627"
+        },
+        "$type": "color"
+      },
+      "status-tag-positive-dark": {
+        "$value": {
+          "comersud": "#01594c",
+          "atm": "#01594c",
+          "mooneygo": "#01594c"
+        },
+        "$type": "color"
+      },
+      "status-tag-positive-light": {
+        "$value": {
+          "comersud": "#d8f2db",
+          "atm": "#d8f2db",
+          "mooneygo": "#d8f2db"
+        },
+        "$type": "color"
+      },
+      "status-tag-warning-dark": {
+        "$value": {
+          "comersud": "#9c540e",
+          "atm": "#9c540e",
+          "mooneygo": "#9c540e"
+        },
+        "$type": "color"
+      },
+      "status-tag-warning-light": {
+        "$value": {
+          "comersud": "#ffe8ca",
+          "atm": "#ffe8ca",
+          "mooneygo": "#ffe8ca"
+        },
+        "$type": "color"
+      },
+      "ticket-active": {
+        "$value": {
+          "comersud": "#358551",
+          "atm": "#358551",
+          "mooneygo": "#358551"
+        },
+        "$type": "color"
+      },
+      "ticket-expired": {
+        "$value": {
+          "comersud": "#dd0000",
+          "atm": "#dd0000",
+          "mooneygo": "#dd0000"
+        },
+        "$type": "color"
+      },
+      "ticket-to-be-actived": {
+        "$value": {
+          "comersud": "#ffc627",
+          "atm": "#ffc627",
+          "mooneygo": "#ffc627"
+        },
+        "$type": "color"
+      },
+      "white": {
+        "$value": {
+          "comersud": "#ffffff",
+          "atm": "#ffffff",
+          "mooneygo": "#ffffff"
+        },
+        "$type": "color"
+      },
+      "white-label-dark": {
+        "$value": {
+          "comersud": "#622282",
+          "atm": "#B2FF00",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "white-label-light": {
+        "$value": {
+          "comersud": "#f0d1ff",
+          "atm": "#B2FF00",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      },
+      "white-label-medium": {
+        "$value": {
+          "comersud": "#ae3ce7",
+          "atm": "#B2FF00",
+          "mooneygo": "#B2FF00"
+        },
+        "$type": "color"
+      }
+    }
+}

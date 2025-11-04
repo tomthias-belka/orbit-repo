@@ -1,0 +1,337 @@
+{
+    "GlobalConfiguration": {
+      "FontNames": {
+        "Default": "Default"
+      },
+      "FontFiles": {
+        "Default": {
+          "bold.fileName": "non-existing-font-file",
+          "boldItalic.fileName": "non-existing-font-file",
+          "regular.fileName": "non-existing-font-file",
+          "regularItalic.fileName": "non-existing-font-file",
+          "medium.fileName": "non-existing-font-file",
+          "mediumItalic.fileName": "non-existing-font-file"
+        }
+      },
+      "UITextBaseRoles": {
+        "colors": {},
+        "h1": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 48,
+          "size": 40,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "h2": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 38,
+          "size": 32,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "h3": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 24,
+          "size": 24,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "h4": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 24,
+          "size": 20,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "h5": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 22,
+          "size": 18,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "h6": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 20,
+          "size": 16,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "h7": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 24,
+          "size": 16,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "body1": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 18,
+          "size": 14,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "body2": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 24,
+          "size": 14,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "subtitle1": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 16,
+          "size": 12,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "subtitle2": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 20,
+          "size": 14,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "caption": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 12,
+          "size": 10,
+          "underline": false,
+          "color": "BLACK"
+        },
+        "button": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 16,
+          "size": 14,
+          "underline": false,
+          "color": "WHITE"
+        },
+        "link": {
+          "fontFamily": "Default",
+          "letterSpacing": 0,
+          "lineHeight": 18,
+          "size": 14,
+          "underline": false,
+          "color": "BLACK"
+        }
+      }
+    },
+    "ReusableMixins": {
+      "links": {
+        "color": "BLACK",
+        "disabledColor": "GREYSCALE_4",
+        "fontWeight": "bold",
+        "textDecoration": "none"
+      },
+      "modals": {
+        "textColor": "BLACK",
+        "titleFontRole": "body1"
+      }
+    },
+    "ComponentTextStyles": {
+      "UIMainHeader": {
+        "roles.primary": {
+          "textColor": "BLACK",
+          "textRole": "h7",
+          "textWeight": "bold"
+        },
+        "roles.secondary": {
+          "textColor": "BLACK",
+          "textRole": "h5",
+          "textWeight": "bold"
+        },
+        "roles.tertiary": {
+          "textColor": "BLACK",
+          "textRole": "h5",
+          "textWeight": "bold"
+        }
+      },
+      "UIDateTimeButton": {
+        "textRole": "body2",
+        "textColor": "BLACK",
+        "displayType.dateTime.textWeight": "bold",
+        "displayType.onlyDate.textWeight": "regular"
+      },
+      "UIAccordion": {
+        "roles": {
+          "primary": {
+            "titleSection.textColor": "GREYSCALE_5",
+            "titleSection.textRole": "body2",
+            "titleSection.textWeight": "regular",
+            "contentSection.textColor": "GREYSCALE_5",
+            "contentSection.textRole": "body1",
+            "contentSection.textWeight": "regular"
+          },
+          "secondary": {
+            "titleSection.textColor": "GREYSCALE_5",
+            "titleSection.textRole": "body2",
+            "titleSection.textWeight": "regular",
+            "contentSection.textColor": "GREYSCALE_5",
+            "contentSection.textRole": "body1",
+            "contentSection.textWeight": "regular"
+          },
+          "tertiary": {
+            "titleSection.textColor": "GREYSCALE_5",
+            "titleSection.textRole": "body2",
+            "titleSection.textWeight": "regular",
+            "contentSection.textColor": "GREYSCALE_5",
+            "contentSection.textRole": "body1",
+            "contentSection.textWeight": "regular"
+          }
+        }
+      },
+      "UIAccordion2": {
+        "roles.default.textRole": "body1",
+        "roles.default.textWeight": "bold",
+        "roles.default.descRole": "body1",
+        "roles.default.descWeight": "regular"
+      },
+      "UIList": {
+        "UIListRadioButton.roles.primary.textColor": "BLACK",
+        "UIListCommonButton.roles.primary.textColor": "BLACK",
+        "UIListCommonButton.roles.primary.titleFontWeight": "bold",
+        "UIListCommonButton.roles.secondary.textColor": "BLACK",
+        "UIListCommonButton.roles.secondary.titleFontWeight": "bold",
+        "UIListCommonButton.roles.tertiary.textColor": "BLACK",
+        "UIListCommonButton.roles.tertiary.titleFontWeight": "bold",
+        "UIListCommonButton.roles.quaternary.textColor": "WHITE",
+        "UIListCommonButton.roles.quaternary.titleFontWeight": "bold",
+        "UIListCommonButton.roles.quinary.textColor": "BLACK",
+        "UIListCommonButton.roles.quinary.titleFontWeight": "regular",
+        "UIListButton.titleColor": "BLACK",
+        "UIListButton.labelColor": "BLACK"
+      },
+      "UIButton": {
+        "roles.primary": {
+          "textColor": "WHITE",
+          "textWeight": "bold",
+          "disabledTextColor": "GREYSCALE_4"
+        },
+        "roles.secondary": {
+          "textColor": "BLACK",
+          "textWeight": "bold",
+          "disabledTextColor": "GREYSCALE_4"
+        },
+        "roles.tertiary": {
+          "textColor": "BLACK",
+          "textWeight": "bold",
+          "disabledTextColor": "GREYSCALE_4"
+        },
+        "variants.small.lineHeight": 14,
+        "variants.small.fontSize": 10,
+        "variants.default.lineHeight": 16,
+        "variants.default.fontSize": 14
+      },
+      "UIMarkdownText": {
+        "bodyTextColor": "BLACK",
+        "paragraphTextColor": "BLACK",
+        "emphasisTextColor": "BLACK",
+        "strongTextColor": "BLACK"
+      },
+      "UIMinimalTag": {
+        "roles.success.textColor": "FEEDBACK_SUCCESS_DARK",
+        "roles.error.textColor": "FEEDBACK_ERROR_DARK",
+        "roles.warning.textColor": "TAG_STATUS_WARNING_DARK",
+        "roles.expired.textColor": "GREYSCALE_4",
+        "roles.info.textColor": "FEEDBACK_INFO_DARK"
+      },
+      "UIModalHeader.textColor": "BLACK",
+      "UISectionTitle": {
+        "variants.accordion.textColor": "BLACK",
+        "variants.standard.textColor": "BLACK"
+      },
+      "UICard": {
+        "UICardResults.textColor": "BLACK",
+        "UICardExperience.medium.roleTitle": "h6",
+        "UICardExperience.medium.roleDescription": "h6",
+        "UICardExperience.small.roleTitle": "body1",
+        "UICardExperience.small.roleDescription": "body1",
+        "UILinkedCardCredit.sizes.small.titleColor": "GREYSCALE_4",
+        "UILinkedCardCredit.sizes.big.descriptionColor": "GREYSCALE_5",
+        "UILinkedCardCredit.sizes.big.titleColor": "BLACK",
+        "UILinkedCardCredit.sizes.big.subtitleTextColor": "GREYSCALE_5",
+        "UILinkedCardCredit.sizes.big.detailColor": "BLACK",
+        "UICardService.default.textColor": "BLACK",
+        "UICardService.active.textColor": "WHITE"
+      },
+      "UIDurationDetails": {
+        "sizes.small.fullDurationRole": "body2",
+        "sizes.small.timeValueRole": "subtitle1",
+        "sizes.large.fullDurationRole": "h3",
+        "sizes.large.timeValueRole": "h4"
+      },
+      "UINewSearchBar": {
+        "placeholderTextColor": "GREYSCALE_3",
+        "placeholderTextRole": "body1"
+      },
+      "NotificationElements": {
+        "NotificationButton.textColor": "BLACK",
+        "NotificationButton.badgeNumberColor": "WHITE",
+        "UIBannerNotification.buttonTextColor": "BLACK"
+      },
+      "UITplArticlePurchasePreview.header.titleColor": "BLACK",
+      "UIUserSubscriptionCard.titleColor": "BLACK",
+      "UIUserCreditRecharge.titleColor": "BLACK",
+      "UIUserInitials": {
+        "activeInitialsTextColor": "GREYSCALE_5",
+        "passiveInitialsTextColor": "GREYSCALE_5"
+      },
+      "OffStreetParkingMainInfo.textColor": "BLACK",
+      "UIDateTimeRange.dateValueColor": "BLACK",
+      "FreeCancellation.textColor": "BLACK",
+      "UIBonusByServiceSection": {
+        "titleTextColor": "BLACK",
+        "showAllTextColor": "BLACK"
+      },
+      "DocumentCardEmpty.textColor": "BLACK"
+    },
+    "ScreenTextStyles": {
+      "ScreenDiscovery": {
+        "activeSharingTimeTextColor": "BLACK",
+        "nearestStopsTitleColor": "BLACK",
+        "nearestSharingStationsTitleColor": "BLACK",
+        "discoverySearchBarPlaceholderTextColor": "GREYSCALE_1",
+        "discoverySearchBarTextColor": "BLACK",
+        "autoTicketingOverlayTextColor": "BLACK",
+        "mapAddressTitleColor": "BLACK",
+        "mapAddressDescriptionColor": "GREYSCALE_5",
+        "parkingPanelTitleColor": "BLACK",
+        "parkingPanelUserInfoCodeChipTextColor": "BLACK",
+        "parkingPanelUserInfoTextBoldColor": "BLACK",
+        "parkingPanelUserInfoTextNormalColor": "GREYSCALE_5"
+      },
+      "ScreenMyProfile": {
+        "notificationCenter.descriptionColor": "GREYSCALE_5",
+        "notificationCenter.tagTextColor": "WHITE"
+      },
+      "ScreenMovements.expenseReportColor": "BLACK",
+      "ScreenMovementDetails": {
+        "textColor": "BLACK",
+        "textActiveColor": "FEEDBACK_SUCCESS_DARK",
+        "textWeight": "regular",
+        "textActiveWeight": "bold"
+      },
+      "ScreenNotificationsCenter.descriptionColor": "GREYSCALE_5",
+      "ScreenDateSelection": {
+        "headerTitleColor": "BLACK",
+        "startDateColor": "GREYSCALE_5"
+      },
+      "ScreenZtlPermitsAreaCAvailableTicket.ticketNameColor": "BLACK",
+      "ScreenFind.travelPlannerButton.textColor": "BLACK",
+      "ScreenChoosePlate.addVehicleButtonTextColor": "BLACK",
+      "ScreenFollowTheTripMap.FollowTheTripIndicationInfoCard.headerTitleColor": "BLACK"
+    }
+  }
