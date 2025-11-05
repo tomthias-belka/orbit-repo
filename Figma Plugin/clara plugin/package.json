@@ -1,0 +1,21 @@
+{
+  "name": "clara-tokens",
+  "version": "1.0.0",
+  "description": "Figma plugin for importing/exporting design tokens in W3C format",
+  "scripts": {
+    "build": "tsc && cp dist/main-figma.js code.js",
+    "dev": "tsc --watch",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@figma/plugin-typings": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0"
+  },
+  "keywords": ["figma", "plugin", "design-tokens", "w3c", "clara"],
+  "author": "Mattia Marinangeli"
+}
