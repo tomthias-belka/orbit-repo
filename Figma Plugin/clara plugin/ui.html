@@ -1670,7 +1670,6 @@
       margin: 0 !important;
     }
 
-    /* Fix GitHub icon margin in icon mode */
     .footer-btn.icon-only svg[style*="margin-right"] {
       margin-right: 0 !important;
     }
@@ -7586,12 +7585,6 @@ Example:
         case 'collection-management-result':
           handleCollectionManagementResult(data);
           break;
-        case 'github-test-result':
-          handleGitHubTestResult(data);
-          break;
-        case 'github-config-result':
-          handleGitHubConfigResult(data);
-          break;
       }
     });
 
@@ -7648,10 +7641,8 @@ Example:
       
       // Signal backend that UI is ready (prevents race conditions)
       sendMessage('ui-ready');
-      
+
       requestCollections();
-      loadSavedGitHubConfig();
-      initGitHubSync();
 
       // Initialize Theme Builder
       setupThemeBuilderEventListeners();
@@ -8108,10 +8099,6 @@ Example:
           downloadTextStyles(lastTextStylesExportResult.data, lastTextStylesExportResult.filename);
         }
       });
-      document.getElementById('upload-github-text-styles-button') && document.getElementById('upload-github-text-styles-button').addEventListener('click', () => {
-        uploadTextStylesToGitHub();
-      });
-
     }
     
     // Request collections from main thread
@@ -8489,53 +8476,6 @@ Example:
         const actionText = data.action === 'rename' ? 'rename' :
                           data.action === 'delete' ? 'delete' : 'clear';
         showSnackbar(`❌ Failed to ${actionText} collection: ${data.message}`, 'error');
-      }
-    }
-
-    // GitHub result handlers
-    function handleGitHubTestResult(data) {
-
-      // Find the button based on tabType
-      let suffix = '';
-      if (data.tabType === 'css') {
-        suffix = '-css';
-      } else if (data.tabType === 'text-styles') {
-        suffix = '-text-styles';
-      }
-
-      const button = document.getElementById(`test-github-connection${suffix}`);
-
-      if (button) {
-        // Reset button text to original state
-        button.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--space-2);">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.76791 18.7816L6.84354 18.6849L11.0519 13.7753C11.5516 13.1956 12.4503 13.1964 12.9491 13.7775L17.1566 18.6862C17.916 19.5729 17.1542 20.9228 16.0016 20.7328L11.999 20.065L7.99853 20.7318C6.88745 20.9173 6.13873 19.6667 6.76791 18.7816ZM15.569 19.139L11.999 14.975L8.42897 19.139L11.8768 18.5652C11.9312 18.5561 11.9864 18.5531 12.0413 18.5561L12.1234 18.5652L15.569 19.139Z" fill="currentColor"/>
-          <path d="M12 6.25001C15.1752 6.25001 17.75 8.82479 17.75 12C17.75 12.8203 17.569 13.6186 17.2279 14.37C17.0567 14.7472 16.6121 14.9142 16.2349 14.7429C15.8578 14.5717 15.6908 14.1271 15.8621 13.75C16.1167 13.189 16.25 12.6011 16.25 12C16.25 9.65322 14.3468 7.75 12 7.75C9.65319 7.75 7.74997 9.65322 7.74997 12C7.74997 12.6011 7.88321 13.189 8.1379 13.75C8.30912 14.1271 8.14217 14.5717 7.765 14.7429C7.38783 14.9142 6.94327 14.7472 6.77205 14.37C6.43093 13.6186 6.24997 12.8203 6.24997 12C6.24997 8.82479 8.82476 6.25001 12 6.25001Z" fill="currentColor"/>
-          <path d="M5.62458 4.61841C9.22954 1.49187 14.7704 1.49187 18.3753 4.61836C22.1303 7.8743 22.8235 13.363 20.1092 17.4172C19.8788 17.7614 19.4129 17.8537 19.0687 17.6232C18.7245 17.3928 18.6323 16.927 18.8627 16.5828C21.1589 13.153 20.5723 8.50877 17.3926 5.7516C14.3515 3.11414 9.64841 3.11414 6.60731 5.75165C3.42761 8.50877 2.84107 13.153 5.1372 16.5828C5.36764 16.927 5.27541 17.3928 4.93121 17.6232C4.58701 17.8537 4.12118 17.7614 3.89075 17.4172C1.17648 13.363 1.86967 7.8743 5.62458 4.61841Z" fill="currentColor"/>
-        </svg>
-        Test Connection`;
-
-        button.disabled = false;
-      }
-
-      // Show result message
-      if (data.success) {
-        showSnackbar('✅ GitHub connection successful!', 'success');
-      } else {
-        showSnackbar(`❌ GitHub connection failed: ${data.message}`, 'error');
-      }
-    }
-
-    function handleGitHubConfigResult(data) {
-
-      // Don't show snackbar for silent (automatic) saves
-      if (data.silent) {
-        return;
-      }
-
-      if (data.success) {
-        showSnackbar('✅ GitHub configuration saved successfully!', 'success');
-      } else {
-        showSnackbar(`❌ Failed to save GitHub configuration: ${data.message}`, 'error');
       }
     }
 
@@ -9575,11 +9515,6 @@ Example:
 
         unifiedTextarea.value = jsonString;
         showGetCodeContainer('get-code-container-json');
-        // Show GitHub upload button
-        const githubUploadButton = document.getElementById('upload-github-json-button');
-        if (githubUploadButton) {
-          githubUploadButton.style.display = 'flex';
-        }
         // Update button text for single file
         const downloadButtonText = document.getElementById('download-button-text');
         if (downloadButtonText) {
@@ -9614,10 +9549,6 @@ Example:
           // Single file export
           unifiedTextarea.value = data.json;
           showGetCodeContainer('get-code-container-json');
-          const githubUploadButton = document.getElementById('upload-github-json-button');
-          if (githubUploadButton) {
-            githubUploadButton.style.display = 'flex';
-          }
           const downloadButtonText = document.getElementById('download-button-text');
           if (downloadButtonText) {
             downloadButtonText.textContent = 'Download';
@@ -9635,11 +9566,6 @@ Example:
           const file = data.files[0];
           unifiedTextarea.value = file.content;
           showGetCodeContainer('get-code-container-json');
-          // Show GitHub upload button
-          const githubUploadButton = document.getElementById('upload-github-json-button');
-          if (githubUploadButton) {
-            githubUploadButton.style.display = 'flex';
-          }
           // Update button text for single file
           const downloadButtonText = document.getElementById('download-button-text');
           if (downloadButtonText) {
@@ -9653,11 +9579,6 @@ Example:
 
           unifiedTextarea.value = `Export successful: ${data.message}\n\nGenerated Files:\n${filesList}\n\n(Use download button to get ZIP archive)`;
           showGetCodeContainer('get-code-container-json');
-          // Show GitHub upload button for multiple files
-          const githubUploadButton = document.getElementById('upload-github-json-button');
-          if (githubUploadButton) {
-            githubUploadButton.style.display = 'flex';
-          }
           // Update button text for multiple files
           const downloadButtonText = document.getElementById('download-button-text');
           if (downloadButtonText) {
@@ -9791,11 +9712,6 @@ Example:
         unifiedTextarea.value = data.css;
         document.getElementById('copy-css-button').style.display = 'flex';
         document.getElementById('download-css-button').style.display = 'flex';
-        // Show GitHub upload button
-        const githubUploadButton = document.getElementById('upload-github-css-button');
-        if (githubUploadButton) {
-          githubUploadButton.style.display = 'flex';
-        }
         showSnackbar('CSS export successful', 'success');
       } else {
         // On error, reset button to 'generate' state
@@ -9828,11 +9744,6 @@ Example:
           showGetCodeContainer('get-code-container-css');
           if (downloadButtonText) downloadButtonText.textContent = 'Download';
 
-          // Show GitHub upload button
-          const githubUploadButton = document.getElementById('upload-github-css-button');
-          if (githubUploadButton) {
-            githubUploadButton.style.display = 'flex';
-          }
           showSnackbar(data.message || 'CSS export successful', 'success');
         }
         // Handle multiple files (when exportType is 'separate' or 'by-collection')
@@ -9852,11 +9763,6 @@ Example:
             if (downloadButtonText) downloadButtonText.textContent = 'Download ZIP Archive';
           }
 
-          // Show GitHub upload button
-          const githubUploadButton = document.getElementById('upload-github-css-button');
-          if (githubUploadButton) {
-            githubUploadButton.style.display = 'flex';
-          }
           showSnackbar(`Generated ${data.files.length} CSS file${data.files.length > 1 ? 's' : ''}`, 'success');
         } else {
           // Success but no content
@@ -10440,8 +10346,6 @@ Example:
       }
     }, 100);
     
-    // ================== GITHUB INTEGRATION VALIDATION ==================
-    
     // Text Styles Export Functions
     function exportTextStyles() {
       // Update button state to 'generating'
@@ -10464,15 +10368,11 @@ Example:
 
       console.log('[UI] Exporting with selected properties:', selectedProperties);
 
-      // Get GitHub configuration for potential upload
-      const githubConfig = getGitHubConfig('text-styles');
-
       // Send message to backend
       sendMessage('export-text-styles', {
         format: format,
         preserveAliases: preserveAliases,
-        selectedProperties: selectedProperties,
-        github: githubConfig
+        selectedProperties: selectedProperties
       });
     }
     
@@ -10483,7 +10383,6 @@ Example:
       const textarea = document.getElementById('text-styles-export-textarea');
       const copyButton = document.getElementById('copy-text-styles-button');
       const downloadButton = document.getElementById('download-text-styles-button');
-      const githubButton = document.getElementById('upload-github-text-styles-button');
 
       if (data.success && data.data) {
         // Transition button: generating → generated (1 sec) → update
@@ -10497,11 +10396,6 @@ Example:
 
         // Enable actions dropdown
         showGetCodeContainer('get-code-container-text-styles');
-
-        // Show GitHub upload button if properly configured
-        if (githubButton) {
-          githubButton.style.display = 'flex';
-        }
 
         showSnackbar(data.message || 'Text styles exported successfully', 'success');
       } else {
@@ -10526,581 +10420,6 @@ Example:
       showSnackbar(`Downloaded ${a.download}`, 'success');
     }
     
-    // Upload Text Styles to GitHub
-    function uploadTextStylesToGitHub() {
-      if (!lastTextStylesExportResult || !lastTextStylesExportResult.data) {
-        showSnackbar('No text styles data to upload. Generate export first.', 'warning');
-        return;
-      }
-      
-      const config = getGitHubConfig('text-styles');
-      const errors = validateGitHubConfig(config);
-      
-      if (errors.length > 0) {
-        showSnackbar(`GitHub configuration errors: ${errors.join(', ')}`, 'error');
-        return;
-      }
-      
-      const exportData = lastTextStylesExportResult.data;
-      const filename = config.filename || lastTextStylesExportResult.filename || 'text-styles.json';
-      
-      // Show upload progress
-      showSnackbar('Uploading to GitHub...', 'info');
-      
-      // Encode data to Base64 (must be done in UI thread, not backend)
-      let base64Content;
-      try {
-        base64Content = btoa(unescape(encodeURIComponent(exportData)));
-      } catch (error) {
-        console.error('[Upload Text Styles] Base64 encoding failed:', error);
-        showSnackbar('Failed to encode data for upload', 'error');
-        return;
-      }
-
-      // Send to backend for GitHub upload
-      sendMessage('upload-to-github', {
-        data: exportData,
-        filename: filename,
-        config: config,
-        tabType: 'text-styles',
-        base64Content: base64Content
-      });
-    }
-    
-    // Get GitHub configuration for text styles tab
-    
-    // GitHub validation patterns (from Gemini suggestions)
-    const GITHUB_PATTERNS = {
-      owner: /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i,
-      repo: /^[a-z\d._-]+$/i,
-      branch: /^[^~^:?*\[\]\\]+$/,
-      token: /^ghp_[a-zA-Z0-9]{36}$/
-    };
-
-    // Validate GitHub configuration
-    function validateGitHubConfig(config) {
-      const errors = [];
-      
-      if (!config.token || !config.token.trim()) {
-        errors.push('Personal Access Token is required');
-      } else if (!GITHUB_PATTERNS.token.test(config.token.trim())) {
-        errors.push('Invalid GitHub token format (should start with "ghp_")');
-      }
-      
-      if (!config.repository || !config.repository.trim()) {
-        errors.push('Repository is required');
-      } else {
-        const repoParts = config.repository.trim().split('/');
-        if (repoParts.length !== 2) {
-          errors.push('Repository format should be "owner/repo-name"');
-        } else {
-          const [owner, repo] = repoParts;
-          if (!GITHUB_PATTERNS.owner.test(owner)) {
-            errors.push('Invalid repository owner name');
-          }
-          if (!GITHUB_PATTERNS.repo.test(repo)) {
-            errors.push('Invalid repository name');
-          }
-        }
-      }
-      
-      if (!config.branch || !config.branch.trim()) {
-        errors.push('Branch name is required');
-      } else if (!GITHUB_PATTERNS.branch.test(config.branch.trim())) {
-        errors.push('Invalid branch name');
-      }
-      
-      if (config.directory && config.directory.trim()) {
-        // Basic path validation - no absolute paths or ../ traversal
-        const dir = config.directory.trim();
-        if (dir.startsWith('/') || dir.includes('../')) {
-          errors.push('Invalid directory path');
-        }
-      }
-      
-      return errors;
-    }
-
-    // Load saved GitHub configuration
-    function loadSavedGitHubConfig() {
-      parent.postMessage({ 
-        pluginMessage: { 
-          type: 'load-github-config' 
-        } 
-      }, '*');
-    }
-
-    // Apply loaded configuration to both panels
-
-    // Auto-save GitHub configuration when fields change
-    function saveGitHubConfig() {
-      const config = getGitHubConfig('json'); // Use JSON config as primary
-      parent.postMessage({ 
-        pluginMessage: { 
-          type: 'save-github-config',
-          config: config
-        } 
-      }, '*');
-    }
-
-    // Debounce function to avoid too many saves
-    function debounce(func, wait) {
-      let timeout;
-      return function executedFunction() {
-        const args = Array.prototype.slice.call(arguments);
-        const later = function() {
-          clearTimeout(timeout);
-          func.apply(this, args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    }
-
-    const debouncedSave = debounce(saveGitHubConfig, 1000); // Save after 1 second of inactivity
-
-    // Clear saved GitHub configuration
-    function clearSavedGitHubConfig() {
-      parent.postMessage({ 
-        pluginMessage: { 
-          type: 'clear-github-config' 
-        } 
-      }, '*');
-
-      // Clear both form panels
-      ['', '-css'].forEach(suffix => {
-        const tokenEl = document.getElementById(`github-token${suffix}`);
-        const repoEl = document.getElementById(`github-repo${suffix}`);
-        const branchEl = document.getElementById(`github-branch${suffix}`);
-        const directoryEl = document.getElementById(`github-directory${suffix}`);
-        const overwriteEl = document.getElementById(`github-overwrite-always${suffix}`);
-
-        if (tokenEl) tokenEl.value = '';
-        if (repoEl) repoEl.value = '';
-        if (branchEl) branchEl.value = 'main';
-        if (directoryEl) directoryEl.value = '';
-        if (overwriteEl) overwriteEl.checked = true;
-      });
-    }
-
-
-    // Get GitHub configuration from current tab panel
-    function getGitHubConfig(tabType = 'json') {
-      let suffix = '';
-      if (tabType === 'css') {
-        suffix = '-css';
-      } else if (tabType === 'text-styles') {
-        suffix = '-text-styles';
-      }
-      
-      const tokenEl = document.getElementById(`github-token${suffix}`);
-      const repoEl = document.getElementById(`github-repo${suffix}`);
-      const branchEl = document.getElementById(`github-branch${suffix}`);
-      const directoryEl = document.getElementById(`github-directory${suffix}`);
-      const filenameEl = document.getElementById(`github-filename${suffix}`);
-      const overwriteEl = document.getElementById(`github-overwrite-always${suffix}`);
-      
-      return {
-        token: (tokenEl && tokenEl.value && tokenEl.value.trim()) || '',
-        repository: (repoEl && repoEl.value && repoEl.value.trim()) || '',
-        branch: (branchEl && branchEl.value && branchEl.value.trim()) || 'main',
-        directory: (directoryEl && directoryEl.value && directoryEl.value.trim()) || '',
-        filename: (filenameEl && filenameEl.value && filenameEl.value.trim()) || '',
-        overwriteAlways: (overwriteEl && overwriteEl.checked) || false
-      };
-    }
-
-    // Test GitHub connection
-    async function testGitHubConnection(tabType = 'json') {
-      const config = getGitHubConfig(tabType);
-      const errors = validateGitHubConfig(config);
-      
-      if (errors.length > 0) {
-        showSnackbar(`Validation errors: ${errors.join(', ')}`, 'error');
-        return;
-      }
-      
-      let suffix = '';
-      if (tabType === 'css') {
-        suffix = '-css';
-      } else if (tabType === 'text-styles') {
-        suffix = '-text-styles';
-      }
-      const button = document.getElementById(`test-github-connection${suffix}`);
-      const originalText = button.innerHTML;
-      
-      button.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M20 19.25C20.4142 19.25 20.75 19.5858 20.75 20C20.75 20.3797 20.4678 20.6935 20.1018 20.7432L20 20.75H15C14.5858 20.75 14.25 20.4142 14.25 20C14.25 19.6203 14.5322 19.3065 14.8982 19.2568L15 19.25H20Z" fill="currentColor"/>
-<path d="M9 19.25C9.41421 19.25 9.75 19.5858 9.75 20C9.75 20.3797 9.46785 20.6935 9.10177 20.7432L9 20.75H4C3.58579 20.75 3.25 20.4142 3.25 20C3.25 19.6203 3.53215 19.3065 3.89823 19.2568L4 19.25H9Z" fill="currentColor"/>
-<path d="M11.976 14.27C12.3557 14.27 12.6695 14.5521 12.7192 14.9182L12.726 15.02V18.5C12.726 18.9142 12.3902 19.25 11.976 19.25C11.5963 19.25 11.2825 18.9678 11.2328 18.6018L11.226 18.5V15.02C11.226 14.6058 11.5618 14.27 11.976 14.27Z" fill="currentColor"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 17.75H13.5C14.7426 17.75 15.75 18.7574 15.75 20C15.75 21.2426 14.7426 22.25 13.5 22.25H10.5C9.25736 22.25 8.25 21.2426 8.25 20C8.25 18.7574 9.25736 17.75 10.5 17.75ZM13.5 19.25H10.5C10.0858 19.25 9.75 19.5858 9.75 20C9.75 20.4142 10.0858 20.75 10.5 20.75H13.5C13.9142 20.75 14.25 20.4142 14.25 20C14.25 19.5858 13.9142 19.25 13.5 19.25Z" fill="currentColor"/>
-<path d="M13.0457 8.96967C13.3386 8.67678 13.8134 8.67678 14.1063 8.96967C14.3726 9.23594 14.3968 9.6526 14.1789 9.94621L14.1063 10.0303L12.1063 12.0303C11.8401 12.2966 11.4234 12.3208 11.1298 12.1029L11.0457 12.0303L9.84567 10.8303C9.55278 10.5374 9.55278 10.0626 9.84567 9.76967C10.1119 9.5034 10.5286 9.4792 10.8222 9.69705L10.9063 9.76967L11.576 10.439L13.0457 8.96967Z" fill="currentColor"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M6.54011 7.19457C6.84375 4.66074 8.83863 2.62125 11.4078 2.29515L11.6359 2.27086C14.3144 2.04001 16.7447 3.73366 17.499 6.25007L17.536 6.38399L17.6234 6.40327C19.7428 6.91279 21.2664 8.8266 21.2499 11.0427L21.2435 11.258C21.1116 13.7808 19.0242 15.7567 16.5 15.75H7C4.65279 15.75 2.75 13.8472 2.75 11.5C2.75 9.35989 4.33182 7.58924 6.39006 7.29343L6.532 7.27599L6.54011 7.19457ZM16.8398 7.78804C16.505 7.75384 16.234 7.50086 16.1769 7.16925C15.8136 5.06076 13.8964 3.5816 11.7647 3.76532C9.63306 3.94904 7.99712 5.73444 8 7.87499V7.99999C8 8.4142 7.66421 8.74999 7.25 8.74999H7C5.48122 8.74999 4.25 9.98121 4.25 11.5C4.25 13.0188 5.48122 14.25 7 14.25L16.502 14.25C18.2286 14.2546 19.6554 12.904 19.7455 11.1797C19.8356 9.45544 18.5575 7.96352 16.8398 7.78804Z" fill="currentColor"/>
-</svg>Testing...`;
-      button.disabled = true;
-      
-      try {
-        // Send test connection message to main thread
-        const configWithTabType = Object.assign({}, config, { tabType: tabType });
-        parent.postMessage({
-          pluginMessage: {
-            type: 'test-github-connection',
-            config: configWithTabType
-          }
-        }, '*');
-      } catch (error) {
-        showSnackbar('Connection test failed', 'error');
-        button.innerHTML = originalText;
-        button.disabled = false;
-      }
-    }
-
-    // Handle GitHub upload
-    async function handleGitHubUpload(tabType = 'json', exportData = null) {
-      const config = getGitHubConfig(tabType);
-      const errors = validateGitHubConfig(config);
-      
-      if (errors.length > 0) {
-        showSnackbar(`Please fix: ${errors.join(', ')}`, 'error');
-        return;
-      }
-      
-      if (!exportData) {
-        showSnackbar('No data to upload. Please generate export first.', 'error');
-        return;
-      }
-      
-      const button = document.getElementById(`upload-github-${tabType}-button`);
-      const originalText = button.innerHTML;
-      
-      button.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--space-2);"><path d="M12 4.25C15.4107 4.25 18.2305 6.77957 18.6858 10.065L18.714 10.304L18.8538 10.3265C21.0004 10.7162 22.6445 12.5484 22.7451 14.7826L22.75 15C22.75 17.5505 20.7399 19.6315 18.2174 19.7451L18 19.75H16C15.5858 19.75 15.25 19.4142 15.25 19C15.25 18.6203 15.5322 18.3065 15.8982 18.2568L16 18.25H18C19.7949 18.25 21.25 16.7949 21.25 15C21.25 13.2051 19.7949 11.75 18 11.75C17.5858 11.75 17.25 11.4142 17.25 11C17.25 8.10051 14.8995 5.75 12.0004 5.75C9.75363 5.7511 7.75681 7.18223 7.03392 9.3095C6.94225 9.57926 6.70564 9.77378 6.42324 9.81156C4.32306 10.0925 2.75378 11.8825 2.75 14C2.75 16.2782 4.54251 18.1377 6.79408 18.2451L7 18.25H8C8.41421 18.25 8.75 18.5858 8.75 19C8.75 19.3797 8.46784 19.6935 8.10177 19.7432L8 19.75H7C3.82436 19.75 1.25 17.1756 1.25 13.9987C1.2547 11.3708 3.03752 9.1165 5.52227 8.46336L5.774 8.403L5.80044 8.33962C6.82156 5.95479 9.13048 4.35697 11.7383 4.25517L12 4.25Z" fill="currentColor"/><path d="M11.4697 13.4697C11.7359 13.2034 12.1526 13.1792 12.4462 13.3971L12.5303 13.4697L14.5303 15.4697C14.8232 15.7626 14.8232 16.2374 14.5303 16.5303C14.2641 16.7966 13.8474 16.8208 13.5538 16.6029L13.4697 16.5303L12 15.061L10.5303 16.5303C10.2641 16.7966 9.8474 16.8208 9.55379 16.6029L9.46967 16.5303C9.2034 16.2641 9.1792 15.8474 9.39705 15.5538L9.46967 15.4697L11.4697 13.4697Z" fill="currentColor"/><path d="M12 13.25C12.3797 13.25 12.6935 13.5322 12.7432 13.8982L12.75 14V19C12.75 19.4142 12.4142 19.75 12 19.75C11.6203 19.75 11.3065 19.4678 11.2568 19.1018L11.25 19V14C11.25 13.5858 11.5858 13.25 12 13.25Z" fill="currentColor"/></svg>Uploading...';
-      button.disabled = true;
-      
-      try {
-        // Prepare data for the message with Base64 encoding
-        let dataForPlugin;
-        
-        if (exportData.files && exportData.files.length > 1) {
-          // Multiple files: encode each file's content to Base64
-          dataForPlugin = {
-            files: exportData.files.map(file => {
-              // Validate content before encoding
-              if (!file.content || typeof file.content !== 'string') {
-                throw new Error(`Invalid content for file: ${file.filename}`);
-              }
-              
-              // Validate JSON content if it's a JSON file
-              if (file.filename.toLowerCase().endsWith('.json')) {
-                try {
-                  JSON.parse(file.content);
-                } catch (jsonError) {
-                  throw new Error(`Invalid JSON in file ${file.filename}: ${jsonError.message}`);
-                }
-              }
-              
-              // Check file size (GitHub limit: 100MB)
-              const contentSize = file.content.length;
-              if (contentSize > 100 * 1024 * 1024) {
-                throw new Error(`File too large: ${file.filename} (${contentSize} bytes, limit: 100MB)`);
-              }
-              
-              return {
-                filename: file.filename,
-                content: file.content,
-                base64Content: btoa(file.content) // Encode to Base64 HERE in UI thread
-              };
-            })
-          };
-        } else {
-          // Single file: determine content and filename based on export type
-          let singleFileContent, singleFileName;
-          
-          if (tabType === 'json') {
-            // JSON export
-            if (exportData.files && exportData.files.length > 0) {
-              singleFileContent = exportData.files[0].content;
-              singleFileName = exportData.files[0].filename;
-            } else if (exportData.data) {
-              singleFileContent = JSON.stringify(exportData.data, null, 2);
-              singleFileName = config.filename || 'tokens.json';
-            } else if (exportData.json) {
-              singleFileContent = exportData.json;
-              singleFileName = config.filename || 'tokens.json';
-            } else {
-              throw new Error('No valid JSON data found for upload');
-            }
-          } else if (tabType === 'css') {
-            // CSS export
-            if (exportData.css) {
-              singleFileContent = exportData.css;
-              singleFileName = config.filename || 'variables.css';
-            } else {
-              throw new Error('No valid CSS data found for upload');
-            }
-          } else {
-            throw new Error(`Unsupported tab type: ${tabType}`);
-          }
-          
-          // Validate content
-          if (!singleFileContent || typeof singleFileContent !== 'string') {
-            throw new Error('Invalid content for upload');
-          }
-          
-          // Validate JSON content if it's a JSON file
-          if (singleFileName.toLowerCase().endsWith('.json')) {
-            try {
-              JSON.parse(singleFileContent);
-            } catch (jsonError) {
-              throw new Error(`Invalid JSON content: ${jsonError.message}`);
-            }
-          }
-          
-          // Check file size
-          const contentSize = singleFileContent.length;
-          if (contentSize > 100 * 1024 * 1024) {
-            throw new Error(`File too large: ${contentSize} bytes (GitHub limit: 100MB)`);
-          }
-          
-          dataForPlugin = {
-            content: singleFileContent,
-            base64Content: btoa(singleFileContent), // Encode to Base64 HERE in UI thread
-            filename: singleFileName
-          };
-        }
-        
-        // Send upload message to main thread with pre-encoded Base64 data
-        parent.postMessage({
-          pluginMessage: {
-            type: 'github-push',
-            tabType: tabType,
-            config: config,
-            exportData: dataForPlugin
-          }
-        }, '*');
-        
-      } catch (error) {
-        showSnackbar(`Upload failed: ${error.message}`, 'error');
-        button.innerHTML = originalText;
-        button.disabled = false;
-      }
-    }
-
-    // Add event listeners for GitHub functionality
-    function initGitHubEventListeners() {
-      // Test connection buttons
-      const testJsonButton = document.getElementById('test-github-connection');
-      if (testJsonButton) {
-        testJsonButton.addEventListener('click', () => {
-          testGitHubConnection('json');
-        });
-      }
-      
-      const testCssButton = document.getElementById('test-github-connection-css');
-      if (testCssButton) {
-        testCssButton.addEventListener('click', () => {
-          testGitHubConnection('css');
-        });
-      }
-      
-      const testTextStylesButton = document.getElementById('test-github-connection-text-styles');
-      if (testTextStylesButton) {
-        testTextStylesButton.addEventListener('click', () => {
-          testGitHubConnection('text-styles');
-        });
-      }
-      
-      // Clear config buttons
-      const clearConfigJsonButton = document.getElementById('clear-github-config');
-      if (clearConfigJsonButton) {
-        clearConfigJsonButton.addEventListener('click', (e) => {
-          e.preventDefault();
-          clearSavedGitHubConfig();
-        });
-      }
-      
-      // Upload buttons
-      const uploadJsonButton = document.getElementById('upload-github-json-button');
-      if (uploadJsonButton) {
-        uploadJsonButton.addEventListener('click', () => {
-          handleGitHubUpload('json', lastJsonExportResult);
-        });
-      }
-      
-      const uploadCssButton = document.getElementById('upload-github-css-button');
-      if (uploadCssButton) {
-        uploadCssButton.addEventListener('click', () => {
-          handleGitHubUpload('css', lastCssExportResult);
-        });
-      }
-      
-      // Input validation and auto-save on blur for both panels
-      const inputs = ['github-token', 'github-token-css', 'github-repo', 'github-repo-css', 'github-branch', 'github-branch-css', 'github-directory', 'github-directory-css'];
-      inputs.forEach(id => {
-        const input = document.getElementById(id);
-        if (input) {
-          input.addEventListener('blur', () => {
-            // Determine current active tab
-            const activeTab = document.querySelector('.tab.active');
-            let tabType = 'json';
-            if (activeTab && activeTab.dataset.tab === 'css-export') {
-              tabType = 'css';
-            } else if (activeTab && activeTab.dataset.tab === 'text-styles-export') {
-              tabType = 'text-styles';
-            }
-            const config = getGitHubConfig(tabType);
-            const errors = validateGitHubConfig(config);
-            
-            if (errors.length > 0 && input.value.trim()) {
-              input.style.borderColor = 'var(--color-error)';
-              input.title = errors.join(', ');
-            } else {
-              input.style.borderColor = '';
-              input.title = '';
-            }
-            
-            // Auto-save configuration when field loses focus
-            debouncedSave();
-          });
-        }
-      });
-      
-      // Auto-save on checkbox changes
-      const checkboxes = ['github-overwrite-always', 'github-overwrite-always-css'];
-      checkboxes.forEach(id => {
-        const checkbox = document.getElementById(id);
-        if (checkbox) {
-          checkbox.addEventListener('change', () => {
-            debouncedSave();
-          });
-        }
-      });
-    }
-
-    // Handle messages from main thread about GitHub operations
-    window.addEventListener('message', (event) => {
-      const message = event.data && event.data.pluginMessage;
-      if (!message) return;
-      
-      switch (message.type) {
-        case 'github-connection-result':
-          let suffix = '';
-          if (message.tabType === 'css') {
-            suffix = '-css';
-          } else if (message.tabType === 'text-styles') {
-            suffix = '-text-styles';
-          }
-          const button = document.getElementById(`test-github-connection${suffix}`);
-          
-          if (button) {
-            button.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: var(--space-2);">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12.0138 4.25012L12.2526 4.25464C15.6372 4.37939 18.3716 6.9899 18.713 10.303L18.8725 10.33C21.0167 10.7278 22.6454 12.5638 22.7449 14.8007L22.7498 15.0184L22.7442 15.2365C22.6202 17.7592 20.5352 19.75 18 19.75H7C3.82436 19.75 1.25 17.1756 1.25021 13.9819L1.25626 13.7395C1.37761 11.134 3.24194 8.9552 5.75963 8.40635L5.77399 8.403L5.80044 8.3396C6.82156 5.95478 9.13046 4.35697 11.7379 4.25516L12.0138 4.25012ZM11.994 5.749L11.7689 5.75518C9.61743 5.85062 7.73189 7.25558 7.03391 9.30948C6.94224 9.57924 6.70564 9.77377 6.42324 9.81154C4.39263 10.0832 2.84964 11.7695 2.75522 13.7925L2.75 14C2.75 16.3472 4.65278 18.25 7 18.25H18C19.7344 18.25 21.1612 16.8877 21.2453 15.1813L21.25 15C21.25 13.2656 19.8877 11.8388 18.1812 11.7547L17.9816 11.7498C17.5747 11.7398 17.25 11.407 17.25 11C17.25 8.1739 15.0125 5.85738 12.2111 5.75401L11.994 5.749Z" fill="currentColor"/>
-<path d="M13.4697 11.4697C13.7626 11.1768 14.2374 11.1768 14.5303 11.4697C14.7966 11.7359 14.8208 12.1526 14.6029 12.4462L14.5303 12.5303L12.0303 15.0303C11.7641 15.2966 11.3474 15.3208 11.0538 15.1029L10.9697 15.0303L9.46967 13.5303C9.17678 13.2374 9.17678 12.7626 9.46967 12.4697C9.73594 12.2034 10.1526 12.1792 10.4462 12.3971L10.5303 12.4697L11.5 13.439L13.4697 11.4697Z" fill="currentColor"/>
-</svg>Test Connection`;
-            button.disabled = false;
-          }
-          
-          if (message.success) {
-            showSnackbar('GitHub connection successful!', 'success');
-          } else {
-            showSnackbar(`Connection failed: ${message.message || message.error || 'Unknown error'}`, 'error');
-          }
-          break;
-          
-        case 'github-upload-result':
-          const uploadButton = document.getElementById(`upload-github-${message.tabType}-button`);
-          
-          if (uploadButton) {
-            uploadButton.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: var(--space-2);"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Upload to GitHub`;
-            uploadButton.disabled = false;
-          }
-          
-          if (message.success) {
-            const summary = message.summary || {};
-            const successCount = summary.successful || 0;
-            const failCount = summary.failed || 0;
-            const totalCount = successCount + failCount;
-            
-            if (failCount === 0) {
-              const fileWord = successCount === 1 ? 'file' : 'files';
-              showSnackbar(`✓ Successfully uploaded ${successCount} ${fileWord} to GitHub!`, 'success');
-              
-              // Show detailed file list for multiple files
-              if (successCount > 1 && message.fileList) {
-              }
-            } else {
-              const warningMsg = totalCount > 1 
-                ? `Upload completed: ${successCount} successful, ${failCount} failed (${totalCount} total)`
-                : `Upload failed: ${failCount} error(s)`;
-              showSnackbar(warningMsg, 'warning');
-              
-              // Log failed files for debugging
-              if (message.failedFiles && message.failedFiles.length > 0) {
-                console.error('Failed files:', message.failedFiles);
-              }
-            }
-            
-            if (message.commitUrl) {
-              // For multiple files, show enhanced commit info
-              if (totalCount > 1) {
-              }
-            }
-          } else {
-            // Handle upload request prepared by backend
-            if (message.uploadData) {
-              // Use GitHub API to actually upload
-              performGitHubUpload(message.uploadData);
-            } else {
-              showUploadStatus(`❌ Upload failed: ${message.message || 'Unknown error'}`, 'error');
-              showSnackbar(`❌ Upload failed: ${message.message || 'Unknown error'}`, 'error');
-            }
-          }
-          break;
-
-        case 'github-upload-progress':
-          // Show upload progress in the external status bar
-          if (message.current && message.total && message.fileName) {
-            showUploadStatus(`Uploading ${message.fileName} (${message.current}/${message.total})...`, 'info');
-          } else if (message.fileName) {
-            showUploadStatus(`Uploading ${message.fileName}...`, 'info');
-          }
-          break;
-
-        case 'github-config-loaded':
-          if (message.config) {
-            applyGitHubConfigToAllTabs(message.config);
-            // Don't show toast during automatic startup loading
-          }
-          break;
-
-        case 'github-config-saved':
-          if (message.success) {
-            // Optional: Show a subtle success indicator or do nothing for auto-save
-          } else {
-            console.error('[UI] Failed to save GitHub configuration:', message.error);
-            showSnackbar('Failed to save GitHub configuration', 'error');
-          }
-          break;
-
-        case 'github-config-cleared':
-          showSnackbar('GitHub configuration cleared', 'info');
-          // Clear all GitHub fields in all panels
-          ['', '-css', '-text-styles'].forEach(suffix => {
-            const tokenEl = document.getElementById(`github-token${suffix}`);
-            const repoEl = document.getElementById(`github-repo${suffix}`);
-            const branchEl = document.getElementById(`github-branch${suffix}`);
-            const directoryEl = document.getElementById(`github-directory${suffix}`);
-            const overwriteEl = document.getElementById(`github-overwrite-always${suffix}`);
-
-            if (tokenEl) tokenEl.value = '';
-            if (repoEl) repoEl.value = '';
-            if (branchEl) branchEl.value = 'main';
-            if (directoryEl) directoryEl.value = '';
-            if (overwriteEl) overwriteEl.checked = false;
-          });
-          break;
-      }
-    });
-
     // Panel Resize Functionality
     function initPanelResize() {
       document.querySelectorAll('.panel-separator').forEach(separator => {
@@ -11296,218 +10615,6 @@ Example:
       document.querySelectorAll('.footer-btn').forEach(button => {
         footerButtonObserver.observe(button, { attributes: true });
       });
-    }
-
-    // Initialize GitHub synchronization across tabs
-    function initGitHubSync() {
-      // Set up bidirectional sync for all github-sync elements (including directory and filename)
-      const syncGroups = ['token', 'repo', 'branch', 'directory', 'filename', 'overwrite'];
-      
-      syncGroups.forEach(group => {
-        // Get all elements for this sync group
-        const elements = document.querySelectorAll(`[data-sync-group="${group}"]`);
-        
-        
-        // Add event listeners to sync values
-        elements.forEach(element => {
-          const eventType = element.type === 'checkbox' ? 'change' : 'input';
-          
-          element.addEventListener(eventType, () => {
-            const value = element.type === 'checkbox' ? element.checked : element.value;
-            
-            
-            // Update all other elements in the same sync group
-            elements.forEach(otherElement => {
-              if (otherElement !== element) {
-                if (otherElement.type === 'checkbox') {
-                  otherElement.checked = value;
-                } else {
-                  otherElement.value = value;
-                }
-              }
-            });
-            
-            // Save configuration after sync
-            saveGitHubConfigToStorage();
-          });
-        });
-      });
-      
-    }
-    
-    // Save GitHub config to local storage for persistence
-    function saveGitHubConfigToStorage() {
-      const config = {
-        token: document.getElementById('github-token')?.value || '',
-        repo: document.getElementById('github-repo')?.value || '',
-        branch: document.getElementById('github-branch')?.value || 'main',
-        directory: document.getElementById('github-directory')?.value || '',
-        filename: document.getElementById('github-filename')?.value || '',
-        overwrite: document.getElementById('github-overwrite-always')?.checked || false
-      };
-      
-
-      parent.postMessage({
-        pluginMessage: {
-          type: 'save-github-config',
-          config: config,
-          silent: true
-        }
-      }, '*');
-    }
-    
-    // Load and apply GitHub config to all tabs
-    function applyGitHubConfigToAllTabs(config) {
-      if (!config) return;
-      
-      
-      // Handle different property names for backward compatibility
-      const token = config.token || '';
-      const repo = config.repo || config.repository || '';
-      const branch = config.branch || 'main';
-      const directory = config.directory || '';
-      const filename = config.filename || '';
-      const overwrite = config.overwrite !== undefined ? config.overwrite : (config.overwriteAlways !== false);
-      
-      // Apply to JSON tab
-      if (document.getElementById('github-token')) document.getElementById('github-token').value = token;
-      if (document.getElementById('github-repo')) document.getElementById('github-repo').value = repo;
-      if (document.getElementById('github-branch')) document.getElementById('github-branch').value = branch;
-      if (document.getElementById('github-directory')) document.getElementById('github-directory').value = directory;
-      if (document.getElementById('github-filename')) document.getElementById('github-filename').value = filename;
-      if (document.getElementById('github-overwrite-always')) document.getElementById('github-overwrite-always').checked = overwrite;
-      
-      // Apply to CSS tab
-      if (document.getElementById('github-token-css')) document.getElementById('github-token-css').value = token;
-      if (document.getElementById('github-repo-css')) document.getElementById('github-repo-css').value = repo;
-      if (document.getElementById('github-branch-css')) document.getElementById('github-branch-css').value = branch;
-      if (document.getElementById('github-directory-css')) document.getElementById('github-directory-css').value = directory;
-      if (document.getElementById('github-filename-css')) document.getElementById('github-filename-css').value = filename;
-      if (document.getElementById('github-overwrite-always-css')) document.getElementById('github-overwrite-always-css').checked = overwrite;
-      
-      // Apply to Text Styles tab
-      if (document.getElementById('github-token-text-styles')) document.getElementById('github-token-text-styles').value = token;
-      if (document.getElementById('github-repo-text-styles')) document.getElementById('github-repo-text-styles').value = repo;
-      if (document.getElementById('github-branch-text-styles')) document.getElementById('github-branch-text-styles').value = branch;
-      if (document.getElementById('github-directory-text-styles')) document.getElementById('github-directory-text-styles').value = directory;
-      if (document.getElementById('github-filename-text-styles')) document.getElementById('github-filename-text-styles').value = filename;
-      if (document.getElementById('github-overwrite-always-text-styles')) document.getElementById('github-overwrite-always-text-styles').checked = overwrite;
-      
-    }
-
-    // Function to perform actual GitHub upload using the GitHub API
-    async function performGitHubUpload(uploadData) {
-      try {
-        showUploadStatus('Uploading to GitHub...', 'info');
-
-        // Import GitHub API functions (they should be available in the UI context)
-        // Since we're in the UI thread, we can make HTTP requests
-        const { config, filename, content } = uploadData;
-
-        const response = await uploadToGitHub(config, content, filename);
-
-        if (response.success) {
-          showUploadStatus(`✅ Successfully uploaded ${filename} to GitHub`, 'success');
-          showSnackbar(`✅ Successfully uploaded ${filename} to GitHub`, 'success');
-
-          // Auto-hide status after 5 seconds
-          setTimeout(() => hideUploadStatus(), 5000);
-        } else {
-          showUploadStatus(`❌ Upload failed: ${response.message || 'Unknown error'}`, 'error');
-          showSnackbar(`❌ Upload failed: ${response.message || 'Unknown error'}`, 'error');
-        }
-      } catch (error) {
-        console.error('[GitHub Upload] Error:', error);
-        showUploadStatus(`❌ Upload failed: ${error.message}`, 'error');
-        showSnackbar(`❌ Upload failed: ${error.message}`, 'error');
-      }
-    }
-
-    // Function to upload to GitHub (simplified version of src/utils/githubApi.ts)
-    async function uploadToGitHub(config, content, filename) {
-      try {
-        const { token, repository, branch = 'main', directory = 'tokens' } = config;
-
-        if (!token || !repository) {
-          throw new Error('GitHub token and repository are required');
-        }
-
-        const [owner, repo] = repository.split('/');
-        if (!owner || !repo) {
-          throw new Error('Repository must be in format "owner/repo"');
-        }
-
-        const path = directory ? `${directory}/${filename}` : filename;
-        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-
-
-        // Check if file exists (to get SHA if necessary)
-        let existingSha;
-        if (config.overwrite !== false) {
-          try {
-            const checkResponse = await fetch(apiUrl, {
-              method: 'GET',
-              headers: {
-                'Authorization': `token ${token}`,
-                'Accept': 'application/vnd.github.v3+json',
-                'User-Agent': 'Figma-Plugin-Variables-Import-Export'
-              }
-            });
-
-            if (checkResponse.ok) {
-              const existingFile = await checkResponse.json();
-              existingSha = existingFile.sha;
-            }
-          } catch (error) {
-          }
-        }
-
-        // Prepare upload payload
-        const payload = {
-          message: `Update ${filename} from Figma Plugin`,
-          content: btoa(unescape(encodeURIComponent(content))), // Base64 encode UTF-8
-          branch: branch
-        };
-
-        if (existingSha) {
-          payload.sha = existingSha;
-        }
-
-        // Upload file
-        const response = await fetch(apiUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `token ${token}`,
-            'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json',
-            'User-Agent': 'Figma-Plugin-Variables-Import-Export'
-          },
-          body: JSON.stringify(payload)
-        });
-
-        const responseData = await response.json();
-
-        if (!response.ok) {
-          console.error('[GitHubAPI] Upload failed:', responseData);
-          throw new Error(responseData.message || `GitHub API error: ${response.status}`);
-        }
-
-
-        return {
-          success: true,
-          message: `Successfully uploaded ${filename} to GitHub`,
-          url: responseData.content?.html_url,
-          sha: responseData.content?.sha
-        };
-
-      } catch (error) {
-        console.error('[GitHubAPI] Upload error:', error);
-        return {
-          success: false,
-          message: `Failed to upload ${filename}`,
-          error: error.message
-        };
-      }
     }
 
     // Initialize when DOM is loaded
@@ -12238,8 +11345,6 @@ Example:
 
     document.addEventListener('DOMContentLoaded', () => {
       initPlugin();
-      initGitHubEventListeners();
-      initGitHubSync();
       initPanelResize();
       restorePanelWidths();
       initResponsiveButtons();
