@@ -56,15 +56,6 @@ const MESSAGE_TYPES = {
   DELETE_COLLECTION: 'delete-collection',
   CLEAR_ALL_COLLECTIONS: 'clear-all-collections',
   COLLECTION_MANAGEMENT_RESULT: 'collection-management-result',
-  LOAD_GITHUB_CONFIG: 'load-github-config',
-  SAVE_GITHUB_CONFIG: 'save-github-config',
-  CLEAR_GITHUB_CONFIG: 'clear-github-config',
-  TEST_GITHUB_CONNECTION: 'test-github-connection',
-  GITHUB_CONFIG_RESULT: 'github-config-result',
-  GITHUB_TEST_RESULT: 'github-test-result',
-  UPLOAD_TO_GITHUB: 'upload-to-github',
-  GITHUB_UPLOAD_RESULT: 'github-upload-result',
-  GITHUB_UPLOAD_PROGRESS: 'github-upload-progress',
   PREVIEW_IMPORT: 'preview-import',
   PREVIEW_RESULT: 'preview-result'
 } as const;
@@ -157,22 +148,22 @@ class AdvancedAliasResolver {
   /**
    * Risolve un alias di variabile
    */
-  resolveAlias(
+  async resolveAlias(
     aliasValue: any,
     options: AliasResolutionOptions = {}
-  ): AliasResolutionResult {
+  ): Promise<AliasResolutionResult> {
     this.resolutionStack.clear();
-    return this.resolveAliasInternal(aliasValue, options, 0);
+    return await this.resolveAliasInternal(aliasValue, options, 0);
   }
 
   /**
    * Risoluzione interna ricorsiva
    */
-  private resolveAliasInternal(
+  private async resolveAliasInternal(
     aliasValue: any,
     options: AliasResolutionOptions,
     currentDepth: number
-  ): AliasResolutionResult {
+  ): Promise<AliasResolutionResult> {
     const maxDepth = options.maxDepth || this.defaultMaxDepth;
 
     if (currentDepth >= maxDepth) {
@@ -214,7 +205,7 @@ class AdvancedAliasResolver {
     this.resolutionStack.add(aliasId);
 
     try {
-      const referencedVariable = this.findReferencedVariable(aliasId, options.variableMap);
+      const referencedVariable = await this.findReferencedVariable(aliasId, options.variableMap);
 
       if (!referencedVariable) {
         const result: AliasResolutionResult = {
@@ -257,22 +248,57 @@ class AdvancedAliasResolver {
   /**
    * Trova la variabile referenziata
    */
-  private findReferencedVariable(
+  private async findReferencedVariable(
     aliasId: string,
     variableMap?: Map<string, Variable>
-  ): Variable | null {
+  ): Promise<Variable | null> {
+    console.log(`[AdvancedAliasResolver] 🔍 Looking for variable ID: "${aliasId}"`);
+    console.log(`[AdvancedAliasResolver] Variable map size: ${variableMap?.size || 0}, Internal map size: ${this.variableMap?.size || 0}`);
+
+    // Prova prima con la mappa fornita (più veloce)
     if (variableMap && variableMap.has(aliasId)) {
+      console.log(`[AdvancedAliasResolver] ✅ Found in provided map`);
       return variableMap.get(aliasId)!;
     }
 
+    // Prova con la mappa interna
     if (this.variableMap && this.variableMap.has(aliasId)) {
+      console.log(`[AdvancedAliasResolver] ✅ Found in internal map`);
       return this.variableMap.get(aliasId)!;
     }
 
+    // DIAGNOSTIC: Log available keys if not found
+    if (variableMap && variableMap.size > 0) {
+      const sampleKeys = Array.from(variableMap.keys()).slice(0, 5);
+      console.warn(`[AdvancedAliasResolver] ❌ Not found in map. Sample available keys:`, sampleKeys);
+    }
+
+    // Fallback alle API Figma (ASYNC - NON deprecato)
+    // Questo risolve anche variabili remote/external
+    console.log(`[AdvancedAliasResolver] 🔄 Trying Figma API fallback...`);
     try {
-      return figma.variables.getVariableById(aliasId);
+      const variable = await figma.variables.getVariableByIdAsync(aliasId);
+
+      if (variable) {
+        console.log(`[AdvancedAliasResolver] ✅ Found via API: "${variable.name}" (${variable.resolvedType})`);
+
+        // CACHE DINAMICA: Aggiungi alla cache per prossime ricerche
+        if (variableMap) {
+          variableMap.set(aliasId, variable);
+          console.log(`[AdvancedAliasResolver] 💾 Cached in provided map`);
+        }
+        if (this.variableMap) {
+          this.variableMap.set(aliasId, variable);
+          console.log(`[AdvancedAliasResolver] 💾 Cached in internal map`);
+        }
+
+        return variable;
+      }
+
+      console.warn(`[AdvancedAliasResolver] ❌ API returned null for ID: ${aliasId}`);
+      return null;
     } catch (error) {
-      console.warn(`[AdvancedAliasResolver] Failed to get variable by ID: ${aliasId}`, error);
+      console.error(`[AdvancedAliasResolver] ❌ Failed to get variable by ID: ${aliasId}`, error);
       return null;
     }
   }
@@ -318,6 +344,12 @@ class AdvancedAliasResolver {
    * Ottiene la trasformazione di nome di default per il formato
    */
   private getDefaultNameTransform(format?: string): (name: string) => string {
+    if (format === 'tokens' || format === 'json') {
+      // Per token formats, preserve hierarchy with dot notation
+      return (name: string) => name.replace(/\//g, '.');
+    }
+
+    // Conversione standard kebab-case per CSS
     return (name: string) => {
       return name
         .toLowerCase()
@@ -328,10 +360,10 @@ class AdvancedAliasResolver {
   }
 
   /**
-   * Metodo helper per il CSS - risolve alias specificamente per CSS
+   * Metodo helper per il CSS - risolve alias specificamente per CSS (async)
    */
-  resolveCSSAlias(aliasValue: any, variableMap?: Map<string, Variable>): string {
-    const result = this.resolveAlias(aliasValue, {
+  async resolveCSSAlias(aliasValue: any, variableMap?: Map<string, Variable>): Promise<string> {
+    const result = await this.resolveAlias(aliasValue, {
       format: 'css',
       variableMap,
       nameTransform: (name) => name
@@ -353,10 +385,10 @@ class AdvancedAliasResolver {
   }
 
   /**
-   * Metodo helper per JSON/Tokens - risolve alias per formati token
+   * Metodo helper per JSON/Tokens - risolve alias per formati token (async)
    */
-  resolveTokenAlias(aliasValue: any, variableMap?: Map<string, Variable>): string {
-    const result = this.resolveAlias(aliasValue, {
+  async resolveTokenAlias(aliasValue: any, variableMap?: Map<string, Variable>): Promise<string> {
+    const result = await this.resolveAlias(aliasValue, {
       format: 'tokens',
       variableMap
     });
@@ -1422,7 +1454,7 @@ class CSSExporter {
           }
         }
 
-        const cssVariable = this.generateCSSVariable(variable, collection, options, mode);
+        const cssVariable = await this.generateCSSVariable(variable, collection, options, mode);
         if (cssVariable) {
           cssContent += `  ${cssVariable}\n`;
         }
@@ -1455,7 +1487,7 @@ class CSSExporter {
         }
 
         const collectionVariables = variables.filter(v => v.variableCollectionId === collection.id);
-        const cssContent = this.generateCSSForMode(collection, mode, collectionVariables, options);
+        const cssContent = await this.generateCSSForMode(collection, mode, collectionVariables, options);
 
         if (cssContent.trim()) {
           const filename = this.generateCSSFilename(collection.name, mode.name, options);
@@ -1480,7 +1512,7 @@ class CSSExporter {
 
     for (const collection of collections) {
       const collectionVariables = variables.filter(v => v.variableCollectionId === collection.id);
-      const cssContent = this.generateCSSForCollection(collection, collectionVariables, options);
+      const cssContent = await this.generateCSSForCollection(collection, collectionVariables, options);
 
       if (cssContent.trim()) {
         const filename = this.generateCSSFilename(collection.name, null, options);
@@ -1495,12 +1527,12 @@ class CSSExporter {
     };
   }
 
-  private generateCSSForMode(
+  private async generateCSSForMode(
     collection: VariableCollection,
     mode: any,
     variables: Variable[],
     options: CSSExportOptions
-  ): string {
+  ): Promise<string> {
     let cssContent = '';
 
     if (options.cssOptions?.includeComments !== false) {
@@ -1520,7 +1552,7 @@ class CSSExporter {
         }
       }
 
-      const cssVariable = this.generateCSSVariable(variable, collection, options, mode);
+      const cssVariable = await this.generateCSSVariable(variable, collection, options, mode);
       if (cssVariable) {
         cssContent += `  ${cssVariable}\n`;
       }
@@ -1530,11 +1562,11 @@ class CSSExporter {
     return cssContent;
   }
 
-  private generateCSSForCollection(
+  private async generateCSSForCollection(
     collection: VariableCollection,
     variables: Variable[],
     options: CSSExportOptions
-  ): string {
+  ): Promise<string> {
     let cssContent = '';
 
     if (options.cssOptions?.includeComments !== false) {
@@ -1564,7 +1596,7 @@ class CSSExporter {
           }
         }
 
-        const cssVariable = this.generateCSSVariable(variable, collection, options, mode);
+        const cssVariable = await this.generateCSSVariable(variable, collection, options, mode);
         if (cssVariable) {
           cssContent += `  ${cssVariable}\n`;
         }
@@ -1576,12 +1608,12 @@ class CSSExporter {
     return cssContent;
   }
 
-  private generateCSSVariable(
+  private async generateCSSVariable(
     variable: Variable,
     collection: VariableCollection,
     options: CSSExportOptions,
     specificMode?: any
-  ): string | null {
+  ): Promise<string | null> {
     try {
       const mode = specificMode || collection.modes[0];
       const value = variable.valuesByMode[mode.modeId];
@@ -1591,7 +1623,7 @@ class CSSExporter {
       }
 
       const cssName = this.generateCSSVariableName(variable.name, options);
-      const cssValue = this.processCSSValue(variable, value, options);
+      const cssValue = await this.processCSSValue(variable, value, options);
 
       if (cssValue === null) {
         return null;
@@ -1681,7 +1713,7 @@ class CSSExporter {
     return processedName;
   }
 
-  private processCSSValue(variable: Variable, value: any, options: CSSExportOptions): string | null {
+  private async processCSSValue(variable: Variable, value: any, options: CSSExportOptions): Promise<string | null> {
     // CRITICAL FIX: Handle variable aliases FIRST before type-specific processing
     if (value && typeof value === 'object' && value.type === 'VARIABLE_ALIAS') {
       // Check if we should use token references (var()) or resolve to values
@@ -1694,7 +1726,7 @@ class CSSExporter {
         }
       }
       // Fallback: resolve the alias to its value
-      return this.aliasResolver.resolveCSSAlias(value, this.variableMap);
+      return await this.aliasResolver.resolveCSSAlias(value, this.variableMap);
     }
 
     // Handle any other object types that might cause [object Object]
@@ -1702,7 +1734,7 @@ class CSSExporter {
     if (value && typeof value === 'object' && !this.isValidColorObject(value)) {
       // Check if it's a malformed alias (has id but no type)
       if (value.id && !value.type) {
-        return this.aliasResolver.resolveCSSAlias({ type: 'VARIABLE_ALIAS', id: value.id }, this.variableMap);
+        return await this.aliasResolver.resolveCSSAlias({ type: 'VARIABLE_ALIAS', id: value.id }, this.variableMap);
       }
 
       // Log debug info for troubleshooting
@@ -2161,18 +2193,12 @@ class JSONExporter {
       }
 
       const tokenPath = this.generateTokenPath(variable.name);
-      console.log(`Generating token data for variable ${variable.name}, path:`, tokenPath);
       const tokenData = this.generateTokenData(variable, collection, options, variableMap);
 
       if (tokenData) {
-        console.log(`Token data generated for ${variable.name}:`, tokenData);
         this.setNestedProperty(tokens, tokenPath, tokenData);
-      } else {
-        console.log(`No token data generated for ${variable.name}`);
       }
     }
-
-    console.log(`Collection "${collection.name}" final tokens:`, tokens);
     return tokens;
   }
 
@@ -2585,7 +2611,7 @@ class JSONExporter {
 
   private generateTokenPath(name: string): string[] {
     return name.split('/').map(part =>
-      part.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')
+      part.replace(/[^a-zA-Z0-9]/g, '-').replace(/-+/g, '-')
     );
   }
 
@@ -3170,7 +3196,7 @@ class TextStyleExtractor {
       const boundVars = boundVariables as any;
       if (preserveReferences && boundVars[prop]) {
         console.log(`[TextStyleExtractor] Found bound variable for ${prop}:`, boundVars[prop]);
-        const alias = this.aliasResolver.resolveTokenAlias(boundVars[prop]);
+        const alias = await this.aliasResolver.resolveTokenAlias(boundVars[prop]);
         console.log(`[TextStyleExtractor] Resolved alias: ${alias}`);
         return alias;
       }
@@ -3336,26 +3362,6 @@ figma.ui.onmessage = async (msg: PluginMessage): Promise<void> => {
 
       case MESSAGE_TYPES.CLEAR_ALL_COLLECTIONS:
         await handleClearAllCollections();
-        break;
-
-      case MESSAGE_TYPES.LOAD_GITHUB_CONFIG:
-        await handleLoadGitHubConfig();
-        break;
-
-      case MESSAGE_TYPES.SAVE_GITHUB_CONFIG:
-        await handleSaveGitHubConfig(msg);
-        break;
-
-      case MESSAGE_TYPES.CLEAR_GITHUB_CONFIG:
-        await handleClearGitHubConfig();
-        break;
-
-      case MESSAGE_TYPES.TEST_GITHUB_CONNECTION:
-        await handleTestGitHubConnection(msg);
-        break;
-
-      case MESSAGE_TYPES.UPLOAD_TO_GITHUB:
-        await handleUploadToGitHub(msg);
         break;
 
       case MESSAGE_TYPES.PREVIEW_IMPORT:
@@ -4157,6 +4163,21 @@ async function processCollectionSimple(
               figmaType
             );
           } else {
+            // Type is the same - check if scope and value are identical
+            const shouldSkipUpdate = await shouldSkipVariableUpdate(
+              variable,
+              tokenValue,
+              figmaType,
+              collectionInfo,
+              isMultiMode
+            );
+
+            if (shouldSkipUpdate) {
+              console.log(`[simpleImport] ⏭️  Skipping ${currentPath}: value is unchanged, preserving manual configuration`);
+              variableCount++; // Count it but don't update
+              continue; // Skip to next variable
+            }
+
             console.log(`[simpleImport] Reusing existing variable: ${currentPath}`);
           }
         } else {
@@ -4238,6 +4259,127 @@ async function processCollectionSimple(
   }
 
   return variableCount;
+}
+
+// ================== HELPER: SKIP UPDATE CHECK ==================
+
+/**
+ * Check if a variable update should be skipped to protect manual configurations.
+ * An update is skipped if the variable's value(s) are identical to the incoming token values.
+ * This preserves any manual changes to properties like scopes.
+ *
+ * @param variable - The existing Figma variable
+ * @param tokenValue - The new value from the import JSON
+ * @param figmaType - The Figma variable type
+ * @param collectionInfo - Collection and mode information
+ * @param isMultiMode - Whether the token value is multi-mode
+ * @returns true if the update should be skipped (value unchanged)
+ */
+async function shouldSkipVariableUpdate(
+  variable: Variable,
+  tokenValue: any,
+  figmaType: 'COLOR' | 'FLOAT' | 'STRING' | 'BOOLEAN',
+  collectionInfo: any,
+  isMultiMode: boolean
+): Promise<boolean> {
+  try {
+    // Get current variable value(s) for comparison
+    const collection = collectionInfo.collection as VariableCollection;
+
+    // Compare values for all modes
+    if (isMultiMode) {
+      // Multi-mode: check all mode values
+      for (const modeName in tokenValue) {
+        const modeId = collectionInfo.modeIds[modeName];
+        if (!modeId) continue;
+
+        const currentValue = variable.valuesByMode[modeId];
+        const newValue = validateValueForVariableType(tokenValue[modeName], figmaType);
+
+        // If it's an alias, don't skip (aliases need to be resolved)
+        if (isAliasMarker(newValue)) {
+          return false;
+        }
+
+        // Compare values
+        if (!areValuesEqual(currentValue, newValue, figmaType)) {
+          return false; // Values differ, don't skip
+        }
+      }
+    } else {
+      // Single mode: check default mode value
+      const modeNames = Object.keys(collectionInfo.modeIds);
+      const targetMode = collectionInfo.modeIds['Default'] ? 'Default' : modeNames[0];
+      const targetModeId = collectionInfo.modeIds[targetMode];
+
+      const currentValue = variable.valuesByMode[targetModeId];
+      const newValue = validateValueForVariableType(tokenValue, figmaType);
+
+      // If it's an alias, don't skip
+      if (isAliasMarker(newValue)) {
+        return false;
+      }
+
+      // Compare values
+      if (!areValuesEqual(currentValue, newValue, figmaType)) {
+        return false; // Values differ, don't skip
+      }
+    }
+
+    // Values are the same - now check scopes
+    // We skip only if values match (scopes are considered "manually configured")
+    console.log(`[shouldSkipVariableUpdate] Values match for ${variable.name}, preserving existing configuration`);
+    return true;
+
+  } catch (error) {
+    console.error(`[shouldSkipVariableUpdate] Error checking variable ${variable.name}:`, error);
+    return false; // On error, proceed with update
+  }
+}
+
+/**
+ * Compare two variable values for equality based on type.
+ *
+ * @param currentValue - Current value in Figma
+ * @param newValue - New value from import
+ * @param figmaType - Variable type
+ * @returns true if values are equal
+ */
+function areValuesEqual(
+  currentValue: any,
+  newValue: any,
+  figmaType: 'COLOR' | 'FLOAT' | 'STRING' | 'BOOLEAN'
+): boolean {
+  // Handle variable alias references
+  if (typeof currentValue === 'object' && currentValue !== null && 'id' in currentValue) {
+    // Current value is an alias reference - don't skip (we want to update)
+    return false;
+  }
+
+  switch (figmaType) {
+    case 'COLOR':
+      if (!currentValue || !newValue) return false;
+      // Compare RGB values with small tolerance for floating point
+      const tolerance = 0.001;
+      return Math.abs(currentValue.r - newValue.r) < tolerance &&
+             Math.abs(currentValue.g - newValue.g) < tolerance &&
+             Math.abs(currentValue.b - newValue.b) < tolerance &&
+             (currentValue.a === undefined || newValue.a === undefined ||
+              Math.abs((currentValue.a ?? 1) - (newValue.a ?? 1)) < tolerance);
+
+    case 'FLOAT':
+      // Compare numbers with small tolerance
+      return Math.abs(currentValue - newValue) < 0.0001;
+
+    case 'STRING':
+      return String(currentValue) === String(newValue);
+
+    case 'BOOLEAN':
+      return Boolean(currentValue) === Boolean(newValue);
+
+    default:
+      return false;
+  }
 }
 
 // ================== ALIAS RESOLUTION FUNCTIONS (STEP 2) ==================
@@ -4915,6 +5057,7 @@ async function handleExportJson(msg: any): Promise<void> {
       types: options?.types || [],
       exportType: options?.exportType || 'combined',
       format: options?.format || 'w3c',
+      includeModes: options?.includeModes || false,
       jsonOptions: {
         includeMetadata: options?.jsonOptions?.includeMetadata === true,
         includeAliases: options?.jsonOptions?.includeAliases !== false,
@@ -4962,6 +5105,7 @@ async function handleExportJsonAdvanced(msg: any): Promise<void> {
       types: options?.types || [],
       exportType: options?.exportType || 'combined',
       format: options?.format || 'w3c',
+      includeModes: options?.includeModes || false,
       jsonOptions: {
         includeMetadata: options?.jsonOptions?.includeMetadata === true,
         includeAliases: options?.jsonOptions?.includeAliases !== false,
@@ -5072,12 +5216,49 @@ async function handleExportCss(msg: any): Promise<void> {
 
 async function handleExportTextStyles(msg: any): Promise<void> {
   try {
-    const { format = 'json', preserveAliases = false, github, selectedProperties = [] } = msg;
+    const { format = 'json', preserveAliases = false, selectedProperties = [] } = msg;
     console.log('[Text Styles] ========== EXPORT START ==========');
     console.log('[Text Styles] Format:', format);
     console.log('[Text Styles] Preserve Aliases:', preserveAliases);
     console.log('[Text Styles] Selected properties:', selectedProperties);
     console.log('[Text Styles] Selected properties count:', selectedProperties.length);
+
+    // Build variable map if preserveAliases is true
+    let variableMap: Map<string, Variable> | undefined;
+    if (preserveAliases) {
+      console.log('[Text Styles] Building variable map for alias resolution...');
+      variableMap = new Map();
+
+      const collections = await figma.variables.getLocalVariableCollectionsAsync();
+      console.log(`[Text Styles] Found ${collections.length} local collections`);
+
+      for (const collection of collections) {
+        console.log(`[Text Styles] Processing collection: "${collection.name}" (${collection.variableIds.length} variables)`);
+        const variables = collection.variableIds.map(id => figma.variables.getVariableByIdAsync(id));
+        const resolvedVariables = await Promise.all(variables);
+
+        resolvedVariables.forEach(variable => {
+          if (variable) {
+            variableMap!.set(variable.id, variable);
+          }
+        });
+      }
+
+      console.log(`[Text Styles] Variable map built with ${variableMap.size} variables`);
+
+      // DIAGNOSTIC: Log sample variable IDs and names
+      if (variableMap.size > 0) {
+        const sampleKeys = Array.from(variableMap.keys()).slice(0, 5);
+        console.log('[Text Styles] Sample variable IDs in map:', sampleKeys);
+
+        sampleKeys.forEach(key => {
+          const variable = variableMap!.get(key);
+          console.log(`[Text Styles]   - ID "${key}" → "${variable?.name}" (${variable?.resolvedType})`);
+        });
+      } else {
+        console.warn('[Text Styles] ⚠️ Variable map is EMPTY!');
+      }
+    }
 
     // Extract text styles using the new async API
     const result = await textStyleExtractor.extractTextStyles({
@@ -5085,7 +5266,8 @@ async function handleExportTextStyles(msg: any): Promise<void> {
       includeErrorDetails: true,
       skipFontLoading: false,
       batchSize: 10,
-      preserveAliases: preserveAliases
+      preserveAliases: preserveAliases,
+      variableMap: variableMap
     });
 
     if (!result.success) {
@@ -5310,212 +5492,6 @@ async function handleClearAllCollections(): Promise<void> {
       message: (error as Error).message
     });
     figma.notify(`❌ Failed to clear collections: ${(error as Error).message}`, { error: true });
-  }
-}
-
-// ===== GITHUB HANDLERS =====
-
-async function handleLoadGitHubConfig(): Promise<void> {
-  try {
-    console.log('[Plugin] Loading GitHub config from storage');
-
-    const savedConfig = await figma.clientStorage.getAsync('github-config');
-
-    // Redact sensitive data for logging
-    const redactedConfig = savedConfig ? {
-      ...savedConfig,
-      token: savedConfig.token ? '***REDACTED***' : null
-    } : null;
-    console.log('[Plugin] Loaded GitHub config:', redactedConfig);
-
-    figma.ui.postMessage({
-      type: 'github-config-loaded',
-      success: true,
-      config: savedConfig || null
-    });
-
-  } catch (error) {
-    console.error('Error loading GitHub config:', error);
-    figma.ui.postMessage({
-      type: 'github-config-loaded',
-      success: false,
-      config: null,
-      error: (error as Error).message
-    });
-  }
-}
-
-async function handleSaveGitHubConfig(msg: any): Promise<void> {
-  try {
-    // Redact sensitive data for logging
-    const redactedConfig = {
-      ...msg.config,
-      token: msg.config.token ? '***REDACTED***' : null
-    };
-    console.log('[Plugin] Saving GitHub config:', redactedConfig);
-
-    await figma.clientStorage.setAsync('github-config', msg.config);
-
-    figma.ui.postMessage({
-      type: MESSAGE_TYPES.GITHUB_CONFIG_RESULT,
-      success: true,
-      action: 'save',
-      message: 'GitHub configuration saved successfully',
-      silent: msg.silent || false
-    });
-
-    if (!msg.silent) {
-      figma.notify('✅ GitHub configuration saved', { timeout: 2000 });
-    }
-  } catch (error) {
-    console.error('Error saving GitHub config:', error);
-    figma.ui.postMessage({
-      type: MESSAGE_TYPES.GITHUB_CONFIG_RESULT,
-      success: false,
-      action: 'save',
-      message: (error as Error).message,
-      silent: msg.silent || false
-    });
-    figma.notify('❌ Failed to save GitHub configuration', { error: true });
-  }
-}
-
-async function handleClearGitHubConfig(): Promise<void> {
-  try {
-    console.log('[Plugin] Clearing GitHub config from storage');
-
-    await figma.clientStorage.deleteAsync('github-config');
-
-    console.log('[Plugin] GitHub config cleared successfully');
-
-    figma.ui.postMessage({
-      type: 'github-config-cleared',
-      success: true
-    });
-
-    figma.notify('🗑️ GitHub configuration cleared', { timeout: 2000 });
-
-  } catch (error) {
-    console.error('Error clearing GitHub config:', error);
-    figma.ui.postMessage({
-      type: 'github-config-cleared',
-      success: false,
-      error: (error as Error).message
-    });
-    figma.notify('❌ Failed to clear GitHub configuration', { error: true });
-  }
-}
-
-async function handleTestGitHubConnection(msg: any): Promise<void> {
-  const startTime = Date.now();
-  const TIMEOUT_MS = 5000; // 5 second timeout
-
-  try {
-    console.log('[Plugin] Testing GitHub connection for tab:', msg.config?.tabType);
-
-    const config = msg.config;
-
-    if (!config || !config.token || !config.repository) {
-      throw new Error('Missing required GitHub configuration: token or repository');
-    }
-
-    // Parse repository field into owner and repo
-    let owner: string, repo: string;
-
-    if (config.repository.includes('/')) {
-      [owner, repo] = config.repository.split('/');
-    } else {
-      throw new Error('Repository must be in format "owner/repo"');
-    }
-
-    if (!config.token || !owner || !repo) {
-      throw new Error('Missing required GitHub configuration: token, owner, or repository');
-    }
-
-    // Add a small delay to simulate network request
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // Check if we've exceeded timeout
-    if (Date.now() - startTime > TIMEOUT_MS) {
-      throw new Error('Connection test timeout');
-    }
-
-    // Since Figma plugins can't make external HTTP requests directly,
-    // we'll do basic validation and return success
-    // The actual connection test would need to be handled by the UI
-    console.log('[Plugin] GitHub config validation passed');
-
-    figma.ui.postMessage({
-      type: MESSAGE_TYPES.GITHUB_TEST_RESULT,
-      success: true,
-      tabType: config.tabType,
-      message: 'GitHub configuration is valid'
-    });
-
-    figma.notify('✅ GitHub connection test passed', { timeout: 2000 });
-  } catch (error) {
-    console.error('Error testing GitHub connection:', error);
-    figma.ui.postMessage({
-      type: MESSAGE_TYPES.GITHUB_TEST_RESULT,
-      success: false,
-      tabType: msg.config && msg.config.tabType,
-      message: (error as Error).message
-    });
-    figma.notify('❌ GitHub connection test failed', { error: true });
-  }
-}
-
-async function handleUploadToGitHub(msg: any): Promise<void> {
-  try {
-    console.log('[Plugin] Handling GitHub upload:', msg);
-
-    const { data, filename, config, tabType } = msg;
-
-    if (!config || !config.token || !config.repository) {
-      throw new Error('Missing GitHub configuration');
-    }
-
-    // Convert config format if needed
-    const uploadConfig = {
-      token: config.token,
-      repository: config.repository,
-      branch: config.branch || 'main',
-      directory: config.directory || 'tokens',
-      overwrite: config.overwrite !== false
-    };
-
-    // Send progress update
-    figma.ui.postMessage({
-      type: MESSAGE_TYPES.GITHUB_UPLOAD_PROGRESS,
-      tabType: tabType,
-      current: 1,
-      total: 1,
-      fileName: filename
-    });
-
-    // Since Figma plugins can't make HTTP requests directly,
-    // we send the request data back to UI for actual upload
-    figma.ui.postMessage({
-      type: MESSAGE_TYPES.GITHUB_UPLOAD_RESULT,
-      success: true,
-      tabType: tabType,
-      message: 'Upload request prepared',
-      uploadData: {
-        config: uploadConfig,
-        filename: filename,
-        content: data
-      }
-    });
-
-  } catch (error) {
-    console.error('Error handling GitHub upload:', error);
-    figma.ui.postMessage({
-      type: MESSAGE_TYPES.GITHUB_UPLOAD_RESULT,
-      success: false,
-      tabType: msg.tabType,
-      message: (error as Error).message
-    });
-    figma.notify('❌ GitHub upload failed', { error: true });
   }
 }
 
