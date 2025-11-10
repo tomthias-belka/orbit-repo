@@ -17,9 +17,11 @@ export type ParsedColor = RGBColor | RGBAColor;
  * Parsa un valore colore in formato Figma RGB/RGBA
  */
 export function parseColor(colorValue: any): ParsedColor | any {
+  console.log(`[parseColor] Input: ${JSON.stringify(colorValue)}, Type: ${typeof colorValue}`);
 
   // Handle different color formats
   if (typeof colorValue !== 'string') {
+    console.log(`[parseColor] Non-string input, returning as-is:`, colorValue);
     return colorValue;
   }
 
@@ -31,11 +33,13 @@ export function parseColor(colorValue: any): ParsedColor | any {
   // Handle rgba/rgb
   const rgbaMatch = colorValue.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?\s*\)/);
   if (rgbaMatch) {
+    console.log(`[parseColor] Found rgba match:`, rgbaMatch);
     const r = parseInt(rgbaMatch[1], 10) / 255;
     const g = parseInt(rgbaMatch[2], 10) / 255;
     const b = parseInt(rgbaMatch[3], 10) / 255;
     const a = rgbaMatch[4] ? parseFloat(rgbaMatch[4]) : 1;
 
+    console.log(`[parseColor] Parsed rgba - R:${r}, G:${g}, B:${b}, A:${a}`);
     return { r, g, b, a };
   }
 
@@ -46,6 +50,7 @@ export function parseColor(colorValue: any): ParsedColor | any {
   }
 
   // Return as is if format isn't recognized
+  console.log(`[parseColor] Unrecognized format, returning as-is:`, colorValue);
   return colorValue;
 }
 
@@ -53,7 +58,9 @@ export function parseColor(colorValue: any): ParsedColor | any {
  * Parsa un colore hex in formato RGB/RGBA
  */
 export function parseHexColor(hexColor: string): ParsedColor {
+  console.log(`[parseHexColor] Processing hex color: ${hexColor}`);
   const hex = hexColor.substring(1);
+  console.log(`[parseHexColor] Hex without #: ${hex}`);
 
   // Convert 3-digit hex to 6-digit
   let fullHex = hex;
@@ -62,8 +69,10 @@ export function parseHexColor(hexColor: string): ParsedColor {
     for (let i = 0; i < hex.length; i++) {
       fullHex += hex[i] + hex[i];
     }
+    console.log(`[parseHexColor] Expanded 3-digit hex to: ${fullHex}`);
   }
 
+  console.log(`[parseHexColor] Processing full hex: ${fullHex} (length: ${fullHex.length})`);
 
   // Handle hex with alpha (8 digits)
   if (fullHex.length === 8) {
@@ -71,6 +80,7 @@ export function parseHexColor(hexColor: string): ParsedColor {
     const g = parseInt(fullHex.substring(2, 4), 16) / 255;
     const b = parseInt(fullHex.substring(4, 6), 16) / 255;
     const a = parseInt(fullHex.substring(6, 8), 16) / 255;
+    console.log(`[parseHexColor] Parsed 8-digit hex - R:${r}, G:${g}, B:${b}, A:${a}`);
 
     return { r, g, b, a };
   }
@@ -85,11 +95,13 @@ export function parseHexColor(hexColor: string): ParsedColor {
     const gInt = parseInt(gHex, 16);
     const bInt = parseInt(bHex, 16);
 
+    console.log(`[parseHexColor] Hex components - R:${rHex}(${rInt}), G:${gHex}(${gInt}), B:${bHex}(${bInt})`);
 
     const r = rInt / 255;
     const g = gInt / 255;
     const b = bInt / 255;
 
+    console.log(`[parseHexColor] Final RGB values - R:${r}, G:${g}, B:${b}`);
 
     return { r, g, b };
   } else {
@@ -198,6 +210,7 @@ export function colorToCss(value: any, format: 'hex' | 'rgb' | 'auto' = 'auto'):
  * Valida e corregge valori colore per compatibilità Figma
  */
 export function validateColorValues(data: any): void {
+  console.log('[validateColorValues] Starting color validation...');
 
   function validateObject(obj: any, path: string = ''): void {
     for (const [key, value] of Object.entries(obj)) {
@@ -212,6 +225,7 @@ export function validateColorValues(data: any): void {
             try {
               const parsed = parseColor(colorValue);
               if (parsed !== colorValue) {
+                console.log(`[validateColorValues] Fixed color at ${currentPath}: ${colorValue} -> ${JSON.stringify(parsed)}`);
                 if ('$value' in value) {
                   value.$value = parsed;
                 } else {
@@ -230,4 +244,5 @@ export function validateColorValues(data: any): void {
   }
 
   validateObject(data);
+  console.log('[validateColorValues] Color validation completed');
 }

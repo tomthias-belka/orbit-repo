@@ -41,12 +41,12 @@ export class AdvancedAliasResolver {
   constructor(private variableMap?: Map<string, Variable>) {}
 
   /**
-   * Risolve un alias di variabile
+   * Risolve un alias di variabile (async)
    */
-  resolveAlias(
+  async resolveAlias(
     aliasValue: any,
     options: AliasResolutionOptions = {}
-  ): AliasResolutionResult {
+  ): Promise<AliasResolutionResult> {
     // Reset stack per ogni nuova risoluzione top-level
     this.resolutionStack.clear();
 
@@ -56,11 +56,11 @@ export class AdvancedAliasResolver {
   /**
    * Risoluzione interna ricorsiva
    */
-  private resolveAliasInternal(
+  private async resolveAliasInternal(
     aliasValue: any,
     options: AliasResolutionOptions,
     currentDepth: number
-  ): AliasResolutionResult {
+  ): Promise<AliasResolutionResult> {
     const maxDepth = options.maxDepth || this.defaultMaxDepth;
 
     // Verifica limiti di profondità
@@ -107,8 +107,8 @@ export class AdvancedAliasResolver {
     this.resolutionStack.add(aliasId);
 
     try {
-      // Trova la variabile referenziata
-      const referencedVariable = this.findReferencedVariable(aliasId, options.variableMap);
+      // Trova la variabile referenziata (async)
+      const referencedVariable = await this.findReferencedVariable(aliasId, options.variableMap);
 
       if (!referencedVariable) {
         const result: AliasResolutionResult = {
@@ -155,13 +155,13 @@ export class AdvancedAliasResolver {
   }
 
   /**
-   * Trova la variabile referenziata
+   * Trova la variabile referenziata (async) con lazy loading e cache dinamica
    */
-  private findReferencedVariable(
+  private async findReferencedVariable(
     aliasId: string,
     variableMap?: Map<string, Variable>
-  ): Variable | null {
-    // Prova prima con la mappa fornita
+  ): Promise<Variable | null> {
+    // Prova prima con la mappa fornita (più veloce)
     if (variableMap && variableMap.has(aliasId)) {
       return variableMap.get(aliasId)!;
     }
@@ -171,11 +171,26 @@ export class AdvancedAliasResolver {
       return this.variableMap.get(aliasId)!;
     }
 
-    // Fallback alle API Figma (sincrono)
+    // Fallback alle API Figma (ASYNC - NON deprecato)
+    // Questo risolve anche variabili remote/external
     try {
-      return figma.variables.getVariableById(aliasId);
+      const variable = await figma.variables.getVariableByIdAsync(aliasId);
+
+      if (variable) {
+        // CACHE DINAMICA: Aggiungi alla cache per prossime ricerche
+        if (variableMap) {
+          variableMap.set(aliasId, variable);
+        }
+        if (this.variableMap) {
+          this.variableMap.set(aliasId, variable);
+        }
+
+        return variable;
+      }
+
+      return null;
     } catch (error) {
-      console.warn(`[AdvancedAliasResolver] Failed to get variable by ID: ${aliasId}`, error);
+      console.error(`[AdvancedAliasResolver] Failed to get variable by ID: ${aliasId}`, error);
       return null;
     }
   }
@@ -225,8 +240,13 @@ export class AdvancedAliasResolver {
    * Ottiene la trasformazione di nome di default per il formato
    */
   private getDefaultNameTransform(format?: string): (name: string) => string {
+    if (format === 'tokens' || format === 'json') {
+      // Per token formats, preserve hierarchy with dot notation
+      return (name: string) => name.replace(/\//g, '.');
+    }
+
+    // Conversione standard kebab-case per CSS
     return (name: string) => {
-      // Conversione standard kebab-case per CSS
       return name
         .toLowerCase()
         .replace(/[^a-z0-9]/g, '-')
@@ -265,10 +285,10 @@ export class AdvancedAliasResolver {
   }
 
   /**
-   * Metodo helper per il CSS - risolve alias specificamente per CSS
+   * Metodo helper per il CSS - risolve alias specificamente per CSS (async)
    */
-  resolveCSSAlias(aliasValue: any, variableMap?: Map<string, Variable>): string {
-    const result = this.resolveAlias(aliasValue, {
+  async resolveCSSAlias(aliasValue: any, variableMap?: Map<string, Variable>): Promise<string> {
+    const result = await this.resolveAlias(aliasValue, {
       format: 'css',
       variableMap,
       nameTransform: (name) => name
@@ -282,19 +302,14 @@ export class AdvancedAliasResolver {
       return result.resolvedValue;
     }
 
-    // Fallback con informazioni di debug
-    if (result.error) {
-      console.warn(`[AdvancedAliasResolver] CSS alias resolution failed:`, result.error);
-    }
-
     return result.resolvedValue || `/* ALIAS ERROR: ${result.error} */`;
   }
 
   /**
-   * Metodo helper per JSON/Tokens - risolve alias per formati token
+   * Metodo helper per JSON/Tokens - risolve alias per formati token (async)
    */
-  resolveTokenAlias(aliasValue: any, variableMap?: Map<string, Variable>): string {
-    const result = this.resolveAlias(aliasValue, {
+  async resolveTokenAlias(aliasValue: any, variableMap?: Map<string, Variable>): Promise<string> {
+    const result = await this.resolveAlias(aliasValue, {
       format: 'tokens',
       variableMap
     });

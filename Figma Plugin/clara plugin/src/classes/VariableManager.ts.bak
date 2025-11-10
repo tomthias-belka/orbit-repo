@@ -472,6 +472,7 @@ export class VariableManager {
     // Apply scopes if any were determined
     if (scopes.length > 0) {
       variable.scopes = scopes;
+      console.log(`[VariableManager] Auto-assigned scopes for ${token.name}:`, scopes);
     }
   }
 }

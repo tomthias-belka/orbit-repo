@@ -42,6 +42,7 @@ function initializePlugin(): void {
     themeColors: true
   });
 
+  console.log('[Plugin] Luckino Import Export Plugin initialized');
 }
 
 // Message handler

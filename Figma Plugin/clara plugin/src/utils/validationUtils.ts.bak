@@ -46,6 +46,7 @@ export function convertTypeToFigma(tokenType: string): 'COLOR' | 'FLOAT' | 'STRI
  * Valida e converte un valore per il tipo di variabile Figma
  */
 export function validateValueForVariableType(value: any, expectedType: string): any {
+  console.log(`[validateValueForVariableType] Validating value for type ${expectedType}:`, JSON.stringify(value));
 
   switch (expectedType) {
     case 'FLOAT':
@@ -57,6 +58,7 @@ export function validateValueForVariableType(value: any, expectedType: string): 
     case 'BOOLEAN':
       return validateBooleanValue(value);
     default:
+      console.log(`[validateValueForVariableType] DEFAULT: Returning value as-is for type ${expectedType}`);
       return value;
   }
 }
@@ -66,11 +68,13 @@ export function validateValueForVariableType(value: any, expectedType: string): 
  */
 export function validateFloatValue(value: any): number {
   if (typeof value === 'number') {
+    console.log(`[validateFloatValue] Value is already a number`);
     return value;
   }
 
   // Handle alias values that might reference other numeric tokens
   if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
+    console.log(`[validateFloatValue] Alias reference detected, returning as-is for later resolution:`, value);
     return value;
   }
 
@@ -78,10 +82,12 @@ export function validateFloatValue(value: any): number {
   if (typeof value === 'string') {
     const numericValue = parseFloat(value.replace(/px|pt|rem|em|%/, ''));
     if (!isNaN(numericValue)) {
+      console.log(`[validateFloatValue] Parsed numeric value from string:`, numericValue);
       return numericValue;
     }
   }
 
+  console.log(`[validateFloatValue] Converting to number, fallback to 0 if invalid`);
   return parseFloat(String(value)) || 0;
 }
 
@@ -91,6 +97,7 @@ export function validateFloatValue(value: any): number {
 export function validateColorValue(value: any): any {
   // Parse color using parseColor function
   const colorValue = parseColor(value);
+  console.log(`[validateColorValue] Parsed color:`, JSON.stringify(colorValue));
   return colorValue;
 }
 
@@ -99,6 +106,7 @@ export function validateColorValue(value: any): any {
  */
 export function validateStringValue(value: any): string {
   if (typeof value === 'string') {
+    console.log(`[validateStringValue] Value is already a string`);
     return value;
   }
 
@@ -107,6 +115,7 @@ export function validateStringValue(value: any): string {
     try {
       // Convert complex objects (composite tokens) to formatted JSON strings
       const stringValue = JSON.stringify(value, null, 2);
+      console.log(`[validateStringValue] Converted composite token object to JSON string:`, stringValue);
       return stringValue;
     } catch (e) {
       // Fallback if JSON.stringify fails
@@ -117,6 +126,7 @@ export function validateStringValue(value: any): string {
 
   // Convert other types to string
   const stringValue = String(value);
+  console.log(`[validateStringValue] Converted to string:`, stringValue);
   return stringValue;
 }
 
@@ -125,6 +135,7 @@ export function validateStringValue(value: any): string {
  */
 export function validateBooleanValue(value: any): boolean {
   if (typeof value === 'boolean') {
+    console.log(`[validateBooleanValue] Value is already boolean`);
     return value;
   }
 
@@ -137,6 +148,7 @@ export function validateBooleanValue(value: any): boolean {
 
   // Default boolean conversion
   const boolValue = Boolean(value);
+  console.log(`[validateBooleanValue] Converted to boolean:`, boolValue);
   return boolValue;
 }
 

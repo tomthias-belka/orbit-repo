@@ -9,8 +9,10 @@ export async function simpleImportVariables(jsonData: any): Promise<{
   collectionCount: number;
 }> {
   try {
+    console.log('[simpleImport] Starting simple import process');
 
     let data = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+    console.log('[simpleImport] Parsed JSON data:', JSON.stringify(data, null, 2));
 
     const collections: any = {};
     let variableCount = 0;
@@ -21,6 +23,7 @@ export async function simpleImportVariables(jsonData: any): Promise<{
       if (collectionName.startsWith('$')) continue; // Skip metadata
 
       const collectionData = data[collectionName];
+      console.log(`[simpleImport] Processing collection: ${collectionName}`);
 
       // Create or get collection
       const collection = await getOrCreateSimpleCollection(collectionName);
@@ -59,10 +62,12 @@ async function getOrCreateSimpleCollection(name: string) {
     let collection = collections.find(c => c.name === name);
 
     if (collection) {
+      console.log(`[simpleImport] Using existing collection: ${name}`);
       return { collection, modeIds: { 'Default': collection.modes[0].modeId } };
     }
 
     // Create new collection
+    console.log(`[simpleImport] Creating new collection: ${name}`);
     collection = figma.variables.createVariableCollection(name);
 
     return {
@@ -95,6 +100,7 @@ async function processCollectionSimple(
       const tokenType = value.$type || value.type || 'string';
       const tokenValue = value.$value || value.value;
 
+      console.log(`[simpleImport] Processing variable: ${currentPath}, type: ${tokenType}`);
 
       // Convert type to Figma type
       const figmaType = convertTypeToFigma(tokenType);
@@ -121,6 +127,7 @@ async function processCollectionSimple(
         assignSimpleScopes(variable, tokenType, currentPath);
 
         variableCount++;
+        console.log(`[simpleImport] ✓ Created variable: ${currentPath}`);
 
       } catch (error) {
         console.error(`[simpleImport] Failed to create variable ${currentPath}:`, error);
@@ -292,6 +299,8 @@ function assignSimpleScopes(variable: any, tokenType: string, path: string): voi
 
   if (scopes.length > 0) {
     variable.scopes = scopes as any;
+    console.log(`[assignSimpleScopes] Applied scopes to ${path} (${tokenType}): ${scopes.join(', ')}`);
   } else {
+    console.log(`[assignSimpleScopes] No specific scopes assigned to ${path} (type: ${tokenType})`);
   }
 }

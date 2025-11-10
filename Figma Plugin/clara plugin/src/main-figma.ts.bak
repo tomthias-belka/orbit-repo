@@ -252,14 +252,18 @@ class AdvancedAliasResolver {
     aliasId: string,
     variableMap?: Map<string, Variable>
   ): Promise<Variable | null> {
+    console.log(`[AdvancedAliasResolver] 🔍 Looking for variable ID: "${aliasId}"`);
+    console.log(`[AdvancedAliasResolver] Variable map size: ${variableMap?.size || 0}, Internal map size: ${this.variableMap?.size || 0}`);
 
     // Prova prima con la mappa fornita (più veloce)
     if (variableMap && variableMap.has(aliasId)) {
+      console.log(`[AdvancedAliasResolver] ✅ Found in provided map`);
       return variableMap.get(aliasId)!;
     }
 
     // Prova con la mappa interna
     if (this.variableMap && this.variableMap.has(aliasId)) {
+      console.log(`[AdvancedAliasResolver] ✅ Found in internal map`);
       return this.variableMap.get(aliasId)!;
     }
 
@@ -271,17 +275,21 @@ class AdvancedAliasResolver {
 
     // Fallback alle API Figma (ASYNC - NON deprecato)
     // Questo risolve anche variabili remote/external
+    console.log(`[AdvancedAliasResolver] 🔄 Trying Figma API fallback...`);
     try {
       const variable = await figma.variables.getVariableByIdAsync(aliasId);
 
       if (variable) {
+        console.log(`[AdvancedAliasResolver] ✅ Found via API: "${variable.name}" (${variable.resolvedType})`);
 
         // CACHE DINAMICA: Aggiungi alla cache per prossime ricerche
         if (variableMap) {
           variableMap.set(aliasId, variable);
+          console.log(`[AdvancedAliasResolver] 💾 Cached in provided map`);
         }
         if (this.variableMap) {
           this.variableMap.set(aliasId, variable);
+          console.log(`[AdvancedAliasResolver] 💾 Cached in internal map`);
         }
 
         return variable;
@@ -394,14 +402,17 @@ class AdvancedAliasResolver {
 // ========================
 
 function getTokenType(variable: Variable): string {
+  console.log(`[getTokenType] Processing variable: ${variable.name}, type: ${variable.resolvedType}, scopes:`, variable.scopes);
 
   // Handle no scopes or empty array
   if (!variable.scopes || !Array.isArray(variable.scopes) || variable.scopes.length === 0) {
+    console.log(`[getTokenType] No scopes provided, using generic type mapping`);
     return FIGMA_TO_TOKEN_TYPE[variable.resolvedType as keyof typeof FIGMA_TO_TOKEN_TYPE] || 'string';
   }
 
   // Handle ALL_SCOPES - use value inference when possible
   if (variable.scopes.includes('ALL_SCOPES')) {
+    console.log(`[getTokenType] ALL_SCOPES detected, using generic mapping`);
     return FIGMA_TO_TOKEN_TYPE[variable.resolvedType as keyof typeof FIGMA_TO_TOKEN_TYPE] || 'string';
   }
 
@@ -411,13 +422,16 @@ function getTokenType(variable: Variable): string {
     const mappedType = SCOPE_TO_TYPE_MAPPING[scope as keyof typeof SCOPE_TO_TYPE_MAPPING];
 
     if (mappedType) {
+      console.log(`[getTokenType] Mapped single scope "${scope}" to type "${mappedType}"`);
       return mappedType;
     } else {
+      console.log(`[getTokenType] No mapping found for scope "${scope}", using generic mapping`);
       return FIGMA_TO_TOKEN_TYPE[variable.resolvedType as keyof typeof FIGMA_TO_TOKEN_TYPE] || 'string';
     }
   }
 
   // Handle multiple scopes - use priority order
+  console.log(`[getTokenType] Multiple scopes detected (${variable.scopes.length}), applying priority logic`);
 
   // Priority order: more specific scopes first
   const scopePriority = [
@@ -442,6 +456,7 @@ function getTokenType(variable: Variable): string {
   for (const priorityScope of scopePriority) {
     if (variable.scopes.includes(priorityScope as any) && SCOPE_TO_TYPE_MAPPING[priorityScope as keyof typeof SCOPE_TO_TYPE_MAPPING]) {
       const mappedType = SCOPE_TO_TYPE_MAPPING[priorityScope as keyof typeof SCOPE_TO_TYPE_MAPPING];
+      console.log(`[getTokenType] Found priority scope "${priorityScope}" -> "${mappedType}"`);
       return mappedType;
     }
   }
@@ -450,12 +465,14 @@ function getTokenType(variable: Variable): string {
   for (const scope of variable.scopes) {
     const mappedType = SCOPE_TO_TYPE_MAPPING[scope as keyof typeof SCOPE_TO_TYPE_MAPPING];
     if (mappedType) {
+      console.log(`[getTokenType] Using first available mapping: "${scope}" -> "${mappedType}"`);
       return mappedType;
     }
   }
 
   // Final fallback to generic type mapping
   const fallbackType = FIGMA_TO_TOKEN_TYPE[variable.resolvedType as keyof typeof FIGMA_TO_TOKEN_TYPE] || 'string';
+  console.log(`[getTokenType] No scope mappings found, using fallback type mapping: ${variable.resolvedType} -> ${fallbackType}`);
   return fallbackType;
 }
 
@@ -1371,6 +1388,7 @@ class CSSExporter {
       variables.forEach(variable => {
         this.variableMap.set(variable.id, variable);
       });
+      console.log(`[CSSExporter] Built variable map with ${this.variableMap.size} variables`);
 
       // Filter collections based on options
       const filteredCollections = this.filterCollections(collections, options.collections);
@@ -2009,6 +2027,13 @@ class JSONExporter {
     variables: Variable[],
     options: JSONExportOptions
   ): Promise<{ success: boolean; message: string; json?: string }> {
+    console.log('exportSingleJSON called with:', {
+      collectionsCount: collections.length,
+      variablesCount: variables.length,
+      format: options.format,
+      options
+    });
+
     // Create variable lookup map for alias resolution
     const variableMap = new Map<string, Variable>();
     variables.forEach(variable => {
@@ -2016,15 +2041,19 @@ class JSONExporter {
     });
 
     let tokens = this.processCollectionsToTokens(collections, variables, options, variableMap);
+    console.log('Processed tokens:', tokens, 'Token keys:', Object.keys(tokens));
 
     // Post-process for specific formats
     if (options.format === 'style-dictionary') {
+      console.log('Applying Style Dictionary post-processing...');
       tokens = this.flattenForStyleDictionary(tokens);
     } else if (options.format === 'ant-design') {
+      console.log('Applying Ant Design post-processing...');
       tokens = this.wrapForAntDesign(tokens);
     }
 
     const jsonContent = this.formatJSON(tokens, options);
+    console.log('Generated JSON content length:', jsonContent.length);
 
     return {
       success: true,
@@ -2112,10 +2141,18 @@ class JSONExporter {
   ): any {
     const tokens: any = {};
 
+    console.log('Processing collections to tokens:', collections.map(c => ({
+      id: c.id,
+      name: c.name,
+      modes: c.modes?.length || 0
+    })));
+
     for (const collection of collections) {
       const collectionVariables = variables.filter(v => v.variableCollectionId === collection.id);
+      console.log(`Collection ${collection.name}: ${collectionVariables.length} variables`);
 
       const collectionTokens = this.processCollectionToTokens(collection, collectionVariables, options, variableMap);
+      console.log(`Collection ${collection.name} generated tokens:`, Object.keys(collectionTokens));
 
       // ⚠️ CRITICAL: DO NOT use Object.assign() here!
       // Object.assign(tokens, collectionTokens) would merge flat and LOSE collections
@@ -2124,6 +2161,7 @@ class JSONExporter {
       tokens[collection.name] = collectionTokens;
     }
 
+    console.log('Final merged tokens keys:', Object.keys(tokens));
     return tokens;
   }
 
@@ -2135,12 +2173,21 @@ class JSONExporter {
   ): any {
     const tokens: any = {};
 
+    console.log(`Processing collection "${collection.name}" with ${variables.length} variables`);
+    console.log('Variables in collection:', variables.map(v => ({
+      name: v.name,
+      resolvedType: v.resolvedType,
+      modes: Object.keys(v.valuesByMode)
+    })));
+
     for (const variable of variables) {
       // Filter by types if specified
       if (options.types && options.types.length > 0) {
         const tokenType = FIGMA_TO_TOKEN_TYPE[variable.resolvedType];
+        console.log(`Type filtering: variable ${variable.name} (${variable.resolvedType} → ${tokenType}), allowed types:`, options.types);
         // Check against both raw Figma type and converted token type for compatibility
         if (!options.types.includes(variable.resolvedType) && !options.types.includes(tokenType)) {
+          console.log(`Skipping variable ${variable.name} due to type filter`);
           continue;
         }
       }
@@ -2203,6 +2250,7 @@ class JSONExporter {
 
     // 🆕 MULTI-MODE SUPPORT: Check if we should include all modes
     if (options.includeModes && collection.modes.length > 1) {
+      console.log(`[Multi-Mode] Processing variable ${variable.name} with ${collection.modes.length} modes`);
 
       // Create multi-mode value object: { "mode-1": value1, "mode-2": value2, ... }
       const multiModeValue: Record<string, any> = {};
@@ -2225,9 +2273,11 @@ class JSONExporter {
       }
 
       if (!hasAnyValue) {
+        console.log(`Variable ${variable.name} has no values for any mode`);
         return null;
       }
 
+      console.log(`[Multi-Mode] Generated multi-mode value for ${variable.name}:`, multiModeValue);
 
       // Build token with multi-mode value
       switch (format) {
@@ -2281,6 +2331,7 @@ class JSONExporter {
         selectedMode = foundMode;
       } else {
         // No selected mode found for this collection, skip this variable
+        console.log(`Variable ${variable.name} skipped: no selected modes match this collection`);
         return null;
       }
     }
@@ -2292,11 +2343,20 @@ class JSONExporter {
 
     const value = variable.valuesByMode[selectedMode.modeId];
     if (value === undefined) {
+      console.log(`Variable ${variable.name} has no value for mode ${selectedMode.name}`);
       return null;
     }
 
+    console.log(`Processing variable ${variable.name}:`, {
+      resolvedType: variable.resolvedType,
+      value: value,
+      format: format,
+      tokenType: tokenType
+    });
+
     const processedValue = this.processValue(value, variable.resolvedType, variableMap);
 
+    console.log(`Generating token for ${variable.name} with format: ${format}`, { format, tokenType });
 
     switch (format) {
       case 'w3c':
@@ -2332,6 +2392,7 @@ class JSONExporter {
       case 'style-dictionary':
         // Style Dictionary format - hierarchical structure, NO type field
         // Style Dictionary deduces type from CTI structure
+        console.log(`[Style Dictionary] Generating token for ${variable.name}`);
         return {
           value: processedValue,
           // NO type field - Style Dictionary uses CTI structure
@@ -2341,6 +2402,7 @@ class JSONExporter {
 
       case 'ant-design':
         // Ant Design v5 token format - uses specific structure
+        console.log(`[Ant Design] Generating token for ${variable.name} with type: ${tokenType}`);
         const antToken: any = {
           value: processedValue
         };
@@ -2602,6 +2664,7 @@ class JSONExporter {
     };
 
     const converted = convertToStyleDictionary(tokens);
+    console.log('Style Dictionary converted tokens:', Object.keys(converted));
 
     // Apply CTI organization
     const organized = this.organizeToCTI(converted);
@@ -2650,6 +2713,7 @@ class JSONExporter {
     };
 
     traverse(tokens);
+    console.log('[CTI Organization] Organized tokens into CTI structure:', Object.keys(organized));
     return organized;
   }
 
@@ -2743,6 +2807,8 @@ class JSONExporter {
       components
     };
 
+    console.log('Ant Design wrapped tokens with keys:', Object.keys(antDesignTokens));
+    console.log('Ant Design components:', Object.keys(components));
     return wrapped;
   }
 
@@ -3019,9 +3085,11 @@ class TextStyleExtractor {
     errors?: string[];
   }> {
     try {
+      console.log('[TextStyleExtractor] Starting text styles extraction...');
 
       // CRITICAL FIX: Use async API instead of deprecated sync version
       const textStyles = await figma.getLocalTextStylesAsync();
+      console.log(`[TextStyleExtractor] Found ${textStyles.length} text styles`);
 
       if (textStyles.length === 0) {
         return {
@@ -3041,6 +3109,7 @@ class TextStyleExtractor {
 
       for (let i = 0; i < textStyles.length; i += batchSize) {
         const batch = textStyles.slice(i, i + batchSize);
+        console.log(`[TextStyleExtractor] Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(textStyles.length / batchSize)}`);
 
         const batchResults = await this.processBatch(batch, options);
 
@@ -3066,6 +3135,7 @@ class TextStyleExtractor {
         ...(options.includeErrorDetails && errors.length > 0 && { errors })
       };
 
+      console.log('[TextStyleExtractor] Extraction completed:', result.message);
       return result;
 
     } catch (error) {
@@ -3118,12 +3188,16 @@ class TextStyleExtractor {
     const preserveReferences = options.preserveAliases || options.preserveReferences || false;
     const boundVariables = style.boundVariables || {};
 
+    console.log(`[TextStyleExtractor] Processing "${style.name}", preserveReferences: ${preserveReferences}`);
+    console.log(`[TextStyleExtractor] boundVariables keys:`, Object.keys(boundVariables));
 
     // Helper to resolve bound variable
     const resolveBoundVar = async (prop: string, defaultValue: any) => {
       const boundVars = boundVariables as any;
       if (preserveReferences && boundVars[prop]) {
+        console.log(`[TextStyleExtractor] Found bound variable for ${prop}:`, boundVars[prop]);
         const alias = await this.aliasResolver.resolveTokenAlias(boundVars[prop]);
+        console.log(`[TextStyleExtractor] Resolved alias: ${alias}`);
         return alias;
       }
       return defaultValue;
@@ -3233,6 +3307,7 @@ function initializePlugin(): void {
     themeColors: true
   });
 
+  console.log('[Plugin] Luckino Import Export Plugin initialized');
 }
 
 // Message handler
@@ -3313,6 +3388,7 @@ figma.ui.onmessage = async (msg: PluginMessage): Promise<void> => {
 
 // Enhanced validation function from backup
 function validateColorValues(data: any) {
+  console.log('[validateColorValues] Starting color validation...');
 
   function validateObject(obj: any, path: string = '') {
     for (const [key, value] of Object.entries(obj)) {
@@ -3341,6 +3417,7 @@ function validateColorValues(data: any) {
   }
 
   validateObject(data);
+  console.log('[validateColorValues] Color validation completed');
 }
 
 function isValidColorString(colorStr: string): boolean {
@@ -3376,6 +3453,7 @@ function countVariables(obj: any, depth = 0): number {
 
 // PHASE 1: Create all variable structures (no values)
 async function createVariablesFirstPass(data: any, collections: any, variables: any) {
+  console.log('[createVariablesFirstPass] 🏗️ Creating variable structures...');
 
   for (const collectionName in data) {
     if (collectionName.startsWith('$')) continue;
@@ -3388,6 +3466,7 @@ async function createVariablesFirstPass(data: any, collections: any, variables: 
     await createCollectionVariables(collectionName, collectionData, '', collection, variables);
   }
 
+  console.log('[createVariablesFirstPass] ✓ All variable structures created');
 }
 
 async function createCollectionVariables(
@@ -3397,14 +3476,17 @@ async function createCollectionVariables(
   collection: any,
   variables: any
 ) {
+  console.log(`[createCollectionVariables] Processing collection: ${collectionName}, currentPath: ${currentPath}, keys: ${Object.keys(obj).join(', ')}`);
 
   for (const [key, value] of Object.entries(obj)) {
     if (key.startsWith('$')) {
+      console.log(`[createCollectionVariables] Skipping $ key: ${key}`);
       continue;
     }
 
     const path = currentPath ? `${currentPath}/${key}` : key;
     const fullPath = `${collectionName}/${path}`;
+    console.log(`[createCollectionVariables] Processing key: ${key}, path: ${path}, fullPath: ${fullPath}`);
 
     if (value && typeof value === 'object') {
       const tokenObj = value as any;
@@ -3425,9 +3507,11 @@ async function createCollectionVariables(
             v => v.name === path && v.variableCollectionId === collection.collection.id
           );
 
+          console.log(`[createCollectionVariables] Creating/checking variable: ${path}, fullPath: ${fullPath}, collection: ${collectionName}`);
 
           let variable;
           if (existingVar && existingVar.resolvedType === figmaType) {
+            console.log(`[createCollectionVariables] Reusing existing variable ${path}`);
             variable = existingVar;
           } else {
             if (existingVar) {
@@ -3435,6 +3519,7 @@ async function createCollectionVariables(
               existingVar.remove();
             }
             variable = figma.variables.createVariable(path, collection.collection, figmaType);
+            console.log(`[createCollectionVariables] Created new variable ${path}`);
           }
 
           // Apply automatic scopes with error handling
@@ -3447,6 +3532,7 @@ async function createCollectionVariables(
 
           // Store reference
           variables[fullPath] = variable;
+          console.log(`[createCollectionVariables] Stored variable as: ${fullPath}`);
 
         } catch (error) {
           console.error(`[createCollectionVariables] Failed to create variable ${path}:`, error);
@@ -3454,6 +3540,7 @@ async function createCollectionVariables(
 
       } else {
         // This is a group - recurse
+        console.log(`[createCollectionVariables] Processing group: ${path}`);
         await createCollectionVariables(collectionName, value, path, collection, variables);
       }
     }
@@ -3462,6 +3549,7 @@ async function createCollectionVariables(
 
 // PHASE 2: Populate all values with alias queue (from backup)
 async function populateValuesSecondPassWithAliases(data: any, collections: any, variables: any, modes: string[]): Promise<number> {
+  console.log('[populateValuesSecondPassWithAliases] 🎯 Assigning values to variables...');
   const aliasQueue: any[] = [];
 
   for (const collectionName in data) {
@@ -3476,8 +3564,10 @@ async function populateValuesSecondPassWithAliases(data: any, collections: any, 
   }
 
   // Process aliases after all direct values are set
+  console.log(`[populateValuesSecondPassWithAliases] Processing ${aliasQueue.length} aliases...`);
   const processedAliases = await processAliasQueue(aliasQueue, collections, variables, modes);
 
+  console.log('[populateValuesSecondPassWithAliases] ✓ All values assigned');
   return processedAliases;
 }
 
@@ -3523,6 +3613,7 @@ async function populateCollectionValuesWithAliases(
               variable: variable,
               modes: modes
             });
+            console.log(`[populateCollectionValuesWithAliases] Queued alias: ${path} = ${tokenValue}`);
           } else if (typeof tokenValue === 'object' && tokenValue.r === undefined) {
             // Multi-mode value - check each mode for aliases
             let hasAliases = false;
@@ -3548,6 +3639,7 @@ async function populateCollectionValuesWithAliases(
                 isMultiMode: true,
                 modeAliases: modeAliases
               });
+              console.log(`[populateCollectionValuesWithAliases] Queued multi-mode alias: ${path}`);
             } else {
               // Direct multi-mode value
               for (const [modeName, modeValue] of Object.entries(tokenValue)) {
@@ -3555,6 +3647,7 @@ async function populateCollectionValuesWithAliases(
                 if (modeId) {
                   const processedValue = processSimpleValue(modeValue, variable.resolvedType);
                   variable.setValueForMode(modeId, processedValue);
+                  console.log(`[populateCollectionValuesWithAliases] Set ${path} [${modeName}] = ${JSON.stringify(processedValue)}`);
                 }
               }
             }
@@ -3571,6 +3664,7 @@ async function populateCollectionValuesWithAliases(
                 console.error(`[populateCollectionValuesWithAliases] No valid mode found for ${path}, mode: ${modeName}`);
               }
             }
+            console.log(`[populateCollectionValuesWithAliases] Set ${path} = ${JSON.stringify(processedValue)}`);
           }
 
         } catch (error) {
@@ -3588,9 +3682,11 @@ async function populateCollectionValuesWithAliases(
 // Process alias queue using Advanced Alias Resolver
 async function processAliasQueue(aliasQueue: any[], collections: any, variables: any, modes: string[]): Promise<number> {
   if (aliasQueue.length === 0) {
+    console.log('[processAliasQueue] No aliases to process');
     return 0;
   }
 
+  console.log(`[processAliasQueue] Processing ${aliasQueue.length} aliases...`);
   let processedCount = 0;
 
   for (const aliasItem of aliasQueue) {
@@ -3605,6 +3701,7 @@ async function processAliasQueue(aliasQueue: any[], collections: any, variables:
             if (modeId) {
               // Don't process alias through processSimpleValue - use directly
               aliasItem.variable.setValueForMode(modeId, resolvedAlias);
+              console.log(`[processAliasQueue] Resolved alias ${aliasItem.path} [${modeName}] -> VARIABLE_ALIAS(${resolvedAlias.id})`);
               processedCount++;
             }
           }
@@ -3625,6 +3722,7 @@ async function processAliasQueue(aliasQueue: any[], collections: any, variables:
               console.error(`[processAliasQueue] No valid mode found for ${aliasItem.path}, mode: ${modeName}`);
             }
           }
+          console.log(`[processAliasQueue] Resolved alias ${aliasItem.path} -> VARIABLE_ALIAS(${resolvedAlias.id})`);
           processedCount++;
         }
       }
@@ -3633,12 +3731,15 @@ async function processAliasQueue(aliasQueue: any[], collections: any, variables:
     }
   }
 
+  console.log(`[processAliasQueue] ✓ Processed ${processedCount} aliases`);
   return processedCount;
 }
 
 // Correct alias resolution - returns Figma VARIABLE_ALIAS object
 async function resolveAliasValue(aliasStr: string, variables: any, currentCollection: string): Promise<any> {
   const aliasPath = aliasStr.slice(1, -1); // Remove { }
+  console.log(`[resolveAliasValue] Resolving alias: ${aliasPath} in collection: ${currentCollection}`);
+  console.log(`[resolveAliasValue] Available variables:`, Object.keys(variables));
 
   // Try different path variations - prioritizing slash format
   const variations = [
@@ -3652,12 +3753,15 @@ async function resolveAliasValue(aliasStr: string, variables: any, currentCollec
   ];
 
   for (const variation of variations) {
+    console.log(`[resolveAliasValue] Trying variation: ${variation}`);
     const targetVariable = variables[variation];
     if (targetVariable) {
       // Return Figma VARIABLE_ALIAS object, not the resolved value
       const aliasValue = { type: 'VARIABLE_ALIAS', id: targetVariable.id };
+      console.log(`[resolveAliasValue] Found target variable: ${variation} -> VARIABLE_ALIAS(${targetVariable.id})`);
       return aliasValue;
     } else {
+      console.log(`[resolveAliasValue] No variable found for: ${variation}`);
     }
   }
 
@@ -3707,6 +3811,7 @@ async function populateCollectionValues(
               if (modeId) {
                 const processedValue = processSimpleValue(modeValue, variable.resolvedType);
                 variable.setValueForMode(modeId, processedValue);
+                console.log(`[populateCollectionValues] Set ${path} [${modeName}] = ${JSON.stringify(processedValue)}`);
               }
             }
           } else {
@@ -3722,6 +3827,7 @@ async function populateCollectionValues(
                 console.error(`[populateCollectionValues] No valid mode found for ${path}, mode: ${modeName}`);
               }
             }
+            console.log(`[populateCollectionValues] Set ${path} = ${JSON.stringify(processedValue)}`);
           }
 
           count++;
@@ -3821,7 +3927,9 @@ function assignSimpleScopes(variable: any, tokenType: string, path: string): voi
 
   if (scopes.length > 0) {
     variable.scopes = scopes as any;
+    console.log(`[assignSimpleScopes] Applied corrected scopes to ${path} (${tokenType}): ${scopes.join(', ')}`);
   } else {
+    console.log(`[assignSimpleScopes] No specific scopes assigned to ${path} (type: ${tokenType})`);
   }
 }
 
@@ -3833,16 +3941,21 @@ async function simpleImportVariables(jsonData: any): Promise<{
   collectionCount: number;
 }> {
   try {
+    console.log('[simpleImport] Starting simplified import process');
 
     let data = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+    console.log('[simpleImport] Parsed JSON data');
 
     // Check if this is Token Studio format and convert if needed
     if (detectTokenStudioFormat(data)) {
+      console.log('[simpleImport] Detected Token Studio format, converting...');
       data = convertTokenStudioFormat(data);
+      console.log('[simpleImport] Converted to plugin format');
     }
 
     // Pre-validate colors to prevent crashes
     validateColorValues(data);
+    console.log('[simpleImport] ✓ Color validation passed');
 
     let variableCount = 0;
     let collectionCount = 0;
@@ -3852,9 +3965,11 @@ async function simpleImportVariables(jsonData: any): Promise<{
       if (collectionName.startsWith('$')) continue; // Skip metadata
 
       const collectionData = data[collectionName];
+      console.log(`[simpleImport] Processing collection: ${collectionName}`);
 
       // Extract modes for this collection
       const modes = extractModes(collectionData);
+      console.log(`[simpleImport] Detected modes for '${collectionName}':`, modes);
 
       // Create or get collection
       const collection = await getOrCreateSimpleCollection(collectionName, modes);
@@ -3868,23 +3983,28 @@ async function simpleImportVariables(jsonData: any): Promise<{
     }
 
     // === PASSAGGIO 1 COMPLETATO ===
+    console.log(`[simpleImport] ✅ STEP 1 completed: ${variableCount} variables created in ${collectionCount} collections`);
 
     // === PASSAGGIO 2: RISOLUZIONE ALIAS ===
     let aliasResults = { resolved: 0, failed: 0 };
     if (pendingAliases.length > 0) {
+      console.log(`[simpleImport] 🔗 STEP 2: Resolving ${pendingAliases.length} pending aliases...`);
       aliasResults = await resolvePendingAliases();
 
       // Cleanup
       pendingAliases.length = 0;
       localVariablesCache = null;
 
+      console.log(`[simpleImport] ✅ STEP 2 completed: ${aliasResults.resolved} aliases resolved, ${aliasResults.failed} failed`);
     } else {
+      console.log(`[simpleImport] ℹ️ No aliases to resolve`);
     }
 
     const finalMessage = aliasResults.resolved > 0
       ? `Successfully imported ${variableCount} variables (${aliasResults.resolved} aliases resolved) into ${collectionCount} collections`
       : `Successfully imported ${variableCount} variables into ${collectionCount} collections`;
 
+    console.log(`[simpleImport] 🎉 Import completed successfully`);
 
     return {
       success: true,
@@ -3916,6 +4036,7 @@ async function getOrCreateSimpleCollection(name: string, modes: string[] = ['Def
     let collection = collections.find(c => c.name === name);
 
     if (collection) {
+      console.log(`[simpleImport] Using existing collection: ${name}`);
 
       // Get mode IDs from existing collection
       const modeIds: any = {};
@@ -3928,6 +4049,7 @@ async function getOrCreateSimpleCollection(name: string, modes: string[] = ['Def
       const missingModes = modes.filter(mode => !existingModeNames.includes(mode));
 
       if (missingModes.length > 0) {
+        console.log(`[simpleImport] Adding missing modes to existing collection: ${missingModes.join(', ')}`);
 
         // Add missing modes (respecting Figma's mode limit)
         for (const modeName of missingModes) {
@@ -3935,6 +4057,7 @@ async function getOrCreateSimpleCollection(name: string, modes: string[] = ['Def
             try {
               const modeId = collection.addMode(modeName);
               modeIds[modeName] = modeId;
+              console.log(`[simpleImport] Added mode: ${modeName} (ID: ${modeId})`);
             } catch (error) {
               console.warn(`[simpleImport] Cannot add mode "${modeName}" to existing collection - Account limited to ${collection.modes.length} modes only`);
             }
@@ -3953,6 +4076,7 @@ async function getOrCreateSimpleCollection(name: string, modes: string[] = ['Def
       throw new Error(`Cannot create collection "${name}": Maximum collections limit (40) reached. Please delete unused collections first.`);
     }
 
+    console.log(`[simpleImport] Creating new collection: ${name} (${collections.length + 1}/40)`);
     collection = figma.variables.createVariableCollection(name);
 
     // Keep track of mode IDs
@@ -3967,6 +4091,7 @@ async function getOrCreateSimpleCollection(name: string, modes: string[] = ['Def
       try {
         const modeId = collection.addMode(modes[i]);
         modeIds[modes[i]] = modeId;
+        console.log(`[simpleImport] Added mode: ${modes[i]} to new collection`);
       } catch (error) {
         console.warn(`[simpleImport] Cannot add mode "${modes[i]}" to new collection - Account limited to ${collection.modes.length} modes only`);
         break;
@@ -4000,6 +4125,7 @@ async function processCollectionSimple(
       const tokenType = value.$type || value.type || 'string';
       const tokenValue = value.$value || value.value;
 
+      console.log(`[simpleImport] Processing variable: ${currentPath}, type: ${tokenType}`);
 
       // Convert type to Figma type
       const figmaType = convertTypeToFigma(tokenType);
@@ -4029,6 +4155,7 @@ async function processCollectionSimple(
         if (variable) {
           // Variable exists - check type compatibility
           if (variable.resolvedType !== figmaType) {
+            console.log(`[simpleImport] Type mismatch for ${currentPath}: ${variable.resolvedType} → ${figmaType}. Removing old variable.`);
             variable.remove();
             variable = figma.variables.createVariable(
               currentPath,
@@ -4046,10 +4173,12 @@ async function processCollectionSimple(
             );
 
             if (shouldSkipUpdate) {
+              console.log(`[simpleImport] ⏭️  Skipping ${currentPath}: value is unchanged, preserving manual configuration`);
               variableCount++; // Count it but don't update
               continue; // Skip to next variable
             }
 
+            console.log(`[simpleImport] Reusing existing variable: ${currentPath}`);
           }
         } else {
           // Create new variable
@@ -4072,6 +4201,7 @@ async function processCollectionSimple(
 
           if (isAliasMarker(processedModeValue)) {
             // 🛑 ALIAS: Store for STEP 2 resolution
+            console.log(`[simpleImport] 🔗 Alias detected for ${currentPath}: {${processedModeValue.referencePath}}`);
             pendingAliases.push({
               variable: createdVariable,
               modeId: modeId,
@@ -4080,6 +4210,7 @@ async function processCollectionSimple(
             });
           } else {
             // ✅ CONCRETE VALUE: Assign immediately
+            console.log(`[simpleImport] ✓ Assigning concrete value for ${currentPath}`);
             createdVariable.setValueForMode(modeId, processedModeValue);
           }
         };
@@ -4087,6 +4218,7 @@ async function processCollectionSimple(
         // Handle multi-mode values or single value
         if (isMultiMode) {
           // Multi-mode value: process each mode value individually
+          console.log(`[simpleImport] Processing multi-mode value for ${currentPath}`);
           for (const modeName in tokenValue) {
             if (collectionInfo.modeIds[modeName]) {
               processValue(tokenValue[modeName], collectionInfo.modeIds[modeName]);
@@ -4100,6 +4232,7 @@ async function processCollectionSimple(
           const targetMode = collectionInfo.modeIds['Default'] ? 'Default' : modeNames[0];
           const targetModeId = collectionInfo.modeIds[targetMode];
 
+          console.log(`[simpleImport] Processing single value for mode ${targetMode}`);
           processValue(tokenValue, targetModeId);
         }
 
@@ -4107,6 +4240,7 @@ async function processCollectionSimple(
         assignSimpleScopes(variable, tokenType, currentPath);
 
         variableCount++;
+        console.log(`[simpleImport] ✓ Created variable: ${currentPath}`);
 
       } catch (error) {
         console.error(`[simpleImport] Failed to create variable ${currentPath}:`, error);
@@ -4194,6 +4328,7 @@ async function shouldSkipVariableUpdate(
 
     // Values are the same - now check scopes
     // We skip only if values match (scopes are considered "manually configured")
+    console.log(`[shouldSkipVariableUpdate] Values match for ${variable.name}, preserving existing configuration`);
     return true;
 
   } catch (error) {
@@ -4262,11 +4397,13 @@ async function findVariableByPath(path: string): Promise<Variable | null> {
   if (localVariablesCache === null) {
     // Load all variables once for efficiency
     localVariablesCache = await figma.variables.getLocalVariablesAsync();
+    console.log(`[findVariableByPath] Loaded ${localVariablesCache.length} variables into cache`);
   }
 
   // First try: search by direct name
   let targetVar = localVariablesCache.find(v => v.name === figmaPath);
   if (targetVar) {
+    console.log(`[findVariableByPath] Found variable by direct name: ${figmaPath}`);
     return targetVar;
   }
 
@@ -4284,6 +4421,7 @@ async function findVariableByPath(path: string): Promise<Variable | null> {
         v.name === variableOnlyPath
       );
       if (crossCollectionVar) {
+        console.log(`[findVariableByPath] Found cross-collection variable: ${collectionNameGuess}/${variableOnlyPath}`);
         return crossCollectionVar;
       }
     }
@@ -4302,6 +4440,7 @@ async function resolvePendingAliases(): Promise<{ resolved: number, failed: numb
   let resolvedCount = 0;
   let failedCount = 0;
 
+  console.log(`[resolvePendingAliases] Starting resolution of ${pendingAliases.length} pending aliases...`);
 
   // Reset cache to get fresh data
   localVariablesCache = null;
@@ -4326,6 +4465,7 @@ async function resolvePendingAliases(): Promise<{ resolved: number, failed: numb
         const aliasObj = figma.variables.createVariableAlias(targetVariable);
         variable.setValueForMode(modeId, aliasObj);
         resolvedCount++;
+        console.log(`[resolvePendingAliases] ✓ Resolved: ${variable.name} -> ${targetVariable.name}`);
       } catch (e) {
         console.error(`[resolvePendingAliases] ✗ Error creating/assigning alias for ${variable.name}:`, e);
         failedCount++;
@@ -4337,6 +4477,7 @@ async function resolvePendingAliases(): Promise<{ resolved: number, failed: numb
     }
   }
 
+  console.log(`[resolvePendingAliases] Completed: ${resolvedCount} resolved, ${failedCount} failed`);
   return { resolved: resolvedCount, failed: failedCount };
 }
 
@@ -4391,15 +4532,19 @@ function processSimpleValue(value: any, figmaType: string): any {
 }
 
 function parseColor(colorValue: any): any {
+  console.log(`[parseColor] Input: ${JSON.stringify(colorValue)}, Type: ${typeof colorValue}`);
 
   // Handle different color formats
   if (typeof colorValue !== 'string') {
+    console.log(`[parseColor] Non-string input, returning as-is:`, colorValue);
     return colorValue;
   }
 
   // Handle hex
   if (colorValue.startsWith('#')) {
+    console.log(`[parseColor] Processing hex color: ${colorValue}`);
     const hex = colorValue.substring(1);
+    console.log(`[parseColor] Hex without #: ${hex}`);
 
     // Convert 3-digit hex to 6-digit
     let fullHex = hex;
@@ -4408,8 +4553,10 @@ function parseColor(colorValue: any): any {
       for (let i = 0; i < hex.length; i++) {
         fullHex += hex[i] + hex[i];
       }
+      console.log(`[parseColor] Expanded 3-digit hex to: ${fullHex}`);
     }
 
+    console.log(`[parseColor] Processing full hex: ${fullHex} (length: ${fullHex.length})`);
 
     // Handle hex with alpha (8 digits)
     if (fullHex.length === 8) {
@@ -4417,6 +4564,7 @@ function parseColor(colorValue: any): any {
       const g = parseInt(fullHex.substring(2, 4), 16) / 255;
       const b = parseInt(fullHex.substring(4, 6), 16) / 255;
       const a = parseInt(fullHex.substring(6, 8), 16) / 255;
+      console.log(`[parseColor] Parsed 8-digit hex - R:${r}, G:${g}, B:${b}, A:${a}`);
 
       return { r, g, b, a };
     }
@@ -4431,11 +4579,13 @@ function parseColor(colorValue: any): any {
       const gInt = parseInt(gHex, 16);
       const bInt = parseInt(bHex, 16);
 
+      console.log(`[parseColor] Hex components - R:${rHex}(${rInt}), G:${gHex}(${gInt}), B:${bHex}(${bInt})`);
 
       const r = rInt / 255;
       const g = gInt / 255;
       const b = bInt / 255;
 
+      console.log(`[parseColor] Final RGB values - R:${r}, G:${g}, B:${b}`);
 
       return { r, g, b };
     } else {
@@ -4445,13 +4595,16 @@ function parseColor(colorValue: any): any {
   }
 
   // Handle rgba
+  console.log(`[parseColor] Testing for rgba format`);
   const rgbaMatch = colorValue.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?\s*\)/);
   if (rgbaMatch) {
+    console.log(`[parseColor] Found rgba match:`, rgbaMatch);
     const r = parseInt(rgbaMatch[1], 10) / 255;
     const g = parseInt(rgbaMatch[2], 10) / 255;
     const b = parseInt(rgbaMatch[3], 10) / 255;
     const a = rgbaMatch[4] ? parseFloat(rgbaMatch[4]) : 1;
 
+    console.log(`[parseColor] Parsed rgba - R:${r}, G:${g}, B:${b}, A:${a}`);
     return { r, g, b, a };
   }
 
@@ -4480,6 +4633,7 @@ function extractModes(data: any): string[] {
       hasMultiModeValues = true;
       for (const modeName in obj.$value) {
         modes.add(modeName);
+        console.log(`[extractModes] Found mode: ${modeName}`);
       }
     }
 
@@ -4499,19 +4653,23 @@ function extractModes(data: any): string[] {
   // Only add "Default" if no multi-mode values were found
   if (!hasMultiModeValues && modes.size === 0) {
     modes.add("Default");
+    console.log(`[extractModes] No multi-mode values found, using Default mode`);
   }
 
   const result = Array.from(modes).slice(0, LIMITS.MAX_MODES_PER_COLLECTION); // Limit to MAX_MODES_PER_COLLECTION modes (Figma limitation)
+  console.log(`[extractModes] Final modes:`, result);
   return result;
 }
 
 // Validate and convert value to match expected variable type
 function validateValueForVariableType(value: any, expectedType: string): any | AliasMarker {
+  console.log(`[validateValueForVariableType] Validating value for type ${expectedType}:`, JSON.stringify(value));
 
   // 🔍 CHECK FOR ALIAS REFERENCE FIRST (before any type-specific processing)
   if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
     const referencePath = value.replace(/[{}]/g, '').trim();
     if (referencePath.length > 0) {
+      console.log(`[validateValueForVariableType] Alias reference detected:`, referencePath);
       return {
         __isAlias: true,
         referencePath: referencePath
@@ -4523,6 +4681,7 @@ function validateValueForVariableType(value: any, expectedType: string): any | A
   switch (expectedType) {
     case 'FLOAT':
       if (typeof value === 'number') {
+        console.log(`[validateValueForVariableType] FLOAT: Value is already a number`);
         return value;
       }
 
@@ -4530,16 +4689,19 @@ function validateValueForVariableType(value: any, expectedType: string): any | A
       if (typeof value === 'string') {
         const numericValue = parseFloat(value.replace(/px|pt|rem|em|%/, ''));
         if (!isNaN(numericValue)) {
+          console.log(`[validateValueForVariableType] FLOAT: Parsed numeric value from string:`, numericValue);
           return numericValue;
         }
       }
 
+      console.log(`[validateValueForVariableType] FLOAT: Converting to number, fallback to 0 if invalid`);
       return parseFloat(String(value)) || 0;
 
     case 'COLOR':
       // Parse color using parseColor function
       try {
         const colorValue = parseColor(value);
+        console.log(`[validateValueForVariableType] COLOR: Parsed color:`, JSON.stringify(colorValue));
         return colorValue;
       } catch (error) {
         console.error(`[validateValueForVariableType] COLOR parsing failed for value:`, value, error);
@@ -4548,6 +4710,7 @@ function validateValueForVariableType(value: any, expectedType: string): any | A
 
     case 'STRING':
       if (typeof value === 'string') {
+        console.log(`[validateValueForVariableType] STRING: Value is already a string`);
         return value;
       }
       // Handle composite tokens (typography, shadow) by converting objects to readable JSON
@@ -4555,6 +4718,7 @@ function validateValueForVariableType(value: any, expectedType: string): any | A
         try {
           // Convert complex objects (composite tokens) to formatted JSON strings
           const stringValue = JSON.stringify(value, null, 2);
+          console.log(`[validateValueForVariableType] STRING: Converted composite token object to JSON string:`, stringValue);
           return stringValue;
         } catch (e) {
           // Fallback if JSON.stringify fails
@@ -4564,10 +4728,12 @@ function validateValueForVariableType(value: any, expectedType: string): any | A
       }
       // Convert other types to string
       const stringValue = String(value);
+      console.log(`[validateValueForVariableType] STRING: Converted to string:`, stringValue);
       return stringValue;
 
     case 'BOOLEAN':
       if (typeof value === 'boolean') {
+        console.log(`[validateValueForVariableType] BOOLEAN: Value is already boolean`);
         return value;
       }
 
@@ -4580,9 +4746,11 @@ function validateValueForVariableType(value: any, expectedType: string): any | A
 
       // Default boolean conversion
       const boolValue = Boolean(value);
+      console.log(`[validateValueForVariableType] BOOLEAN: Converted to boolean:`, boolValue);
       return boolValue;
 
     default:
+      console.log(`[validateValueForVariableType] DEFAULT: Returning value as-is for type ${expectedType}`);
       return value;
   }
 }
@@ -4616,6 +4784,7 @@ function detectTokenStudioFormat(data: any): boolean {
         );
 
         if (hasTokenStudioTokens) {
+          console.log(`[detectTokenStudioFormat] Found Token Studio format in set: ${setName}`);
           return true;
         }
       }
@@ -4626,6 +4795,7 @@ function detectTokenStudioFormat(data: any): boolean {
 }
 
 function convertTokenStudioFormat(data: any): any {
+  console.log('[convertTokenStudioFormat] Converting Token Studio JSON to plugin format');
 
   const converted: any = {};
   const metadata = data.$metadata || {};
@@ -4635,17 +4805,20 @@ function convertTokenStudioFormat(data: any): any {
   const tokenSetOrder = metadata.tokenSetOrder ||
     Object.keys(data).filter(key => key !== '$themes' && key !== '$metadata');
 
+  console.log('[convertTokenStudioFormat] Processing token sets:', tokenSetOrder);
 
   // Process each token set
   for (const setName of tokenSetOrder) {
     if (!data[setName] || typeof data[setName] !== 'object') continue;
 
+    console.log(`[convertTokenStudioFormat] Processing set: ${setName}`);
     converted[setName] = {};
 
     // Convert tokens in this set
     convertTokenSetRecursive(data[setName], converted[setName]);
   }
 
+  console.log('[convertTokenStudioFormat] Conversion complete');
   return converted;
 }
 
@@ -4666,6 +4839,7 @@ function convertTokenSetRecursive(source: any, target: any): void {
           target[key].$description = (value as any).description;
         }
 
+        console.log(`[convertTokenStudioFormat] Converted token: ${key} (${(value as any).type} -> ${target[key].$type})`);
       } else {
         // This is a nested group, recurse
         target[key] = {};
@@ -4699,6 +4873,7 @@ function convertTokenStudioType(tokenStudioType: string): string {
   };
 
   const convertedType = typeMap[tokenStudioType.toLowerCase()] || 'string';
+  console.log(`[convertTokenStudioType] ${tokenStudioType} -> ${convertedType}`);
   return convertedType;
 }
 
@@ -4706,6 +4881,7 @@ function convertTokenStudioType(tokenStudioType: string): string {
 async function handleUIReady(): Promise<void> {
   try {
     const collections = await figma.variables.getLocalVariableCollectionsAsync();
+    console.log(`[handleUIReady] Found ${collections.length} collections`);
 
     // 🆕 Export W3C JSON for Token Tree View
     let w3cJson: string = '{}';
@@ -4714,6 +4890,7 @@ async function handleUIReady(): Promise<void> {
     // Extract all unique modes from all collections FIRST
     const allModes = new Map<string, { id: string; name: string }>();
     for (const collection of collections) {
+      console.log(`[handleUIReady] Collection "${collection.name}" has ${collection.modes.length} modes, ${collection.variableIds.length} variables`);
       for (const mode of collection.modes) {
         if (!allModes.has(mode.modeId)) {
           allModes.set(mode.modeId, { id: mode.modeId, name: mode.name });
@@ -4721,6 +4898,7 @@ async function handleUIReady(): Promise<void> {
       }
     }
     modesArray = Array.from(allModes.values());
+    console.log(`[handleUIReady] Total unique modes: ${modesArray.length}`);
 
     // Only export if we have collections with variables
     if (collections.length > 0 && collections.some(c => c.variableIds.length > 0)) {
@@ -4733,10 +4911,13 @@ async function handleUIReady(): Promise<void> {
           exportType: 'combined' as const
         };
 
+        console.log('[handleUIReady] Starting W3C JSON export...');
         const exportResult = await jsonExporter.exportToJSON(exportOptions);
 
         if (exportResult.success && exportResult.json) {
           w3cJson = exportResult.json;
+          console.log('[handleUIReady] ✅ W3C JSON exported successfully, length:', w3cJson.length);
+          console.log('[handleUIReady] JSON preview:', w3cJson.substring(0, 200));
         } else {
           console.warn('[handleUIReady] Export failed:', exportResult.message);
         }
@@ -4745,6 +4926,7 @@ async function handleUIReady(): Promise<void> {
         // Continue with empty JSON if export fails
       }
     } else {
+      console.log('[handleUIReady] No collections or no variables, skipping export');
     }
 
     const response: PluginResponse = {
@@ -5035,15 +5217,23 @@ async function handleExportCss(msg: any): Promise<void> {
 async function handleExportTextStyles(msg: any): Promise<void> {
   try {
     const { format = 'json', preserveAliases = false, selectedProperties = [] } = msg;
+    console.log('[Text Styles] ========== EXPORT START ==========');
+    console.log('[Text Styles] Format:', format);
+    console.log('[Text Styles] Preserve Aliases:', preserveAliases);
+    console.log('[Text Styles] Selected properties:', selectedProperties);
+    console.log('[Text Styles] Selected properties count:', selectedProperties.length);
 
     // Build variable map if preserveAliases is true
     let variableMap: Map<string, Variable> | undefined;
     if (preserveAliases) {
+      console.log('[Text Styles] Building variable map for alias resolution...');
       variableMap = new Map();
 
       const collections = await figma.variables.getLocalVariableCollectionsAsync();
+      console.log(`[Text Styles] Found ${collections.length} local collections`);
 
       for (const collection of collections) {
+        console.log(`[Text Styles] Processing collection: "${collection.name}" (${collection.variableIds.length} variables)`);
         const variables = collection.variableIds.map(id => figma.variables.getVariableByIdAsync(id));
         const resolvedVariables = await Promise.all(variables);
 
@@ -5054,13 +5244,16 @@ async function handleExportTextStyles(msg: any): Promise<void> {
         });
       }
 
+      console.log(`[Text Styles] Variable map built with ${variableMap.size} variables`);
 
       // DIAGNOSTIC: Log sample variable IDs and names
       if (variableMap.size > 0) {
         const sampleKeys = Array.from(variableMap.keys()).slice(0, 5);
+        console.log('[Text Styles] Sample variable IDs in map:', sampleKeys);
 
         sampleKeys.forEach(key => {
           const variable = variableMap!.get(key);
+          console.log(`[Text Styles]   - ID "${key}" → "${variable?.name}" (${variable?.resolvedType})`);
         });
       } else {
         console.warn('[Text Styles] ⚠️ Variable map is EMPTY!');
@@ -5081,16 +5274,25 @@ async function handleExportTextStyles(msg: any): Promise<void> {
       throw new Error(result.message);
     }
 
+    console.log('[Text Styles] Extracted styles count:', result.styles.length);
 
     // Debug: Log all available properties from first style
     if (result.styles.length > 0) {
       const firstStyle: any = result.styles[0];
-      
+      console.log('[Text Styles] Available properties in first style:', Object.keys(firstStyle));
+      console.log('[Text Styles] Sample values:', {
+        name: firstStyle.name,
+        textAlignHorizontal: firstStyle.textAlignHorizontal,
+        textAutoResize: firstStyle.textAutoResize,
+        hangingPunctuation: firstStyle.hangingPunctuation,
+        hyperlink: firstStyle.hyperlink
+      });
     }
 
     // Filter properties based on user selection
     let filteredStyles = result.styles;
     if (selectedProperties && selectedProperties.length > 0) {
+      console.log('[Text Styles] Filtering with selected properties...');
 
       filteredStyles = result.styles.map((style, index) => {
         const filtered: any = {};
@@ -5100,8 +5302,10 @@ async function handleExportTextStyles(msg: any): Promise<void> {
           if (prop in style) {
             filtered[prop] = style[prop as keyof typeof style];
             if (index === 0) {
+              console.log(`[Text Styles] ✓ Property "${prop}":`, style[prop as keyof typeof style]);
             }
           } else if (index === 0) {
+            console.log(`[Text Styles] ✗ Property "${prop}" NOT in style`);
           }
         });
 
@@ -5113,6 +5317,7 @@ async function handleExportTextStyles(msg: any): Promise<void> {
         return filtered;
       });
 
+      console.log('[Text Styles] First filtered style keys:', Object.keys(filteredStyles[0]));
     }
 
     // Format the extracted styles
@@ -5134,6 +5339,8 @@ async function handleExportTextStyles(msg: any): Promise<void> {
       }
     });
 
+    console.log('[Text Styles] Export completed successfully');
+    console.log('[Text Styles] ========== EXPORT END ==========');
 
   } catch (error) {
     await errorHandler.handleError(error as Error, 'export_text_styles');

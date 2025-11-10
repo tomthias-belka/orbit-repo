@@ -1,7 +1,12 @@
 // Text Style Extractor Class
 // Estrae text styles da Figma utilizzando API asincrone (NON DEPRECATE)
-import type { ExtractedTextStyle } from '../types/figma.js';
+
+// Global types - figma is available in plugin context
+/// <reference types="@figma/plugin-typings" />
+
+import type { ExtractedTextStyle, Variable } from '../types/figma.js';
 import { ProductionErrorHandler } from './ProductionErrorHandler.js';
+import { AdvancedAliasResolver } from './AdvancedAliasResolver.js';
 
 export interface TextStyleExtractionOptions {
   includeDescription?: boolean;
@@ -9,6 +14,7 @@ export interface TextStyleExtractionOptions {
   skipFontLoading?: boolean;
   batchSize?: number;
   preserveAliases?: boolean;
+  variableMap?: Map<string, Variable>;
 }
 
 export interface TextStyleExtractionResult {
@@ -33,9 +39,12 @@ export interface TextStyleExtractionResult {
 export class TextStyleExtractor {
   private errorHandler: ProductionErrorHandler;
   private fontCache = new Set<string>();
+  private aliasResolver: AdvancedAliasResolver;
+  private variableMap?: Map<string, Variable>;
 
   constructor() {
     this.errorHandler = new ProductionErrorHandler();
+    this.aliasResolver = new AdvancedAliasResolver();
   }
 
   /**
@@ -43,11 +52,8 @@ export class TextStyleExtractor {
    */
   async extractTextStyles(options: TextStyleExtractionOptions = {}): Promise<TextStyleExtractionResult> {
     try {
-      console.log('[TextStyleExtractor] Starting text styles extraction...');
-
       // CRITICAL FIX: Usa API asincrona NON deprecata
       const textStyles = await figma.getLocalTextStylesAsync();
-      console.log(`[TextStyleExtractor] Found ${textStyles.length} text styles`);
 
       if (textStyles.length === 0) {
         return {
@@ -60,6 +66,12 @@ export class TextStyleExtractor {
         };
       }
 
+      // Update alias resolver with variable map if provided
+      if (options.variableMap) {
+        this.variableMap = options.variableMap;
+        this.aliasResolver.updateVariableMap(options.variableMap);
+      }
+
       // Process in batches for better performance
       const batchSize = options.batchSize || 10;
       const extractedStyles: ExtractedTextStyle[] = [];
@@ -68,7 +80,6 @@ export class TextStyleExtractor {
 
       for (let i = 0; i < textStyles.length; i += batchSize) {
         const batch = textStyles.slice(i, i + batchSize);
-        console.log(`[TextStyleExtractor] Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(textStyles.length / batchSize)}`);
 
         const batchResults = await this.processBatch(batch, options);
 
@@ -98,7 +109,6 @@ export class TextStyleExtractor {
         result.errors = errors;
       }
 
-      console.log('[TextStyleExtractor] Extraction completed:', result.message);
       return result;
 
     } catch (error) {
@@ -158,8 +168,11 @@ export class TextStyleExtractor {
   ): Promise<ExtractedTextStyle> {
     // Load font se necessario (con cache)
     if (!options.skipFontLoading && style.fontName !== figma.mixed) {
-      await this.loadFontSafely(style.fontName);
+      await this.loadFontSafely(style.fontName as FontName);
     }
+
+    // Cast to any for extended properties
+    const styleAny = style as any;
 
     const extractedStyle: ExtractedTextStyle = {
       id: style.id,
@@ -167,8 +180,8 @@ export class TextStyleExtractor {
       description: options.includeDescription ? (style.description || '') : '',
 
       // Font properties
-      fontFamily: style.fontName !== figma.mixed ? style.fontName.family : 'Mixed',
-      fontStyle: style.fontName !== figma.mixed ? style.fontName.style : 'Mixed',
+      fontFamily: style.fontName !== figma.mixed ? (style.fontName as FontName).family : 'Mixed',
+      fontStyle: style.fontName !== figma.mixed ? (style.fontName as FontName).style : 'Mixed',
       fontSize: await this.extractBoundValue(style, 'fontSize', style.fontSize, options.preserveAliases),
 
       // Spacing properties
@@ -176,30 +189,30 @@ export class TextStyleExtractor {
         this.extractLetterSpacing(style.letterSpacing), options.preserveAliases),
       lineHeight: await this.extractBoundValueOrDefault(style, 'lineHeight',
         this.extractLineHeight(style.lineHeight), options.preserveAliases),
-      paragraphIndent: await this.extractBoundValue(style, 'paragraphIndent', style.paragraphIndent, options.preserveAliases),
-      paragraphSpacing: await this.extractBoundValue(style, 'paragraphSpacing', style.paragraphSpacing, options.preserveAliases),
-      listSpacing: await this.extractBoundValue(style, 'listSpacing', style.listSpacing, options.preserveAliases),
+      paragraphIndent: await this.extractBoundValue(style, 'paragraphIndent', styleAny.paragraphIndent, options.preserveAliases),
+      paragraphSpacing: await this.extractBoundValue(style, 'paragraphSpacing', styleAny.paragraphSpacing, options.preserveAliases),
+      listSpacing: await this.extractBoundValue(style, 'listSpacing', styleAny.listSpacing, options.preserveAliases),
 
       // Text formatting
-      textCase: style.textCase !== figma.mixed ? style.textCase : undefined,
-      textDecoration: style.textDecoration !== figma.mixed ? style.textDecoration : undefined,
+      textCase: style.textCase !== figma.mixed ? style.textCase as TextCase : undefined,
+      textDecoration: style.textDecoration !== figma.mixed ? style.textDecoration as TextDecoration : undefined,
 
       // Alignment properties
-      textAlignHorizontal: style.textAlignHorizontal !== figma.mixed ? style.textAlignHorizontal : undefined,
-      textAlignVertical: style.textAlignVertical !== figma.mixed ? style.textAlignVertical : undefined,
+      textAlignHorizontal: styleAny.textAlignHorizontal !== figma.mixed ? styleAny.textAlignHorizontal : undefined,
+      textAlignVertical: styleAny.textAlignVertical !== figma.mixed ? styleAny.textAlignVertical : undefined,
 
       // Auto-resize and truncation
-      textAutoResize: style.textAutoResize !== figma.mixed ? style.textAutoResize : undefined,
-      textTruncation: style.textTruncation !== figma.mixed ? style.textTruncation : undefined,
-      maxLines: style.maxLines !== figma.mixed ? style.maxLines : undefined,
+      textAutoResize: styleAny.textAutoResize !== figma.mixed ? styleAny.textAutoResize : undefined,
+      textTruncation: styleAny.textTruncation !== figma.mixed ? styleAny.textTruncation : undefined,
+      maxLines: styleAny.maxLines !== figma.mixed ? styleAny.maxLines : undefined,
 
       // Advanced properties
-      hangingPunctuation: style.hangingPunctuation,
-      hangingList: style.hangingList,
-      leadingTrim: style.leadingTrim !== figma.mixed ? style.leadingTrim : undefined,
+      hangingPunctuation: styleAny.hangingPunctuation,
+      hangingList: styleAny.hangingList,
+      leadingTrim: styleAny.leadingTrim !== figma.mixed ? styleAny.leadingTrim : undefined,
 
       // Hyperlink property
-      hyperlink: this.extractHyperlink(style.hyperlink),
+      hyperlink: this.extractHyperlink(styleAny.hyperlink),
     };
 
     return extractedStyle;
@@ -220,23 +233,13 @@ export class TextStyleExtractor {
 
     // Check if property has bound variable
     const boundVariables = (style as any).boundVariables;
-    console.log(`[TextStyleExtractor] Checking ${property} for style "${style.name}"`);
-    console.log(`[TextStyleExtractor] boundVariables:`, boundVariables);
 
     if (boundVariables && boundVariables[property]) {
-      console.log(`[TextStyleExtractor] Found bound variable for ${property}:`, boundVariables[property]);
-      const variableId = boundVariables[property].id;
-      try {
-        const variable = await figma.variables.getVariableByIdAsync(variableId);
-        if (variable) {
-          console.log(`[TextStyleExtractor] ✓ Resolved alias for ${property}: {${variable.name}}`);
-          return `{${variable.name}}`;
-        }
-      } catch (error) {
-        console.warn(`[TextStyleExtractor] Could not resolve variable for ${property}:`, error);
-      }
-    } else {
-      console.log(`[TextStyleExtractor] No bound variable for ${property}, using default value`);
+      const aliasValue = boundVariables[property];
+
+      // Use AdvancedAliasResolver for proper resolution
+      const result = await this.aliasResolver.resolveTokenAlias(aliasValue, this.variableMap);
+      return result;
     }
 
     return defaultValue !== figma.mixed ? defaultValue : 0;
@@ -257,22 +260,13 @@ export class TextStyleExtractor {
 
     // Check if property has bound variable
     const boundVariables = (style as any).boundVariables;
-    console.log(`[TextStyleExtractor] Checking ${property} (processed) for style "${style.name}"`);
 
     if (boundVariables && boundVariables[property]) {
-      console.log(`[TextStyleExtractor] Found bound variable for ${property}:`, boundVariables[property]);
-      const variableId = boundVariables[property].id;
-      try {
-        const variable = await figma.variables.getVariableByIdAsync(variableId);
-        if (variable) {
-          console.log(`[TextStyleExtractor] ✓ Resolved alias for ${property}: {${variable.name}}`);
-          return `{${variable.name}}`;
-        }
-      } catch (error) {
-        console.warn(`[TextStyleExtractor] Could not resolve variable for ${property}:`, error);
-      }
-    } else {
-      console.log(`[TextStyleExtractor] No bound variable for ${property}, using processed default`);
+      const aliasValue = boundVariables[property];
+
+      // Use AdvancedAliasResolver for proper resolution
+      const result = await this.aliasResolver.resolveTokenAlias(aliasValue, this.variableMap);
+      return result;
     }
 
     return processedDefault;
@@ -312,7 +306,6 @@ export class TextStyleExtractor {
     try {
       await figma.loadFontAsync(fontName);
       this.fontCache.add(fontKey);
-      console.log(`[TextStyleExtractor] Loaded font: ${fontKey}`);
     } catch (error) {
       console.warn(`[TextStyleExtractor] Failed to load font ${fontKey}:`, error);
       throw new Error(`Font loading failed: ${fontKey}`);
@@ -322,40 +315,45 @@ export class TextStyleExtractor {
   /**
    * Estrae letter spacing in formato leggibile
    */
-  private extractLetterSpacing(letterSpacing: LetterSpacing): string | number {
+  private extractLetterSpacing(letterSpacing: LetterSpacing | typeof figma.mixed): string | number {
     if (letterSpacing === figma.mixed) return 'mixed';
 
-    if (typeof letterSpacing === 'object') {
-      if (letterSpacing.unit === 'PERCENT') {
-        return `${letterSpacing.value}%`;
+    if (typeof letterSpacing === 'object' && letterSpacing !== null && 'unit' in letterSpacing) {
+      const spacing = letterSpacing as LetterSpacing;
+      if (spacing.unit === 'PERCENT') {
+        return `${spacing.value}%`;
       } else {
-        return `${letterSpacing.value}px`;
+        return `${spacing.value}px`;
       }
     }
 
-    return letterSpacing;
+    return typeof letterSpacing === 'number' ? letterSpacing : 0;
   }
 
   /**
    * Estrae line height in formato leggibile
    */
-  private extractLineHeight(lineHeight: LineHeight): string | number {
+  private extractLineHeight(lineHeight: LineHeight | typeof figma.mixed): string | number {
     if (lineHeight === figma.mixed) return 'mixed';
 
-    if (typeof lineHeight === 'object') {
-      switch (lineHeight.unit) {
-        case 'PERCENT':
-          return `${lineHeight.value}%`;
-        case 'PIXELS':
-          return `${lineHeight.value}px`;
-        case 'AUTO':
-          return 'auto';
-        default:
-          return lineHeight.value;
+    if (typeof lineHeight === 'object' && lineHeight !== null && 'unit' in lineHeight) {
+      const lh = lineHeight as any;
+      if (lh.unit === 'AUTO') {
+        return 'auto';
+      }
+      if ('value' in lh) {
+        switch (lh.unit) {
+          case 'PERCENT':
+            return `${lh.value}%`;
+          case 'PIXELS':
+            return `${lh.value}px`;
+          default:
+            return lh.value;
+        }
       }
     }
 
-    return lineHeight;
+    return typeof lineHeight === 'number' ? lineHeight : 1.2;
   }
 
   /**

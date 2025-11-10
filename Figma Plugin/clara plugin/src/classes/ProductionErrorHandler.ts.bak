@@ -124,6 +124,7 @@ export class ProductionErrorHandler {
       try {
         const recovery = await strategy(error, context, attempt);
         if (recovery.canRecover) {
+          console.log(`[ProductionErrorHandler] Attempting recovery: ${recovery.strategy}`);
           return {
             shouldRetry: recovery.strategy === 'retry',
             shouldSkip: recovery.strategy === 'skip',
