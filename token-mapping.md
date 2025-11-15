@@ -46,13 +46,15 @@ Il sistema supporta **4 brand** tramite il meccanismo di modes W3C:
 
 ### Palette Colori
 
-Il sistema include **13 famiglie di colori** con scale da 5 a 600:
+Il sistema include **26+ famiglie di colori** con scale da 5 a 600:
 
 ```
 global.colors.neutral.{white|black|transparent}
 
 global.colors.teal.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
 global.colors.gray.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700}
+global.colors.grey.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
+global.colors.greyscale.{1,2,3,4,5}  ← NUOVO: mapping esplicito Dev JSON
 global.colors.darkgray.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
 global.colors.turquoise.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
 global.colors.ottanio.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
@@ -63,11 +65,14 @@ global.colors.orange.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
 global.colors.yellow.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
 global.colors.lemon.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
 global.colors.green.{5,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600}
+... + 13 famiglie aggiuntive (cocoa, coffee, ember, honeydew, indigo, jade, lime, mub, mustard, pink, purple, violet)
 ```
 
 **Note importanti**:
 - Numerazione: 5, 10, 20, 30... (NON 100-900)
-- Gray ha un valore extra: `700`
+- **Gray** ha un valore extra: `700`
+- **Grey** vs **Gray**: due famiglie distinte (grey.5 è leggermente diverso da gray.5)
+- **Greyscale** (1-5): mapping esplicito per Dev JSON GREYSCALE_1-5
 - Le famiglie includono: teal (turchese), ottanio (blu petrolio), darkgray (grigio blu)
 
 ### Spacing Scale
@@ -81,15 +86,42 @@ Valori: 0, 2, 3, 4, 8, 12, 16, 20, 24, 28, 32, 42, 50 (px)
 ### Radius Scale
 
 ```
-global.radius.{none,2xs,xs,sm,md,lg,xl,2xl,3xl,4xl,5xl,6xl,full}
+global.radius.{none,2xs,xs,sm,md,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,full}
 ```
 
-Valori: 0, 2, 4, 8, 10, 15, 16, 18, 20, 24, 30, 100, 9999 (px)
+Valori: 0, 2, 4, 8, 10, 15, 16, 18, 20, 24, 30, 100, **200**, 9999 (px)
+
+**Note**:
+- **7xl (200px)**: aggiunto per mappare Dev JSON `borderRadii.XXXXXXL`
+- **full (9999px)**: per elementi circolari (badge, avatar)
+
+### Opacity Scale
+
+```
+global.opacity.{0,10,20,30,40,50,60,70,79,80,90,100}
+```
+
+Valori: 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, **0.79**, 0.8, 0.9, 1.0
+
+**Note**:
+- Supporta opacity variants del Dev JSON (es. `MOONEYGO_PRIMARY_3_OPACITY_79`)
+- **0.79**: valore specifico usato in alcuni tokens Dev JSON
+- **0.70**: per `WHITE_LOW_OPACITY` e grey opacity variants
+- **0.90**: per `MOONEYGO_WHITE_OPACITY_90`
+
+**Uso**:
+```json
+// Esempio: creare colore con opacity
+"overlay.primary": {
+  "$value": "rgba(0, 88, 124, {global.opacity.79})",
+  "$type": "color"
+}
+```
 
 ### Typography Atomics
 
 ```
-global.typography.fontfamily.{sans,mono,gotham}
+global.typography.fontfamily.{manrope,mono,gotham,generalSans}
 global.typography.fontsize.{2xs,xs,sm,base,lg,xl,2xl,3xl,4xl}
 global.typography.fontweight.{normal,medium,semibold,bold}
 global.typography.lineheight.{tight,snug,normal,relaxed}
@@ -129,31 +161,31 @@ semantic.colors.icon.{main|muted|inverse|disabled}
 
 #### Mobility (Trasporti)
 
-Ora inclusi nel sistema base sotto `semantic.specific.mobility`:
+Ora inclusi nel sistema base sotto `semantic.colors.specific.mobility`:
 
 ```
-semantic.specific.mobility.bus.{dark|medium|light}
-semantic.specific.mobility.tram.{dark|medium|light}
-semantic.specific.mobility.metro.{dark|medium|light}
-semantic.specific.mobility.train.{dark|medium|light}
-semantic.specific.mobility.harbor.{dark|medium|light}
-semantic.specific.mobility.pullman.{dark|medium|light}
-semantic.specific.mobility.taxi.{dark|medium|light}
-semantic.specific.mobility.ncc.{dark|medium|light}
-semantic.specific.mobility.sharing.{dark|medium|light}
-semantic.specific.mobility.parking.{dark|medium|light}
-semantic.specific.mobility.garage.{dark|medium|light}
-semantic.specific.mobility.carRental.{dark|medium|light}
-semantic.specific.mobility.chargingStation.{dark|medium|light}
-semantic.specific.mobility.favorites.{dark|medium|light}
-semantic.specific.mobility.walk.{dark|medium|light}
-semantic.specific.mobility.ztl.{dark|medium|light}
-semantic.specific.mobility.garageTelepass.{dark|medium|light}
-semantic.specific.mobility.airports.{dark|medium|light}
-semantic.specific.mobility.skipass.{dark|medium|light}
-semantic.specific.mobility.pin.{dark|medium|light}
-semantic.specific.mobility.infoPoint.{dark|medium|light}
-semantic.specific.mobility.experience.{dark|medium|light}
+semantic.colors.specific.mobility.bus.{dark|medium|light}
+semantic.colors.specific.mobility.tram.{dark|medium|light}
+semantic.colors.specific.mobility.metro.{dark|medium|light}
+semantic.colors.specific.mobility.train.{dark|medium|light}
+semantic.colors.specific.mobility.harbor.{dark|medium|light}
+semantic.colors.specific.mobility.pullman.{dark|medium|light}
+semantic.colors.specific.mobility.taxi.{dark|medium|light}
+semantic.colors.specific.mobility.ncc.{dark|medium|light}
+semantic.colors.specific.mobility.sharing.{dark|medium|light}
+semantic.colors.specific.mobility.parking.{dark|medium|light}
+semantic.colors.specific.mobility.garage.{dark|medium|light}
+semantic.colors.specific.mobility.carRental.{dark|medium|light}
+semantic.colors.specific.mobility.chargingStation.{dark|medium|light}
+semantic.colors.specific.mobility.favorites.{dark|medium|light}
+semantic.colors.specific.mobility.walk.{dark|medium|light}
+semantic.colors.specific.mobility.ztl.{dark|medium|light}
+semantic.colors.specific.mobility.garageTelepass.{dark|medium|light}
+semantic.colors.specific.mobility.airports.{dark|medium|light}
+semantic.colors.specific.mobility.skipass.{dark|medium|light}
+semantic.colors.specific.mobility.pin.{dark|medium|light}
+semantic.colors.specific.mobility.infoPoint.{dark|medium|light}
+semantic.colors.specific.mobility.experience.{dark|medium|light}
 ```
 
 **Strategia aliasing**:
@@ -183,22 +215,22 @@ semantic.specific.mobility.experience.{dark|medium|light}
 
 #### Illustrations
 
-31 colori per illustrazioni sotto `semantic.specific.illustrations.{01-31}`:
+31 colori per illustrazioni sotto `semantic.colors.specific.illustrations.{01-31}`:
 
 ```
-semantic.specific.illustrations.01  // #f3ad8b
-semantic.specific.illustrations.02  // #cf663d
-semantic.specific.illustrations.03  // {global.colors.teal.40} (aliasing!)
+semantic.colors.specific.illustrations.01  // #f3ad8b
+semantic.colors.specific.illustrations.02  // #cf663d
+semantic.colors.specific.illustrations.03  // {global.colors.teal.40} (aliasing!)
 ...
-semantic.specific.illustrations.31  // #358551
+semantic.colors.specific.illustrations.31  // #358551
 ```
 
 #### Maps, Metro, Transport Position
 
 ```
-semantic.specific.maps.{01-14,25,50,white-70,white-80}
-semantic.specific.metro.{brescia1,catania1,genova1,milanoM1,milanoM2,milanoM3,milanoM4,milanoM5,napoli1,napoli6,romaMea,romaMeb,romaMec,torino1,torino2}
-semantic.specific.meansOfTransportPosition.{bus10,bus30,harbor10,harbor30,pullman10,pullman30,train10,train30,tram10,tram30}
+semantic.colors.specific.maps.{01-14,25,50,white-70,white-80}
+semantic.colors.specific.metro.{brescia1,catania1,genova1,milanoM1,milanoM2,milanoM3,milanoM4,milanoM5,napoli1,napoli6,romaMea,romaMeb,romaMec,torino1,torino2}
+semantic.colors.specific.meansOfTransportPosition.{bus10,bus30,harbor10,harbor30,pullman10,pullman30,train10,train30,tram10,tram30}
 ```
 
 ## Mappatura Dev JSON → Clara Whitelabel
@@ -248,13 +280,15 @@ semantic.specific.meansOfTransportPosition.{bus10,bus30,harbor10,harbor30,pullma
 | `colors.MOONEYGO_PRIMARY_*` | `semantic.brand.core.*` | PRIMARY_3 → core.main |
 | `colors.MOONEYGO_SECONDARY_*` | `semantic.brand.alt.*` | SECONDARY_3 → alt.main |
 | `colors.MOONEYGO_ACCENT_*` | `semantic.brand.accent.*` | ACCENT_1 → accent.light |
-| `colors.GREYSCALE_*` | `global.colors.gray.*` | GREYSCALE_4 → gray.60 |
+| `colors.GREYSCALE_1-5` | `global.colors.greyscale.1-5` | GREYSCALE_4 → greyscale.4 |
 | `colors.FEEDBACK_*` | `semantic.colors.feedback.*` | FEEDBACK_SUCCESS → feedback.success |
-| `colors.MOBILITY_*` | `semantic.specific.mobility.*` | MOBILITY_BUS_DARK → mobility.bus.dark |
-| `colors.MOBILITY_CAR_RENTAL_*` | `semantic.specific.mobility.carRental.*` | CAR_RENTAL_DARK → carRental.dark |
-| `colors.METRO_MILANO_M_1` | `semantic.specific.metro.milanoM1` | MILANO_M_1 → milanoM1 |
+| `colors.MOBILITY_*` | `semantic.colors.specific.mobility.*` | MOBILITY_BUS_DARK → mobility.bus.dark |
+| `colors.MOBILITY_CAR_RENTAL_*` | `semantic.colors.specific.mobility.carRental.*` | CAR_RENTAL_DARK → carRental.dark |
+| `colors.METRO_MILANO_M_1` | `semantic.colors.specific.metro.milanoM1` | MILANO_M_1 → milanoM1 |
+| `colors.*_OPACITY_*` | `global.opacity.*` + rgba() | PRIMARY_3_OPACITY_79 → rgba(..., opacity.79) |
 | `spacings.SPACING_*` | `global.spacing.*` | SPACING_MD → spacing.md |
 | `borderRadii.RADIUS_*` | `global.radius.*` | RADIUS_MD → radius.md |
+| `borderRadii.XXXXXXL` | `global.radius.7xl` | XXXXXXL → radius.7xl (200px) |
 
 ## Component Tokens
 

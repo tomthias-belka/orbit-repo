@@ -3344,6 +3344,11 @@ function validateColorValues(data: any) {
 }
 
 function isValidColorString(colorStr: string): boolean {
+  // Allow aliases (e.g., "{brand.core.main}", "{colors.primary}")
+  if (colorStr.startsWith('{') && colorStr.endsWith('}')) {
+    return true; // Aliases are valid
+  }
+
   // Basic color validation
   if (colorStr.startsWith('#')) {
     const hex = colorStr.slice(1);
@@ -3985,9 +3990,13 @@ async function processCollectionSimple(
   collectionName: string,
   data: any,
   collectionInfo: any,
-  path: string = ''
+  path: string = '',
+  existingVarsCache?: Variable[]
 ): Promise<number> {
   let variableCount = 0;
+
+  // 🚀 PERFORMANCE FIX: Get existing variables ONCE at the start instead of in the loop
+  const existingVars = existingVarsCache || await figma.variables.getLocalVariablesAsync();
 
   for (const key in data) {
     if (key.startsWith('$')) continue; // Skip metadata
@@ -4017,8 +4026,7 @@ async function processCollectionSimple(
                           !tokenValue.$value &&
                           !tokenValue.value;
 
-      // Check for existing variable with same name
-      const existingVars = await figma.variables.getLocalVariablesAsync();
+      // Check for existing variable with same name (using cached list)
       let variable = existingVars.find(v =>
         v.name === currentPath &&
         v.variableCollectionId === collectionInfo.collection.id
@@ -4113,12 +4121,13 @@ async function processCollectionSimple(
       }
 
     } else if (typeof value === 'object') {
-      // This is a group, process recursively
+      // This is a group, process recursively (pass cache to avoid re-fetching)
       const groupCount = await processCollectionSimple(
         collectionName,
         value,
         collectionInfo,
-        currentPath
+        currentPath,
+        existingVars // 🚀 Pass the cached variables list
       );
       variableCount += groupCount;
     }
@@ -4510,7 +4519,7 @@ function validateValueForVariableType(value: any, expectedType: string): any | A
 
   // 🔍 CHECK FOR ALIAS REFERENCE FIRST (before any type-specific processing)
   if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
-    const referencePath = value.replace(/[{}]/g, '').trim();
+    const referencePath = value.replace(/[{}]/g, '').trim().replace(/\./g, '/'); // Convert dots to slashes
     if (referencePath.length > 0) {
       return {
         __isAlias: true,

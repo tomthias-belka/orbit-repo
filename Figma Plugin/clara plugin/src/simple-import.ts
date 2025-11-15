@@ -2,6 +2,80 @@
  * Simple Import System - Based on working backup
  */
 
+/// <reference types="@figma/plugin-typings" />
+
+// ================== ALIAS/REFERENCE SYSTEM TYPES ==================
+
+// Marker object for unresolved aliases
+interface AliasMarker {
+  __isAlias: true;
+  referencePath: string; // e.g., "stroke.inverted" or "collection.variable"
+  targetCollectionName: string; // The collection where the target variable is located
+}
+
+// Structure for storing pending aliases (STEP 1)
+interface PendingAlias {
+  variable: Variable; // The variable that will receive the alias
+  modeId: string;
+  referencePath: string; // e.g., "stroke.inverted"
+  targetCollectionName: string; // The collection where the target variable is located
+  figmaType: 'COLOR' | 'FLOAT' | 'STRING' | 'BOOLEAN';
+}
+
+// Type guard for AliasMarker
+function isAliasMarker(value: any): value is AliasMarker {
+  return typeof value === 'object' && value !== null && value.__isAlias === true;
+}
+
+/**
+ * Determines which collection contains the target token based on alias path
+ * Rules from clara-tokens.json:
+ * - {colors.*}, {spacing.*}, {radius.*}, {typography.*} → "global"
+ * - {brand.*}, {shadow.*}, {size.*}, {booleans.*} → "semantic"
+ * - {colors.text.*}, {colors.border.*}, {colors.feedback.*}, {colors.background.*}, {colors.icon.*}, {colors.specific.*} → "semantic"
+ */
+function resolveCollectionFromAlias(aliasPath: string): string {
+  const parts = aliasPath.split('.');
+
+  if (parts.length === 0) return 'global'; // fallback
+
+  const firstPart = parts[0];
+  const secondPart = parts[1];
+
+  // Check for global collection patterns
+  const globalPrefixes = ['spacing', 'radius', 'typography'];
+  if (globalPrefixes.includes(firstPart)) {
+    return 'global';
+  }
+
+  // Special case: colors can be in both global and semantic
+  if (firstPart === 'colors') {
+    // If it's a direct color scale (e.g., colors.ocean.70), it's in global
+    // If it's a semantic category (e.g., colors.text.main), it's in semantic
+    const semanticColorCategories = ['text', 'border', 'feedback', 'background', 'icon', 'specific'];
+    if (secondPart && semanticColorCategories.includes(secondPart)) {
+      return 'semantic';
+    }
+    // Otherwise it's a color scale in global
+    return 'global';
+  }
+
+  // Check for semantic collection patterns
+  const semanticPrefixes = ['brand', 'shadow', 'size', 'booleans'];
+  if (semanticPrefixes.includes(firstPart)) {
+    return 'semantic';
+  }
+
+  // Default fallback to global
+  return 'global';
+}
+
+// Global arrays for two-pass system
+const pendingAliases: PendingAlias[] = [];
+let localVariablesCache: Variable[] | null = null;
+
+// ================== END ALIAS SYSTEM TYPES ==================
+
 export async function simpleImportVariables(jsonData: any): Promise<{
   success: boolean;
   message: string;
@@ -34,15 +108,44 @@ export async function simpleImportVariables(jsonData: any): Promise<{
       variableCount += varCount;
     }
 
+    // === STEP 1 COMPLETED ===
+    console.log(`[simpleImport] ✅ STEP 1 completed: ${variableCount} variables created in ${collectionCount} collections`);
+
+    // === STEP 2: RESOLVE ALIASES ===
+    let aliasResults = { resolved: 0, failed: 0 };
+    if (pendingAliases.length > 0) {
+      console.log(`[simpleImport] 🔗 STEP 2: Resolving ${pendingAliases.length} pending aliases...`);
+      aliasResults = await resolvePendingAliases();
+
+      // Cleanup
+      pendingAliases.length = 0;
+      localVariablesCache = null;
+
+      console.log(`[simpleImport] ✅ STEP 2 completed: ${aliasResults.resolved} aliases resolved, ${aliasResults.failed} failed`);
+    } else {
+      console.log(`[simpleImport] ℹ️ No aliases to resolve`);
+    }
+
+    const finalMessage = aliasResults.resolved > 0
+      ? `Successfully imported ${variableCount} variables (${aliasResults.resolved} aliases resolved) into ${collectionCount} collections`
+      : `Successfully imported ${variableCount} variables into ${collectionCount} collections`;
+
+    console.log(`[simpleImport] 🎉 Import completed successfully`);
+
     return {
       success: true,
-      message: `Imported ${variableCount} variables into ${collectionCount} collections`,
+      message: finalMessage,
       variableCount,
       collectionCount
     };
 
   } catch (error) {
     console.error('[simpleImport] Error:', error);
+
+    // Cleanup on error
+    pendingAliases.length = 0;
+    localVariablesCache = null;
+
     return {
       success: false,
       message: `Import failed: ${(error as Error).message}`,
@@ -114,8 +217,21 @@ async function processCollectionSimple(
           figmaType
         );
 
-        // Set value
-        variable.setValueForMode(collectionInfo.modeIds['Default'], processedValue);
+        // Check if value is an alias marker
+        if (isAliasMarker(processedValue)) {
+          // Add to pending aliases for second pass
+          pendingAliases.push({
+            variable,
+            modeId: collectionInfo.modeIds['Default'],
+            referencePath: processedValue.referencePath,
+            targetCollectionName: processedValue.targetCollectionName,
+            figmaType
+          });
+          console.log(`[simpleImport] Alias detected: ${currentPath} -> {${processedValue.referencePath}} in collection "${processedValue.targetCollectionName}"`);
+        } else {
+          // Set value immediately for non-alias tokens
+          variable.setValueForMode(collectionInfo.modeIds['Default'], processedValue);
+        }
 
         // Set scopes
         assignSimpleScopes(variable, tokenType, currentPath);
@@ -166,18 +282,24 @@ function convertTypeToFigma(tokenType: string): 'COLOR' | 'FLOAT' | 'STRING' | '
 }
 
 function processSimpleValue(value: any, figmaType: string): any {
+  // Detect alias references (e.g., "{semantic.colors.brand.primary}")
+  if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
+    // Extract reference path (remove { })
+    const aliasPath = value.slice(1, -1); // e.g., "brand.core.main"
+    const referencePath = aliasPath.replace(/\./g, '/'); // Convert dots to slashes for Figma
+    const targetCollectionName = resolveCollectionFromAlias(aliasPath); // Determine target collection
+
+    return {
+      __isAlias: true,
+      referencePath,
+      targetCollectionName
+    } as AliasMarker;
+  }
+
   switch (figmaType) {
     case 'COLOR':
-      // Handle alias references (e.g., "{semantic.colors.brand.primary}")
-      if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
-        return value; // Figma will resolve the reference automatically
-      }
       return parseColor(value);
     case 'FLOAT':
-      // Handle alias references for numeric values
-      if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
-        return value;
-      }
       return parseFloat(String(value).replace(/px|rem|em/, '')) || 0;
     case 'STRING':
       return typeof value === 'object' ? JSON.stringify(value) : String(value);
@@ -188,8 +310,8 @@ function processSimpleValue(value: any, figmaType: string): any {
   }
 }
 
-function parseColor(colorStr: string): { r: number; g: number; b: number } {
-  if (typeof colorStr === 'object' && colorStr.r !== undefined) {
+function parseColor(colorStr: string | { r: number; g: number; b: number }): { r: number; g: number; b: number } {
+  if (typeof colorStr === 'object' && 'r' in colorStr && colorStr.r !== undefined) {
     return colorStr; // Already RGB
   }
 
@@ -199,9 +321,9 @@ function parseColor(colorStr: string): { r: number; g: number; b: number } {
   }
 
   return {
-    r: parseInt(hex.substr(0, 2), 16) / 255,
-    g: parseInt(hex.substr(2, 2), 16) / 255,
-    b: parseInt(hex.substr(4, 2), 16) / 255
+    r: parseInt(hex.substring(0, 2), 16) / 255,
+    g: parseInt(hex.substring(2, 4), 16) / 255,
+    b: parseInt(hex.substring(4, 6), 16) / 255
   };
 }
 
@@ -292,6 +414,92 @@ function assignSimpleScopes(variable: any, tokenType: string, path: string): voi
 
   if (scopes.length > 0) {
     variable.scopes = scopes as any;
-  } else {
   }
 }
+
+// ================== ALIAS RESOLUTION FUNCTIONS ==================
+
+/**
+ * Find a variable by its Figma path (e.g., "colors/primary/main") in a specific collection
+ */
+async function findVariableByPath(figmaPath: string, targetCollectionName: string): Promise<Variable | null> {
+  // Lazy-load and cache all local variables
+  if (localVariablesCache === null) {
+    localVariablesCache = await figma.variables.getLocalVariablesAsync();
+    console.log(`[findVariableByPath] Loaded ${localVariablesCache.length} local variables into cache`);
+  }
+
+  // Get the target collection
+  const collections = await figma.variables.getLocalVariableCollectionsAsync();
+  const targetCollection = collections.find(c => c.name === targetCollectionName);
+
+  if (!targetCollection) {
+    console.warn(`[findVariableByPath] Collection not found: "${targetCollectionName}"`);
+    return null;
+  }
+
+  // Search for the variable in the target collection
+  const targetVariable = localVariablesCache.find(v =>
+    v.variableCollectionId === targetCollection.id &&
+    v.name === figmaPath
+  );
+
+  if (targetVariable) {
+    console.log(`[findVariableByPath] Found variable "${figmaPath}" in collection "${targetCollectionName}"`);
+    return targetVariable;
+  }
+
+  console.warn(`[findVariableByPath] Variable "${figmaPath}" not found in collection "${targetCollectionName}"`);
+  return null;
+}
+
+/**
+ * STEP 2: Resolve all pending aliases.
+ * Creates VariableAlias objects and assigns them using setValueForMode.
+ */
+async function resolvePendingAliases(): Promise<{ resolved: number; failed: number }> {
+  let resolvedCount = 0;
+  let failedCount = 0;
+
+  console.log(`[resolvePendingAliases] Starting resolution of ${pendingAliases.length} pending aliases...`);
+
+  // Reset cache to get fresh data
+  localVariablesCache = null;
+
+  for (const pending of pendingAliases) {
+    const { variable, modeId, referencePath, targetCollectionName, figmaType } = pending;
+
+    // 1. Find the target variable by path in the correct collection
+    const targetVariable = await findVariableByPath(referencePath, targetCollectionName);
+
+    if (targetVariable) {
+      // 2. Check type compatibility (important!)
+      if (targetVariable.resolvedType !== figmaType) {
+        console.warn(
+          `[resolvePendingAliases] Type mismatch: ${variable.name} -> ${targetVariable.name}. ` +
+          `Expected: ${figmaType}, Found: ${targetVariable.resolvedType}. Attempting resolution anyway...`
+        );
+      }
+
+      // 3. Create VariableAlias object and assign
+      try {
+        const aliasObj = figma.variables.createVariableAlias(targetVariable);
+        variable.setValueForMode(modeId, aliasObj);
+        resolvedCount++;
+        console.log(`[resolvePendingAliases] ✓ Resolved: ${variable.name} -> ${targetVariable.name} (collection: ${targetCollectionName})`);
+      } catch (e) {
+        console.error(`[resolvePendingAliases] ✗ Error creating/assigning alias for ${variable.name}:`, e);
+        failedCount++;
+      }
+    } else {
+      // Target variable not found
+      console.warn(`[resolvePendingAliases] ✗ Target variable not found: {${referencePath}} in collection "${targetCollectionName}" for ${variable.name}`);
+      failedCount++;
+    }
+  }
+
+  console.log(`[resolvePendingAliases] Completed: ${resolvedCount} resolved, ${failedCount} failed`);
+  return { resolved: resolvedCount, failed: failedCount };
+}
+
+// ================== END ALIAS RESOLUTION FUNCTIONS ==================

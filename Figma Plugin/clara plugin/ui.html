@@ -4357,12 +4357,12 @@
 
               <div class="button-group" style="justify-content: flex-start; margin-top: var(--space-4);">
                 <!-- Upload File Button -->
-                <button class="secondary id="upload-file-button">
+                <button class="secondary" id="upload-file-button">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.1875 5.02433L6.88698 9.32449C6.5697 9.64177 6.05538 9.64177 5.7381 9.32449C5.42082 9.00721 5.42082 8.49289 5.7381 8.17561L11.4256 2.48811C11.7429 2.17083 12.2572 2.17083 12.5745 2.48811L18.262 8.17561C18.5793 8.49289 18.5793 9.00721 18.262 9.32449C18.1031 9.48333 17.8955 9.56255 17.6875 9.56255C17.4795 9.56255 17.2715 9.48333 17.1131 9.32449L12.8125 5.02433V16.0626C12.8125 16.5111 12.4485 16.8751 12 16.8751C11.5511 16.8751 11.1875 16.5111 11.1875 16.0626V5.02433Z" fill="currentColor"/>
                     <path d="M20.125 16.875C20.125 16.4265 20.489 16.0625 20.9375 16.0625C21.386 16.0625 21.75 16.4265 21.75 16.875V18.5C21.75 20.292 20.292 21.75 18.5 21.75H5.5C3.70803 21.75 2.25 20.292 2.25 18.5V16.875C2.25 16.4265 2.614 16.0625 3.0625 16.0625C3.511 16.0625 3.875 16.4265 3.875 16.875V18.5C3.875 19.3958 4.60381 20.125 5.5 20.125H18.5C19.3962 20.125 20.125 19.3958 20.125 18.5V16.875Z" fill="currentColor"/>
                     </svg>
-                    
+
                   <span>Upload File</span>
                 </button>
 
@@ -5184,7 +5184,7 @@ Example:
       // Already a plain value (not a reference)
       if (!ref.startsWith('{')) return ref;
 
-      // Parse reference like {typography.fontfamily.sans} or {radius.md}
+      // Parse reference like {typography.fontFamily.sans} or {radius.md}
       const match = ref.match(/\{([^}]+)\}/);
       if (!match) return ref;
 
@@ -5418,7 +5418,7 @@ Example:
       const coreSoftRef = semantic.brand?.core?.soft?.$value?.[themeId];
       const accentMainRef = semantic.brand?.accent?.main?.$value?.[themeId];
       const altMainRef = semantic.brand?.alt?.main?.$value?.[themeId];
-      const fontFamilyRef = semantic.brand?.fontfamily?.main?.$value?.[themeId];
+      const fontFamilyRef = semantic.brand?.fontFamily?.main?.$value?.[themeId];
       const radiusRef = semantic.radius?.brand?.$value?.[themeId];
 
       // Resolve to actual values
@@ -5572,14 +5572,14 @@ Example:
 
     function buildFontFamilyOptions() {
       const options = [];
-      const fontFamilies = tokenTreeData?.global?.typography?.fontfamily;
+      const fontFamilies = tokenTreeData?.global?.typography?.fontFamily;
 
       if (!fontFamilies) return options;
 
       for (const [name, token] of Object.entries(fontFamilies)) {
         if (token && token.$type === 'fontFamily' && token.$value) {
           options.push({
-            ref: `{typography.fontfamily.${name}}`,
+            ref: `{typography.fontFamily.${name}}`,
             value: token.$value,
             name: name
           });
@@ -5621,12 +5621,14 @@ Example:
         const fontOptions = buildFontFamilyOptions();
         const radiusOptions = buildRadiusOptions();
 
-        const defaultFont = '{typography.fontfamily.sans}';
+        const defaultFont = fontOptions.length > 0 ? fontOptions[0].ref : '{typography.fontFamily.sans}';
         const defaultRadius = '{radius.md}';
 
-        const fontOptionsHTML = fontOptions.map(opt =>
-          `<option value="${opt.ref}" ${opt.ref === defaultFont ? 'selected' : ''}>${opt.name} - ${opt.value}</option>`
-        ).join('');
+        const fontOptionsHTML = fontOptions.length > 0
+          ? fontOptions.map(opt =>
+              `<option value="${opt.ref}" ${opt.ref === defaultFont ? 'selected' : ''}>${opt.name} - ${opt.value}</option>`
+            ).join('')
+          : '<option value="" disabled selected>No fonts available</option>';
 
         const radiusOptionsHTML = radiusOptions.map(opt =>
           `<option value="${opt.ref}" ${opt.ref === defaultRadius ? 'selected' : ''}>${opt.display}</option>`
@@ -5678,6 +5680,12 @@ Example:
         createBtn.addEventListener('click', () => {
           const fontFamily = fontSelect.value;
           const radius = radiusSelect.value;
+
+          // Validate font selection
+          if (!fontFamily || fontFamily === '') {
+            alert('Please select a font family before creating the theme.');
+            return;
+          }
 
           cleanup();
           resolve({ fontFamily, radius });
@@ -6040,6 +6048,9 @@ Example:
           console.log('[Theme Builder] Brand settings:', brandSettings);
         }
 
+        // Copy template from Clara first (will be overridden by custom values)
+        copySemanticTokensFromCLARA(themeName);
+
         ['main', 'soft', 'light', 'faded', 'dark'].forEach(variant => {
           // Crea il nodo se non esiste
           if (!semantic.brand.core[variant]) {
@@ -6093,17 +6104,17 @@ Example:
 
         // Add fontFamily if provided
         if (brandSettings && brandSettings.fontFamily) {
-          if (!semantic.brand.fontfamily) {
-            semantic.brand.fontfamily = {};
+          if (!semantic.brand.fontFamily) {
+            semantic.brand.fontFamily = {};
           }
-          if (!semantic.brand.fontfamily.main) {
-            semantic.brand.fontfamily.main = { $type: 'fontFamily', $value: {} };
+          if (!semantic.brand.fontFamily.main) {
+            semantic.brand.fontFamily.main = { $type: 'fontFamily', $value: {} };
           }
-          if (!semantic.brand.fontfamily.main.$value) {
-            semantic.brand.fontfamily.main.$value = {};
+          if (!semantic.brand.fontFamily.main.$value) {
+            semantic.brand.fontFamily.main.$value = {};
           }
-          semantic.brand.fontfamily.main.$value[themeName] = brandSettings.fontFamily;
-          console.log(`[Theme Builder] Set fontfamily.main[${themeName}] = ${brandSettings.fontFamily}`);
+          semantic.brand.fontFamily.main.$value[themeName] = brandSettings.fontFamily;
+          console.log(`[Theme Builder] Set fontFamily.main[${themeName}] = ${brandSettings.fontFamily}`);
         }
 
         // Add radius if provided
@@ -6120,8 +6131,6 @@ Example:
           semantic.radius.brand.$value[themeName] = brandSettings.radius;
           console.log(`[Theme Builder] Set radius.brand[${themeName}] = ${brandSettings.radius}`);
         }
-
-        copySemanticTokensFromCLARA(themeName);
 
         // Mark as draft until imported into Figma
         themeImportStatus[themeName] = 'draft';
@@ -6156,21 +6165,28 @@ Example:
     function copySemanticTokensFromCLARA(newThemeName) {
       const semantic = tokenTreeData.semantic;
 
-      function traverseAndCopy(obj) {
+      function traverseAndCopy(obj, path = []) {
         if (!obj || typeof obj !== 'object') return;
 
         if (obj.$value && typeof obj.$value === 'object' && obj.$value.clara) {
-          obj.$value[newThemeName] = obj.$value.clara;
+          const tokenPath = path.join('.');
+
+          // brand.theme deve usare il nome del tema, non copiare da clara
+          if (tokenPath === 'brand.theme') {
+            obj.$value[newThemeName] = newThemeName;
+          } else {
+            obj.$value[newThemeName] = obj.$value.clara;
+          }
         }
 
         for (const key in obj) {
           if (!key.startsWith('$')) {
-            traverseAndCopy(obj[key]);
+            traverseAndCopy(obj[key], [...path, key]);
           }
         }
       }
 
-      traverseAndCopy(semantic);
+      traverseAndCopy(semantic, []);
     }
 
     function initializeThemeBuilder() {
