@@ -3749,6 +3749,99 @@
       text-align: center;
     }
 
+    /* ===== THEME TOKENS TABLE STYLES ===== */
+    .theme-tokens-table-wrapper {
+      width: 100%;
+      overflow: auto;
+    }
+
+    .theme-tokens-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    .tokens-table-header {
+      display: grid;
+      grid-template-columns: 2fr 2fr 100px;
+      gap: 16px;
+      padding: 12px 16px;
+      background: #f5f5f5;
+      border-radius: 6px 6px 0 0;
+      font-weight: 600;
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tokens-table-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .token-row {
+      display: grid;
+      grid-template-columns: 2fr 2fr 100px;
+      gap: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e5e5e5;
+      align-items: center;
+      transition: background 0.15s;
+    }
+
+    .token-row:hover {
+      background: #fafafa;
+    }
+
+    .token-row .col-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .token-row .col-value {
+      flex: 1;
+    }
+
+    .token-value-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #333;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .token-value-input:hover {
+      border-color: #999;
+    }
+
+    .token-value-input:focus {
+      outline: none;
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+
+    .token-row .col-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .token-row .color-swatch {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
     /* ===== THEME PREVIEW STYLES ===== */
     .theme-preview-container {
       max-width: 900px;
@@ -5069,6 +5162,22 @@ Example:
           <path d="M3 17V7L12 2V12L3 17Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
         </svg>
       </button>
+
+      <!-- Theme Builder Tab Buttons -->
+      <button id="export-theme-json-button" class="secondary footer-btn" data-tab="theme-builder" style="display: none;">
+        Export JSON
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 13V3M10 13L7 10M10 13L13 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 17H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <button id="create-theme-button" class="primary footer-btn" data-tab="theme-builder" style="display: none;">
+        Create Theme
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.2931 7.81818C17.3219 7.13414 18 5.96443 18 4.63636C18 2.52763 16.2905 0.818176 14.1818 0.818176H7.81818C5.70946 0.818176 4 2.52763 4 4.63636C4 5.96443 4.67805 7.13414 5.70686 7.81818C4.67805 8.50222 4 9.67192 4 11C4 12.3281 4.67805 13.4978 5.70686 14.1818C4.67805 14.8659 4 16.0356 4 17.3636C4 19.4724 5.70946 21.1818 7.81818 21.1818C9.92691 21.1818 11.6364 19.4724 11.6364 17.3636V13.8459C12.3119 14.4505 13.2039 14.8182 14.1818 14.8182C16.2905 14.8182 18 13.1087 18 11C18 9.67192 17.3219 8.50222 16.2931 7.81818ZM7.81818 8.45454C6.41237 8.45454 5.27273 9.59418 5.27273 11C5.27273 12.4058 6.41237 13.5454 7.81818 13.5454H10.3636L10.3636 8.45454H7.81818ZM14.1818 7.18181C15.5876 7.18181 16.7273 6.04217 16.7273 4.63636C16.7273 3.23054 15.5876 2.0909 14.1818 2.0909H11.6364V7.18181H14.1818ZM14.1818 8.45454H14.1802C12.7755 8.45539 11.637 9.5941 11.6364 10.9989L11.6364 11.0011C11.637 12.4064 12.7764 13.5454 14.1818 13.5454C15.5876 13.5454 16.7273 12.4058 16.7273 11C16.7273 9.59418 15.5876 8.45454 14.1818 8.45454ZM5.27273 17.3636C5.27273 15.9578 6.41237 14.8182 7.81818 14.8182L10.3636 14.8182V17.3636C10.3636 18.7694 9.224 19.9091 7.81818 19.9091C6.41237 19.9091 5.27273 18.7694 5.27273 17.3636ZM10.3636 7.18181H7.81818C6.41237 7.18181 5.27273 6.04217 5.27273 4.63636C5.27273 3.23054 6.41237 2.0909 7.81818 2.0909H10.3636V7.18181Z" fill="currentColor" fill-opacity="0.9"/>
+        </svg>
+      </button>
     </div>
   </div>
 
@@ -5389,6 +5498,144 @@ Example:
       renderThemeEditor(themeId);
     }
 
+    // Traverse semantic tokens and call callback for each token
+    function traverseSemanticTokens(themeId, callback) {
+      const semantic = tokenTreeData?.semantic;
+      if (!semantic) return;
+
+      function traverse(obj, path = []) {
+        if (!obj || typeof obj !== 'object') return;
+
+        // Check if this is a token leaf node
+        if (obj.$type && obj.$value && typeof obj.$value === 'object' && obj.$value[themeId]) {
+          callback({
+            path: path.join('.'),
+            type: obj.$type,
+            value: obj.$value[themeId],
+            allValues: obj.$value
+          });
+        }
+
+        // Recursively traverse children
+        for (const [key, value] of Object.entries(obj)) {
+          if (!key.startsWith('$') && typeof value === 'object') {
+            traverse(value, path.concat(key));
+          }
+        }
+      }
+
+      traverse(semantic);
+    }
+
+    // Update token value for a specific theme
+    function updateTokenValueForTheme(tokenPath, themeId, newValue) {
+      const parts = tokenPath.split('.');
+      const semantic = tokenTreeData?.semantic;
+      if (!semantic) return false;
+
+      // Navigate to the token
+      let current = semantic;
+      for (const part of parts) {
+        if (!current[part]) return false;
+        current = current[part];
+      }
+
+      // Update the value for this theme
+      if (current.$value && typeof current.$value === 'object') {
+        current.$value[themeId] = newValue;
+
+        // Mark as changed
+        hasUnsavedChanges = true;
+        updateImportButtonState();
+
+        // Sync to Variables tab
+        const editor = document.getElementById('json-editor-textarea');
+        if (editor && tokenTreeData) {
+          editor.value = JSON.stringify(tokenTreeData, null, 2);
+          const inputEvent = new Event('input', { bubbles: true });
+          editor.dispatchEvent(inputEvent);
+        }
+
+        return true;
+      }
+
+      return false;
+    }
+
+    // Build semantic tokens table for theme editor
+    function buildSemanticTokensTable(themeId) {
+      const tokens = [];
+
+      // Collect all semantic tokens for this theme
+      traverseSemanticTokens(themeId, (token) => {
+        tokens.push(token);
+      });
+
+      if (tokens.length === 0) {
+        return '<p style="color: #999; text-align: center; padding: 40px 0;">No semantic tokens found for this theme</p>';
+      }
+
+      // Build table HTML
+      let html = `
+        <div class="theme-tokens-table-wrapper">
+          <div class="theme-tokens-table">
+            <div class="tokens-table-header">
+              <div class="col-path">Token Path</div>
+              <div class="col-value">Value</div>
+              <div class="col-preview">Preview</div>
+            </div>
+            <div class="tokens-table-body">
+      `;
+
+      tokens.forEach(token => {
+        const displayValue = token.value || '';
+        let previewHTML = '';
+
+        // Generate preview based on token type
+        if (token.type === 'color') {
+          const hexColor = resolveTokenToHex(token.value);
+          if (hexColor) {
+            previewHTML = `<div class="color-swatch" style="background: ${hexColor};" title="${hexColor}"></div>`;
+          }
+        } else if (token.type === 'fontFamily') {
+          const fontFamily = resolveTokenRef(token.value);
+          previewHTML = `<span style="font-family: ${fontFamily}; font-size: 12px;">Aa</span>`;
+        } else if (token.type === 'dimension') {
+          const dimension = resolveTokenRef(token.value);
+          previewHTML = `<span style="font-size: 11px; color: #666;">${dimension}</span>`;
+        }
+
+        html += `
+          <div class="token-row" data-path="${token.path}" data-type="${token.type}" data-theme="${themeId}">
+            <div class="col-path">${token.path}</div>
+            <div class="col-value">
+              <div class="autocomplete-container">
+                <input
+                  type="text"
+                  class="token-value-input"
+                  value="${displayValue}"
+                  readonly
+                  placeholder="Click to edit"
+                  data-token-path="${token.path}"
+                  data-token-type="${token.type}"
+                  data-theme-id="${themeId}"
+                />
+              </div>
+            </div>
+            <div class="col-preview">${previewHTML}</div>
+          </div>
+        `;
+      });
+
+      html += `
+            </div>
+          </div>
+        </div>
+      `;
+
+      return html;
+    }
+
     function renderThemeEditor(themeId) {
       const empty = document.getElementById('theme-editor-empty');
       const content = document.getElementById('theme-editor-content');
@@ -5413,97 +5660,50 @@ Example:
         return;
       }
 
-      // Extract token references
-      const coreMainRef = semantic.brand?.core?.main?.$value?.[themeId];
-      const coreSoftRef = semantic.brand?.core?.soft?.$value?.[themeId];
-      const accentMainRef = semantic.brand?.accent?.main?.$value?.[themeId];
-      const altMainRef = semantic.brand?.alt?.main?.$value?.[themeId];
-      const fontFamilyRef = semantic.brand?.fontFamily?.main?.$value?.[themeId];
-      const radiusRef = semantic.radius?.brand?.$value?.[themeId];
-
-      // Resolve to actual values
-      const coreMain = resolveColorRefToHex(coreMainRef) || '#0066CC';
-      const coreSoft = resolveColorRefToHex(coreSoftRef) || '#E6F2FF';
-      const accentMain = resolveColorRefToHex(accentMainRef) || '#FF6B35';
-      const altMain = resolveColorRefToHex(altMainRef) || '#FFF4E6';
-      const fontFamily = resolveTokenRef(fontFamilyRef) || 'Inter';
-      const radius = resolveTokenRef(radiusRef) || '8px';
-
-      console.log('[Theme Preview Debug]', {
-        themeId,
-        radiusRef,
-        resolvedRadius: radius,
-        semanticRadius: semantic.radius
-      });
-
+      // Render tokens table
       container.innerHTML = `
-        <div style="max-width: 900px; margin: 0 auto;">
-          <!-- Header -->
+        <div style="max-width: 100%; margin: 0;">
           <div style="margin-bottom: 24px;">
             <h2 style="font-family: 'Inter', -apple-system, sans-serif; font-size: 16px; font-weight: 600; color: #1e1e1e; margin: 0 0 4px 0;">${theme.label} Theme</h2>
-            <p style="font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; color: #737373; margin: 0;">Showcases various color examples, fallbackfont</p>
+            <p style="font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; color: #737373; margin: 0;">Edit semantic token values for this theme</p>
           </div>
-
-          <div style="display: flex; flex-direction: column; gap: 20px; padding: 20px 0;">
-            <!-- Card TRASPORTI -->
-            <div style="display: flex; align-items: center; gap: 24px;">
-              <div style="background: white; border: 2.5px solid ${accentMain}; border-radius: ${radius}; min-height: 80px; width: 343px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 16px; box-sizing: border-box;">
-                <!-- Metro Icon 24x24 -->
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 15H7.72536L9.17693 9.57396L11.0882 15H12.9118L14.8231 9.57396L16.2746 15H18L16.2282 8H13.6091L12.0232 12.7923L10.4374 8H7.77701L6 15Z" fill="${accentMain}"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M2 5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5ZM5 4C4.44772 4 4 4.44772 4 5V19C4 19.5523 4.44772 20 5 20H19C19.5523 20 20 19.5523 20 19V5C20 4.44772 19.5523 4 19 4H5Z" fill="${accentMain}"/>
-</svg>
-                <!-- Content -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
-                  <p style="font-family: 'Gotham', -apple-system, sans-serif; font-size: 14px; font-weight: 700; color: #1E1E1E; margin: 0; line-height: 18px;">TRASPORTI</p>
-                  <p style="font-family: 'Gotham', -apple-system, sans-serif; font-size: 12px; font-weight: 400; color: #1E1E1E; margin: 0; line-height: 16px;">Treni, bus, taxi e sharing</p>
-                </div>
-                <!-- Arrow right -->
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="flex-shrink: 0;">
-                  <path d="M8 6L12 10L8 14" stroke="${coreMain}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; text-align: right; white-space: nowrap; min-width: 140px; line-height: 1.5;">brand.accent.main<br/>brand.radius</div>
-            </div>
-
-            <!-- Password -->
-            <div style="display: flex; align-items: flex-end; gap: 24px;">
-              <div style="flex: 1; max-width: 343px;">
-                <label style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; font-weight: 400; color: #1e1e1e; display: block; margin-bottom: 4px;">Password</label>
-                <div style="border: 1px solid ${altMain}; border-radius: ${radius}; background: white; overflow: hidden; display: flex; align-items: center; height: 40px;">
-                  <input type="password" value="***********" readonly style="flex: 1; border: none; outline: none; padding: 0 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; color: #1e1e1e; background: transparent;" />
-                  <button style="padding: 0 20px; background: transparent; border: none;  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; height: 100%; color: #292929;">Mostra <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0.583008 6.99998C0.583008 6.99998 2.91634 2.33331 6.99967 2.33331C11.083 2.33331 13.4163 6.99998 13.4163 6.99998C13.4163 6.99998 11.083 11.6666 6.99967 11.6666C2.91634 11.6666 0.583008 6.99998 0.583008 6.99998Z" stroke="${accentMain}" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.99967 8.74998C7.96617 8.74998 8.74967 7.96648 8.74967 6.99998C8.74967 6.03348 7.96617 5.24998 6.99967 5.24998C6.03318 5.24998 5.24967 6.03348 5.24967 6.99998C5.24967 7.96648 6.03318 8.74998 6.99967 8.74998Z" stroke="${accentMain}" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</button>
-                </div>
-              </div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; text-align: right; white-space: nowrap; min-width: 140px; line-height: 1.5;">brand.alt.main<br/>brand.accent.main<br>brand.radius</div>
-            </div>
-
-            <!-- Metro Card -->
-            <div style="display: flex; align-items: center; gap: 24px;">
-              <div style="background: ${coreSoft}; border: 1px solid ${altMain}; border-radius: ${radius}; height: 90px; width: 343px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 16px; box-sizing: border-box;">
-                <!-- Metro Icon SVG 24x24 -->
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 15H7.72536L9.17693 9.57396L11.0882 15H12.9118L14.8231 9.57396L16.2746 15H18L16.2282 8H13.6091L12.0232 12.7923L10.4374 8H7.77701L6 15Z" fill="${accentMain}"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M2 5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5ZM5 4C4.44772 4 4 4.44772 4 5V19C4 19.5523 4.44772 20 5 20H19C19.5523 20 20 19.5523 20 19V5C20 4.44772 19.5523 4 19 4H5Z" fill="${accentMain}"/>
-</svg>
-                <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; font-weight: 400; color: #1E1E1E; margin: 0; text-align: center; line-height: 16px;">Metro Linea AB</p>
-              </div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; text-align: right; white-space: nowrap; min-width: 140px; line-height: 1.5;">brand.core.soft<br/>brand.radius<br>brand.accent.main</div>
-            </div>
-
-            <!-- Button Accedi -->
-            <div style="display: flex; align-items: center; gap: 24px;">
-              <button style="background: ${coreMain}; border: none; border-radius: ${radius}; height: 40px; width: 343px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; font-weight: 600; color: white; cursor: pointer; line-height: 20px;">Accedi</button>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; text-align: right; white-space: nowrap; min-width: 140px; line-height: 1.5;">brand.core<br/>brand.radius</div>
-            </div>
-          </div>
+          ${buildSemanticTokensTable(themeId)}
         </div>
       `;
+
+      // Attach event listeners to inputs
+      container.querySelectorAll('.token-value-input').forEach(input => {
+        input.addEventListener('click', function() {
+          const tokenPath = this.dataset.tokenPath;
+          const tokenType = this.dataset.tokenType;
+          const themeId = this.dataset.themeId;
+
+          if (tokenType === 'color') {
+            showAutocomplete(this, (selectedRef) => {
+              const success = updateTokenValueForTheme(tokenPath, themeId, selectedRef);
+              if (success) {
+                renderThemeEditor(themeId);
+                showSnackbar('Token updated', 'success');
+              }
+            });
+          } else if (tokenType === 'fontFamily') {
+            showSnackbar('Font family editing coming soon', 'info');
+          } else if (tokenType === 'dimension') {
+            showSnackbar('Dimension editing coming soon', 'info');
+          } else {
+            this.removeAttribute('readonly');
+            this.focus();
+            this.addEventListener('blur', function() {
+              const newValue = this.value;
+              updateTokenValueForTheme(tokenPath, themeId, newValue);
+              this.setAttribute('readonly', 'true');
+              renderThemeEditor(themeId);
+            }, { once: true });
+          }
+        });
+      });
     }
+
 
     async function deleteTheme(themeId) {
       if (themeId === 'clara') {
@@ -5545,6 +5745,105 @@ Example:
       renderThemeEditor(null);
 
       showSnackbar(`Theme "${themeId}" deleted`, 'success');
+    }
+
+    // Export semantic JSON for selected theme
+    function exportThemeJSON() {
+      const themeId = themeBuilderState.activeTheme;
+      if (!themeId) {
+        showSnackbar('Please select a theme first', 'warning');
+        return;
+      }
+
+      const semantic = tokenTreeData?.semantic;
+      if (!semantic) {
+        showSnackbar('No semantic tokens available', 'error');
+        return;
+      }
+
+      // Build minimal semantic JSON for this theme only
+      const themeJSON = { semantic: {} };
+
+      function extractThemeTokens(source, target, path = []) {
+        for (const [key, value] of Object.entries(source)) {
+          if (key.startsWith('$')) {
+            // Copy metadata ($type, $description, etc.)
+            target[key] = value;
+          } else if (value && typeof value === 'object') {
+            if (value.$type && value.$value && value.$value[themeId]) {
+              // This is a token leaf - extract only this theme's value
+              target[key] = {
+                $value: {
+                  [themeId]: value.$value[themeId]
+                },
+                $type: value.$type
+              };
+            } else {
+              // This is a group - recurse
+              target[key] = {};
+              extractThemeTokens(value, target[key], path.concat(key));
+            }
+          }
+        }
+      }
+
+      extractThemeTokens(semantic, themeJSON.semantic);
+
+      // Download as JSON file
+      const jsonString = JSON.stringify(themeJSON, null, 2);
+      const blob = new Blob([jsonString], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `semantic-${themeId}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showSnackbar(`Exported semantic-${themeId}.json`, 'success');
+    }
+
+    // Create/Update theme mode in Figma
+    async function createThemeInFigma() {
+      const themeId = themeBuilderState.activeTheme;
+      if (!themeId) {
+        showSnackbar('Please select a theme first', 'warning');
+        return;
+      }
+
+      // Double confirmation
+      const confirmed = await createModal(
+        'Create Theme in Figma',
+        `This will create or update the "${themeId}" mode in Figma.\n\nThis may take a few seconds. Continue?`,
+        null,
+        'confirm'
+      );
+
+      if (!confirmed) return;
+
+      // Second confirmation
+      const doubleConfirmed = await createModal(
+        'Confirm',
+        'Are you sure? This will import ALL tokens to Figma.',
+        null,
+        'confirm'
+      );
+
+      if (!doubleConfirmed) return;
+
+      try {
+        // Use existing importToFigma() function (option A)
+        showSnackbar('Creating theme in Figma...', 'info');
+
+        // Call the existing import function
+        await importToFigma();
+
+        showSnackbar(`Theme "${themeId}" created successfully!`, 'success');
+      } catch (error) {
+        console.error('[Create Theme] Error:', error);
+        showSnackbar(`Failed to create theme: ${error.message}`, 'error');
+      }
     }
 
     async function addNewTheme() {
@@ -8078,6 +8377,10 @@ Example:
       });
 
       document.getElementById('css-select-all-collections') && document.getElementById('css-select-all-collections').addEventListener('click', () => toggleAllCollections('css'));
+
+      // Theme Builder tab
+      document.getElementById('export-theme-json-button') && document.getElementById('export-theme-json-button').addEventListener('click', exportThemeJSON);
+      document.getElementById('create-theme-button') && document.getElementById('create-theme-button').addEventListener('click', createThemeInFigma);
       document.getElementById('css-select-all-modes') && document.getElementById('css-select-all-modes').addEventListener('click', () => toggleAllModes('css'));
       document.getElementById('export-css-button') && document.getElementById('export-css-button').addEventListener('click', exportCss);
       document.getElementById('copy-css-button') && document.getElementById('copy-css-button').addEventListener('click', () => {

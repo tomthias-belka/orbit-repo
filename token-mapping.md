@@ -27,10 +27,19 @@ semantic (ruoli semantici, 4 modes)
   └─ booleans (view)
 
 components (componenti specifici, 4 modes)
-  ├─ button (primary, secondary, disabled, shared)
+  ├─ button (primary, secondary, disabled, shared + variants/roles from UIButton)
   ├─ input (background, border, borderfocus, text, placeholder, padding, borderradius, fontsize)
   ├─ card (background, border, padding, borderradius, shadow)
-  └─ badge (success, error, warning, shared)
+  ├─ badge (success, error, warning, shared)
+  ├─ accordion (roles: primary, secondary, tertiary + sections: titleSection, contentSection)
+  ├─ tab (UITabBar - navigation tabs with icon/text support)
+  ├─ modal (mixins.modals - modal system with backdrop, padding, typography)
+  ├─ bottomSheet (mixins.bottomSheet - mobile bottom sheet with handle/shadow)
+  ├─ dropdown (UILinkedCardCart.dropdown - dropdown/select styling)
+  ├─ textInput (UITextInput - input fields with focus/error states)
+  ├─ checkbox (UICheckbox - checkbox with states and size variants)
+  ├─ radioToggle (UIRadioToggle - radio button/toggle component)
+  └─ banner (UIBanner - banner component for notifications)
 ```
 
 ### Modes Supportati
@@ -424,3 +433,113 @@ Metro e transport usano **camelCase**:
 **Modes Supportati**: 4 (clara, mooney, atm, comersud)
 **Tokens Totali**: ~450 (inclusi domain-specific: mobility, illustrations, maps, metro)
 **Compatibilità**: Figma + Luckino + W3C Standard
+
+---
+
+## Component Tokens Import - 2025-11-15
+
+### Nuovi Componenti Importati
+
+Sono stati importati **10 nuovi component tokens** da `theme-mooneygo.json` alla collection `components` di `clara-tokens.json`:
+
+#### 1. **accordion** (66 tokens)
+- **Source**: `UIAccordion.*`
+- **Struttura**: roles (primary, secondary, tertiary) + sections (titleSection, contentSection)
+- **Proprietà**: backgroundColor, textColor, iconColor, textRole, textWeight, padding, border, margins
+- **Note**: Componente accordion completo con varianti multiple
+
+#### 2. **tab** (17 tokens)
+- **Source**: `UITabBar.*`
+- **Struttura**: Sistema navigazione tab
+- **Proprietà**: backgroundColor, textColor, selectedTextColor, selectedUnderlineColor, iconSize, height
+- **Note**: Supporto icon e text, stati selected/unselected
+
+#### 3. **modal** (9 tokens)
+- **Source**: `mixins.modals.*`
+- **Struttura**: Sistema modale
+- **Proprietà**: backgroundColor, backdropColor, backdropOpacity, padding, borderRadius, iconSize, textColor, titleFontRole
+- **Note**: Include gestione backdrop e integrazione tipografica
+
+#### 4. **bottomSheet** (10 tokens)
+- **Source**: `mixins.bottomSheet.*`
+- **Struttura**: Mobile bottom sheet
+- **Proprietà**: backgroundColor, fullscreenBackgroundColor, highlightedBackgroundColor, borderRadius, handleColor, handleHeight, handleWidth, handleContainerHeight, handleBottomSpacing, shadow
+- **Note**: Componente mobile-first con handle visibile
+
+#### 5. **dropdown** (6 tokens)
+- **Source**: `UILinkedCardCart.dropdown*`
+- **Struttura**: Dropdown/Select styling
+- **Proprietà**: TitleColor, IconColor, BackgroundColor, BorderColor, BorderRadius, BorderWidth
+- **Note**: ⚠️ Naming inconsistente (PascalCase invece di camelCase)
+
+#### 6. **textInput** (44 tokens)
+- **Source**: `UITextInput.*`
+- **Struttura**: roles (default, ghost, error-message)
+- **Proprietà**: height, lineHeight, backgroundColor, border (all sides), borderColor, focusedBorderColor, errorBorderColor, textColor, padding, placeholderColor, textRole
+- **Note**: Sistema completo con gestione focus ed errori
+
+#### 7. **button** (40 tokens)
+- **Source**: `UIButton.*`
+- **Struttura**: roles (primary, secondary, tertiary, ghost, destructive) + variants (default, small, large)
+- **Proprietà**: backgroundColor, textColor, borderColor, borderWidth, textWeight, padding, borderRadius, height
+- **Note**: Sistema button completo con 5 ruoli + 3 size variants
+
+#### 8. **checkbox** (20 tokens)
+- **Source**: `UICheckbox.*`
+- **Struttura**: status (unchecked, checked, disabled) + sizes (standard, big)
+- **Proprietà**: borderColor, backgroundColor, icon, borderWidth, size
+- **Note**: Stati completi + varianti dimensionali
+
+#### 9. **radioToggle** (24 tokens)
+- **Source**: `UIRadioToggle.*`
+- **Struttura**: roles (primary, secondary)
+- **Proprietà**: selectedBorderColor, selectedBackgroundColor, unselectedBorderColor, unselectedBackgroundColor, selectedTextColor, unselectedTextColor, disabledBorderColor, disabledBackgroundColor, borderWidth, borderRadius
+- **Note**: Radio button / toggle component con 2 ruoli
+
+#### 10. **banner** (30 tokens)
+- **Source**: `UIBanner.*`
+- **Struttura**: roles (default, info, warning, danger, success, special)
+- **Proprietà**: backgroundColor, textColor, iconColor, textWeight, textRole, borderRadius, padding
+- **Note**: Banner notifications con 6 varianti semantiche
+
+### Statistiche Import
+
+- **Componenti totali in clara-tokens.json**: 13 (4 preesistenti + 9 nuovi + 1 duplicato rimosso)
+- **Token totali importati**: 266
+- **Componenti preesistenti preservati**: badge (11), card (5), input (9)
+
+### Problemi Identificati da Gemini
+
+#### ⚠️ Alias Non Convertiti
+Molti valori sono rimasti come stringhe hardcoded invece di essere convertiti in alias:
+- `MOONEYGO_PRIMARY_3`, `MOONEYGO_GREY10`, `MOONEYGO_BLUE` → necessitano mapping a `{semantic.brand.*}`
+- `BACKDROP_COLOR`, `TAG_STATUS_WARNING_DARK` → necessitano mapping appropriato
+- Valori dimensionali `M`, `XS`, `S` → necessitano mapping a `{global.spacing.*}` o `{semantic.spacing.*}`
+
+#### ❌ $type Inappropriati
+Il campo `$type` è errato in molti token:
+- `borderRadius` con valore `"M"` ha `$type: "color"` → dovrebbe essere `borderRadius` o `string`
+- `textWeight` con valore `"regular"` ha `$type: "color"` → dovrebbe essere `fontWeight`
+- `iconSize` con valore `30` ha `$type: "color"` → dovrebbe essere `dimension`
+- `icon` con valore `"basic_general_check"` ha `$type: "color"` → dovrebbe essere `string` o `asset`
+
+#### ⚠️ Naming Inconsistente
+Il componente `dropdown` usa PascalCase (`TitleColor`, `BackgroundColor`) invece di camelCase come tutti gli altri componenti.
+
+### Azioni Future Necessarie
+
+1. **Correggere Alias**: Mappare tutti i valori hardcoded (es. `MOONEYGO_*`) agli alias corretti nel livello semantic/global
+2. **Sanificare $type**: Correggere tutti i `$type` inappropriati
+3. **Standardizzare Naming**: Convertire `dropdown` token names in camelCase
+4. **Completare Mapping**: Aggiungere mapping esplicito per spacing tokens (`M`, `XS`, `S`, etc.)
+
+### Script Utilizzato
+
+File: `/Users/mattia/Documents/Mattia/Progetti/Mooney/json-dev/import-components-v2.py`
+
+```python
+# Estrae componenti da theme-mooneygo.json (flat structure)
+# Converte in nested structure W3C con $value e $type
+# Supporta conversione parziale alias (WHITE, BLACK, GREYSCALE_*, FEEDBACK_*)
+```
+
