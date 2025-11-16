@@ -26,7 +26,14 @@ export const MESSAGE_TYPES = {
   CLEAR_ALL_COLLECTIONS: 'clear-all-collections',
   COLLECTION_MANAGEMENT_RESULT: 'collection-management-result',
   PREVIEW_IMPORT: 'preview-import',
-  PREVIEW_RESULT: 'preview-result'
+  PREVIEW_RESULT: 'preview-result',
+  // Library support messages
+  BROWSE_LIBRARY: 'browse-library',
+  LIBRARY_COLLECTIONS_DATA: 'library-collections-data',
+  GET_LIBRARY_VARIABLES: 'get-library-variables',
+  LIBRARY_VARIABLES_DATA: 'library-variables-data',
+  IMPORT_FROM_LIBRARY: 'import-from-library',
+  LIBRARY_IMPORT_RESULT: 'library-import-result'
 } as const;
 
 // Export Formats

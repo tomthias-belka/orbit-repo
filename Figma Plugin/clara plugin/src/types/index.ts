@@ -6,6 +6,7 @@ export * from './figma.js';
 export * from './plugin.js';
 export * from './tokens.js';
 export * from './github.js';
+export * from './library.js';
 
 // Re-export utility types
 export type {

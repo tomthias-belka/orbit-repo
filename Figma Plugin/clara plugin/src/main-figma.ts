@@ -57,7 +57,14 @@ const MESSAGE_TYPES = {
   CLEAR_ALL_COLLECTIONS: 'clear-all-collections',
   COLLECTION_MANAGEMENT_RESULT: 'collection-management-result',
   PREVIEW_IMPORT: 'preview-import',
-  PREVIEW_RESULT: 'preview-result'
+  PREVIEW_RESULT: 'preview-result',
+  // Library support messages
+  BROWSE_LIBRARY: 'browse-library',
+  LIBRARY_COLLECTIONS_DATA: 'library-collections-data',
+  GET_LIBRARY_VARIABLES: 'get-library-variables',
+  LIBRARY_VARIABLES_DATA: 'library-variables-data',
+  IMPORT_FROM_LIBRARY: 'import-from-library',
+  LIBRARY_IMPORT_RESULT: 'library-import-result'
 } as const;
 
 const UI_CONFIG = {
@@ -3293,6 +3300,18 @@ figma.ui.onmessage = async (msg: PluginMessage): Promise<void> => {
         await handlePreviewImport(msg);
         break;
 
+      case MESSAGE_TYPES.BROWSE_LIBRARY:
+        await handleBrowseLibrary();
+        break;
+
+      case MESSAGE_TYPES.GET_LIBRARY_VARIABLES:
+        await handleGetLibraryVariables(msg);
+        break;
+
+      case MESSAGE_TYPES.IMPORT_FROM_LIBRARY:
+        await handleImportFromLibrary(msg);
+        break;
+
       default:
         console.warn(`[Plugin] Unhandled message type: ${type}`);
     }
@@ -5294,6 +5313,185 @@ async function handleClearAllCollections(): Promise<void> {
       message: (error as Error).message
     });
     figma.notify(`❌ Failed to clear collections: ${(error as Error).message}`, { error: true });
+  }
+}
+
+// ================== LIBRARY SUPPORT HANDLERS ==================
+
+/**
+ * Handle browse library request - discover available library collections
+ */
+async function handleBrowseLibrary(): Promise<void> {
+  try {
+    // Access Team Library API
+    const libraryCollections = await figma.teamLibrary.getAvailableLibraryVariableCollectionsAsync();
+
+    if (!libraryCollections || libraryCollections.length === 0) {
+      figma.ui.postMessage({
+        type: MESSAGE_TYPES.LIBRARY_COLLECTIONS_DATA,
+        success: true,
+        libraries: [],
+        message: 'No libraries enabled. Enable libraries in Figma UI first.'
+      });
+      figma.notify('ℹ️ No libraries enabled. Enable libraries in Figma UI.', { timeout: 3000 });
+      return;
+    }
+
+    // Map to metadata format
+    const libraries = libraryCollections.map(col => ({
+      name: col.name,
+      key: col.key,
+      libraryName: col.libraryName || 'Unknown Library'
+    }));
+
+    figma.ui.postMessage({
+      type: MESSAGE_TYPES.LIBRARY_COLLECTIONS_DATA,
+      success: true,
+      libraries,
+      message: `Found ${libraries.length} library collection(s)`
+    });
+
+    figma.notify(`✅ Found ${libraries.length} library collection(s)`, { timeout: 2000 });
+
+  } catch (error) {
+    console.error('Error browsing libraries:', error);
+    figma.ui.postMessage({
+      type: MESSAGE_TYPES.LIBRARY_COLLECTIONS_DATA,
+      success: false,
+      libraries: [],
+      error: (error as Error).message
+    });
+    figma.notify(`❌ Failed to browse libraries: ${(error as Error).message}`, { error: true });
+  }
+}
+
+/**
+ * Handle get library variables request - get variables from a specific library collection
+ */
+async function handleGetLibraryVariables(msg: any): Promise<void> {
+  try {
+    const { collectionKey } = msg;
+
+    if (!collectionKey) {
+      throw new Error('Missing collection key');
+    }
+
+    const libraryVariables = await figma.teamLibrary.getVariablesInLibraryCollectionAsync(collectionKey);
+
+    if (!libraryVariables || libraryVariables.length === 0) {
+      figma.ui.postMessage({
+        type: MESSAGE_TYPES.LIBRARY_VARIABLES_DATA,
+        success: true,
+        variables: [],
+        message: 'No variables found in this library collection'
+      });
+      return;
+    }
+
+    // Map to metadata format
+    const variables = libraryVariables.map(libVar => ({
+      id: libVar.key,
+      key: libVar.key,
+      name: libVar.name,
+      resolvedType: libVar.resolvedType,
+      isRemote: true
+    }));
+
+    figma.ui.postMessage({
+      type: MESSAGE_TYPES.LIBRARY_VARIABLES_DATA,
+      success: true,
+      variables,
+      collectionKey
+    });
+
+    figma.notify(`✅ Found ${variables.length} variables`, { timeout: 2000 });
+
+  } catch (error) {
+    console.error('Error getting library variables:', error);
+    figma.ui.postMessage({
+      type: MESSAGE_TYPES.LIBRARY_VARIABLES_DATA,
+      success: false,
+      variables: [],
+      error: (error as Error).message
+    });
+    figma.notify(`❌ Failed to get library variables: ${(error as Error).message}`, { error: true });
+  }
+}
+
+/**
+ * Handle import from library request - import variables from external library
+ */
+async function handleImportFromLibrary(msg: any): Promise<void> {
+  try {
+    const { variableKeys } = msg;
+
+    if (!variableKeys || !Array.isArray(variableKeys) || variableKeys.length === 0) {
+      throw new Error('No variable keys provided');
+    }
+
+    const results = [];
+    let successCount = 0;
+    let errorCount = 0;
+
+    figma.ui.postMessage({
+      type: MESSAGE_TYPES.PROGRESS_UPDATE,
+      message: `Importing ${variableKeys.length} variable(s) from library...`
+    });
+
+    for (const variableKey of variableKeys) {
+      try {
+        // Import variable using Figma API
+        // This creates a "linked variable" that stays in sync with library
+        const importedVariable = await figma.variables.importVariableByKeyAsync(variableKey);
+
+        results.push({
+          success: true,
+          variableKey,
+          variableName: importedVariable.name,
+          variableId: importedVariable.id
+        });
+        successCount++;
+
+        // Small delay to avoid rate limiting
+        if (variableKeys.length > 10) {
+          await new Promise(resolve => setTimeout(resolve, 50));
+        }
+      } catch (error) {
+        const err = error as Error;
+        results.push({
+          success: false,
+          variableKey,
+          error: err.message
+        });
+        errorCount++;
+      }
+    }
+
+    figma.ui.postMessage({
+      type: MESSAGE_TYPES.LIBRARY_IMPORT_RESULT,
+      success: successCount > 0,
+      results,
+      successCount,
+      errorCount,
+      totalCount: variableKeys.length,
+      message: `Imported ${successCount} of ${variableKeys.length} variable(s)`
+    });
+
+    if (successCount > 0) {
+      figma.notify(`✅ Imported ${successCount} variable(s) from library`, { timeout: 3000 });
+    }
+    if (errorCount > 0) {
+      figma.notify(`⚠️ ${errorCount} variable(s) failed to import`, { error: true });
+    }
+
+  } catch (error) {
+    console.error('Error importing from library:', error);
+    figma.ui.postMessage({
+      type: MESSAGE_TYPES.LIBRARY_IMPORT_RESULT,
+      success: false,
+      error: (error as Error).message
+    });
+    figma.notify(`❌ Failed to import from library: ${(error as Error).message}`, { error: true });
   }
 }
 

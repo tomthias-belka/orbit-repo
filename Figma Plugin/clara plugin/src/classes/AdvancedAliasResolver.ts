@@ -1,6 +1,8 @@
 // Advanced Alias Resolver Class
 // Risolve alias di variabili in modo robusto per evitare "[object Object]"
+// Supporta alias cross-library (variabili da Figma Team Libraries)
 import type { Variable } from '../types/figma.js';
+import { LibraryManager } from './LibraryManager.js';
 
 export interface VariableAlias {
   type: 'VARIABLE_ALIAS';
@@ -12,6 +14,8 @@ export interface AliasResolutionOptions {
   format?: 'css' | 'json' | 'tokens';
   variableMap?: Map<string, Variable>;
   nameTransform?: (name: string) => string;
+  resolveRemoteAliases?: boolean; // Enable cross-library alias resolution
+  libraryManager?: LibraryManager; // Optional LibraryManager instance
 }
 
 export interface AliasResolutionResult {
@@ -21,6 +25,8 @@ export interface AliasResolutionResult {
   error?: string;
   depth?: number;
   referencedVariableName?: string;
+  isRemoteVariable?: boolean; // True if resolved from external library
+  libraryName?: string; // Name of the library (if remote)
 }
 
 /**
@@ -32,13 +38,20 @@ export interface AliasResolutionResult {
  * - Cache per performance
  * - Fallback intelligenti per alias non trovati
  * - Supporto multi-formato (CSS, JSON, Design Tokens)
+ * - Supporto cross-library (risoluzione da Figma Team Libraries)
  */
 export class AdvancedAliasResolver {
   private resolutionCache = new Map<string, AliasResolutionResult>();
   private resolutionStack = new Set<string>(); // Per detection circular refs
   private defaultMaxDepth = 10;
+  private libraryManager?: LibraryManager;
 
-  constructor(private variableMap?: Map<string, Variable>) {}
+  constructor(
+    private variableMap?: Map<string, Variable>,
+    libraryManager?: LibraryManager
+  ) {
+    this.libraryManager = libraryManager;
+  }
 
   /**
    * Risolve un alias di variabile (async)
@@ -128,11 +141,19 @@ export class AdvancedAliasResolver {
         currentDepth
       );
 
+      // Check if variable is from external library
+      const isRemote = this.libraryManager?.isRemoteVariable(referencedVariable) || false;
+      const libraryInfo = isRemote && this.libraryManager
+        ? this.libraryManager.getLibraryInfo(referencedVariable)
+        : null;
+
       const result: AliasResolutionResult = {
         success: true,
         resolvedValue,
         depth: currentDepth,
-        referencedVariableName: referencedVariable.name
+        referencedVariableName: referencedVariable.name,
+        isRemoteVariable: isRemote,
+        libraryName: libraryInfo?.libraryName
       };
 
       this.resolutionCache.set(cacheKey, result);
@@ -156,6 +177,7 @@ export class AdvancedAliasResolver {
 
   /**
    * Trova la variabile referenziata (async) con lazy loading e cache dinamica
+   * Supporta anche variabili remote da Figma Team Libraries
    */
   private async findReferencedVariable(
     aliasId: string,
@@ -169,6 +191,25 @@ export class AdvancedAliasResolver {
     // Prova con la mappa interna
     if (this.variableMap && this.variableMap.has(aliasId)) {
       return this.variableMap.get(aliasId)!;
+    }
+
+    // Se disponibile, usa LibraryManager per accesso ottimizzato a variabili remote
+    if (this.libraryManager) {
+      try {
+        const variable = await this.libraryManager.getRemoteVariable(aliasId);
+        if (variable) {
+          // CACHE DINAMICA: Aggiungi alla cache locale
+          if (variableMap) {
+            variableMap.set(aliasId, variable);
+          }
+          if (this.variableMap) {
+            this.variableMap.set(aliasId, variable);
+          }
+          return variable;
+        }
+      } catch (error) {
+        console.warn(`[AdvancedAliasResolver] LibraryManager failed for ${aliasId}, falling back to direct API`);
+      }
     }
 
     // Fallback alle API Figma (ASYNC - NON deprecato)
@@ -261,6 +302,15 @@ export class AdvancedAliasResolver {
   updateVariableMap(variableMap: Map<string, Variable>): void {
     this.variableMap = variableMap;
     // Clear cache quando la mappa cambia
+    this.resolutionCache.clear();
+  }
+
+  /**
+   * Configura il LibraryManager per risoluzione cross-library
+   */
+  setLibraryManager(libraryManager: LibraryManager): void {
+    this.libraryManager = libraryManager;
+    // Clear cache per permettere risoluzione con nuovo manager
     this.resolutionCache.clear();
   }
 
