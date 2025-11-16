@@ -4287,6 +4287,7 @@ async function findVariableByPath(path: string): Promise<Variable | null> {
   // Convert dots to slashes (W3C convention -> Figma convention)
   const figmaPath = path.replace(/\./g, '/');
 
+  // ========== STEP 1: TRY LOCAL VARIABLES FIRST ==========
   if (localVariablesCache === null) {
     // Load all variables once for efficiency
     localVariablesCache = await figma.variables.getLocalVariablesAsync();
@@ -4295,6 +4296,7 @@ async function findVariableByPath(path: string): Promise<Variable | null> {
   // First try: search by direct name
   let targetVar = localVariablesCache.find(v => v.name === figmaPath);
   if (targetVar) {
+    console.log(`[findVariableByPath] ✓ Found locally: ${figmaPath}`);
     return targetVar;
   }
 
@@ -4312,13 +4314,93 @@ async function findVariableByPath(path: string): Promise<Variable | null> {
         v.name === variableOnlyPath
       );
       if (crossCollectionVar) {
+        console.log(`[findVariableByPath] ✓ Found locally (cross-collection): ${figmaPath}`);
         return crossCollectionVar;
       }
     }
   }
 
-  console.warn(`[findVariableByPath] Variable not found: ${figmaPath}`);
+  // ========== STEP 2: TRY REMOTE LIBRARIES ==========
+  console.log(`[findVariableByPath] Not found locally, searching in libraries: ${figmaPath}`);
+  const remoteVar = await findRemoteVariableByName(figmaPath);
+
+  if (remoteVar) {
+    console.log(`[findVariableByPath] ✓ Found and imported from library: ${remoteVar.name}`);
+    // Add to cache for future lookups to avoid re-importing
+    localVariablesCache.push(remoteVar);
+    return remoteVar;
+  }
+
+  // ========== NOT FOUND ANYWHERE ==========
+  console.warn(`[findVariableByPath] ✗ Variable not found (local or remote): ${figmaPath}`);
   return null;
+}
+
+/**
+ * Search for a variable in enabled Figma Team Libraries by name
+ * If found, imports it as a linked variable
+ * @param variableName - The variable name to search for (supports both . and / notation)
+ * @returns The imported variable or null if not found
+ */
+async function findRemoteVariableByName(variableName: string): Promise<Variable | null> {
+  try {
+    console.log(`[findRemoteVariableByName] Searching for: ${variableName}`);
+
+    // Get all enabled libraries
+    const libraryCollections = await figma.teamLibrary.getAvailableLibraryVariableCollectionsAsync();
+
+    if (!libraryCollections || libraryCollections.length === 0) {
+      console.log(`[findRemoteVariableByName] No libraries enabled`);
+      return null;
+    }
+
+    console.log(`[findRemoteVariableByName] Searching in ${libraryCollections.length} library collection(s)`);
+
+    // Search each library for matching variable
+    for (const libCollection of libraryCollections) {
+      try {
+        const libraryVariables = await figma.teamLibrary.getVariablesInLibraryCollectionAsync(libCollection.key);
+
+        if (!libraryVariables || libraryVariables.length === 0) {
+          continue;
+        }
+
+        // Try exact match first
+        let matchingVar = libraryVariables.find(v => v.name === variableName);
+
+        // Try with slash conversion (semantic.color.background -> semantic/color/background)
+        if (!matchingVar) {
+          const withSlashes = variableName.replace(/\./g, '/');
+          matchingVar = libraryVariables.find(v => v.name === withSlashes);
+        }
+
+        // Try with dot conversion (semantic/color/background -> semantic.color.background)
+        if (!matchingVar) {
+          const withDots = variableName.replace(/\//g, '.');
+          matchingVar = libraryVariables.find(v => v.name === withDots);
+        }
+
+        if (matchingVar) {
+          console.log(`[findRemoteVariableByName] ✓ Found in library "${libCollection.name}": ${matchingVar.name}`);
+
+          // Import the variable as linked (stays in sync with library)
+          const importedVariable = await figma.variables.importVariableByKeyAsync(matchingVar.key);
+          console.log(`[findRemoteVariableByName] ✓ Imported as linked variable: ${importedVariable.name}`);
+
+          return importedVariable;
+        }
+      } catch (error) {
+        console.warn(`[findRemoteVariableByName] Error searching library "${libCollection.name}":`, error);
+        continue;
+      }
+    }
+
+    console.log(`[findRemoteVariableByName] ✗ Not found in any library`);
+    return null;
+  } catch (error) {
+    console.error('[findRemoteVariableByName] Error:', error);
+    return null;
+  }
 }
 
 /**
