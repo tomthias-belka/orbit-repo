@@ -1,0 +1,114 @@
+  {
+"components": {
+    "input": {
+      "background": {
+        "$value": "{colors.neutral.white}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{colors.border.main}",
+        "$type": "color"
+      },
+      "borderFocus": {
+        "$value": "{colors.border.focus}",
+        "$type": "color"
+      },
+      "text": {
+        "$value": "{colors.text.main}",
+        "$type": "color"
+      },
+      "paddingx": {
+        "$value": "{spacing.component.md}",
+        "$type": "number"
+      },
+      "paddingy": {
+        "$value": "{spacing.component.sm}",
+        "$type": "number"
+      },
+      "borderRadius": {
+        "$value": "{radius.brand}",
+        "$type": "borderRadius"
+      },
+      "fontSize": {
+        "$value": "{typography.fontSize.base}",
+        "$type": "fontSize"
+      }
+    },
+    "card": {
+      "background": {
+        "$value": "{colors.neutral.white}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{colors.border.muted}",
+        "$type": "color"
+      },
+      "padding": {
+        "$value": "{spacing.layout.md}",
+        "$type": "number"
+      },
+      "borderRadius": {
+        "$value": "{radius.card}",
+        "$type": "borderRadius"
+      },
+      "shadow": {
+        "$value": "{shadow.card}",
+        "$type": "string"
+      }
+    },
+    "badge": {
+      "success": {
+        "background": {
+          "$value": "{colors.feedback.successLight}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.feedback.success}",
+          "$type": "color"
+        }
+      },
+      "error": {
+        "background": {
+          "$value": "{colors.feedback.errorLight}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.feedback.error}",
+          "$type": "color"
+        }
+      },
+      "warning": {
+        "background": {
+          "$value": "{colors.feedback.warningLight}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{colors.feedback.warning}",
+          "$type": "color"
+        }
+      },
+      "shared": {
+        "paddingx": {
+          "$value": "{spacing.component.sm}",
+          "$type": "number"
+        },
+        "paddingy": {
+          "$value": "{spacing.component.xs}",
+          "$type": "number"
+        },
+        "borderRadius": {
+          "$value": "{radius.badge}",
+          "$type": "borderRadius"
+        },
+        "fontSize": {
+          "$value": "{typography.fontSize.sm}",
+          "$type": "fontSize"
+        },
+        "fontWeight": {
+          "$value": "{typography.fontWeight.medium}",
+          "$type": "fontWeight"
+        }
+      }
+    }
+  }
+}

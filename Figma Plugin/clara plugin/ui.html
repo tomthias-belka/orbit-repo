@@ -3757,89 +3757,236 @@
 
     .theme-tokens-table {
       width: 100%;
-      border-collapse: collapse;
       font-family: 'Inter', -apple-system, sans-serif;
-    }
-
-    .tokens-table-header {
-      display: grid;
-      grid-template-columns: 2fr 2fr 100px;
-      gap: 16px;
-      padding: 12px 16px;
-      background: #f5f5f5;
-      border-radius: 6px 6px 0 0;
-      font-weight: 600;
-      font-size: 12px;
-      color: #666;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
     .tokens-table-body {
       display: flex;
       flex-direction: column;
+      gap: 4px;
     }
 
     .token-row {
-      display: grid;
-      grid-template-columns: 2fr 2fr 100px;
-      gap: 16px;
-      padding: 12px 16px;
-      border-bottom: 1px solid #e5e5e5;
+      display: flex;
       align-items: center;
-      transition: background 0.15s;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      transition: background 0.12s;
+      cursor: default;
     }
 
     .token-row:hover {
-      background: #fafafa;
+      background: rgba(0, 0, 0, 0.03);
     }
 
-    .token-row .col-path {
-      font-family: 'JetBrains Mono', monospace;
+    .token-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .token-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
+
+    .token-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1e1e1e;
+      flex-shrink: 0;
+      min-width: 150px;
+    }
+
+    .token-value-chip {
+      background: #f5f5f5;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.15s;
+      margin-left: auto;
+      user-select: none;
+    }
+
+    .token-value-chip:hover {
+      background: #ebebeb;
+      border-color: rgba(0, 102, 255, 0.3);
+      color: #0066ff;
+    }
+
+    .token-value-chip:active {
+      transform: scale(0.98);
+    }
+
+    /* ===== LIBRARIES MODAL STYLES ===== */
+    .libraries-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.15s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .libraries-modal {
+      background: white;
+      border-radius: 12px;
+      width: 440px;
+      max-height: 640px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .libraries-header {
+      padding: 16px;
+      border-bottom: 1px solid #e5e5e5;
+      position: relative;
+    }
+
+    .libraries-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .libraries-title-swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+
+    .libraries-search-wrapper {
+      position: relative;
+    }
+
+    .libraries-search {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .libraries-search:focus {
+      border-color: #0066ff;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .libraries-content {
+      overflow-y: auto;
+      flex: 1;
+      padding: 8px;
+    }
+
+    .color-family {
+      margin-bottom: 16px;
+    }
+
+    .color-family-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 8px 4px 8px;
+    }
+
+    .color-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .color-item:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .color-item-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+    }
+
+    .color-item-label {
       font-size: 13px;
       color: #333;
       font-weight: 500;
     }
 
-    .token-row .col-value {
-      flex: 1;
-    }
-
-    .token-value-input {
-      width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #d0d0d0;
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      width: 24px;
+      height: 24px;
       border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: #333;
-      background: white;
       cursor: pointer;
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-
-    .token-value-input:hover {
-      border-color: #999;
-    }
-
-    .token-value-input:focus {
-      outline: none;
-      border-color: #0066cc;
-      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-    }
-
-    .token-row .col-preview {
+      font-size: 16px;
+      color: #666;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.15s;
     }
 
-    .token-row .color-swatch {
-      width: 40px;
-      height: 40px;
-      border-radius: 6px;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.06);
     }
 
     /* ===== THEME PREVIEW STYLES ===== */
@@ -5563,6 +5710,117 @@ Example:
     }
 
     // Build semantic tokens table for theme editor
+    // Format token path for display
+    function formatTokenPath(path) {
+      const parts = path.split('.');
+      return parts[parts.length - 1]; // Return last segment only
+    }
+
+    // Build color families list for modal
+    function buildColorFamilies() {
+      const families = {};
+
+      // Group colors by family
+      if (tokenTreeData?.colors) {
+        for (const [familyName, scales] of Object.entries(tokenTreeData.colors)) {
+          families[familyName] = [];
+          for (const [scale, colorData] of Object.entries(scales)) {
+            if (colorData.$value) {
+              families[familyName].push({
+                scale,
+                hex: colorData.$value,
+                ref: `{colors.${familyName}.${scale}}`
+              });
+            }
+          }
+        }
+      }
+
+      let html = '';
+      for (const [family, colors] of Object.entries(families)) {
+        html += `
+          <div class="color-family">
+            <div class="color-family-title">colors/${family}</div>
+            ${colors.map(c => `
+              <div class="color-item" data-ref="${c.ref}">
+                <div class="color-item-swatch" style="background: ${c.hex};"></div>
+                <span class="color-item-label">${c.scale}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      return html;
+    }
+
+    // Show libraries modal
+    function showLibrariesModal(tokenPath, themeId, currentValue) {
+      const overlay = document.createElement('div');
+      overlay.className = 'libraries-modal-overlay';
+
+      const hexColor = resolveTokenToHex(currentValue);
+
+      overlay.innerHTML = `
+        <div class="libraries-modal" onclick="event.stopPropagation()">
+          <div class="libraries-header">
+            <div class="libraries-title">
+              ${hexColor ? `<div class="libraries-title-swatch" style="background: ${hexColor};"></div>` : ''}
+              ${currentValue}
+            </div>
+            <button class="modal-close">✕</button>
+            <div class="libraries-search-wrapper">
+              <svg class="search-icon" viewBox="0 0 16 16">
+                <circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="11" y1="11" x2="14" y2="14" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <input type="text" class="libraries-search" placeholder="Search" />
+            </div>
+          </div>
+          <div class="libraries-content">
+            ${buildColorFamilies()}
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(overlay);
+
+      // Close on overlay click
+      overlay.addEventListener('click', () => overlay.remove());
+
+      // Close button
+      overlay.querySelector('.modal-close').addEventListener('click', () => overlay.remove());
+
+      // Color selection
+      overlay.querySelectorAll('.color-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const ref = item.dataset.ref;
+          updateTokenValueForTheme(tokenPath, themeId, ref);
+          overlay.remove();
+          renderThemeEditor(themeId);
+          showSnackbar('Token updated', 'success');
+        });
+      });
+
+      // Search filter
+      const searchInput = overlay.querySelector('.libraries-search');
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        overlay.querySelectorAll('.color-item').forEach(item => {
+          const text = item.textContent.toLowerCase();
+          item.style.display = text.includes(query) ? 'flex' : 'none';
+        });
+
+        // Hide empty families
+        overlay.querySelectorAll('.color-family').forEach(family => {
+          const visibleItems = Array.from(family.querySelectorAll('.color-item')).some(item => item.style.display !== 'none');
+          family.style.display = visibleItems ? 'block' : 'none';
+        });
+      });
+
+      searchInput.focus();
+    }
+
     function buildSemanticTokensTable(themeId) {
       const tokens = [];
 
@@ -5579,50 +5837,39 @@ Example:
       let html = `
         <div class="theme-tokens-table-wrapper">
           <div class="theme-tokens-table">
-            <div class="tokens-table-header">
-              <div class="col-path">Token Path</div>
-              <div class="col-value">Value</div>
-              <div class="col-preview">Preview</div>
-            </div>
             <div class="tokens-table-body">
       `;
 
       tokens.forEach(token => {
         const displayValue = token.value || '';
-        let previewHTML = '';
+        const tokenName = formatTokenPath(token.path);
+        let swatchHTML = '';
 
-        // Generate preview based on token type
+        // Generate swatch based on token type
         if (token.type === 'color') {
           const hexColor = resolveTokenToHex(token.value);
           if (hexColor) {
-            previewHTML = `<div class="color-swatch" style="background: ${hexColor};" title="${hexColor}"></div>`;
+            swatchHTML = `<div class="token-swatch" style="background: ${hexColor};" title="${hexColor}"></div>`;
+          } else {
+            swatchHTML = `<div class="token-swatch" style="background: #f0f0f0;"></div>`;
           }
-        } else if (token.type === 'fontFamily') {
-          const fontFamily = resolveTokenRef(token.value);
-          previewHTML = `<span style="font-family: ${fontFamily}; font-size: 12px;">Aa</span>`;
-        } else if (token.type === 'dimension') {
-          const dimension = resolveTokenRef(token.value);
-          previewHTML = `<span style="font-size: 11px; color: #666;">${dimension}</span>`;
+        } else {
+          swatchHTML = `<div class="token-swatch" style="background: #f0f0f0;"></div>`;
         }
 
+        const iconSVG = `<svg class="token-icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>`;
+
         html += `
-          <div class="token-row" data-path="${token.path}" data-type="${token.type}" data-theme="${themeId}">
-            <div class="col-path">${token.path}</div>
-            <div class="col-value">
-              <div class="autocomplete-container">
-                <input
-                  type="text"
-                  class="token-value-input"
-                  value="${displayValue}"
-                  readonly
-                  placeholder="Click to edit"
-                  data-token-path="${token.path}"
-                  data-token-type="${token.type}"
-                  data-theme-id="${themeId}"
-                />
-              </div>
+          <div class="token-row" data-path="${token.path}" data-type="${token.type}">
+            ${swatchHTML}
+            ${iconSVG}
+            <span class="token-name">${tokenName}</span>
+            <div class="token-value-chip"
+                 data-token-path="${token.path}"
+                 data-theme-id="${themeId}"
+                 data-current-value="${displayValue}">
+              ${displayValue}
             </div>
-            <div class="col-preview">${previewHTML}</div>
           </div>
         `;
       });
@@ -5671,35 +5918,14 @@ Example:
         </div>
       `;
 
-      // Attach event listeners to inputs
-      container.querySelectorAll('.token-value-input').forEach(input => {
-        input.addEventListener('click', function() {
+      // Attach click listeners to chips
+      container.querySelectorAll('.token-value-chip').forEach(chip => {
+        chip.addEventListener('click', function() {
           const tokenPath = this.dataset.tokenPath;
-          const tokenType = this.dataset.tokenType;
           const themeId = this.dataset.themeId;
+          const currentValue = this.dataset.currentValue;
 
-          if (tokenType === 'color') {
-            showAutocomplete(this, (selectedRef) => {
-              const success = updateTokenValueForTheme(tokenPath, themeId, selectedRef);
-              if (success) {
-                renderThemeEditor(themeId);
-                showSnackbar('Token updated', 'success');
-              }
-            });
-          } else if (tokenType === 'fontFamily') {
-            showSnackbar('Font family editing coming soon', 'info');
-          } else if (tokenType === 'dimension') {
-            showSnackbar('Dimension editing coming soon', 'info');
-          } else {
-            this.removeAttribute('readonly');
-            this.focus();
-            this.addEventListener('blur', function() {
-              const newValue = this.value;
-              updateTokenValueForTheme(tokenPath, themeId, newValue);
-              this.setAttribute('readonly', 'true');
-              renderThemeEditor(themeId);
-            }, { once: true });
-          }
+          showLibrariesModal(tokenPath, themeId, currentValue);
         });
       });
     }

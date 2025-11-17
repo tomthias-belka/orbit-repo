@@ -522,6 +522,111 @@ class ProductionErrorHandler {
   }
 }
 
+// SimpleProgressLoader Class (from classes/SimpleProgressLoader.ts)
+/**
+ * Simple progress loader for displaying operation progress to the UI
+ * Provides sophisticated loading animation with progress tracking
+ */
+class SimpleProgressLoader {
+  private isVisible: boolean = false;
+  private currentProgress: number = 0;
+
+  constructor() {
+    this.isVisible = false;
+    this.currentProgress = 0;
+  }
+
+  /**
+   * Show the progress loader
+   */
+  show(): void {
+    this.isVisible = true;
+    this.currentProgress = 0;
+
+    figma.ui.postMessage({
+      type: 'sophisticated-loader-show'
+    });
+  }
+
+  /**
+   * Update progress percentage
+   * @param percentage - Progress percentage (0-100)
+   */
+  updateProgress(percentage: number): void {
+    if (!this.isVisible) return;
+
+    this.currentProgress = Math.min(100, Math.max(0, percentage));
+    figma.ui.postMessage({
+      type: 'sophisticated-loader-update',
+      percentage: this.currentProgress
+    });
+  }
+
+  /**
+   * Hide the progress loader
+   * Completes the progress bar before hiding
+   */
+  async hide(): Promise<void> {
+    if (!this.isVisible) return;
+
+    // Complete the progress bar before hiding
+    if (this.currentProgress < 100) {
+      this.updateProgress(100);
+      await new Promise<void>(resolve => setTimeout(resolve, 150));
+    }
+
+    this.isVisible = false;
+
+    figma.ui.postMessage({
+      type: 'sophisticated-loader-hide'
+    });
+  }
+
+  /**
+   * Set progress with validation and message
+   * @param percentage - Progress percentage (0-100)
+   * @param message - Optional message to display
+   */
+  setProgress(percentage: number, message?: string): void {
+    this.updateProgress(percentage);
+
+    if (message) {
+      figma.ui.postMessage({
+        type: 'sophisticated-loader-message',
+        message
+      });
+    }
+  }
+
+  /**
+   * Show error state and hide loader
+   * @param errorMessage - Error message to display
+   */
+  async showError(errorMessage: string): Promise<void> {
+    figma.ui.postMessage({
+      type: 'sophisticated-loader-error',
+      message: errorMessage
+    });
+
+    await new Promise<void>(resolve => setTimeout(resolve, 500));
+    await this.hide();
+  }
+
+  /**
+   * Check if loader is currently visible
+   */
+  get visible(): boolean {
+    return this.isVisible;
+  }
+
+  /**
+   * Get current progress percentage
+   */
+  get progress(): number {
+    return this.currentProgress;
+  }
+}
+
 // TokenProcessor Class (from classes/TokenProcessor.ts)
 class TokenProcessor {
   private errorHandler: ProductionErrorHandler;
@@ -3856,7 +3961,12 @@ async function simpleImportVariables(jsonData: any): Promise<{
   variableCount: number;
   collectionCount: number;
 }> {
+  const progressLoader = new SimpleProgressLoader();
+
   try {
+    // 🚀 Show progress bar and start at 0%
+    progressLoader.show();
+    progressLoader.updateProgress(5);
 
     let data = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
 
@@ -3868,8 +3978,14 @@ async function simpleImportVariables(jsonData: any): Promise<{
     // Pre-validate colors to prevent crashes
     validateColorValues(data);
 
+    progressLoader.updateProgress(10); // Validation complete
+
     let variableCount = 0;
     let collectionCount = 0;
+
+    // Count total collections for progress calculation
+    const totalCollections = Object.keys(data).filter(key => !key.startsWith('$')).length;
+    let processedCollections = 0;
 
     // Process each collection
     for (const collectionName in data) {
@@ -3886,16 +4002,33 @@ async function simpleImportVariables(jsonData: any): Promise<{
 
       collectionCount++;
 
+      // Calculate progress: 10% to 80% for processing collections
+      const collectionProgress = 10 + Math.floor((processedCollections / totalCollections) * 70);
+      progressLoader.updateProgress(collectionProgress);
+
       // Process variables in this collection using existing utility
-      const varCount = await processCollectionSimple(collectionName, collectionData, collection);
+      const varCount = await processCollectionSimple(
+        collectionName,
+        collectionData,
+        collection,
+        '',
+        undefined,
+        progressLoader, // Pass progress loader
+        collectionProgress,
+        collectionProgress + Math.floor(70 / totalCollections) // End progress for this collection
+      );
       variableCount += varCount;
+
+      processedCollections++;
     }
 
     // === PASSAGGIO 1 COMPLETATO ===
+    progressLoader.updateProgress(80);
 
     // === PASSAGGIO 2: RISOLUZIONE ALIAS ===
     let aliasResults = { resolved: 0, failed: 0 };
     if (pendingAliases.length > 0) {
+      progressLoader.updateProgress(85);
       aliasResults = await resolvePendingAliases();
 
       // Cleanup
@@ -3905,10 +4038,15 @@ async function simpleImportVariables(jsonData: any): Promise<{
     } else {
     }
 
+    progressLoader.updateProgress(95);
+
     const finalMessage = aliasResults.resolved > 0
       ? `Successfully imported ${variableCount} variables (${aliasResults.resolved} aliases resolved) into ${collectionCount} collections`
       : `Successfully imported ${variableCount} variables into ${collectionCount} collections`;
 
+    // Complete and hide
+    progressLoader.updateProgress(100);
+    await progressLoader.hide();
 
     return {
       success: true,
@@ -3923,6 +4061,9 @@ async function simpleImportVariables(jsonData: any): Promise<{
     // Cleanup on error
     pendingAliases.length = 0;
     localVariablesCache = null;
+
+    // Show error and hide progress
+    await progressLoader.showError(`Import failed: ${(error as Error).message}`);
 
     return {
       success: false,
@@ -4010,12 +4151,36 @@ async function processCollectionSimple(
   data: any,
   collectionInfo: any,
   path: string = '',
-  existingVarsCache?: Variable[]
+  existingVarsCache?: Variable[],
+  progressLoader?: SimpleProgressLoader,
+  startProgress: number = 0,
+  endProgress: number = 100
 ): Promise<number> {
   let variableCount = 0;
 
   // 🚀 PERFORMANCE FIX: Get existing variables ONCE at the start instead of in the loop
   const existingVars = existingVarsCache || await figma.variables.getLocalVariablesAsync();
+
+  // 📊 Count total items for progress tracking (only at root level)
+  let totalItems = 0;
+  let processedItems = 0;
+  const isRootLevel = !path;
+
+  if (isRootLevel && progressLoader) {
+    for (const key in data) {
+      if (key.startsWith('$')) continue;
+      totalItems++;
+    }
+
+    // 🛡️ EDGE CASE: Se non ci sono items, imposta il progresso finale e termina
+    if (totalItems === 0) {
+      progressLoader.updateProgress(endProgress);
+      return 0;
+    }
+  }
+
+  const BATCH_SIZE = 50; // Process 50 items per batch
+  let batchCount = 0;
 
   for (const key in data) {
     if (key.startsWith('$')) continue; // Skip metadata
@@ -4146,9 +4311,29 @@ async function processCollectionSimple(
         value,
         collectionInfo,
         currentPath,
-        existingVars // 🚀 Pass the cached variables list
+        existingVars, // 🚀 Pass the cached variables list
+        progressLoader,
+        startProgress,
+        endProgress
       );
       variableCount += groupCount;
+    }
+
+    // 🎯 UPDATE PROGRESS every BATCH_SIZE items (only at root level)
+    if (isRootLevel && progressLoader && totalItems > 0) {
+      processedItems++;
+      batchCount++;
+
+      if (batchCount >= BATCH_SIZE || processedItems === totalItems) {
+        // Calculate progress within the range [startProgress, endProgress]
+        const progress = startProgress + Math.floor((processedItems / totalItems) * (endProgress - startProgress));
+        progressLoader.updateProgress(progress);
+
+        // 🔄 YIELD TO UI THREAD - prevents freezing
+        await new Promise<void>(resolve => setTimeout(resolve, 0));
+
+        batchCount = 0; // Reset batch counter
+      }
     }
   }
 
@@ -4354,12 +4539,15 @@ async function findRemoteVariableByName(variableName: string): Promise<Variable 
       return null;
     }
 
-    console.log(`[findRemoteVariableByName] Searching in ${libraryCollections.length} library collection(s)`);
+    console.log(`[findRemoteVariableByName] Found ${libraryCollections.length} library collection(s):`,
+      libraryCollections.map(l => `"${l.name}" (key: ${l.key})`));
 
     // Search each library for matching variable
     for (const libCollection of libraryCollections) {
       try {
+        console.log(`[findRemoteVariableByName] Fetching variables from "${libCollection.name}"...`);
         const libraryVariables = await figma.teamLibrary.getVariablesInLibraryCollectionAsync(libCollection.key);
+        console.log(`[findRemoteVariableByName] Got ${libraryVariables.length} variables from "${libCollection.name}"`);
 
         if (!libraryVariables || libraryVariables.length === 0) {
           continue;
@@ -4390,7 +4578,14 @@ async function findRemoteVariableByName(variableName: string): Promise<Variable 
           return importedVariable;
         }
       } catch (error) {
-        console.warn(`[findRemoteVariableByName] Error searching library "${libCollection.name}":`, error);
+        console.error(`[findRemoteVariableByName] ERROR fetching from "${libCollection.name}":`, {
+          collectionKey: libCollection.key,
+          collectionName: libCollection.name,
+          errorMessage: (error as Error).message,
+          errorStack: (error as Error).stack,
+          errorName: (error as Error).name,
+          fullError: error
+        });
         continue;
       }
     }
@@ -4398,7 +4593,12 @@ async function findRemoteVariableByName(variableName: string): Promise<Variable 
     console.log(`[findRemoteVariableByName] ✗ Not found in any library`);
     return null;
   } catch (error) {
-    console.error('[findRemoteVariableByName] Error:', error);
+    console.error('[findRemoteVariableByName] CRITICAL ERROR:', {
+      message: (error as Error).message,
+      stack: (error as Error).stack,
+      name: (error as Error).name,
+      fullError: error
+    });
     return null;
   }
 }

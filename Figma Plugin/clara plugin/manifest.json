@@ -4,6 +4,7 @@
   "api": "1.0.0",
   "editorType": ["figma", "dev"],
   "capabilities": ["inspect"],
+  "permissions": ["teamlibrary"],
   "main": "code.js",
   "ui": "ui.html",
   "documentAccess": "dynamic-page",
