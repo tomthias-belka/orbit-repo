@@ -1,0 +1,162 @@
+{
+  "UIButton": {
+    "roles": {
+      "primary": {
+        "borderColor": {
+          "$value": "#000000",
+          "$type": "color",
+          "$description": "Primary button border color"
+        },
+        "backgroundColor": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Primary button background color"
+        },
+        "textColor": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Primary button text color"
+        },
+        "textWeight": {
+          "$value": "bold",
+          "$type": "fontWeight",
+          "$description": "Primary button text weight"
+        },
+        "borderWidth": {
+          "$value": 0,
+          "$type": "dimension",
+          "$description": "Primary button border width"
+        },
+        "disabledBackgroundColor": {
+          "$value": "#CCCCCC",
+          "$type": "color",
+          "$description": "Primary button disabled background color"
+        },
+        "disabledBorderColor": {
+          "$value": "#000000",
+          "$type": "color",
+          "$description": "Primary button disabled border color"
+        },
+        "disabledTextColor": {
+          "$value": "#999999",
+          "$type": "color",
+          "$description": "Primary button disabled text color"
+        },
+        "disabledOpacity": {
+          "$value": 1,
+          "$type": "number",
+          "$description": "Primary button disabled opacity"
+        },
+        "highlightedOpacity": {
+          "$value": 0.6,
+          "$type": "number",
+          "$description": "Primary button highlighted opacity"
+        }
+      },
+      "secondary": {
+        "borderColor": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Secondary button border color"
+        },
+        "backgroundColor": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Secondary button background color"
+        },
+        "textColor": {
+          "$value": "#000000",
+          "$type": "color",
+          "$description": "Secondary button text color"
+        },
+        "textWeight": {
+          "$value": "bold",
+          "$type": "fontWeight",
+          "$description": "Secondary button text weight"
+        },
+        "borderWidth": {
+          "$value": 1,
+          "$type": "dimension",
+          "$description": "Secondary button border width"
+        },
+        "disabledBackgroundColor": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Secondary button disabled background color"
+        },
+        "disabledBorderColor": {
+          "$value": "#CCCCCC",
+          "$type": "color",
+          "$description": "Secondary button disabled border color"
+        },
+        "disabledTextColor": {
+          "$value": "#999999",
+          "$type": "color",
+          "$description": "Secondary button disabled text color"
+        },
+        "disabledOpacity": {
+          "$value": 1,
+          "$type": "number",
+          "$description": "Secondary button disabled opacity"
+        },
+        "highlightedOpacity": {
+          "$value": 0.6,
+          "$type": "number",
+          "$description": "Secondary button highlighted opacity"
+        }
+      },
+      "tertiary": {
+        "borderColor": {
+          "$value": "#000000",
+          "$type": "color",
+          "$description": "Tertiary button border color"
+        },
+        "backgroundColor": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Tertiary button background color"
+        },
+        "textColor": {
+          "$value": "#000000",
+          "$type": "color",
+          "$description": "Tertiary button text color"
+        },
+        "textWeight": {
+          "$value": "normal",
+          "$type": "fontWeight",
+          "$description": "Tertiary button text weight"
+        },
+        "borderWidth": {
+          "$value": 0,
+          "$type": "dimension",
+          "$description": "Tertiary button border width"
+        },
+        "disabledBackgroundColor": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Tertiary button disabled background color"
+        },
+        "disabledBorderColor": {
+          "$value": "#000000",
+          "$type": "color",
+          "$description": "Tertiary button disabled border color"
+        },
+        "disabledTextColor": {
+          "$value": "#999999",
+          "$type": "color",
+          "$description": "Tertiary button disabled text color"
+        },
+        "disabledOpacity": {
+          "$value": 1,
+          "$type": "number",
+          "$description": "Tertiary button disabled opacity"
+        },
+        "highlightedOpacity": {
+          "$value": 0.6,
+          "$type": "number",
+          "$description": "Tertiary button highlighted opacity"
+        }
+      }
+    }
+  }
+}

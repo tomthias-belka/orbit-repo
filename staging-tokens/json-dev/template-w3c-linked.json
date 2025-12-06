@@ -1,0 +1,220 @@
+{
+  "components": {
+    "UIButton": {
+      "roles": {
+        "primary": {
+          "borderColor": {
+            "$value": "{definitions.button.primary.border}",
+            "$type": "color",
+            "$description": "Primary button border color - references definitions.button.primary.border"
+          },
+          "backgroundColor": {
+            "$value": "{definitions.button.primary.background}",
+            "$type": "color",
+            "$description": "Primary button background color - references definitions.button.primary.background"
+          },
+          "textColor": {
+            "$value": "{definitions.button.primary.foreground}",
+            "$type": "color",
+            "$description": "Primary button text color - references definitions.button.primary.foreground"
+          },
+          "textWeight": {
+            "$value": "{definitions.button.fontWeight}",
+            "$type": "fontWeight",
+            "$description": "Primary button text weight - references definitions.button.fontWeight"
+          },
+          "borderWidth": {
+            "$value": "{definitions.button.primary.borderWidth}",
+            "$type": "dimension",
+            "$description": "Primary button border width - references definitions.button.primary.borderWidth"
+          },
+          "disabledBackgroundColor": {
+            "$value": "{definitions.button.primary.backgroundDisabled}",
+            "$type": "color",
+            "$description": "Primary button disabled background color - references definitions.button.primary.backgroundDisabled"
+          },
+          "disabledBorderColor": {
+            "$value": "{definitions.button.primary.borderDisabled}",
+            "$type": "color",
+            "$description": "Primary button disabled border color - references definitions.button.primary.borderDisabled"
+          },
+          "disabledTextColor": {
+            "$value": "{definitions.button.primary.foregroundDisabled}",
+            "$type": "color",
+            "$description": "Primary button disabled text color - references definitions.button.primary.foregroundDisabled"
+          },
+          "disabledOpacity": {
+            "$value": "{definitions.button.primary.opacityDisabled}",
+            "$type": "number",
+            "$description": "Primary button disabled opacity - references definitions.button.primary.opacityDisabled"
+          },
+          "highlightedOpacity": {
+            "$value": 0.6,
+            "$type": "number",
+            "$description": "Primary button highlighted opacity - no corresponding value in definitions.button"
+          }
+        },
+        "secondary": {
+          "borderColor": {
+            "$value": "{definitions.button.secondary.border}",
+            "$type": "color",
+            "$description": "Secondary button border color - references definitions.button.secondary.border"
+          },
+          "backgroundColor": {
+            "$value": "{definitions.button.secondary.background}",
+            "$type": "color",
+            "$description": "Secondary button background color - references definitions.button.secondary.background"
+          },
+          "textColor": {
+            "$value": "{definitions.button.secondary.foreground}",
+            "$type": "color",
+            "$description": "Secondary button text color - references definitions.button.secondary.foreground"
+          },
+          "textWeight": {
+            "$value": "{definitions.button.fontWeight}",
+            "$type": "fontWeight",
+            "$description": "Secondary button text weight - references definitions.button.fontWeight"
+          },
+          "borderWidth": {
+            "$value": "{definitions.button.secondary.borderWidth}",
+            "$type": "dimension",
+            "$description": "Secondary button border width - references definitions.button.secondary.borderWidth"
+          },
+          "disabledBackgroundColor": {
+            "$value": "{definitions.button.secondary.backgroundDisabled}",
+            "$type": "color",
+            "$description": "Secondary button disabled background color - references definitions.button.secondary.backgroundDisabled"
+          },
+          "disabledBorderColor": {
+            "$value": "{definitions.button.secondary.borderDisabled}",
+            "$type": "color",
+            "$description": "Secondary button disabled border color - references definitions.button.secondary.borderDisabled"
+          },
+          "disabledTextColor": {
+            "$value": "{definitions.button.secondary.foregroundDisabled}",
+            "$type": "color",
+            "$description": "Secondary button disabled text color - references definitions.button.secondary.foregroundDisabled"
+          },
+          "disabledOpacity": {
+            "$value": "{definitions.button.secondary.opacityDisabled}",
+            "$type": "number",
+            "$description": "Secondary button disabled opacity - references definitions.button.secondary.opacityDisabled"
+          },
+          "highlightedOpacity": {
+            "$value": 0.6,
+            "$type": "number",
+            "$description": "Secondary button highlighted opacity - no corresponding value in definitions.button"
+          }
+        },
+        "tertiary": {
+          "borderColor": {
+            "$value": "{definitions.button.tertiary.border}",
+            "$type": "color",
+            "$description": "Tertiary button border color - references definitions.button.tertiary.border"
+          },
+          "backgroundColor": {
+            "$value": "{definitions.button.tertiary.background}",
+            "$type": "color",
+            "$description": "Tertiary button background color - references definitions.button.tertiary.background"
+          },
+          "textColor": {
+            "$value": "{definitions.button.tertiary.foreground}",
+            "$type": "color",
+            "$description": "Tertiary button text color - references definitions.button.tertiary.foreground"
+          },
+          "textWeight": {
+            "$value": "{definitions.button.fontWeight}",
+            "$type": "fontWeight",
+            "$description": "Tertiary button text weight - references definitions.button.fontWeight"
+          },
+          "borderWidth": {
+            "$value": "{definitions.button.tertiary.borderWidth}",
+            "$type": "dimension",
+            "$description": "Tertiary button border width - references definitions.button.tertiary.borderWidth"
+          },
+          "disabledBackgroundColor": {
+            "$value": "{definitions.button.tertiary.backgroundDisabled}",
+            "$type": "color",
+            "$description": "Tertiary button disabled background color - references definitions.button.tertiary.backgroundDisabled"
+          },
+          "disabledBorderColor": {
+            "$value": "{definitions.button.tertiary.borderDisabled}",
+            "$type": "color",
+            "$description": "Tertiary button disabled border color - references definitions.button.tertiary.borderDisabled"
+          },
+          "disabledTextColor": {
+            "$value": "{definitions.button.tertiary.foregroundDisabled}",
+            "$type": "color",
+            "$description": "Tertiary button disabled text color - references definitions.button.tertiary.foregroundDisabled"
+          },
+          "disabledOpacity": {
+            "$value": "{definitions.button.tertiary.opacityDisabled}",
+            "$type": "number",
+            "$description": "Tertiary button disabled opacity - references definitions.button.tertiary.opacityDisabled"
+          },
+          "highlightedOpacity": {
+            "$value": 0.6,
+            "$type": "number",
+            "$description": "Tertiary button highlighted opacity - no corresponding value in definitions.button"
+          }
+        }
+      },
+      "variants": {
+        "small": {
+          "borderRadius": {
+            "$value": 0,
+            "$type": "dimension",
+            "$description": "Small button border radius"
+          },
+          "height": {
+            "$value": 40,
+            "$type": "dimension",
+            "$description": "Small button height"
+          },
+          "paddingHorizontal": {
+            "$value": 0,
+            "$type": "dimension",
+            "$description": "Small button horizontal padding"
+          },
+          "lineHeight": {
+            "$value": 14,
+            "$type": "dimension",
+            "$description": "Small button line height"
+          },
+          "fontSize": {
+            "$value": 10,
+            "$type": "dimension",
+            "$description": "Small button font size"
+          }
+        },
+        "default": {
+          "borderRadius": {
+            "$value": 0,
+            "$type": "dimension",
+            "$description": "Default button border radius"
+          },
+          "paddingHorizontal": {
+            "$value": 0,
+            "$type": "dimension",
+            "$description": "Default button horizontal padding"
+          },
+          "lineHeight": {
+            "$value": 16,
+            "$type": "dimension",
+            "$description": "Default button line height"
+          },
+          "fontSize": {
+            "$value": 14,
+            "$type": "dimension",
+            "$description": "Default button font size"
+          },
+          "height": {
+            "$value": 40,
+            "$type": "dimension",
+            "$description": "Default button height"
+          }
+        }
+      }
+    }
+  }
+}

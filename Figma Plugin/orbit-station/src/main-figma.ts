@@ -64,7 +64,12 @@ const MESSAGE_TYPES = {
   GET_LIBRARY_VARIABLES: 'get-library-variables',
   LIBRARY_VARIABLES_DATA: 'library-variables-data',
   IMPORT_FROM_LIBRARY: 'import-from-library',
-  LIBRARY_IMPORT_RESULT: 'library-import-result'
+  LIBRARY_IMPORT_RESULT: 'library-import-result',
+  // GitHub integration messages
+  GITHUB_TEST_CONNECTION: 'github-test-connection',
+  GITHUB_CONFIG_SAVE: 'github-config-save',
+  GITHUB_CONFIG_LOAD: 'github-config-load',
+  GITHUB_PUSH: 'github-push'
 } as const;
 
 const UI_CONFIG = {
@@ -3313,9 +3318,14 @@ class JSONExporter {
   }
 
   private generateJSONFilename(collectionName: string, modeName?: string | null, options?: JSONExportOptions): string {
+    // If no mode filter (combined/all modes), use pelican.json
+    if (!modeName) {
+      return 'pelican.json';
+    }
+    // With mode/brand filter: {collection-name}-{mode-name}-tokens.json
     const safeName = collectionName.toLowerCase().replace(/[^a-z0-9]/g, '-');
-    const modeStr = modeName ? `-${modeName.toLowerCase().replace(/[^a-z0-9]/g, '-')}` : '';
-    return `${safeName}${modeStr}.json`;
+    const modeStr = modeName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    return `${safeName}-${modeStr}-tokens.json`;
   }
 
   private filterCollections(collections: VariableCollection[], selectedCollections?: any[]): VariableCollection[] {
@@ -3343,6 +3353,8 @@ interface ExtractedTextStyle {
   listSpacing?: number;
   textCase?: TextCase;
   textDecoration?: TextDecoration;
+  textAlignHorizontal?: 'LEFT' | 'RIGHT' | 'CENTER' | 'JUSTIFIED';
+  textAlignVertical?: 'TOP' | 'CENTER' | 'BOTTOM';
   hangingPunctuation?: boolean;
   hangingList?: boolean;
   $extensions?: {
@@ -3816,6 +3828,23 @@ figma.ui.onmessage = async (msg: PluginMessage): Promise<void> => {
 
       case MESSAGE_TYPES.IMPORT_FROM_LIBRARY:
         await handleImportFromLibrary(msg);
+        break;
+
+      // GitHub integration handlers
+      case MESSAGE_TYPES.GITHUB_CONFIG_SAVE:
+        await handleGitHubConfigSave(msg);
+        break;
+
+      case MESSAGE_TYPES.GITHUB_CONFIG_LOAD:
+        await handleGitHubConfigLoad();
+        break;
+
+      case MESSAGE_TYPES.GITHUB_TEST_CONNECTION:
+        await handleGitHubTestConnection(msg);
+        break;
+
+      case MESSAGE_TYPES.GITHUB_PUSH:
+        await handleGitHubPush(msg);
         break;
 
       default:
@@ -6221,6 +6250,137 @@ async function handleImportFromLibrary(msg: any): Promise<void> {
       error: (error as Error).message
     });
     figma.notify(`❌ Failed to import from library: ${(error as Error).message}`, { error: true });
+  }
+}
+
+// ================== GITHUB INTEGRATION HANDLERS ==================
+
+/**
+ * Save GitHub configuration to client storage
+ */
+async function handleGitHubConfigSave(msg: any): Promise<void> {
+  try {
+    const config = {
+      token: msg.token || '',
+      repository: msg.repository || '',
+      branch: msg.branch || 'main',
+      path: msg.path || 'tokens/'
+    };
+
+    await figma.clientStorage.setAsync('github-config', config);
+
+    figma.ui.postMessage({
+      type: 'github-config-saved',
+      success: true
+    });
+
+    console.log('[GitHub] Config saved successfully');
+  } catch (error) {
+    console.error('[GitHub] Error saving config:', error);
+    figma.ui.postMessage({
+      type: 'github-config-saved',
+      success: false,
+      error: (error as Error).message
+    });
+  }
+}
+
+/**
+ * Load GitHub configuration from client storage
+ */
+async function handleGitHubConfigLoad(): Promise<void> {
+  try {
+    const config = await figma.clientStorage.getAsync('github-config');
+
+    figma.ui.postMessage({
+      type: 'github-config-loaded',
+      config: config || null
+    });
+
+    console.log('[GitHub] Config loaded:', config ? 'found' : 'not found');
+  } catch (error) {
+    console.error('[GitHub] Error loading config:', error);
+    figma.ui.postMessage({
+      type: 'github-config-loaded',
+      config: null,
+      error: (error as Error).message
+    });
+  }
+}
+
+/**
+ * Test GitHub connection by verifying repository access
+ */
+async function handleGitHubTestConnection(msg: any): Promise<void> {
+  try {
+    const { token, repository } = msg;
+
+    if (!token || !repository) {
+      throw new Error('Token and repository are required');
+    }
+
+    const [owner, repo] = repository.split('/');
+    if (!owner || !repo) {
+      throw new Error('Repository must be in format "owner/repo"');
+    }
+
+    // Note: Figma plugins can't make direct HTTP requests
+    // We need to use the UI to make the fetch request
+    figma.ui.postMessage({
+      type: 'github-test-connection-request',
+      token,
+      repository,
+      owner,
+      repo
+    });
+
+  } catch (error) {
+    console.error('[GitHub] Test connection error:', error);
+    figma.ui.postMessage({
+      type: 'github-test-result',
+      success: false,
+      message: (error as Error).message
+    });
+  }
+}
+
+/**
+ * Push content to GitHub repository
+ */
+async function handleGitHubPush(msg: any): Promise<void> {
+  try {
+    const { content, filename, config } = msg;
+
+    if (!content || !filename) {
+      throw new Error('Content and filename are required');
+    }
+
+    // Load saved config if not provided
+    let githubConfig = config;
+    if (!githubConfig) {
+      githubConfig = await figma.clientStorage.getAsync('github-config');
+    }
+
+    if (!githubConfig || !githubConfig.token || !githubConfig.repository) {
+      throw new Error('GitHub configuration not found. Please configure GitHub settings first.');
+    }
+
+    // Send to UI to make the actual HTTP request (Figma plugin limitation)
+    figma.ui.postMessage({
+      type: 'github-push-request',
+      content,
+      filename,
+      config: githubConfig
+    });
+
+  } catch (error) {
+    console.error('[GitHub] Push error:', error);
+    figma.ui.postMessage({
+      type: 'github-push-result',
+      success: false,
+      error: (error as Error).message
+    });
+    figma.notify(`❌ GitHub push failed: ${(error as Error).message}`, { error: true });
   }
 }
 

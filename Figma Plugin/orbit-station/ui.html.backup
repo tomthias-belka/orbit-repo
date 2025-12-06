@@ -3894,7 +3894,7 @@
       background: rgba(0, 0, 0, 0.03);
     }
 
-    .theme-token-swatch {
+    .token-swatch {
       width: 32px;
       height: 32px;
       border-radius: 6px;
@@ -3903,14 +3903,14 @@
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     }
 
-    .theme-token-icon {
+    .token-icon {
       width: 16px;
       height: 16px;
       flex-shrink: 0;
       opacity: 0.5;
     }
 
-    .theme-token-name {
+    .token-name {
       font-size: 13px;
       font-weight: 500;
       color: #1e1e1e;
@@ -4693,24 +4693,6 @@
 
         <span class="nav-label">Themes</span>
       </button>
-
-      <!-- Export Manager Tab Button -->
-      <button class="nav-icon-button" data-tab="export-manager" title="Export Manager - Multi-format token export">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 2.5V10M10 10L7.5 7.5M10 10L12.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M3.75 12.5V15C3.75 15.6904 4.30964 16.25 5 16.25H15C15.6904 16.25 16.25 15.6904 16.25 15V12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <span class="nav-label">Export</span>
-      </button>
-
-      <!-- Settings Tab Button -->
-      <button class="nav-icon-button" data-tab="settings" title="Settings - GitHub configuration">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8284 2.17157C10.4179 1.76105 9.75474 1.76105 9.34422 2.17157L8.25736 3.25843C7.8773 3.63849 7.3271 3.77747 6.80894 3.62353L5.44721 3.22082C4.84569 3.03569 4.21201 3.32503 3.96447 3.92132L3.42893 5.1434C3.21365 5.66264 2.75 6 2.23607 6H0.75C0.335786 6 0 6.33579 0 6.75V8.25C0 8.66421 0.335786 9 0.75 9H2.23607C2.75 9 3.21365 9.33736 3.42893 9.8566L3.96447 11.0787C4.21201 11.675 4.84569 11.9643 5.44721 11.7792L6.80894 11.3765C7.3271 11.2225 7.8773 11.3615 8.25736 11.7416L9.34422 12.8284C9.75474 13.239 10.4179 13.239 10.8284 12.8284L11.9153 11.7416C12.2953 11.3615 12.8455 11.2225 13.3637 11.3765L14.7254 11.7792C15.3269 11.9643 15.9606 11.675 16.2081 11.0787L16.7437 9.8566C16.9589 9.33736 17.4226 9 17.9365 9H19.4226C19.8368 9 20.1726 8.66421 20.1726 8.25V6.75C20.1726 6.33579 19.8368 6 19.4226 6H17.9365C17.4226 6 16.9589 5.66264 16.7437 5.1434L16.2081 3.92132C15.9606 3.32503 15.3269 3.03569 14.7254 3.22082L13.3637 3.62353C12.8455 3.77747 12.2953 3.63849 11.9153 3.25843L10.8284 2.17157Z" fill="currentColor" opacity="0.3"/>
-          <circle cx="10" cy="7.5" r="2.5" fill="currentColor"/>
-        </svg>
-        <span class="nav-label">Settings</span>
-      </button>
     </div>
 
     <!-- Main Content Area -->
@@ -4834,9 +4816,7 @@
                 <div class="json-editor-actions">
                   <button class="json-action-btn" id="json-refresh-btn" title="Refresh JSON from Figma">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M13.6536 2.34644C12.2086 0.90144 10.2162 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C11.7 16 14.8496 13.3948 15.7468 9.92972C15.8808 9.44284 15.596 8.94056 15.1092 8.80656C14.6223 8.67256 14.12 8.95732 13.986 9.44424C13.2832 12.1856 10.86 14.2222 8 14.2222C4.56384 14.2222 1.77778 11.4362 1.77778 8C1.77778 4.56384 4.56384 1.77778 8 1.77778C9.66384 1.77778 11.1678 2.47024 12.2489 3.55112L10.6667 5.13336H14.2222V1.57784L13.6536 2.34644Z"
-                        fill="currentColor" />
+                      <path d="M13.6536 2.34644C12.2086 0.90144 10.2162 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C11.7 16 14.8496 13.3948 15.7468 9.92972C15.8808 9.44284 15.596 8.94056 15.1092 8.80656C14.6223 8.67256 14.12 8.95732 13.986 9.44424C13.2832 12.1856 10.86 14.2222 8 14.2222C4.56384 14.2222 1.77778 11.4362 1.77778 8C1.77778 4.56384 4.56384 1.77778 8 1.77778C9.66384 1.77778 11.1678 2.47024 12.2489 3.55112L10.6667 5.13336H14.2222V1.57784L13.6536 2.34644Z" fill="currentColor"/>
                     </svg>
                   </button>
                   <button class="json-action-btn" id="json-copy-btn" title="Copy to Clipboard (⌘C)">
@@ -5233,7 +5213,7 @@ Example:
                     <span class="radio-indicator"></span>
                     <span style="min-width: 85px;">Preserve References</span>
                     <p style="font-size: 12px; color: var(--color-text-muted);">Export variable references as aliases
-                      (e.g., {semantic.typography.body.fontSize})</p>
+                      (e.g., {semantic.typography.body.font-size})</p>
 
                   </label>
                 </div>
@@ -5247,16 +5227,6 @@ Example:
                       instead of variable reference)</p>
 
                   </label>
-                </div>
-              </div>
-
-              <!-- Brand Filter Section -->
-              <div class="section">
-                <div class="section-header">
-                  <h3>Brand Filter</h3>
-                </div>
-                <div class="collection-list" id="brand-filter-list">
-                  <!-- Brand filter options will be populated here -->
                 </div>
               </div>
 
@@ -5638,104 +5608,6 @@ Example:
         </div>
       </div>
 
-      <!-- Export Manager Tab -->
-      <div class="tab-content" id="export-manager-tab">
-        <div class="scrollable-content">
-          <div class="main-content-container">
-            <div class="left-panel">
-              <!-- Brand Selection Section -->
-              <div class="section">
-                <div class="section-title">Select Brand</div>
-                <select id="export-brand-selector" class="input-field" style="width: 100%; margin-top: var(--space-2);">
-                  <option value="">All Brands (Complete Export)</option>
-                  <option value="orbit">Orbit</option>
-                  <option value="mooney">Mooney</option>
-                  <option value="AGI">AGI</option>
-                  <option value="comersud">Comersud</option>
-                </select>
-              </div>
-
-              <!-- Export Format Section -->
-              <div class="section" style="margin-top: var(--space-4);">
-                <div class="section-title">Export Format</div>
-                <div style="margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2);">
-                  <label class="radio-label">
-                    <input type="radio" name="export-format" value="w3c-complete" checked>
-                    <span>W3C Complete (all tokens, all brands)</span>
-                  </label>
-                  <label class="radio-label">
-                    <input type="radio" name="export-format" value="w3c-per-brand">
-                    <span>W3C Per-Brand (semantic only)</span>
-                  </label>
-                  <label class="radio-label">
-                    <input type="radio" name="export-format" value="figma-native">
-                    <span>Figma Native (with $extensions)</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="right-panel">
-              <!-- Preview Section -->
-              <div class="section">
-                <div class="section-title">Export Preview</div>
-                <div id="export-preview-container" style="margin-top: var(--space-3); min-height: 200px; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-3);">
-                  <div style="text-align: center; color: var(--color-text-muted); padding: var(--space-6);">
-                    <p>Select brand and format to preview export</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Settings Tab -->
-      <div class="tab-content" id="settings-tab">
-        <div class="scrollable-content">
-          <div class="main-content-container">
-            <!-- GitHub Configuration Section -->
-            <div class="section" style="max-width: 600px;">
-              <div class="section-title">GitHub Configuration</div>
-              <div style="margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3);">
-
-                <div>
-                  <label class="input-label">Personal Access Token</label>
-                  <input type="password" id="github-token" class="input-field" placeholder="ghp_..." style="width: 100%; margin-top: var(--space-1);">
-                  <p style="font-size: 12px; color: var(--color-text-muted); margin-top: var(--space-1);">
-                    <a href="https://github.com/settings/tokens/new" target="_blank" style="color: var(--color-primary);">Get token from GitHub →</a>
-                  </p>
-                </div>
-
-                <div>
-                  <label class="input-label">Repository</label>
-                  <input type="text" id="github-repo" class="input-field" placeholder="owner/repo" style="width: 100%; margin-top: var(--space-1);">
-                  <p style="font-size: 12px; color: var(--color-text-muted); margin-top: var(--space-1);">Format: owner/repository</p>
-                </div>
-
-                <div>
-                  <label class="input-label">Branch</label>
-                  <input type="text" id="github-branch" class="input-field" value="main" style="width: 100%; margin-top: var(--space-1);">
-                </div>
-
-                <div>
-                  <label class="input-label">Target Directory</label>
-                  <input type="text" id="github-path" class="input-field" value="tokens/" style="width: 100%; margin-top: var(--space-1);">
-                  <p style="font-size: 12px; color: var(--color-text-muted); margin-top: var(--space-1);">Path where tokens will be uploaded in repository</p>
-                </div>
-
-                <div style="margin-top: var(--space-2);">
-                  <button id="test-github-connection-btn" class="button secondary" style="margin-right: var(--space-2);">
-                    Test Connection
-                  </button>
-                  <span id="github-connection-status" style="font-size: 12px; color: var(--color-text-muted);"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div> <!-- Close main-view -->
 
     <!-- Unified Footer -->
@@ -5835,7 +5707,6 @@ Example:
       let lastCssExportResult = null;
       let lastTextStylesExportResult = null;
       let lastExportOptions = null; // Store last export options for refresh functionality
-      let jsonEditorModified = false; // Track if JSON editor has unsaved changes
 
       // Button state management
       let exportJsonButtonState = 'generate'; // 'generate' | 'generating' | 'generated' | 'update'
@@ -5988,7 +5859,7 @@ Example:
           }
         }
 
-        // Try semantic tokens: {brand.primary.main}, {text.primary}, etc.
+        // Try semantic tokens: {brand.core.main}, {text.primary}, etc.
         let current = tokenTreeData?.semantic;
         for (const segment of path) {
           if (!current || typeof current !== 'object') return null;
@@ -6074,26 +5945,26 @@ Example:
         container.innerHTML = '';
 
         themeBuilderState.themes.forEach(theme => {
-          const primaryRef = tokenTreeData.semantic.brand.primary.main.$value[theme.id];
+          const coreRef = tokenTreeData.semantic.brand.core.main.$value[theme.id];
           const accentRef = tokenTreeData.semantic.brand.accent.main.$value[theme.id];
-          const secondaryRef = tokenTreeData.semantic.brand.secondary.main.$value[theme.id];
+          const altRef = tokenTreeData.semantic.brand.alt.main.$value[theme.id];
 
-          const primaryHex = resolveColorRefToHex(primaryRef);
+          const coreHex = resolveColorRefToHex(coreRef);
           const accentHex = resolveColorRefToHex(accentRef);
-          const secondaryHex = resolveColorRefToHex(secondaryRef);
+          const altHex = resolveColorRefToHex(altRef);
 
           const item = document.createElement('div');
           item.className = `theme-list-item${theme.id === themeBuilderState.activeTheme ? ' active' : ''}`;
           item.innerHTML = `
           <div class="theme-color-swatches">
             <div class="theme-color-swatch">
-              <div class="theme-color-dot" style="background: ${primaryHex || '#ccc'}" title="Primary: ${primaryRef}"></div>
+              <div class="theme-color-dot" style="background: ${coreHex || '#ccc'}" title="Core: ${coreRef}"></div>
             </div>
             <div class="theme-color-swatch">
               <div class="theme-color-dot" style="background: ${accentHex || '#ccc'}" title="Accent: ${accentRef}"></div>
             </div>
             <div class="theme-color-swatch">
-              <div class="theme-color-dot" style="background: ${secondaryHex || '#ccc'}" title="Secondary: ${secondaryRef}"></div>
+              <div class="theme-color-dot" style="background: ${altHex || '#ccc'}" title="Alt: ${altRef}"></div>
             </div>
           </div>
           <div class="theme-color-label">
@@ -6198,6 +6069,43 @@ Example:
       }
 
       // Build color families list for modal
+      function buildColorFamilies() {
+        const families = {};
+
+        // Group colors by family
+        if (tokenTreeData?.colors) {
+          for (const [familyName, scales] of Object.entries(tokenTreeData.colors)) {
+            families[familyName] = [];
+            for (const [scale, colorData] of Object.entries(scales)) {
+              if (colorData.$value) {
+                families[familyName].push({
+                  scale,
+                  hex: colorData.$value,
+                  ref: `{colors.${familyName}.${scale}}`
+                });
+              }
+            }
+          }
+        }
+
+        let html = '';
+        for (const [family, colors] of Object.entries(families)) {
+          html += `
+          <div class="color-family">
+            <div class="color-family-title">colors/${family}</div>
+            ${colors.map(c => `
+              <div class="color-item" data-ref="${c.ref}">
+                <div class="color-item-swatch" style="background: ${c.hex};"></div>
+                <span class="color-item-label">${c.scale}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        }
+
+        return html;
+      }
+
       // Show libraries modal
       function showLibrariesModal(tokenPath, themeId, currentValue) {
         const overlay = document.createElement('div');
@@ -6206,184 +6114,63 @@ Example:
         const hexColor = resolveTokenToHex(currentValue);
 
         overlay.innerHTML = `
-        <div class="libraries-modal">
+        <div class="libraries-modal" onclick="event.stopPropagation()">
           <div class="libraries-header">
-            <button class="modal-close">✕</button>
             <div class="libraries-title">
               ${hexColor ? `<div class="libraries-title-swatch" style="background: ${hexColor};"></div>` : ''}
               ${currentValue}
             </div>
-            <div class="autocomplete-container">
-              <input type="text" class="libraries-search" placeholder="Search colors or enter HEX (e.g. #FF5733)" />
+            <button class="modal-close">✕</button>
+            <div class="libraries-search-wrapper">
+              <svg class="search-icon" viewBox="0 0 16 16">
+                <circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="11" y1="11" x2="14" y2="14" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <input type="text" class="libraries-search" placeholder="Search" />
             </div>
           </div>
-          <div class="libraries-content"></div>
+          <div class="libraries-content">
+            ${buildColorFamilies()}
+          </div>
         </div>
       `;
 
         document.body.appendChild(overlay);
 
-        const modal = overlay.querySelector('.libraries-modal');
-
-        // Close on overlay click (but not on modal click)
-        overlay.addEventListener('click', (e) => {
-          if (e.target === overlay) {
-            hideAutocomplete();
-            overlay.remove();
-          }
-        });
+        // Close on overlay click
+        overlay.addEventListener('click', () => overlay.remove());
 
         // Close button
-        overlay.querySelector('.modal-close').addEventListener('click', () => {
-          hideAutocomplete();
-          overlay.remove();
-        });
+        overlay.querySelector('.modal-close').addEventListener('click', () => overlay.remove());
 
-        // Initialize autocomplete on the search input
-        const searchInput = overlay.querySelector('.libraries-search');
-
-        // Selection callback (receives the ref string directly)
-        const onSelect = (refString) => {
-          updateTokenValueForTheme(tokenPath, themeId, refString);
-          hideAutocomplete();
-          overlay.remove();
-          renderThemeEditor(themeId);
-          showSnackbar('Token updated', 'success');
-        };
-
-        // Show autocomplete
-        showAutocomplete(searchInput, onSelect);
-
-        // Handle input changes (debounced for autocomplete update)
-        let debounceTimer = null;
-        searchInput.addEventListener('input', (e) => {
-          const value = e.target.value.trim();
-
-          // Check if it's a valid HEX color
-          const hexRegex = /^#[0-9A-Fa-f]{6}$/;
-          if (hexRegex.test(value)) {
-            // Valid HEX - allow direct selection via Enter key
-            searchInput.dataset.hexValue = value;
-          } else {
-            delete searchInput.dataset.hexValue;
-          }
-
-          // Debounce autocomplete update
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(() => {
-            updateAutocompleteDropdown();
-          }, 150);
-        });
-
-        // Handle Enter key for HEX input
-        searchInput.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' && searchInput.dataset.hexValue) {
-            e.preventDefault();
-            const hexValue = searchInput.dataset.hexValue;
-            updateTokenValueForTheme(tokenPath, themeId, hexValue);
-            hideAutocomplete();
+        // Color selection
+        overlay.querySelectorAll('.color-item').forEach(item => {
+          item.addEventListener('click', () => {
+            const ref = item.dataset.ref;
+            updateTokenValueForTheme(tokenPath, themeId, ref);
             overlay.remove();
             renderThemeEditor(themeId);
-            showSnackbar(`Token updated to ${hexValue}`, 'success');
-          }
+            showSnackbar('Token updated', 'success');
+          });
+        });
+
+        // Search filter
+        const searchInput = overlay.querySelector('.libraries-search');
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase();
+          overlay.querySelectorAll('.color-item').forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(query) ? 'flex' : 'none';
+          });
+
+          // Hide empty families
+          overlay.querySelectorAll('.color-family').forEach(family => {
+            const visibleItems = Array.from(family.querySelectorAll('.color-item')).some(item => item.style.display !== 'none');
+            family.style.display = visibleItems ? 'block' : 'none';
+          });
         });
 
         searchInput.focus();
-      }
-
-      // Recursive function to render semantic tokens as tree view
-      function renderSemanticTokenGroup(obj, path, themeId, depth) {
-        let html = '';
-
-        for (const [key, value] of Object.entries(obj)) {
-          if (key.startsWith('$')) continue; // Skip metadata like $value, $type
-
-          const fullPath = path ? `${path}.${key}` : key;
-
-          // Check if it's a token (has $value with theme data)
-          if (value?.$value && typeof value.$value === 'object' && value.$value[themeId] !== undefined) {
-            // This is a token leaf node - render token item
-            const tokenValue = value.$value[themeId];
-            const tokenType = value.$type || 'string';
-
-            // Generate swatch/icon
-            let iconHTML = '';
-            if (tokenType === 'color') {
-              const hexColor = resolveTokenToHex(tokenValue);
-              if (hexColor) {
-                iconHTML = `
-                  <div class="token-swatch">
-                    <div class="token-swatch-color" style="background-color: ${hexColor};"></div>
-                  </div>
-                `;
-              } else {
-                iconHTML = `<div class="token-icon">${getTokenIcon(tokenType)}</div>`;
-              }
-            } else {
-              iconHTML = `<div class="token-icon">${getTokenIcon(tokenType)}</div>`;
-            }
-
-            html += `
-              <div class="token-item" data-path="${fullPath}" data-type="${tokenType}">
-                ${iconHTML}
-                <span class="token-name">${key}</span>
-                <span class="token-value token-value-chip"
-                      data-token-path="${fullPath}"
-                      data-theme-id="${themeId}"
-                      data-current-value="${tokenValue}"
-                      style="cursor: pointer; margin-left: auto; padding: 4px 10px; background: #f5f5f5; border-radius: 4px; font-size: 12px; font-family: Monaco, monospace;">
-                  ${tokenValue}
-                </span>
-              </div>
-            `;
-          }
-          else if (value && typeof value === 'object') {
-            // It's a group - render collapsible section
-            const isCollection = depth === 0;
-            const isOpen = depth <= 1; // Auto-open first 2 levels
-
-            const headerClass = isCollection ? 'token-collection-header' : 'token-group-header';
-            const containerClass = isCollection ? 'token-collection' : 'token-group';
-            const chevronClass = isOpen ? 'token-chevron' : 'token-chevron collapsed';
-            const listClass = isOpen ? 'token-list' : 'token-list hidden';
-            const openClass = isOpen ? ' open' : '';
-
-            html += `
-              <div class="${containerClass}${openClass}">
-                <div class="${headerClass}" data-path="${fullPath}">
-                  <svg class="${chevronClass}" viewBox="0 0 12 12" fill="currentColor">
-                    <path d="M3 5l3 3 3-3H3z"/>
-                  </svg>
-                  <span>${key}</span>
-                </div>
-                <div class="${listClass}" data-parent="${fullPath}">
-                  ${renderSemanticTokenGroup(value, fullPath, themeId, depth + 1)}
-                </div>
-              </div>
-            `;
-          }
-        }
-
-        return html;
-      }
-
-      // Main function to render theme tokens as tree view
-      function renderThemeTreeView(themeId) {
-        const semantic = tokenTreeData?.semantic;
-        if (!semantic) {
-          return '<p style="color: #999; text-align: center; padding: 40px 0;">No semantic tokens available</p>';
-        }
-
-        // Render tree recursively
-        const treeHTML = renderSemanticTokenGroup(semantic, '', themeId, 0);
-
-        return `
-          <div class="token-tree-container" style="max-height: 600px; margin-top: 16px;">
-            <div class="token-tree-root">
-              ${treeHTML}
-            </div>
-          </div>
-        `;
       }
 
       function buildSemanticTokensTable(themeId) {
@@ -6414,21 +6201,21 @@ Example:
           if (token.type === 'color') {
             const hexColor = resolveTokenToHex(token.value);
             if (hexColor) {
-              swatchHTML = `<div class="theme-token-swatch" style="background: ${hexColor};" title="${hexColor}"></div>`;
+              swatchHTML = `<div class="token-swatch" style="background: ${hexColor};" title="${hexColor}"></div>`;
             } else {
-              swatchHTML = `<div class="theme-token-swatch" style="background: #f0f0f0;"></div>`;
+              swatchHTML = `<div class="token-swatch" style="background: #f0f0f0;"></div>`;
             }
           } else {
-            swatchHTML = `<div class="theme-token-swatch" style="background: #f0f0f0;"></div>`;
+            swatchHTML = `<div class="token-swatch" style="background: #f0f0f0;"></div>`;
           }
 
-          const iconSVG = `<svg class="theme-token-icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>`;
+          const iconSVG = `<svg class="token-icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>`;
 
           html += `
           <div class="token-row" data-path="${token.path}" data-type="${token.type}">
             ${swatchHTML}
             ${iconSVG}
-            <span class="theme-token-name">${tokenName}</span>
+            <span class="token-name">${tokenName}</span>
             <div class="token-value-chip"
                  data-token-path="${token.path}"
                  data-theme-id="${themeId}"
@@ -6472,33 +6259,16 @@ Example:
           return;
         }
 
-        // Render tokens tree view
+        // Render tokens table
         container.innerHTML = `
         <div style="max-width: 100%; margin: 0;">
           <div style="margin-bottom: 24px;">
             <h2 style="font-family: 'Inter', -apple-system, sans-serif; font-size: 16px; font-weight: 600; color: #1e1e1e; margin: 0 0 4px 0;">${theme.label} Theme</h2>
             <p style="font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; color: #737373; margin: 0;">Edit semantic token values for this theme</p>
           </div>
-          ${renderThemeTreeView(themeId)}
+          ${buildSemanticTokensTable(themeId)}
         </div>
       `;
-
-        // Attach collapse/expand listeners to tree groups
-        container.querySelectorAll('.token-collection-header, .token-group-header').forEach(header => {
-          header.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const chevron = header.querySelector('.token-chevron');
-            const path = header.dataset.path;
-            const list = container.querySelector(`.token-list[data-parent="${path}"]`);
-            const containerEl = header.parentElement;
-
-            if (list && containerEl) {
-              list.classList.toggle('hidden');
-              chevron.classList.toggle('collapsed');
-              containerEl.classList.toggle('open');
-            }
-          });
-        });
 
         // Attach click listeners to chips
         container.querySelectorAll('.token-value-chip').forEach(chip => {
@@ -7012,14 +6782,7 @@ Example:
         console.log('[Theme Builder] All colors selected:', selectedColors);
         console.log('[Theme Builder] Brand settings:', brandSettings);
 
-        // Map UI names (core, accent, alt) to semantic names (primary, accent, secondary)
-        const mappedColors = {
-          primary: selectedColors.core,
-          accent: selectedColors.accent,
-          secondary: selectedColors.alt
-        };
-
-        addThemeToSemanticTokens(themeName, mappedColors, brandSettings);
+        addThemeToSemanticTokens(themeName, selectedColors, brandSettings);
 
         showSnackbar(`Theme "${themeName}" created`, 'success');
       }
@@ -7167,18 +6930,18 @@ Example:
 
           ['main', 'soft', 'light', 'faded', 'dark'].forEach(variant => {
             // Crea il nodo se non esiste
-            if (!semantic.brand.primary[variant]) {
-              semantic.brand.primary[variant] = { $type: 'color', $value: {} };
+            if (!semantic.brand.core[variant]) {
+              semantic.brand.core[variant] = { $type: 'color', $value: {} };
             }
             // Ora possiamo accedere al path in sicurezza
-            const path = semantic.brand.primary[variant];
+            const path = semantic.brand.core[variant];
             if (!path.$value) path.$value = {};
 
-            const family = colorGroups.primary.family;
-            const level = colorGroups.primary.variants[variant] || colorGroups.primary.variants.main;
+            const family = colorGroups.core.family;
+            const level = colorGroups.core.variants[variant] || colorGroups.core.variants.main;
             if (level !== undefined) {
               path.$value[themeName] = buildColorRef(family, level);
-              console.log(`[Theme Builder] Set primary.${variant}[${themeName}] = ${buildColorRef(family, level)}`);
+              console.log(`[Theme Builder] Set core.${variant}[${themeName}] = ${buildColorRef(family, level)}`);
             }
           });
 
@@ -7201,18 +6964,18 @@ Example:
 
           ['main', 'soft', 'light', 'dark'].forEach(variant => {
             // Crea il nodo se non esiste
-            if (!semantic.brand.secondary[variant]) {
-              semantic.brand.secondary[variant] = { $type: 'color', $value: {} };
+            if (!semantic.brand.alt[variant]) {
+              semantic.brand.alt[variant] = { $type: 'color', $value: {} };
             }
             // Ora possiamo accedere al path in sicurezza
-            const path = semantic.brand.secondary[variant];
+            const path = semantic.brand.alt[variant];
             if (!path.$value) path.$value = {};
 
-            const family = colorGroups.secondary.family;
-            const level = colorGroups.secondary.variants[variant] || colorGroups.secondary.variants.main;
+            const family = colorGroups.alt.family;
+            const level = colorGroups.alt.variants[variant] || colorGroups.alt.variants.main;
             if (level !== undefined) {
               path.$value[themeName] = buildColorRef(family, level);
-              console.log(`[Theme Builder] Set secondary.${variant}[${themeName}] = ${buildColorRef(family, level)}`);
+              console.log(`[Theme Builder] Set alt.${variant}[${themeName}] = ${buildColorRef(family, level)}`);
             }
           });
 
@@ -9267,11 +9030,6 @@ Example:
             // Update mode selector
             updateModeSelector(actualData.modes);
 
-            // Render Brand Filter List
-            if (actualData.modes) {
-              renderBrandFilterList(actualData.modes);
-            }
-
             // Render token tree with first mode
             const firstMode = actualData.modes.length > 0 ? actualData.modes[0].name : null;
             renderTokenTree(json, firstMode);
@@ -9286,8 +9044,6 @@ Example:
               const inputEvent = new Event('input', { bubbles: true });
               editor.dispatchEvent(inputEvent);
 
-              // Reset modification flag after loading fresh data from Figma
-              jsonEditorModified = false;
             }
 
           } catch (error) {
@@ -9987,9 +9743,6 @@ Example:
                 console.error('[File Upload] Error parsing JSON for tree view:', parseError);
                 // Still show the file content in editor even if tree fails
               }
-
-              // Reset modification flag after successful file load
-              jsonEditorModified = false;
             }
 
           } catch (error) {
@@ -10582,7 +10335,6 @@ Example:
 
           // Reset unsaved changes flag (import was successful)
           hasUnsavedChanges = false;
-          jsonEditorModified = false; // Also reset modification tracking
           updateImportButtonState();
 
           // Update footer button (import created new collections)
@@ -10599,27 +10351,22 @@ Example:
         }
       }
 
-      // Refresh plugin data from Figma (reinitialize like plugin restart)
+      // Refresh JSON from Figma (reuse last export options)
       function refreshJsonFromFigma() {
-        // Check if there are unsaved modifications
-        if (jsonEditorModified) {
-          const confirmed = confirm(
-            'You have unsaved changes in the JSON editor.\n\n' +
-            'Refreshing will reload all data from Figma and overwrite your changes.\n\n' +
-            'Do you want to continue?'
-          );
-
-          if (!confirmed) {
-            showSnackbar('Refresh cancelled', 'info');
-            return;
-          }
+        if (!lastExportOptions) {
+          showSnackbar('No previous export found. Please export JSON first.', 'warning');
+          return;
         }
 
-        // Reinitialize plugin by requesting fresh data from Figma
-        // This triggers the same flow as plugin startup
-        sendMessage('ui-ready');
+        // Update button state to 'generating'
+        updateExportJsonButtonState('generating');
 
-        showSnackbar('Reloading plugin data from Figma...', 'info');
+        // Reuse last export options
+        sendMessage('export-json-advanced', {
+          options: lastExportOptions
+        });
+
+        showSnackbar('Refreshing JSON from Figma...', 'info');
       }
 
       // Export JSON
@@ -10745,12 +10492,10 @@ Example:
               downloadButtonText.textContent = 'Download';
             }
 
-            // Update JSON editor with fresh data from Figma
-            const jsonEditor = document.getElementById('json-editor-textarea');
-            if (jsonEditor) {
-              jsonEditor.value = data.json;
-              jsonEditorModified = false; // Reset modification flag after successful refresh
-            }
+            // ❌ REMOVED: Don't overwrite JSON editor after initial load
+            // The editor is populated once on plugin startup via handleInitData
+            // After that, it's the source of truth for edits → Figma sync
+            // Overwriting here would lose user's inline edits
 
             showSnackbar(data.message, 'success');
           } else if (data.files && data.files.length > 0) {
@@ -11449,351 +11194,87 @@ Example:
         }
       }
 
+      // Current text styles export data
+      let currentTextStylesData = null;
+      let currentTextStylesFilename = null;
+
+      // Export text styles function
+      function exportTextStyles() {
+        const formatSelect = document.getElementById('text-styles-format-select');
+        const format = formatSelect ? formatSelect.value : 'json';
 
 
-      // Render Collections List
-      function renderCollectionsList() {
-        const container = document.getElementById('export-collections');
-        if (!container) return;
-
-        container.innerHTML = '';
-
-        if (collections.length === 0) {
-          const template = document.getElementById('empty-collections-template');
-          if (template) container.appendChild(template.content.cloneNode(true));
-          return;
-        }
-
-        collections.forEach(collection => {
-          const label = document.createElement('label');
-          label.className = 'collection-item';
-
-          const input = document.createElement('input');
-          input.type = 'checkbox';
-          input.value = collection.id;
-          input.checked = selectedCollections.has(collection.id);
-
-          input.onchange = (e) => {
-            if (e.target.checked) {
-              selectedCollections.add(collection.id);
-            } else {
-              selectedCollections.delete(collection.id);
-            }
-            renderModesList();
-            renderTypesList();
-          };
-
-          const indicator = document.createElement('span');
-          indicator.className = 'checkbox-indicator';
-
-          const text = document.createElement('span');
-          text.textContent = collection.name;
-          text.style.flex = '1';
-
-          const badge = document.createElement('span');
-          badge.className = 'badge';
-          badge.textContent = `${collection.modes ? collection.modes.length : 0} modes`;
-          badge.style.fontSize = '10px';
-          badge.style.padding = '2px 6px';
-          badge.style.background = 'var(--color-bg-secondary)';
-          badge.style.borderRadius = '4px';
-          badge.style.color = 'var(--color-text-secondary)';
-
-          label.appendChild(input);
-          label.appendChild(indicator);
-          label.appendChild(text);
-          label.appendChild(badge);
-          container.appendChild(label);
-        });
-
-        renderModesList();
-        renderTypesList();
-      }
-
-      // Render Modes List
-      function renderModesList() {
-        const container = document.getElementById('modes-list');
-        if (!container) return;
-
-        container.innerHTML = '';
-
-        if (selectedCollections.size === 0) {
-          const template = document.getElementById('empty-modes-template');
-          if (template) container.appendChild(template.content.cloneNode(true));
-          return;
-        }
-
-        // Gather all unique modes from selected collections
-        const uniqueModes = new Set();
-        collections.forEach(c => {
-          if (selectedCollections.has(c.id) && c.modes) {
-            c.modes.forEach(m => uniqueModes.add(m));
+        // Send export request to main thread
+        parent.postMessage({
+          pluginMessage: {
+            type: 'export-text-styles',
+            format: format
           }
-        });
-
-        uniqueModes.forEach(mode => {
-          const label = document.createElement('label');
-          label.className = 'collection-item';
-
-          const input = document.createElement('input');
-          input.type = 'checkbox';
-          input.value = mode;
-          input.checked = selectedModes.has(mode);
-
-          input.onchange = (e) => {
-            if (e.target.checked) {
-              selectedModes.add(mode);
-            } else {
-              selectedModes.delete(mode);
-            }
-          };
-
-          const indicator = document.createElement('span');
-          indicator.className = 'checkbox-indicator';
-
-          const text = document.createElement('span');
-          text.textContent = mode;
-
-          label.appendChild(input);
-          label.appendChild(indicator);
-          label.appendChild(text);
-          container.appendChild(label);
-        });
+        }, '*');
       }
 
-      // Render Types List
-      function renderTypesList() {
-        const container = document.getElementById('types-list');
-        if (!container) return;
+      // Handle text styles export result
+      function handleTextStylesExportResult(data) {
 
-        container.innerHTML = '';
-
-        // Use the types initialized in selectedTypes or a standard list
-        // Since selectedTypes is initialized with ['COLOR', 'FLOAT', 'STRING', 'BOOLEAN'], we use those.
-        // We can also add more descriptive labels if needed.
-        const types = [
-          { value: 'COLOR', label: 'Color' },
-          { value: 'FLOAT', label: 'Number' },
-          { value: 'STRING', label: 'String' },
-          { value: 'BOOLEAN', label: 'Boolean' }
-        ];
-
-        types.forEach(type => {
-          const label = document.createElement('label');
-          label.className = 'collection-item';
-
-          const input = document.createElement('input');
-          input.type = 'checkbox';
-          input.value = type.value;
-          input.checked = selectedTypes.has(type.value);
-
-          input.onchange = (e) => {
-            if (e.target.checked) {
-              selectedTypes.add(type.value);
-            } else {
-              selectedTypes.delete(type.value);
-            }
-          };
-
-          const indicator = document.createElement('span');
-          indicator.className = 'checkbox-indicator';
-
-          const text = document.createElement('span');
-          text.textContent = type.label;
-
-          label.appendChild(input);
-          label.appendChild(indicator);
-          label.appendChild(text);
-          container.appendChild(label);
-        });
-      }
-
-      // Render Brand Filter List
-      function renderBrandFilterList(modes) {
-        const container = document.getElementById('brand-filter-list');
-        if (!container) return;
-
-        container.innerHTML = '';
-
-        // Filter out "Default" mode
-        const filteredModes = modes.filter(m => m.name !== 'Default');
-
-        // Add "All Brands" option
-        const allLabel = document.createElement('label');
-        allLabel.className = 'collection-item';
-
-        const allInput = document.createElement('input');
-        allInput.type = 'radio';
-        allInput.name = 'brand-filter';
-        allInput.value = '';
-        allInput.checked = true;
-
-        const allIndicator = document.createElement('span');
-        allIndicator.className = 'radio-indicator'; // Assuming this exists or falls back to default
-
-        const allText = document.createElement('span');
-        allText.textContent = 'All Brands (Full Export)';
-
-        allLabel.appendChild(allInput);
-        // allLabel.appendChild(allIndicator); // Use standard radio for now to avoid styling issues
-        allLabel.appendChild(allText);
-        container.appendChild(allLabel);
-
-        filteredModes.forEach(mode => {
-          const label = document.createElement('label');
-          label.className = 'collection-item';
-
-          const input = document.createElement('input');
-          input.type = 'radio';
-          input.name = 'brand-filter';
-          input.value = mode.name;
-
-          const text = document.createElement('span');
-          text.textContent = mode.name;
-
-          label.appendChild(input);
-          label.appendChild(text);
-          container.appendChild(label);
-        });
-      }
-
-      // Handle Collections Data
-      function handleCollectionsData(data) {
-        collections = data.collections;
-        renderCollectionsList();
-      }
-
-      // Handle Import Result
-      function handleImportResult(data) {
-        const resultContainer = document.getElementById('import-result');
-        const resultIcon = resultContainer.querySelector('.result-icon');
-        const resultTitle = resultContainer.querySelector('h3');
-        const resultMessage = resultContainer.querySelector('p');
-
-        resultContainer.className = `result-container ${data.success ? 'success' : 'error'}`;
-        resultContainer.style.display = 'flex';
+        const textarea = document.getElementById('text-styles-output-textarea');
+        const copyBtn = document.getElementById('copy-text-styles-btn');
+        const downloadBtn = document.getElementById('download-text-styles-btn');
 
         if (data.success) {
-          resultIcon.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-          resultTitle.textContent = 'Import Successful';
-          resultMessage.textContent = data.message;
+          // Store current data for copy/download
+          currentTextStylesData = data.data;
+          currentTextStylesFilename = data.fileName;
 
-          // Refresh collections data
-          sendMessage('get-collections');
+          // Update textarea
+          if (textarea) {
+            textarea.value = data.data;
+          }
+
+          // Show action buttons
+          if (copyBtn) copyBtn.style.display = 'inline-flex';
+          if (downloadBtn) downloadBtn.style.display = 'inline-flex';
+
+          showSnackbar(data.message, 'success');
+
         } else {
-          resultIcon.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-          resultTitle.textContent = 'Import Failed';
-          resultMessage.textContent = data.message;
+          // Show error
+          if (textarea) {
+            textarea.value = `Export failed: ${data.message}`;
+          }
+
+          // Hide action buttons
+          if (copyBtn) copyBtn.style.display = 'none';
+          if (downloadBtn) downloadBtn.style.display = 'none';
+
+          showSnackbar(data.message, 'error');
         }
       }
 
-      // Initialize Custom Selects
-      function setupCustomSelect(selectContainer) {
-        const trigger = selectContainer.querySelector('.custom-select-trigger');
-        const optionsContainer = selectContainer.querySelector('.custom-select-options');
-        const options = selectContainer.querySelectorAll('.custom-select-option');
-        const valueDisplay = selectContainer.querySelector('.custom-select-value');
-
-        // Toggle dropdown
-        trigger.onclick = (e) => {
-          e.stopPropagation();
-          // Close all other selects first
-          document.querySelectorAll('.custom-select-container.open').forEach(el => {
-            if (el !== selectContainer) el.classList.remove('open');
-          });
-          selectContainer.classList.toggle('open');
-        };
-
-        // Handle option selection
-        options.forEach(option => {
-          option.onclick = (e) => {
-            e.stopPropagation();
-            // Update selected state
-            options.forEach(opt => opt.classList.remove('selected'));
-            option.classList.add('selected');
-
-            // Update trigger text and value
-            valueDisplay.textContent = option.textContent;
-            valueDisplay.dataset.value = option.dataset.value;
-
-            // Close dropdown
-            selectContainer.classList.remove('open');
-
-            // Trigger change event if needed
-            const event = new CustomEvent('change', { detail: { value: option.dataset.value } });
-            selectContainer.dispatchEvent(event);
-          };
-        });
-      }
-
-      // Close dropdowns when clicking outside
-      document.addEventListener('click', () => {
-        document.querySelectorAll('.custom-select-container.open').forEach(el => {
-          el.classList.remove('open');
-        });
-      });
-
-      // Initialize existing custom selects
-      document.querySelectorAll('.custom-select-container').forEach(setupCustomSelect);
-
-      // Tab Switching Logic
-      document.querySelectorAll('.sidebar-nav button').forEach(button => {
-        button.addEventListener('click', () => {
-          // Update active state for buttons
-          document.querySelectorAll('.sidebar-nav button').forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-
-          // Update active state for content
-          const tabId = button.dataset.tab;
-          document.querySelectorAll('.tab-content').forEach(content => {
-            content.classList.remove('active');
-            if (content.id === `${tabId}-tab`) {
-              content.classList.add('active');
-            }
-          });
-
-          // Show/Hide footer buttons based on tab
-          document.querySelectorAll('.footer-btn').forEach(btn => btn.style.display = 'none');
-          document.querySelectorAll('.footer-checkbox-container').forEach(container => container.style.display = 'none');
-
-          const footerBtn = document.getElementById(`${tabId}-button`) || document.getElementById(`export-${tabId}-button`) || document.getElementById(`create-theme-button`);
-          if (footerBtn) footerBtn.style.display = 'flex';
-
-          // Show checkbox for import tab
-          if (tabId === 'json-to-variables') {
-            const checkbox = document.querySelector('.footer-checkbox-container[data-tab="json-to-variables"]');
-            if (checkbox) checkbox.style.display = 'flex';
-          }
-
-          // Special case for theme builder buttons
-          if (tabId === 'theme-builder') {
-            document.getElementById('export-theme-json-button').style.display = 'flex';
-            document.getElementById('create-theme-button').style.display = 'flex';
-          }
-        });
-      });
-
-      // Helper to update CSS mode select when collection changes
-      function updateCssModeSelectOnCollectionChange(collectionId) {
-        const collection = collections.find(c => c.id === collectionId);
-        const modeSelect = document.getElementById('css-mode-select');
-
-        if (!modeSelect) return;
-
-        // Clear existing options
-        modeSelect.innerHTML = '<option value="">All Modes</option>';
-
-        if (collection && collection.modes) {
-          collection.modes.forEach(mode => {
-            const option = document.createElement('option');
-            option.value = mode; // Using name as ID is not available here easily without mapping
-            option.textContent = mode;
-            modeSelect.appendChild(option);
-          });
+      // Copy text styles result to clipboard
+      function copyTextStylesResult() {
+        if (currentTextStylesData) {
+          copyToClipboard(currentTextStylesData, currentTextStylesFilename);
+        } else {
+          showSnackbar('No data to copy', 'error');
         }
       }
 
-      // Initialize CSS collection select listener
+      // Download text styles result as file
+      function downloadTextStylesResult() {
+        if (currentTextStylesData && currentTextStylesFilename) {
+          const fileExtension = currentTextStylesFilename.endsWith('.css') ? '.css' : '.json';
+          const mimeType = fileExtension === '.css' ? 'text/css' : 'application/json';
+
+          const blob = new Blob([currentTextStylesData], { type: mimeType });
+          downloadBlob(blob, currentTextStylesFilename);
+
+          showSnackbar(`Downloaded ${currentTextStylesFilename}`, 'success');
+        } else {
+          showSnackbar('No data to download', 'error');
+        }
+      }
+
+      // Override the CSS collection change event to also update custom mode select
       setTimeout(() => {
         const cssCollectionHiddenInput = document.getElementById('css-collection-select');
         if (cssCollectionHiddenInput) {
@@ -11803,11 +11284,7 @@ Example:
         }
       }, 100);
 
-      // Current text styles export data
-      let currentTextStylesData = null;
-      let currentTextStylesFilename = null;
-
-      // Export text styles function
+      // Text Styles Export Functions
       function exportTextStyles() {
         // Update button state to 'generating'
         updateExportTextStylesButtonState('generating');
@@ -11815,9 +11292,6 @@ Example:
         // Get selected format
         const formatSelect = document.querySelector('#text-styles-format-custom-select .custom-select-value');
         const format = formatSelect ? (formatSelect.textContent.includes('CSS') ? 'css' : 'w3c') : 'w3c';
-
-        // Get selected brand (mode)
-        const selectedBrand = document.querySelector('input[name="brand-filter"]:checked')?.value || '';
 
         // Get alias handling preference
         const aliasHandling = document.querySelector('input[name="text-styles-alias-handling"]:checked');
@@ -11830,14 +11304,13 @@ Example:
           selectedProperties.push(checkbox.value);
         });
 
-        console.log('[UI] Exporting with selected properties:', selectedProperties, 'Brand:', selectedBrand);
+        console.log('[UI] Exporting with selected properties:', selectedProperties);
 
         // Send message to backend
         sendMessage('export-text-styles', {
           format: format,
           preserveAliases: preserveAliases,
-          selectedProperties: selectedProperties,
-          selectedBrand: selectedBrand // 🆕 Send selected brand
+          selectedProperties: selectedProperties
         });
       }
 
@@ -12288,11 +11761,6 @@ Example:
             }
           });
         }
-
-        // Track modifications to JSON editor
-        textarea.addEventListener('input', () => {
-          jsonEditorModified = true;
-        });
       }
 
       // ===== JSON EDITOR FUNCTIONALITY =====

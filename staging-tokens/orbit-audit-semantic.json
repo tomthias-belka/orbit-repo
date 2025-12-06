@@ -1,0 +1,2205 @@
+{
+  "semantic": {
+    "brand": {
+      "primary": {
+        "main": {
+          "$value": {
+            "orbit": "{colors.coffee.70}",
+            "mooney": "{colors.ottanio.100}",
+            "atm": "{colors.orange.400}",
+            "comersud": "{colors.ocean.100}"
+          },
+          "$type": "color"
+        },
+        "soft": {
+          "$value": {
+            "orbit": "{colors.coffee.5}",
+            "mooney": "{colors.ottanio.5}",
+            "atm": "{colors.orange.5}",
+            "comersud": "{colors.ocean.5}"
+          },
+          "$type": "color"
+        },
+        "light": {
+          "$value": {
+            "orbit": "{colors.coffee.20}",
+            "mooney": "{colors.ottanio.50}",
+            "atm": "{colors.orange.10}",
+            "comersud": "{colors.ocean.30}"
+          },
+          "$type": "color"
+        },
+        "dark": {
+          "$value": {
+            "orbit": "{colors.coffee.400}",
+            "mooney": "{colors.ottanio.200}",
+            "atm": "{colors.coral.90}",
+            "comersud": "{colors.ocean.500}"
+          },
+          "$type": "color"
+        },
+        "faded": {
+          "$value": {
+            "orbit": "{colors.coffee.30}",
+            "mooney": "{colors.ottanio.60}",
+            "atm": "{colors.orange.60}",
+            "comersud": "{colors.ocean.80}"
+          },
+          "$type": "color"
+        }
+      },
+      "secondary": {
+        "main": {
+          "$value": {
+            "orbit": "{colors.blue.70}",
+            "mooney": "{colors.teal.80}",
+            "atm": "{colors.darkgray.200}",
+            "comersud": "{colors.darkgray.100}"
+          },
+          "$type": "color"
+        },
+        "soft": {
+          "$value": {
+            "orbit": "{colors.blue.5}",
+            "mooney": "{colors.teal.5}",
+            "atm": "{colors.darkgray.5}",
+            "comersud": "{colors.darkgray.40}"
+          },
+          "$type": "color"
+        },
+        "light": {
+          "$value": {
+            "orbit": "{colors.blue.20}",
+            "mooney": "{colors.teal.40}",
+            "atm": "{colors.darkgray.40}",
+            "comersud": "{colors.darkgray.5}"
+          },
+          "$type": "color"
+        },
+        "dark": {
+          "$value": {
+            "orbit": "{colors.blue.300}",
+            "mooney": "{colors.teal.500}",
+            "atm": "{colors.gray.600}",
+            "comersud": "{colors.darkgray.200}"
+          },
+          "$type": "color"
+        }
+      },
+      "accent": {
+        "main": {
+          "$value": {
+            "orbit": "{colors.pink.40}",
+            "mooney": "{colors.yellow.100}",
+            "atm": "{colors.blue.100}",
+            "comersud": "{colors.limone.80}"
+          },
+          "$type": "color"
+        },
+        "soft": {
+          "$value": {
+            "orbit": "{colors.pink.5}",
+            "mooney": "{colors.yellow.5}",
+            "atm": "{colors.blue.5}",
+            "comersud": "{colors.limone.5}"
+          },
+          "$type": "color"
+        },
+        "light": {
+          "$value": {
+            "orbit": "{colors.pink.20}",
+            "mooney": "{colors.yellow.60}",
+            "atm": "{colors.blue.60}",
+            "comersud": "{colors.limone.30}"
+          },
+          "$type": "color"
+        },
+        "dark": {
+          "$value": {
+            "orbit": "{colors.pink.400}",
+            "mooney": "{colors.yellow.600}",
+            "atm": "{colors.blue.400}",
+            "comersud": "{colors.limone.300}"
+          },
+          "$type": "color"
+        }
+      },
+      "radius": {
+        "main": {
+          "$value": {
+            "orbit": "{radius.2xs}",
+            "mooney": "{radius.sm}",
+            "atm": "{radius.sm}",
+            "comersud": "{radius.sm}"
+          },
+          "$type": "borderRadius"
+        }
+      },
+      "theme": {
+        "$value": {
+          "orbit": "orbit",
+          "mooney": "mooney",
+          "atm": "atm",
+          "comersud": "comersud"
+        },
+        "$type": "string"
+      }
+    },
+    "colors": {
+      "container": {
+        "page": {
+          "$value": {
+            "orbit": "{colors.neutral.white}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        },
+        "muted": {
+          "$value": {
+            "orbit": "{colors.gray.5}",
+            "mooney": "{colors.gray.5}",
+            "atm": "{colors.gray.5}",
+            "comersud": "{colors.gray.5}"
+          },
+          "$type": "color"
+        },
+        "disabled": {
+          "$value": {
+            "orbit": "{colors.gray.20}",
+            "mooney": "{colors.gray.20}",
+            "atm": "{colors.gray.5}",
+            "comersud": "{colors.gray.5}"
+          },
+          "$type": "color"
+        },
+        "primary": {
+          "$value": {
+            "orbit": "{brand.primary.main}",
+            "mooney": "{brand.primary.main}",
+            "atm": "{brand.primary.faded}",
+            "comersud": "{brand.primary.main}"
+          },
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": {
+            "orbit": "{brand.secondary.main}",
+            "mooney": "{brand.secondary.main}",
+            "atm": "{brand.secondary.main}",
+            "comersud": "{brand.secondary.main}"
+          },
+          "$type": "color"
+        },
+        "accent": {
+          "$value": {
+            "orbit": "{brand.accent.main}",
+            "mooney": "{brand.accent.main}",
+            "atm": "{brand.accent.main}",
+            "comersud": "{brand.accent.main}"
+          },
+          "$type": "color"
+        }
+      },
+      "text": {
+        "main": {
+          "$value": {
+            "orbit": "{colors.neutral.black}",
+            "mooney": "{colors.gray.700}",
+            "atm": "{colors.gray.700}",
+            "comersud": "{colors.gray.700}"
+          },
+          "$type": "color"
+        },
+        "muted": {
+          "$value": {
+            "orbit": "{colors.gray.70}",
+            "mooney": "{colors.gray.60}",
+            "atm": "{colors.gray.60}",
+            "comersud": "{colors.gray.60}"
+          },
+          "$type": "color"
+        },
+        "inverse": {
+          "$value": {
+            "orbit": "{colors.neutral.white}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        },
+        "disabled": {
+          "$value": {
+            "orbit": "{colors.gray.50}",
+            "mooney": "{colors.gray.40}",
+            "atm": "{colors.gray.30}",
+            "comersud": "{colors.gray.40}"
+          },
+          "$type": "color"
+        },
+        "primary": {
+          "$value": {
+            "orbit": "{brand.primary.main}",
+            "mooney": "{brand.primary.main}",
+            "atm": "{brand.primary.main}",
+            "comersud": "{brand.primary.main}"
+          },
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": {
+            "orbit": "{brand.secondary.main}",
+            "mooney": "{brand.secondary.main}",
+            "atm": "{brand.secondary.main}",
+            "comersud": "{brand.secondary.main}"
+          },
+          "$type": "color"
+        },
+        "accent": {
+          "$value": {
+            "orbit": "{brand.accent.main}",
+            "mooney": "{brand.accent.main}",
+            "atm": "{brand.accent.main}",
+            "comersud": "{brand.accent.main}"
+          },
+          "$type": "color"
+        }
+      },
+      "border": {
+        "main": {
+          "$value": {
+            "orbit": "{colors.gray.30}",
+            "mooney": "{colors.gray.20}",
+            "atm": "{colors.gray.20}",
+            "comersud": "{colors.gray.20}"
+          },
+          "$type": "color"
+        },
+        "muted": {
+          "$value": {
+            "orbit": "{colors.gray.10}",
+            "mooney": "{colors.gray.10}",
+            "atm": "{colors.gray.10}",
+            "comersud": "{colors.gray.10}"
+          },
+          "$type": "color"
+        },
+        "focused": {
+          "$value": {
+            "orbit": "{brand.primary.main}",
+            "mooney": "{brand.primary.main}",
+            "atm": "{brand.primary.main}",
+            "comersud": "{brand.primary.main}"
+          },
+          "$type": "color"
+        }
+      },
+      "feedback": {
+        "success": {
+          "$value": {
+            "orbit": "{colors.green.70}",
+            "mooney": "{colors.green.70}",
+            "atm": "{colors.green.70}",
+            "comersud": "{colors.green.70}"
+          },
+          "$type": "color"
+        },
+        "warning": {
+          "$value": {
+            "orbit": "{colors.orange.70}",
+            "mooney": "{colors.orange.70}",
+            "atm": "{colors.orange.70}",
+            "comersud": "{colors.orange.70}"
+          },
+          "$type": "color"
+        },
+        "error": {
+          "$value": {
+            "orbit": "{colors.coral.70}",
+            "mooney": "{colors.coral.80}",
+            "atm": "{colors.coral.70}",
+            "comersud": "{colors.coral.70}"
+          },
+          "$type": "color"
+        },
+        "info": {
+          "$value": {
+            "orbit": "{brand.secondary.main}",
+            "mooney": "{brand.secondary.main}",
+            "atm": "{brand.secondary.main}",
+            "comersud": "{brand.secondary.main}"
+          },
+          "$type": "color"
+        },
+        "successLight": {
+          "$value": {
+            "orbit": "{colors.green.10}",
+            "mooney": "{colors.green.10}",
+            "atm": "{colors.green.10}",
+            "comersud": "{colors.green.10}"
+          },
+          "$type": "color"
+        },
+        "warningLight": {
+          "$value": {
+            "orbit": "{colors.orange.10}",
+            "mooney": "{colors.orange.10}",
+            "atm": "{colors.orange.10}",
+            "comersud": "{colors.orange.10}"
+          },
+          "$type": "color"
+        },
+        "errorLight": {
+          "$value": {
+            "orbit": "{colors.coral.10}",
+            "mooney": "{colors.coral.10}",
+            "atm": "{colors.coral.10}",
+            "comersud": "{colors.coral.10}"
+          },
+          "$type": "color"
+        },
+        "infoLight": {
+          "$value": {
+            "orbit": "{colors.ocean.10}",
+            "mooney": "{colors.ocean.10}",
+            "atm": "{colors.ocean.10}",
+            "comersud": "{colors.ocean.10}"
+          },
+          "$type": "color"
+        }
+      },
+      "icon": {
+        "main": {
+          "$value": {
+            "orbit": "{colors.neutral.black}",
+            "mooney": "{colors.gray.700}",
+            "atm": "{colors.gray.700}",
+            "comersud": "{colors.gray.700}"
+          },
+          "$type": "color"
+        },
+        "muted": {
+          "$value": {
+            "orbit": "{colors.gray.60}",
+            "mooney": "{colors.gray.60}",
+            "atm": "{colors.gray.60}",
+            "comersud": "{colors.gray.60}"
+          },
+          "$type": "color"
+        },
+        "inverse": {
+          "$value": {
+            "orbit": "{colors.neutral.white}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        },
+        "disabled": {
+          "$value": {
+            "orbit": "{colors.gray.50}",
+            "mooney": "{colors.neutral.white}",
+            "atm": "{colors.neutral.white}",
+            "comersud": "{colors.neutral.white}"
+          },
+          "$type": "color"
+        },
+        "primary": {
+          "$value": {
+            "orbit": "{brand.primary.main}",
+            "mooney": "{brand.primary.main}",
+            "atm": "{brand.primary.main}",
+            "comersud": "{brand.primary.main}"
+          },
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": {
+            "orbit": "{brand.secondary.main}",
+            "mooney": "{brand.secondary.main}",
+            "atm": "{brand.secondary.main}",
+            "comersud": "{brand.secondary.main}"
+          },
+          "$type": "color"
+        },
+        "accent": {
+          "$value": {
+            "orbit": "{brand.accent.main}",
+            "mooney": "{brand.accent.main}",
+            "atm": "{brand.accent.main}",
+            "comersud": "{brand.accent.main}"
+          },
+          "$type": "color"
+        },
+        "illustrated": {
+          "shapeSoft": {
+            "$value": {
+              "orbit": "{colors.indigo.5}",
+              "mooney": "{colors.teal.40}",
+              "atm": "{brand.primary.soft}",
+              "comersud": "{colors.gray.20}"
+            },
+            "$type": "color"
+          },
+          "shapeLight": {
+            "$value": {
+              "orbit": "{brand.secondary.soft}",
+              "mooney": "{colors.icon.secondary}",
+              "atm": "{brand.primary.light}",
+              "comersud": "{colors.icon.secondary}"
+            },
+            "$type": "color"
+          },
+          "shapeDark": {
+            "$value": {
+              "orbit": "{brand.secondary.dark}",
+              "mooney": "{brand.primary.dark}",
+              "atm": "{colors.icon.primary}",
+              "comersud": "{brand.primary.dark}"
+            },
+            "$type": "color"
+          }
+        },
+        "colored": {
+          "shapeLight": {
+            "$value": {
+              "orbit": "{brand.secondary.soft}",
+              "mooney": "{colors.icon.secondary}",
+              "atm": "{brand.primary.light}",
+              "comersud": "{colors.icon.primary}"
+            },
+            "$type": "color"
+          },
+          "shapeDark": {
+            "$value": {
+              "orbit": "{brand.secondary.dark}",
+              "mooney": "{brand.primary.dark}",
+              "atm": "{colors.icon.primary}",
+              "comersud": "{brand.primary.dark}"
+            },
+            "$type": "color"
+          }
+        }
+      },
+      "gradient": {
+        "start": {
+          "$value": {
+            "orbit": "{brand.primary.main}",
+            "mooney": "{brand.primary.main}",
+            "atm": "{brand.primary.main}",
+            "comersud": "{brand.primary.main}"
+          },
+          "$type": "color"
+        },
+        "end": {
+          "$value": {
+            "orbit": "{brand.secondary.main}",
+            "mooney": "{brand.secondary.main}",
+            "atm": "{brand.secondary.main}",
+            "comersud": "{brand.secondary.main}"
+          },
+          "$type": "color"
+        }
+      },
+      "decorative": {
+        "tram": {
+          "dark": {
+            "$value": {
+              "orbit": "#bd590d",
+              "mooney": "#bd590d",
+              "atm": "#f06123",
+              "comersud": "#bd590d"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#f46a00",
+              "mooney": "#f46a00",
+              "atm": "{colors.orange.60}",
+              "comersud": "#f26a1f"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#fef0e5",
+              "mooney": "#fef0e5",
+              "atm": "#fce2d7",
+              "comersud": "#fef0e5"
+            },
+            "$type": "color"
+          }
+        },
+        "metro": {
+          "dark": {
+            "$value": {
+              "orbit": "#9f1930",
+              "mooney": "#9f1930",
+              "atm": "#bf1b25",
+              "comersud": "#9f1930"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#eb212e",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#fbe5e5",
+              "mooney": "#fbe5e5",
+              "atm": "#fbe5e5",
+              "comersud": "#fbe5e5"
+            },
+            "$type": "color"
+          },
+          "brescia1": {
+            "$value": {
+              "orbit": "#007eb5",
+              "mooney": "#007eb5",
+              "atm": "#007eb5",
+              "comersud": "#007eb5"
+            },
+            "$type": "color"
+          },
+          "catania1": {
+            "$value": {
+              "orbit": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#dd052b",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "genova1": {
+            "$value": {
+              "orbit": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#dd052b",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "milanoM1": {
+            "$value": {
+              "orbit": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#ed1c2e",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "milanoM2": {
+            "$value": {
+              "orbit": "#5d9732",
+              "mooney": "#5d9732",
+              "atm": "#559534",
+              "comersud": "#5d9732"
+            },
+            "$type": "color"
+          },
+          "milanoM3": {
+            "$value": {
+              "orbit": "#fdbe01",
+              "mooney": "#fdbe01",
+              "atm": "#febe10",
+              "comersud": "#fdbe01"
+            },
+            "$type": "color"
+          },
+          "milanoM4": {
+            "$value": {
+              "orbit": "#007eb5",
+              "mooney": "#007eb5",
+              "atm": "#29417c",
+              "comersud": "#007eb5"
+            },
+            "$type": "color"
+          },
+          "milanoM5": {
+            "$value": {
+              "orbit": "#a392c7",
+              "mooney": "#a392c7",
+              "atm": "#9a8dc3",
+              "comersud": "#a392c7"
+            },
+            "$type": "color"
+          },
+          "napoli1": {
+            "$value": {
+              "orbit": "#fdbe01",
+              "mooney": "#fdbe01",
+              "atm": "#fdbe01",
+              "comersud": "#fdbe01"
+            },
+            "$type": "color"
+          },
+          "napoli6": {
+            "$value": {
+              "orbit": "#7fbfe9",
+              "mooney": "#7fbfe9",
+              "atm": "#7fbfe9",
+              "comersud": "#7fbfe9"
+            },
+            "$type": "color"
+          },
+          "romaMea": {
+            "$value": {
+              "orbit": "#f26a1f",
+              "mooney": "#f26a1f",
+              "atm": "#f36e21",
+              "comersud": "#f26a1f"
+            },
+            "$type": "color"
+          },
+          "romaMeb": {
+            "$value": {
+              "orbit": "#007eb5",
+              "mooney": "#007eb5",
+              "atm": "#007eb5",
+              "comersud": "#007eb5"
+            },
+            "$type": "color"
+          },
+          "romaMec": {
+            "$value": {
+              "orbit": "#508414",
+              "mooney": "#508414",
+              "atm": "#508414",
+              "comersud": "#508414"
+            },
+            "$type": "color"
+          },
+          "torino1": {
+            "$value": {
+              "orbit": "#dd052b",
+              "mooney": "#dd052b",
+              "atm": "#dd052b",
+              "comersud": "#dd052b"
+            },
+            "$type": "color"
+          },
+          "torino2": {
+            "$value": {
+              "orbit": "#0028b5",
+              "mooney": "#0028b5",
+              "atm": "#0028b5",
+              "comersud": "#0028b5"
+            },
+            "$type": "color"
+          }
+        },
+        "train": {
+          "dark": {
+            "$value": {
+              "orbit": "#478500",
+              "mooney": "#478500",
+              "atm": "#478500",
+              "comersud": "#478500"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#59a600",
+              "mooney": "#59a600",
+              "atm": "#59a600",
+              "comersud": "#59a600"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#eef6e5",
+              "mooney": "#eef6e5",
+              "atm": "#eef6e5",
+              "comersud": "#eef6e5"
+            },
+            "$type": "color"
+          }
+        },
+        "harbor": {
+          "dark": {
+            "$value": {
+              "orbit": "#007279",
+              "mooney": "#007279",
+              "atm": "#007279",
+              "comersud": "#007279"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#00a0aa",
+              "mooney": "#00a0aa",
+              "atm": "#00a0aa",
+              "comersud": "#00a0aa"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#e5f5f7",
+              "mooney": "#e5f5f7",
+              "atm": "#e5f5f7",
+              "comersud": "#e5f5f7"
+            },
+            "$type": "color"
+          }
+        },
+        "pullman": {
+          "dark": {
+            "$value": {
+              "orbit": "#510101",
+              "mooney": "#510101",
+              "atm": "#f06123",
+              "comersud": "#510101"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#7c0303",
+              "mooney": "#7c0303",
+              "atm": "{colors.orange.60}",
+              "comersud": "#7c0303"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#fbe5e5",
+              "mooney": "#fbe5e5",
+              "atm": "#fce2d7",
+              "comersud": "#fbe5e5"
+            },
+            "$type": "color"
+          }
+        },
+        "taxi": {
+          "dark": {
+            "$value": {
+              "orbit": "{colors.yellow.100}",
+              "mooney": "{colors.yellow.100}",
+              "atm": "{colors.neutral.black}",
+              "comersud": "{colors.yellow.100}"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "{colors.yellow.60}",
+              "mooney": "{colors.yellow.60}",
+              "atm": "{colors.neutral.black}",
+              "comersud": "{colors.yellow.60}"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#fff6dc",
+              "mooney": "#fff6dc",
+              "atm": "#f2f2f2",
+              "comersud": "#fff6dc"
+            },
+            "$type": "color"
+          }
+        },
+        "ncc": {
+          "dark": {
+            "$value": {
+              "orbit": "#543c87",
+              "mooney": "#543c87",
+              "atm": "#4e2a9b",
+              "comersud": "#543c87"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#7453bb",
+              "mooney": "#7453bb",
+              "atm": "#673ac7",
+              "comersud": "#7453bb"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#dacbf9",
+              "mooney": "#dacbf9",
+              "atm": "#d4c6f2",
+              "comersud": "#dacbf9"
+            },
+            "$type": "color"
+          }
+        },
+        "sharing": {
+          "dark": {
+            "$value": {
+              "orbit": "#a932ff",
+              "mooney": "#a932ff",
+              "atm": "{colors.yellow.100}",
+              "comersud": "#a932ff"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#c06cfc",
+              "mooney": "#c06cfc",
+              "atm": "#ffcc00",
+              "comersud": "#c06cfc"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#f5e8fe",
+              "mooney": "#f5e8fe",
+              "atm": "#fff5cc",
+              "comersud": "#f5e8fe"
+            },
+            "$type": "color"
+          }
+        },
+        "parking": {
+          "dark": {
+            "$value": {
+              "orbit": "{colors.ottanio.100}",
+              "mooney": "{colors.ottanio.100}",
+              "atm": "{colors.ottanio.100}",
+              "comersud": "#215c84"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "{colors.ottanio.50}",
+              "mooney": "{colors.ottanio.50}",
+              "atm": "{colors.ottanio.50}",
+              "comersud": "{colors.ottanio.50}"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#edf3f6",
+              "mooney": "#edf3f6",
+              "atm": "#edf3f6",
+              "comersud": "#ecf2f5"
+            },
+            "$type": "color"
+          }
+        },
+        "garage": {
+          "dark": {
+            "$value": {
+              "orbit": "#003065",
+              "mooney": "#003065",
+              "atm": "#003065",
+              "comersud": "#003065"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#004a9b",
+              "mooney": "#004a9b",
+              "atm": "#004a9b",
+              "comersud": "#004a9b"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#c5e0fe",
+              "mooney": "#c5e0fe",
+              "atm": "#c5e0fe",
+              "comersud": "#d2e8ff"
+            },
+            "$type": "color"
+          }
+        },
+        "carRental": {
+          "dark": {
+            "$value": {
+              "orbit": "#ff7500",
+              "mooney": "#ff7500",
+              "atm": "{colors.ottanio.100}",
+              "comersud": "#ff7500"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#ff9900",
+              "mooney": "#ff9900",
+              "atm": "{colors.teal.80}",
+              "comersud": "#ff9900"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#ffedd2",
+              "mooney": "#ffedd2",
+              "atm": "#c8eff4",
+              "comersud": "#ffedd2"
+            },
+            "$type": "color"
+          }
+        },
+        "chargingStation": {
+          "dark": {
+            "$value": {
+              "orbit": "#215c84",
+              "mooney": "#215c84",
+              "atm": "#215c84",
+              "comersud": "#215c84"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#95c6e8",
+              "mooney": "#95c6e8",
+              "atm": "#95c6e8",
+              "comersud": "#7fbfe9"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#f2f5f7",
+              "mooney": "#f2f5f7",
+              "atm": "#ddf1ff",
+              "comersud": "#ddf1ff"
+            },
+            "$type": "color"
+          }
+        },
+        "favorites": {
+          "dark": {
+            "$value": {
+              "orbit": "{colors.ottanio.100}",
+              "mooney": "{colors.ottanio.100}",
+              "atm": "#cd0e5e",
+              "comersud": "{colors.ottanio.100}"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "{colors.teal.80}",
+              "mooney": "{colors.teal.80}",
+              "atm": "#ff4a96",
+              "comersud": "{colors.teal.80}"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "{colors.neutral.white}",
+              "mooney": "{colors.neutral.white}",
+              "atm": "#ffd0e4",
+              "comersud": "{colors.neutral.white}"
+            },
+            "$type": "color"
+          }
+        },
+        "walk": {
+          "dark": {
+            "$value": {
+              "orbit": "{colors.gray.70}",
+              "mooney": "{colors.gray.70}",
+              "atm": "{colors.gray.70}",
+              "comersud": "{colors.gray.70}"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "{colors.gray.40}",
+              "mooney": "{colors.gray.40}",
+              "atm": "{colors.gray.40}",
+              "comersud": "{colors.gray.40}"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "{colors.gray.25}",
+              "mooney": "{colors.gray.25}",
+              "atm": "{colors.gray.25}",
+              "comersud": "{colors.gray.25}"
+            },
+            "$type": "color"
+          }
+        },
+        "ztl": {
+          "dark": {
+            "$value": {
+              "orbit": "#194579",
+              "mooney": "#194579",
+              "atm": "#194579",
+              "comersud": "#003065"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#004a9b",
+              "mooney": "#004a9b",
+              "atm": "#004a9b",
+              "comersud": "#004a9b"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#c5e0fe",
+              "mooney": "#c5e0fe",
+              "atm": "#c5e0fe",
+              "comersud": "#c5e0fe"
+            },
+            "$type": "color"
+          }
+        },
+        "garageTelepass": {
+          "dark": {
+            "$value": {
+              "orbit": "{colors.yellow.100}",
+              "mooney": "{colors.yellow.100}",
+              "atm": "{colors.yellow.100}",
+              "comersud": "{colors.yellow.100}"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "{colors.yellow.60}",
+              "mooney": "{colors.yellow.60}",
+              "atm": "{colors.yellow.60}",
+              "comersud": "{colors.yellow.60}"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#fff6dc",
+              "mooney": "#fff6dc",
+              "atm": "#fff6dc",
+              "comersud": "#fff6dc"
+            },
+            "$type": "color"
+          }
+        },
+        "airports": {
+          "dark": {
+            "$value": {
+              "orbit": "{colors.gray.150}",
+              "mooney": "{colors.gray.150}",
+              "atm": "{colors.gray.150}",
+              "comersud": "{colors.gray.150}"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "{colors.gray.70}",
+              "mooney": "{colors.gray.70}",
+              "atm": "{colors.gray.70}",
+              "comersud": "{colors.gray.70}"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "{colors.gray.7}",
+              "mooney": "{colors.gray.7}",
+              "atm": "{colors.gray.7}",
+              "comersud": "{colors.gray.7}"
+            },
+            "$type": "color"
+          }
+        },
+        "skipass": {
+          "dark": {
+            "$value": {
+              "orbit": "#6097ad",
+              "mooney": "#6097ad",
+              "atm": "#6097ad",
+              "comersud": "#6097ad"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#c4d4d5",
+              "mooney": "#c4d4d5",
+              "atm": "#c4d4d5",
+              "comersud": "#c4d4d5"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "{colors.ottanio.5}",
+              "mooney": "{colors.ottanio.5}",
+              "atm": "{colors.ottanio.5}",
+              "comersud": "{colors.ottanio.5}"
+            },
+            "$type": "color"
+          }
+        },
+        "bus": {
+          "dark": {
+            "$value": {
+              "orbit": "#bd590d",
+              "mooney": "#bd590d",
+              "atm": "#f06123",
+              "comersud": "#bd590d"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#f46a00",
+              "mooney": "#f46a00",
+              "atm": "{colors.orange.60}",
+              "comersud": "#f26a1f"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#fef0e5",
+              "mooney": "#fef0e5",
+              "atm": "#fce2d7",
+              "comersud": "#fef0e5"
+            },
+            "$type": "color"
+          }
+        },
+        "pin": {
+          "dark": {
+            "$value": {
+              "orbit": "{colors.gray.150}",
+              "mooney": "{colors.gray.150}",
+              "atm": "#344054",
+              "comersud": "{colors.gray.150}"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "{colors.gray.70}",
+              "mooney": "{colors.gray.70}",
+              "atm": "#98a2b3",
+              "comersud": "{colors.gray.70}"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "{colors.gray.20}",
+              "mooney": "{colors.gray.20}",
+              "atm": "#eaecf0",
+              "comersud": "{colors.gray.20}"
+            },
+            "$type": "color"
+          }
+        },
+        "infoPoint": {
+          "dark": {
+            "$value": {
+              "orbit": "#622282",
+              "mooney": "#622282",
+              "atm": "#622282",
+              "comersud": "#622282"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#ae3ce7",
+              "mooney": "#ae3ce7",
+              "atm": "#ae3ce7",
+              "comersud": "#ae3ce7"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#f0d1ff",
+              "mooney": "#f0d1ff",
+              "atm": "#f0d1ff",
+              "comersud": "#f0d1ff"
+            },
+            "$type": "color"
+          }
+        },
+        "experience": {
+          "dark": {
+            "$value": {
+              "orbit": "#cf663d",
+              "mooney": "#cf663d",
+              "atm": "#cf663d",
+              "comersud": "#cf663d"
+            },
+            "$type": "color"
+          },
+          "medium": {
+            "$value": {
+              "orbit": "#f3ad8b",
+              "mooney": "#f3ad8b",
+              "atm": "#f3ad8b",
+              "comersud": "#f3ad8b"
+            },
+            "$type": "color"
+          },
+          "light": {
+            "$value": {
+              "orbit": "#ffe4ad",
+              "mooney": "#ffe4ad",
+              "atm": "#ffe4ad",
+              "comersud": "#ffe4ad"
+            },
+            "$type": "color"
+          }
+        },
+        "illustrations": {
+          "10": {
+            "$value": {
+              "orbit": "#e3f1f3",
+              "mooney": "#e3f1f3",
+              "atm": "#e3f1f3",
+              "comersud": "#e3f1f3"
+            },
+            "$type": "color"
+          },
+          "11": {
+            "$value": {
+              "orbit": "#c4d4d5",
+              "mooney": "#c4d4d5",
+              "atm": "#c4d4d5",
+              "comersud": "#c4d4d5"
+            },
+            "$type": "color"
+          },
+          "12": {
+            "$value": {
+              "orbit": "#6097ad",
+              "mooney": "#6097ad",
+              "atm": "#6097ad",
+              "comersud": "#6097ad"
+            },
+            "$type": "color"
+          },
+          "13": {
+            "$value": {
+              "orbit": "#547c81",
+              "mooney": "#547c81",
+              "atm": "#547c81",
+              "comersud": "#547c81"
+            },
+            "$type": "color"
+          },
+          "14": {
+            "$value": {
+              "orbit": "#ffe4ad",
+              "mooney": "#ffe4ad",
+              "atm": "#ffe4ad",
+              "comersud": "#ffe4ad"
+            },
+            "$type": "color"
+          },
+          "15": {
+            "$value": {
+              "orbit": "#fed385",
+              "mooney": "#fed385",
+              "atm": "#fed385",
+              "comersud": "#fed385"
+            },
+            "$type": "color"
+          },
+          "16": {
+            "$value": {
+              "orbit": "#efbd63",
+              "mooney": "#efbd63",
+              "atm": "#efbd63",
+              "comersud": "#efbd63"
+            },
+            "$type": "color"
+          },
+          "17": {
+            "$value": {
+              "orbit": "{colors.yellow.60}",
+              "mooney": "{colors.yellow.60}",
+              "atm": "{colors.yellow.60}",
+              "comersud": "{colors.yellow.60}"
+            },
+            "$type": "color"
+          },
+          "18": {
+            "$value": {
+              "orbit": "{colors.yellow.100}",
+              "mooney": "{colors.yellow.100}",
+              "atm": "{colors.yellow.100}",
+              "comersud": "{colors.yellow.100}"
+            },
+            "$type": "color"
+          },
+          "19": {
+            "$value": {
+              "orbit": "#f26a1f",
+              "mooney": "#f26a1f",
+              "atm": "#f26a1f",
+              "comersud": "#f26a1f"
+            },
+            "$type": "color"
+          },
+          "20": {
+            "$value": {
+              "orbit": "#b6ebdd",
+              "mooney": "#b6ebdd",
+              "atm": "#b6ebdd",
+              "comersud": "#b6ebdd"
+            },
+            "$type": "color"
+          },
+          "21": {
+            "$value": {
+              "orbit": "#549f8c",
+              "mooney": "#549f8c",
+              "atm": "#549f8c",
+              "comersud": "#549f8c"
+            },
+            "$type": "color"
+          },
+          "22": {
+            "$value": {
+              "orbit": "#00a0aa",
+              "mooney": "#00a0aa",
+              "atm": "#00a0aa",
+              "comersud": "#00a0aa"
+            },
+            "$type": "color"
+          },
+          "23": {
+            "$value": {
+              "orbit": "#105155",
+              "mooney": "#105155",
+              "atm": "#105155",
+              "comersud": "#105155"
+            },
+            "$type": "color"
+          },
+          "24": {
+            "$value": {
+              "orbit": "{colors.gray.150}",
+              "mooney": "{colors.gray.150}",
+              "atm": "{colors.gray.150}",
+              "comersud": "{colors.gray.150}"
+            },
+            "$type": "color"
+          },
+          "25": {
+            "$value": {
+              "orbit": "{colors.gray.70}",
+              "mooney": "{colors.gray.70}",
+              "atm": "{colors.gray.70}",
+              "comersud": "{colors.gray.70}"
+            },
+            "$type": "color"
+          },
+          "26": {
+            "$value": {
+              "orbit": "{colors.gray.40}",
+              "mooney": "{colors.gray.40}",
+              "atm": "{colors.gray.40}",
+              "comersud": "{colors.gray.40}"
+            },
+            "$type": "color"
+          },
+          "27": {
+            "$value": {
+              "orbit": "{colors.gray.25}",
+              "mooney": "{colors.gray.25}",
+              "atm": "{colors.gray.25}",
+              "comersud": "{colors.gray.25}"
+            },
+            "$type": "color"
+          },
+          "28": {
+            "$value": {
+              "orbit": "{colors.gray.7}",
+              "mooney": "{colors.gray.7}",
+              "atm": "{colors.gray.7}",
+              "comersud": "{colors.gray.7}"
+            },
+            "$type": "color"
+          },
+          "29": {
+            "$value": {
+              "orbit": "#dd0000",
+              "mooney": "#dd0000",
+              "atm": "#dd0000",
+              "comersud": "#dd0000"
+            },
+            "$type": "color"
+          },
+          "30": {
+            "$value": {
+              "orbit": "#f9a000",
+              "mooney": "#f9a000",
+              "atm": "#f9a000",
+              "comersud": "#f9a000"
+            },
+            "$type": "color"
+          },
+          "31": {
+            "$value": {
+              "orbit": "#358551",
+              "mooney": "#358551",
+              "atm": "#358551",
+              "comersud": "#358551"
+            },
+            "$type": "color"
+          },
+          "01": {
+            "$value": {
+              "orbit": "#f3ad8b",
+              "mooney": "#f3ad8b",
+              "atm": "#f3ad8b",
+              "comersud": "#f3ad8b"
+            },
+            "$type": "color"
+          },
+          "02": {
+            "$value": {
+              "orbit": "#cf663d",
+              "mooney": "#cf663d",
+              "atm": "#cf663d",
+              "comersud": "#cf663d"
+            },
+            "$type": "color"
+          },
+          "03": {
+            "$value": {
+              "orbit": "{colors.teal.40}",
+              "mooney": "{colors.teal.40}",
+              "atm": "{colors.teal.40}",
+              "comersud": "{colors.teal.40}"
+            },
+            "$type": "color"
+          },
+          "04": {
+            "$value": {
+              "orbit": "#9bd3dd",
+              "mooney": "#9bd3dd",
+              "atm": "#9bd3dd",
+              "comersud": "#9bd3dd"
+            },
+            "$type": "color"
+          },
+          "05": {
+            "$value": {
+              "orbit": "#65dce2",
+              "mooney": "#65dce2",
+              "atm": "#65dce2",
+              "comersud": "#65dce2"
+            },
+            "$type": "color"
+          },
+          "06": {
+            "$value": {
+              "orbit": "#5fc5d1",
+              "mooney": "#5fc5d1",
+              "atm": "#5fc5d1",
+              "comersud": "#5fc5d1"
+            },
+            "$type": "color"
+          },
+          "07": {
+            "$value": {
+              "orbit": "{colors.teal.80}",
+              "mooney": "{colors.teal.80}",
+              "atm": "{colors.teal.80}",
+              "comersud": "{colors.teal.80}"
+            },
+            "$type": "color"
+          },
+          "08": {
+            "$value": {
+              "orbit": "{colors.ottanio.100}",
+              "mooney": "{colors.ottanio.100}",
+              "atm": "{colors.ottanio.100}",
+              "comersud": "{colors.ottanio.100}"
+            },
+            "$type": "color"
+          },
+          "09": {
+            "$value": {
+              "orbit": "#00425d",
+              "mooney": "#00425d",
+              "atm": "#00425d",
+              "comersud": "#00425d"
+            },
+            "$type": "color"
+          }
+        },
+        "maps": {
+          "10": {
+            "$value": {
+              "orbit": "#dd0000",
+              "mooney": "#dd0000",
+              "atm": "#dd0000",
+              "comersud": "#dd0000"
+            },
+            "$type": "color"
+          },
+          "25": {
+            "$value": {
+              "orbit": "rgba(66, 134, 245, 0.4)",
+              "mooney": "#4286f5",
+              "atm": "#4286f5",
+              "comersud": "#4286f5"
+            },
+            "$type": "color"
+          },
+          "50": {
+            "$value": {
+              "orbit": "#4286f5",
+              "mooney": "#4286f5",
+              "atm": "#4286f5",
+              "comersud": "#4286f5"
+            },
+            "$type": "color"
+          },
+          "70": {
+            "$value": {
+              "orbit": "{colors.alpha.light.70}",
+              "mooney": "{colors.alpha.light.70}",
+              "atm": "rgba(255, 255, 255, 0.7)",
+              "comersud": "rgba(255, 255, 255, 0.7)"
+            },
+            "$type": "color"
+          },
+          "80": {
+            "$value": {
+              "orbit": "{colors.alpha.light.80}",
+              "mooney": "{colors.alpha.light.80}",
+              "atm": "rgba(255, 255, 255, 0.8)",
+              "comersud": "rgba(255, 255, 255, 0.8)"
+            },
+            "$type": "color"
+          },
+          "01": {
+            "$value": {
+              "orbit": "rgba(0, 88, 124, 0.1)",
+              "mooney": "rgba(0, 88, 124, 0.1)",
+              "atm": "rgba(0, 88, 124, 0.1)",
+              "comersud": "rgba(0, 88, 124, 0.1)"
+            },
+            "$type": "color"
+          },
+          "02": {
+            "$value": {
+              "orbit": "{colors.ottanio.100}",
+              "mooney": "{colors.ottanio.100}",
+              "atm": "{colors.ottanio.100}",
+              "comersud": "{colors.ottanio.100}"
+            },
+            "$type": "color"
+          },
+          "03": {
+            "$value": {
+              "orbit": "rgba(98, 72, 152, 0.1)",
+              "mooney": "rgba(98, 72, 152, 0.1)",
+              "atm": "rgba(98, 72, 152, 0.1)",
+              "comersud": "rgba(98, 72, 152, 0.1)"
+            },
+            "$type": "color"
+          },
+          "04": {
+            "$value": {
+              "orbit": "#624898",
+              "mooney": "#624898",
+              "atm": "#624898",
+              "comersud": "#624898"
+            },
+            "$type": "color"
+          },
+          "05": {
+            "$value": {
+              "orbit": "rgba(0, 160, 170, 0.1)",
+              "mooney": "rgba(0, 160, 170, 0.1)",
+              "atm": "rgba(0, 160, 170, 0.1)",
+              "comersud": "rgba(0, 160, 170, 0.1)"
+            },
+            "$type": "color"
+          },
+          "06": {
+            "$value": {
+              "orbit": "#00a0aa",
+              "mooney": "#00a0aa",
+              "atm": "#00a0aa",
+              "comersud": "#00a0aa"
+            },
+            "$type": "color"
+          },
+          "07": {
+            "$value": {
+              "orbit": "rgba(249, 160, 0, 0.1)",
+              "mooney": "rgba(249, 160, 0, 0.1)",
+              "atm": "rgba(249, 160, 0, 0.1)",
+              "comersud": "rgba(249, 160, 0, 0.1)"
+            },
+            "$type": "color"
+          },
+          "08": {
+            "$value": {
+              "orbit": "#f9a000",
+              "mooney": "#f9a000",
+              "atm": "#f9a000",
+              "comersud": "#f9a000"
+            },
+            "$type": "color"
+          },
+          "09": {
+            "$value": {
+              "orbit": "rgba(221, 0, 0, 0.1)",
+              "mooney": "rgba(221, 0, 0, 0.1)",
+              "atm": "rgba(221, 0, 0, 0.1)",
+              "comersud": "rgba(221, 0, 0, 0.1)"
+            },
+            "$type": "color"
+          }
+        },
+        "meansOfTransportPosition": {
+          "bus10": {
+            "$value": {
+              "orbit": "rgba(189, 89, 13, 0.1)",
+              "mooney": "rgba(189, 89, 13, 0.1)",
+              "atm": "rgba(243, 130, 48, 0.1)",
+              "comersud": "rgba(189, 89, 13, 0.1)"
+            },
+            "$type": "color"
+          },
+          "bus30": {
+            "$value": {
+              "orbit": "rgba(189, 89, 13, 0.3)",
+              "mooney": "rgba(189, 89, 13, 0.3)",
+              "atm": "rgba(243, 130, 48, 0.3)",
+              "comersud": "rgba(189, 89, 13, 0.3)"
+            },
+            "$type": "color"
+          },
+          "harbor10": {
+            "$value": {
+              "orbit": "rgba(0, 160, 170, 0.1)",
+              "mooney": "rgba(0, 160, 170, 0.1)",
+              "atm": "rgba(0, 160, 170, 0.1)",
+              "comersud": "rgba(0, 160, 170, 0.1)"
+            },
+            "$type": "color"
+          },
+          "harbor30": {
+            "$value": {
+              "orbit": "rgba(0, 160, 170, 0.3)",
+              "mooney": "rgba(0, 160, 170, 0.3)",
+              "atm": "rgba(0, 160, 170, 0.3)",
+              "comersud": "rgba(0, 160, 170, 0.3)"
+            },
+            "$type": "color"
+          },
+          "pullman10": {
+            "$value": {
+              "orbit": "rgba(210, 0, 0, 0.1)",
+              "mooney": "rgba(210, 0, 0, 0.1)",
+              "atm": "rgba(243, 130, 48, 0.1)",
+              "comersud": "rgba(210, 0, 0, 0.1)"
+            },
+            "$type": "color"
+          },
+          "pullman30": {
+            "$value": {
+              "orbit": "rgba(210, 0, 0, 0.3)",
+              "mooney": "rgba(210, 0, 0, 0.3)",
+              "atm": "rgba(243, 130, 48, 0.3)",
+              "comersud": "rgba(210, 0, 0, 0.3)"
+            },
+            "$type": "color"
+          },
+          "train10": {
+            "$value": {
+              "orbit": "rgba(89, 166, 0, 0.1)",
+              "mooney": "rgba(89, 166, 0, 0.1)",
+              "atm": "rgba(89, 166, 0, 0.1)",
+              "comersud": "rgba(89, 166, 0, 0.1)"
+            },
+            "$type": "color"
+          },
+          "train30": {
+            "$value": {
+              "orbit": "rgba(89, 166, 0, 0.3)",
+              "mooney": "rgba(89, 166, 0, 0.3)",
+              "atm": "rgba(89, 166, 0, 0.3)",
+              "comersud": "rgba(89, 166, 0, 0.3)"
+            },
+            "$type": "color"
+          },
+          "tram10": {
+            "$value": {
+              "orbit": "rgba(189, 89, 13, 0.1)",
+              "mooney": "rgba(189, 89, 13, 0.1)",
+              "atm": "rgba(243, 130, 48, 0.1)",
+              "comersud": "rgba(189, 89, 13, 0.1)"
+            },
+            "$type": "color"
+          },
+          "tram30": {
+            "$value": {
+              "orbit": "rgba(189, 89, 13, 0.3)",
+              "mooney": "rgba(189, 89, 13, 0.3)",
+              "atm": "rgba(243, 130, 48, 0.3)",
+              "comersud": "rgba(189, 89, 13, 0.3)"
+            },
+            "$type": "color"
+          }
+        }
+      }
+    },
+    "booleans": {
+      "view": {
+        "$value": {
+          "orbit": false,
+          "mooney": true,
+          "atm": false,
+          "comersud": false
+        },
+        "$type": "boolean"
+      }
+    },
+    "spacing": {
+      "component": {
+        "xs": {
+          "$value": {
+            "orbit": "{spacing.2xs}",
+            "mooney": "{spacing.3xs}",
+            "atm": "{spacing.4xs}",
+            "comersud": "{spacing.4xs}"
+          },
+          "$type": "spacing"
+        },
+        "sm": {
+          "$value": {
+            "orbit": "{spacing.xs}",
+            "mooney": "{spacing.md}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        },
+        "md": {
+          "$value": {
+            "orbit": "{spacing.xs}",
+            "mooney": "{spacing.md}",
+            "atm": "{spacing.sm}",
+            "comersud": "{spacing.sm}"
+          },
+          "$type": "spacing"
+        },
+        "lg": {
+          "$value": {
+            "orbit": "{spacing.lg}",
+            "mooney": "{spacing.md}",
+            "atm": "{spacing.lg}",
+            "comersud": "{spacing.lg}"
+          },
+          "$type": "spacing"
+        },
+        "xl": {
+          "$value": {
+            "orbit": "{spacing.lg}",
+            "mooney": "{spacing.2xs}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        }
+      },
+      "layout": {
+        "xs": {
+          "$value": {
+            "orbit": "{spacing.sm}",
+            "mooney": "{spacing.2xs}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        },
+        "sm": {
+          "$value": {
+            "orbit": "{spacing.md}",
+            "mooney": "{spacing.2xs}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        },
+        "md": {
+          "$value": {
+            "orbit": "{spacing.lg}",
+            "mooney": "{spacing.2xs}",
+            "atm": "{spacing.2xs}",
+            "comersud": "{spacing.2xs}"
+          },
+          "$type": "spacing"
+        },
+        "lg": {
+          "$value": {
+            "orbit": "{spacing.2xl}",
+            "mooney": "{spacing.2xl}",
+            "atm": "{spacing.2xl}",
+            "comersud": "{spacing.2xl}"
+          },
+          "$type": "spacing"
+        },
+        "xl": {
+          "$value": {
+            "orbit": "{spacing.3xl}",
+            "mooney": "{spacing.2xl}",
+            "atm": "{spacing.2xl}",
+            "comersud": "{spacing.2xl}"
+          },
+          "$type": "spacing"
+        }
+      }
+    },
+    "size": {
+      "height": {
+        "xs": {
+          "$value": {
+            "orbit": 12,
+            "mooney": 16,
+            "atm": 16,
+            "comersud": 24
+          },
+          "$type": "size"
+        },
+        "sm": {
+          "$value": {
+            "orbit": 32,
+            "mooney": 32,
+            "atm": 32,
+            "comersud": 32
+          },
+          "$type": "number"
+        },
+        "md": {
+          "$value": {
+            "orbit": 48,
+            "mooney": 40,
+            "atm": 40,
+            "comersud": 40
+          },
+          "$type": "size"
+        },
+        "lg": {
+          "$value": {
+            "orbit": 48,
+            "mooney": 48,
+            "atm": 56,
+            "comersud": 56
+          },
+          "$type": "size"
+        }
+      }
+    },
+    "shadow": {
+      "card": {
+        "$value": {
+          "orbit": "0 4px 16px rgba(0, 0, 0, 0.4)",
+          "mooney": "0 4px 12px rgba(0, 88, 124, 0.1)",
+          "atm": "0 4px 12px rgba(221, 0, 0, 0.1)",
+          "comersud": "0 4px 12px rgba(221, 0, 0, 0.1)"
+        },
+        "$type": "string"
+      }
+    },
+    "definitions": {
+      "button": {
+        "primary": {
+          "background": {
+            "$value": {
+              "orbit": "{brand.primary.main}",
+              "mooney": "{brand.primary.main}",
+              "atm": "{brand.primary.main}",
+              "comersud": "{brand.primary.main}"
+            },
+            "$type": "color"
+          },
+          "foreground": {
+            "$value": {
+              "orbit": "{colors.neutral.white}",
+              "mooney": "{colors.neutral.white}",
+              "atm": "{colors.neutral.white}",
+              "comersud": "{colors.neutral.white}"
+            },
+            "$type": "color"
+          },
+          "border": {
+            "$value": {
+              "orbit": "{colors.neutral.transparent}",
+              "mooney": "{colors.neutral.transparent}",
+              "atm": "{colors.neutral.transparent}",
+              "comersud": "{colors.neutral.transparent}"
+            },
+            "$type": "color"
+          },
+          "borderWidth": {
+            "$value": {
+              "orbit": "{borderWidth.none}",
+              "mooney": "{borderWidth.none}",
+              "atm": "{borderWidth.none}",
+              "comersud": "{borderWidth.none}"
+            },
+            "$type": "number"
+          },
+          "backgroundDisabled": {
+            "$value": {
+              "orbit": "{colors.gray.20}",
+              "mooney": "{colors.gray.20}",
+              "atm": "{colors.gray.20}",
+              "comersud": "{colors.gray.20}"
+            },
+            "$type": "color"
+          },
+          "foregroundDisabled": {
+            "$value": {
+              "orbit": "{colors.gray.70}",
+              "mooney": "{colors.gray.50}",
+              "atm": "{colors.gray.50}",
+              "comersud": "{colors.gray.50}"
+            },
+            "$type": "color"
+          },
+          "borderDisabled": {
+            "$value": {
+              "orbit": "{colors.gray.25}",
+              "mooney": "{colors.gray.20}",
+              "atm": "{colors.gray.20}",
+              "comersud": "{colors.gray.20}"
+            },
+            "$type": "color"
+          },
+          "opacityDisabled": {
+            "$value": {
+              "orbit": "{opacity.display}",
+              "mooney": "{opacity.display}",
+              "atm": "{opacity.display}",
+              "comersud": "{opacity.display}"
+            },
+            "$type": "number"
+          },
+          "paddingX": {
+            "$value": {
+              "orbit": "{spacing.sm}",
+              "mooney": "{spacing.xs}",
+              "atm": "{spacing.xs}",
+              "comersud": "{spacing.xs}"
+            },
+            "$type": "number"
+          }
+        },
+        "fontWeight": {
+          "$value": {
+            "orbit": "{typography.fontWeight.bold}",
+            "mooney": "{typography.fontWeight.bold}",
+            "atm": "{typography.fontWeight.bold}",
+            "comersud": "{typography.fontWeight.bold}"
+          },
+          "$type": "number"
+        },
+        "secondary": {
+          "background": {
+            "$value": {
+              "orbit": "{colors.neutral.white}",
+              "mooney": "{colors.neutral.white}",
+              "atm": "{colors.neutral.white}",
+              "comersud": "{colors.neutral.white}"
+            },
+            "$type": "color"
+          },
+          "foreground": {
+            "$value": {
+              "orbit": "{brand.primary.main}",
+              "mooney": "{brand.primary.main}",
+              "atm": "{brand.primary.main}",
+              "comersud": "{brand.primary.main}"
+            },
+            "$type": "color"
+          },
+          "border": {
+            "$value": {
+              "orbit": "{brand.primary.main}",
+              "mooney": "{brand.primary.main}",
+              "atm": "{brand.primary.main}",
+              "comersud": "{brand.primary.main}"
+            },
+            "$type": "color"
+          },
+          "borderWidth": {
+            "$value": {
+              "orbit": "{borderWidth.main}",
+              "mooney": "{borderWidth.main}",
+              "atm": "{borderWidth.main}",
+              "comersud": "{borderWidth.main}"
+            },
+            "$type": "number"
+          },
+          "backgroundDisabled": {
+            "$value": {
+              "orbit": "{colors.neutral.transparent}",
+              "mooney": "{colors.neutral.transparent}",
+              "atm": "{colors.neutral.transparent}",
+              "comersud": "{colors.neutral.transparent}"
+            },
+            "$type": "color"
+          },
+          "foregroundDisabled": {
+            "$value": {
+              "orbit": "{colors.gray.70}",
+              "mooney": "{colors.gray.50}",
+              "atm": "{colors.gray.50}",
+              "comersud": "{colors.gray.50}"
+            },
+            "$type": "color"
+          },
+          "borderDisabled": {
+            "$value": {
+              "orbit": "{colors.gray.30}",
+              "mooney": "{colors.gray.20}",
+              "atm": "{colors.gray.20}",
+              "comersud": "{colors.gray.20}"
+            },
+            "$type": "color"
+          },
+          "opacityDisabled": {
+            "$value": {
+              "orbit": "{opacity.mid}",
+              "mooney": "{opacity.mid}",
+              "atm": "{opacity.mid}",
+              "comersud": "{opacity.mid}"
+            },
+            "$type": "number"
+          },
+          "paddingX": {
+            "$value": {
+              "orbit": "{spacing.sm}",
+              "mooney": "{spacing.xs}",
+              "atm": "{spacing.sm}",
+              "comersud": "{spacing.xs}"
+            },
+            "$type": "number"
+          }
+        },
+        "tertiary": {
+          "background": {
+            "$value": {
+              "orbit": "{colors.neutral.transparent}",
+              "mooney": "{colors.neutral.transparent}",
+              "atm": "{colors.neutral.transparent}",
+              "comersud": "{brand.primary.main}"
+            },
+            "$type": "color"
+          },
+          "foreground": {
+            "$value": {
+              "orbit": "{brand.primary.main}",
+              "mooney": "{brand.primary.main}",
+              "atm": "{brand.primary.main}",
+              "comersud": "{brand.primary.main}"
+            },
+            "$type": "color"
+          },
+          "border": {
+            "$value": {
+              "orbit": "{colors.neutral.transparent}",
+              "mooney": "{colors.neutral.transparent}",
+              "atm": "{colors.neutral.transparent}",
+              "comersud": "{colors.neutral.transparent}"
+            },
+            "$type": "color"
+          },
+          "borderWidth": {
+            "$value": {
+              "orbit": "{borderWidth.none}",
+              "mooney": "{borderWidth.none}",
+              "atm": "{borderWidth.none}",
+              "comersud": "{borderWidth.none}"
+            },
+            "$type": "number"
+          },
+          "backgroundDisabled": {
+            "$value": {
+              "orbit": "{colors.neutral.transparent}",
+              "mooney": "{colors.neutral.transparent}",
+              "atm": "{colors.neutral.transparent}",
+              "comersud": "{colors.neutral.transparent}"
+            },
+            "$type": "color"
+          },
+          "foregroundDisabled": {
+            "$value": {
+              "orbit": "{colors.gray.70}",
+              "mooney": "{colors.gray.50}",
+              "atm": "{colors.gray.50}",
+              "comersud": "{colors.gray.50}"
+            },
+            "$type": "color"
+          },
+          "borderDisabled": {
+            "$value": {
+              "orbit": "{colors.gray.30}",
+              "mooney": "{colors.gray.30}",
+              "atm": "{colors.gray.30}",
+              "comersud": "{colors.gray.30}"
+            },
+            "$type": "color"
+          },
+          "opacityDisabled": {
+            "$value": {
+              "orbit": "{opacity.display}",
+              "mooney": "{opacity.display}",
+              "atm": "{opacity.display}",
+              "comersud": "{opacity.display}"
+            },
+            "$type": "number"
+          },
+          "paddingX": {
+            "$value": {
+              "orbit": "{spacing.sm}",
+              "mooney": "{spacing.xs}",
+              "atm": "{spacing.sm}",
+              "comersud": "{spacing.xs}"
+            },
+            "$type": "number"
+          }
+        }
+      }
+    }
+  }
+}

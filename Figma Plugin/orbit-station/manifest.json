@@ -1,0 +1,25 @@
+{
+  "name": "Orbit Station",
+  "id": "orbit-station-v2",
+  "api": "1.0.0",
+  "editorType": [
+    "figma",
+    "dev"
+  ],
+  "capabilities": [
+    "inspect"
+  ],
+  "permissions": [
+    "teamlibrary"
+  ],
+  "main": "code.js",
+  "ui": "ui.html",
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": [
+      "https://fonts.googleapis.com",
+      "https://fonts.gstatic.com",
+      "https://api.github.com"
+    ]
+  }
+}

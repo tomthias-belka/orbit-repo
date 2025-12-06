@@ -341,6 +341,10 @@ function convertTypeToFigma(tokenType: string): 'COLOR' | 'FLOAT' | 'STRING' | '
     case 'string':
     case 'text':
     case 'typography':
+    case 'fontweight':
+    case 'font-weight':
+    case 'fontfamily':
+    case 'font-family':
       return 'STRING';
     case 'boolean':
       return 'BOOLEAN';
